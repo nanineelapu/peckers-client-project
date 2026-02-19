@@ -23,8 +23,8 @@ const page = () => {
         
 
         {/* Center Links */}
-        <div className="flex-1 flex text-[1.6vw] justify-center gap-[3vw]">
-          <a href="#" className="whitespace-nowrap">
+        <div className="flex-1 flex text-[1.2vw] justify-center gap-[3vw]">
+          <a href="#" className="whitespace-nowrap font-sharetech ">
             MENU
           </a>
           <a href="#" className="whitespace-nowrap">
@@ -61,7 +61,14 @@ const page = () => {
 
       
         <div className="w-full h-[10vh] flex items-center justify-center bg-white border-t-[3px] border-b-[3px] border-black">
-          <span className="font-['Share_Tech'] text-[2.2vw] tracking-1 text-black uppercase font-bold">
+          <span
+            className="text-[2vw] text-black uppercase font-bold"
+            style={{
+              fontFamily: "'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', monospace",
+              // Fallback to var if provided by google fonts config
+              '--font-share-tech': "'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', monospace"
+            }}
+          >
             UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!{' '}
             <span className="text-red-600 font-bold">SIGN UP</span>
             {' '}FOR EXCLUSIVE REWARDS.
