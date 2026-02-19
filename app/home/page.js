@@ -70,7 +70,7 @@ const page = () => {
       </section>
 
     <section
-      className="w-full h-[100vh] bg-black flex items-center justify-start"
+      className="w-full h-[95vh] bg-black flex items-center justify-start"
       style={{ minHeight: '480px' }}
       
     >
@@ -123,11 +123,11 @@ const page = () => {
       </div> */}
       </section>
 
-      <div className="w-full flex justify-center items-center bg-black" style={{ minHeight: "40px" }}>
+      <div className="w-full flex justify-center items-center bg-black" style={{ minHeight: "50px" }}>
       <svg
-        width="50"
+        width="80"
         height="50"
-        viewBox="0 0 24 24"
+        viewBox="0 0 20 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="animate-bounce"
@@ -141,8 +141,8 @@ const page = () => {
 
 
         {/* after landing page  */}
-       <div className="w-full px-[2vw] py-[1vw] pt-[3vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
-      <span className="font-['Share_Tech'] text-[4vw]">
+       <div className="w-full px-[2vw] py-[3vw] pt-[6vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
+      <span className="font-['Share_Tech'] text-[4.4vw]">
         YOUR CLOSEST COOP
       </span>
       <span className="font-sans font-extralight">
@@ -152,7 +152,7 @@ const page = () => {
 
         {/* seciton2  */}
 
-       <div className="flex flex-row gap-[2vw] w-full justify-center items-center px-[2vw] py-[5vw]">
+       <div className="flex flex-row gap-[2vw] w-full justify-center items-center px-[2vw] py-[9vw]">
          {/* First image div: Hitchin */}
          <div className="relative flex-1 min-w-[12vw] h-[18vw] flex items-center justify-center rounded-lg overflow-hidden">
            <img
@@ -160,7 +160,7 @@ const page = () => {
              alt="Hitchin"
              className="absolute inset-0 w-full h-full object-cover"
            />
-           <div className="absolute inset-0 bg-black opacity-30"></div>
+           <div className="absolute inset-0 bg-black opacity-20"></div>
            <span className="relative z-10 text-white text-[3vw] font-['Share_Tech']">Hitchin</span>
          </div>
          {/* Second image div: Stevenage */}
@@ -171,7 +171,7 @@ const page = () => {
              alt="Stevenage"
              className="absolute inset-0 w-full h-full object-cover"
            />
-           <div className="absolute inset-0 bg-black opacity-30"></div>
+           <div className="absolute inset-0 bg-black opacity-20"></div>
            <span className="relative z-10 text-white text-[3vw] font-['Share_Tech']">Stevenage</span>
          </div>
          {/* Third div (empty for now, to be updated later) */}
@@ -196,8 +196,8 @@ const page = () => {
 
        {/* section 3 Latest news  */}
 
-       <div className="w-full px-[2vw] py-[1vw] pt-[3vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
-        <span className="font-['Share_Tech'] text-[4vw]">
+       <div className="w-full px-[2vw] py-[1vw] pt-[2vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
+        <span className="font-['Share_Tech'] text-[4.5vw]">
         LATEST NEWS
         </span>
        <span className="font-sans font-extralight">
@@ -208,21 +208,21 @@ const page = () => {
 
         {/* Images  */}
        
-       <div className="cards_of_latest_news w-full flex flex-row justify-center items-start gap-[3vw] py-[10vw] px-[4vw] pb-[2vw]">
+       <div className="cards_of_latest_news w-full flex flex-row justify-center items-start gap-[2vw] py-[10vw] px-[4vw] pb-[2vw]">
           {/* Left Image - Inclined Left with lower brightness */}
           <div 
-            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-md overflow-hidden w-[17vw] h-[25vw] min-w-[110px] relative"
+            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-md overflow-hidden w-[19vw] h-[25vw] min-w-[110px] relative"
             style={{
-              transform: "rotate(-7deg)",
+              transform: "rotate(-1deg)",
               zIndex: 1,
               boxShadow: "0 8px 32px #0006, 0 2.5vw 2vw #0002"
             }}
           >
             <img
-              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/img%20sec%203%202.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvaW1nIHNlYyAzIDIuanBnIiwiaWF0IjoxNzcxNDQyMjYwLCJleHAiOjE4MDI5NzgyNjB9.5Icjw6a9vIzWP0MmJW2Reg4MsXRyQ6VSXPPmKScd0mE"
+              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Group%206%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvR3JvdXAgNiAoMSkucG5nIiwiaWF0IjoxNzcxNDgyNDEzLCJleHAiOjE4MDMwMTg0MTN9.7fb08NwFC7QwmL3M2ONqnV5hmMThS93F8YT9Sd4yHOc"
               alt="Someone's Fried Chicken"
-              className="object-cover w-full h-full"
-              style={{ borderRadius: ".5vw", filter: "brightness(0.75)" }}
+              className="object-cover w-cover h-full"
+              style={{ borderRadius: ".5vw", filter: "brightness(1.1)" }}
             />
           </div>
 
@@ -248,28 +248,29 @@ const page = () => {
 
           {/* Right Image - Inclined Right with lower brightness */}
           <div 
-            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-md overflow-hidden w-[17vw] h-[25vw] min-w-[110px] relative"
+            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-md overflow-hidden w-[19vw] h-[25vw] min-w-[110px] relative"
             style={{
-              transform: "rotate(7deg)",
+              // keep the rotation for right image
+              transform: "rotate(6deg)",
               zIndex: 1,
               boxShadow: "0 8px 32px #0006, 0 2.5vw 2vw #0002"
             }}
           >
             <img
-              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/img%20sec%203%202.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvaW1nIHNlYyAzIDIuanBnIiwiaWF0IjoxNzcxNDQyMjYwLCJleHAiOjE4MDI5NzgyNjB9.5Icjw6a9vIzWP0MmJW2Reg4MsXRyQ6VSXPPmKScd0mE"
+              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Group%206.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvR3JvdXAgNi5wbmciLCJpYXQiOjE3NzE0ODIxODUsImV4cCI6MTgwMzAxODE4NX0.T4vFk1qTuowBgTSbgXMMwNTkpYDWacD05qIDHOcNjIc"
               alt="Burgers and Strips Meal"
-              className="object-cover w-full h-full"
-              style={{ borderRadius: ".5vw", filter: "brightness(0.80)" }}
+              className="object-cover w-cover h-full"
+              style={{ borderRadius: ".5vw", filter: "brightness(0.5)" }}
             />
           </div>
         </div>
 
 
        {/* Caption below the cards */}
-       <div className="w-full flex justify-center mt-[0.5vw]">
-         <div className="w-[65vw] flex flex-col items-center">
+       <div className="w-full flex justify-center mt-[1vw]">
+         <div className="w-[80vw] flex flex-col items-center">
            <div className="w-full border-[1px] border-[#fff3] my-[0.6vw]" />
-           <div className="flex items-start px-[6vw] w-full mt-[0.6vw]">
+           <div className="flex items-start px-[14vw] w-full mt-[0.6vw]">
              {/* SVG animated left bar */}
              <svg
                width="18"
@@ -287,7 +288,7 @@ const page = () => {
                  height="40"
                  rx="1.5"
                  fill="#fff"
-                 fillOpacity="0.85"
+                 fillOpacity="1"
                  style={{ 
                    filter: 'drop-shadow(0 0 5px #ffffff77)',
                    transformOrigin: 'center top'
@@ -304,7 +305,7 @@ const page = () => {
                  />
                </rect>
              </svg>
-             <span className="text-white text-[1.2vw] font-sans font-light text-left tracking-wide" style={{ letterSpacing: '.005em', lineHeight: '1.7vw' }}>
+             <span className="text-white text-[1.3vw] font-sans font-light text-left tracking-wide" style={{ letterSpacing: '.005em', lineHeight: '1.7vw' }}>
                Stay up to date with our shenanigans, limited drops, and questionable life choices.
              </span>
            </div>
