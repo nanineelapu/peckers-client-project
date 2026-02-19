@@ -345,7 +345,7 @@ const page = () => {
          {/* Left: Person Image */}
          <div className="flex-shrink-0">
            <div
-             className="w-[39vw] h-[29vw] rounded-[.7vw] overflow-hidden bg-[#222]"
+             className="w-[40vw] h-[35vw] rounded-[.7vw] overflow-hidden bg-[#222]"
              style={{ boxShadow: '0 2px 16px #0007' }}
            >
              {/* Add your image src below */}
@@ -358,19 +358,19 @@ const page = () => {
          </div>
          
          {/* Right: Person Details */}
-         <div className="flex flex-col justify-center bg-black px-[3vw] py-[2vw]  min-h-[25vw] shadow-xl max-w-[38vw]">
-           <h2 className="grid text-white font-['Share_Tech'] font-bold text-[4vw] leading-tight mb-[1vw]" style={{ letterSpacing: '0.01em' }}>
+         <div className="flex flex-col justify-center bg-black px-[3vw] py-[2vw]  min-h-[25vw] shadow-xl max-w-[40vw]">
+           <h2 className="grid text-white font-['Share_Tech'] font-bold text-[4.5vw] leading-tight mb-[1vw]" style={{ letterSpacing: '0.01em' }}>
              FOR THE LOVE OF <span className="text-[#ffff]">CHICKEN</span>
            </h2>
-           <div className="text-white font-light text-[1.1vw] tracking-[1.1] font-sans mb-[1vw]" style={{ lineHeight: '1.7vw' }}>
+           <div className="text-white font-light text-[1.3vw] tracking-[1.2] font-sans mb-[1vw]" style={{ lineHeight: '2vw' }}>
              Peckers started with a dream: to make wings that didn’t suck. We were tired of dry, sad chicken.
              <br></br>
              So we locked ourselves in a garage with 51lbs of peppers and didn’t come out until we made magic.
            </div>
            <div
-             className="italic text-[#f3f3f3b0] text-[0.97vw] mb-[1.6vw] pl-[1.3vw] border-l-4"
+             className="italic font-mono text-[#f3f3f3b0] text-[1.3vw] mb-[1.6vw] pl-[1.3vw] border-l-2"
              style={{
-               fontFamily: 'serif',
+               fontFamily: '',
                borderColor: '#ffe066',
                letterSpacing: '0.025em',
              }}
@@ -409,7 +409,18 @@ const page = () => {
                  opacity: 1,
                }}
              ></span>
+             
            </a>
+           <div
+        className="bg-[#fff] mt-[0vw] mb-[1.8vw]"
+        style={{
+          width: "35%",
+          maxWidth: "140px",
+          height: "2px",
+          border: "none",
+          borderRadius: "8px"
+        }}
+      />
          </div>
        </div>
 
