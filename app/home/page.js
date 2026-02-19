@@ -23,7 +23,7 @@ const page = () => {
         
 
         {/* Center Links */}
-        <div className="flex-1 flex text-[1.2vw] justify-center gap-[3vw]">
+        <div className="flex-1 flex text-[1.5vw] justify-center gap-[3vw]">
           <a href="#" className="whitespace-nowrap font-sharetech ">
             MENU
           </a>
@@ -43,11 +43,11 @@ const page = () => {
 
         {/* Buttons Section */}
         <div className="flex-1 flex justify-end gap-[1.2vw]">
-          <button className="border-[0.15vw] border-white px-[1.8vw] py-[.5vw] rounded-[0.9vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
+          <button className="border-[0.15vw] border-white px-[1.8vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}>
             CLICK & COLLECT
           </button>
 
-          <button className=" flex items-center gap-2 border-[0.15vw] border-white px-[1.8vw] py-[.5vw] rounded-[0.8vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
+          <button className="flex items-center gap-2 border-[0.15vw] border-white px-[1.8vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}>
             <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M13.5527 3.375C15.3984 3.40137 16.9014 4.9043 16.9277 6.72363C16.9277 8.62207 15.3984 10.1514 13.5 10.125C11.6807 10.125 10.1777 8.62207 10.1777 6.77637C10.1514 5.74805 10.626 4.8252 11.3379 4.19238L11.0215 3.63867C9.99316 4.48242 9.49219 5.69531 9.54492 6.93457C9.54492 7.30371 9.25488 7.59375 8.91211 7.59375H6.69727C6.30176 9.07031 4.9834 10.125 3.42773 10.125C1.5293 10.125 0 8.5957 0.0527344 6.6709C0.0791016 4.9043 1.50293 3.4541 3.2959 3.40137C3.66504 3.375 4.03418 3.42773 4.37695 3.5332L4.66699 2.97949C4.42969 2.61035 4.06055 2.32031 3.42773 2.32031H1.95117C1.58203 2.32031 1.31836 2.05664 1.31836 1.71387C1.29199 1.34473 1.6084 1.05469 1.95117 1.05469H3.42773C4.87793 1.05469 5.58984 1.50293 6.03809 2.10938H10.0986L9.59766 1.26562H7.85742C7.62012 1.26562 7.43555 1.08105 7.43555 0.84375V0.421875C7.43555 0.210938 7.62012 0 7.85742 0H9.9668C10.1777 0 10.3887 0.131836 10.4941 0.316406L11.1006 1.31836L12.0762 0.210938C12.208 0.0791016 12.3662 0 12.5508 0H13.7637C14.1064 0 14.3965 0.290039 14.3965 0.632812V1.47656C14.3965 1.8457 14.1064 2.10938 13.7637 2.10938H11.5752L12.4453 3.55957C12.7881 3.4541 13.1836 3.375 13.5527 3.375ZM3.42773 8.85938C4.27148 8.85938 5.00977 8.3584 5.35254 7.59375H3.2168C2.71582 7.59375 2.42578 7.09277 2.66309 6.6709L3.74414 4.66699C3.63867 4.66699 3.5332 4.64062 3.42773 4.64062C2.24121 4.64062 1.31836 5.58984 1.31836 6.75C1.31836 7.93652 2.24121 8.85938 3.42773 8.85938ZM15.6357 6.88184C15.7148 5.66895 14.7393 4.64062 13.5527 4.66699C13.3945 4.66699 13.2627 4.66699 13.1309 4.69336L14.3965 6.8291C14.5283 7.04004 14.4492 7.30371 14.2646 7.40918L13.8955 7.62012C13.6846 7.75195 13.4473 7.67285 13.3154 7.48828L12.0234 5.2998C11.6543 5.69531 11.4434 6.19629 11.4434 6.75C11.4434 7.96289 12.4453 8.93848 13.6582 8.85938C14.7129 8.80664 15.583 7.93652 15.6357 6.88184Z"
@@ -62,7 +62,7 @@ const page = () => {
       
         <div className="w-full h-[10vh] flex items-center justify-center bg-white border-t-[3px] border-b-[3px] border-black">
           <span
-            className="text-[2vw] text-black uppercase font-bold"
+            className="text-[2vw] text-black uppercase font-bold tracking-[1.3]"
             style={{
               fontFamily: "'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', monospace",
               // Fallback to var if provided by google fonts config
@@ -148,51 +148,51 @@ const page = () => {
 
 
         {/* after landing page  */}
-       <div className="w-full px-[2vw] py-[3vw] pt-[6vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
-      <span className="font-['Share_Tech'] text-[4.4vw]">
+       <div className="w-full px-[3vw] py-[5vw] pt-[12vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.4' }}>
+      <span className="font-['Share_Tech'] text-[4.5vw] tracking-tight">
         YOUR CLOSEST COOP
       </span>
-      <span className="font-sans font-extralight">
+      <span className="font-sans font-regular text-[1.3vw]">
         More spots. Same seriously good chicken.
       </span>
       </div>
 
         {/* seciton2  */}
 
-       <div className="flex flex-row gap-[2vw] w-full justify-center items-center px-[2vw] py-[9vw]">
+       <div className="flex flex-row gap-[1.5vw] w-full justify-between items-center px-[4vw] py-[10vw]">
          {/* First image div: Hitchin */}
-         <div className="relative flex-1 min-w-[12vw] h-[18vw] flex items-center justify-center rounded-lg overflow-hidden">
+         <div className="relative w-[38vw] h-[19vw] flex items-center justify-center rounded-lg overflow-hidden">
            <img
              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Location%20Card%201.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvTG9jYXRpb24gQ2FyZCAxLnBuZyIsImlhdCI6MTc3MTQ0MDE4MiwiZXhwIjoxODAyOTc2MTgyfQ._PTqbnjcSbilkpcYFUVrNccmvk7m2JASzsI95ygCh94"
              alt="Hitchin"
              className="absolute inset-0 w-full h-full object-cover"
            />
-           <div className="absolute inset-0 bg-black opacity-20"></div>
+           <div className="absolute inset-0 bg-black opacity-10"></div>
            <span className="relative z-10 text-white text-[3vw] font-['Share_Tech']">Hitchin</span>
          </div>
          {/* Second image div: Stevenage */}
-         <div className="relative flex-1 min-w-[12vw] h-[18vw] flex items-center justify-center rounded-lg overflow-hidden">
+         <div className="relative w-[38vw] h-[19vw] flex items-center justify-center rounded-lg overflow-hidden">
            {/* Replace the div below with an <img> tag if you have an actual image */}
            <img
              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Location%20Card%202%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvTG9jYXRpb24gQ2FyZCAyICgxKS5wbmciLCJpYXQiOjE3NzE0NDAzNTgsImV4cCI6MTgwMjk3NjM1OH0.P6Xjw6lVRPTP3EtI9DHuWrSu5Bw6mgSWrJSc-uESTsk"
              alt="Stevenage"
              className="absolute inset-0 w-full h-full object-cover"
            />
-           <div className="absolute inset-0 bg-black opacity-20"></div>
+           <div className="absolute inset-0 bg-black opacity-10"></div>
            <span className="relative z-10 text-white text-[3vw] font-['Share_Tech']">Stevenage</span>
          </div>
          {/* Third div (empty for now, to be updated later) */}
-         <div className="flex-1 min-w-[12vw] h-[18vw] bg-black rounded-lg flex flex-col items-center justify-center border-[1px] border-white relative px-[1vw] py-[1vw]">
+         <div className="w-[33vw] h-[19vw] bg-black rounded-lg flex flex-col items-center justify-center border-[1px] border-white relative px-[1vw] py-[1vw]">
            {/* Modal card box */}
            <div className="w-full h-full flex flex-col items-center justify-center bg-black bg-opacity-85 px-[2vw] py-[2vw]">
-             <span className="font-['Share_Tech'] text-white text-[2vw] mb-[1.5vw] text-center tracking-wide">WHERE NEXT ?</span>
+             <span className="font-['Share_Tech'] text-white text-[2.5vw] mb-[1.5vw] text-center tracking-wide">WHERE NEXT ?</span>
              <input
                type="text"
                placeholder="Suggest a city..."
                className="w-[80%] bg-transparent border border-white rounded-md text-center text-white font-courier py-[0.7vw] px-[1vw] mb-[1.6vw] placeholder:text-gray-400 font-courier outline-none focus:ring-2 focus:ring-white transition-all text-[1vw]"
                style={{ letterSpacing: '0.04em' }}
              />
-             <button className="w-[60%] py-[0.6vw] border-[2px] border-white rounded-md text-white font-mono text-[1.2vw] tracking-widest transition-all bg-black hover:bg-white hover:text-black focus:outline-none">
+             <button className="w-[60%] py-[0.2vw] border-[2px] border-white rounded-[1vw] text-white font-mono text-[1.2vw] tracking-widest transition-all bg-black hover:bg-white hover:text-black focus:outline-none">
                SUBMIT
              </button>
            </div>
@@ -203,11 +203,11 @@ const page = () => {
 
        {/* section 3 Latest news  */}
 
-       <div className="w-full px-[2vw] py-[1vw] pt-[2vw] pb-[3vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
+       <div className="w-full px-[2vw] py-[0vw] pt-[0vw] pb-[1vw] grid" style={{ height: '15vh', lineHeight: '1.2' }}>
         <span className="font-['Share_Tech'] text-[4.5vw]">
         LATEST NEWS
         </span>
-       <span className="font-sans font-extralight">
+       <span className="font-sans font-regular">
         All the latest news from Peckers
         </span>
         </div>
@@ -215,62 +215,81 @@ const page = () => {
 
         {/* Images  */}
        
-       <div className="cards_of_latest_news w-full flex flex-row justify-center items-start gap-[2vw] py-[10vw] px-[4vw] pb-[2vw]">
-          {/* Left Image - Inclined Left with lower brightness */}
-          <div 
-            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-md overflow-hidden w-[19vw] h-[25vw] min-w-[110px] relative"
-            style={{
-              transform: "rotate(-1deg)",
-              zIndex: 1,
-              boxShadow: "0 8px 32px #0006, 0 2.5vw 2vw #0002"
-            }}
-          >
-            <img
-              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Group%206%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvR3JvdXAgNiAoMSkucG5nIiwiaWF0IjoxNzcxNDgyNDEzLCJleHAiOjE4MDMwMTg0MTN9.7fb08NwFC7QwmL3M2ONqnV5hmMThS93F8YT9Sd4yHOc"
-              alt="Someone's Fried Chicken"
-              className="object-cover w-cover h-full"
-              style={{ borderRadius: ".5vw", filter: "brightness(1.1)" }}
-            />
-          </div>
+       <div className="cards_of_latest_news w-full max-w-[100vw] flex flex-row justify-center items-center gap-[2vw] py-[2vw] px-[4vw] pb-[1vw] relative overflow-x-hidden">
+         {/* Left Arrow Button */}
+         <button
+           aria-label="Previous News"
+           className="absolute left-[1vw] top-1/2 transform -translate-y-1/2 z-10 flex items-center justify-center bg-[#222] bg-opacity-30 hover:bg-opacity-90 transition-all rounded-full w-[44px] h-[44px] min-w-[44px] min-h-[44px] border border-white backdrop-blur-sm shadow-lg"
+           style={{ boxShadow: "0 2px 12px #0005" }}
+         >
+           {/* Left SVG Arrow Icon */}
+           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+             <polyline points="15 18 9 12 15 6"/>
+           </svg>
+         </button>
+         {/* Card 1 - Left */}
+         <div 
+           className="flex flex-col items-center bg-[#111] rounded-[1vw] shadow-md overflow-hidden w-[19vw] h-[27vw] min-w-[150px] relative max-w-[240px]"
+           style={{
+             transform: "rotate(-2deg)",
+             zIndex: 1,
+             boxShadow: "0 8px 28px #0008, 0 2vw 1vw #0002"
+           }}
+         >
+           <img
+             src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Group%206%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvR3JvdXAgNiAoMSkucG5nIiwiaWF0IjoxNzcxNDgyNDEzLCJleHAiOjE4MDMwMTg0MTN9.7fb08NwFC7QwmL3M2ONqnV5hmMThS93F8YT9Sd4yHOc"
+             alt="Someone's Fried Chicken"
+             className="object-cover w-full h-full"
+             style={{ borderRadius: "1vw", filter: "brightness(1.1)" }}
+           />
+         </div>
 
-          {/* Center Image - Larger, No Incline, Z-index up */}
-          <div 
-            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-xl overflow-hidden w-[21vw] h-[31vw] min-w-[160px] relative"
-            style={{
-              transform: "none",
-              zIndex: 2,
-              marginTop: "-2vw", // raise center slightly
-              boxShadow: "0 12px 36px #000c, 0 5vw 2vw #0006",
-              // Optionally, slight scale up effect to feel "zoomed"
-              // transform: "scale(1.07)"
-            }}
-          >
-            <img
-              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/img%20sec%203%202.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvaW1nIHNlYyAzIDIuanBnIiwiaWF0IjoxNzcxNDQyMjYwLCJleHAiOjE4MDI5NzgyNjB9.5Icjw6a9vIzWP0MmJW2Reg4MsXRyQ6VSXPPmKScd0mE"
-              alt="Peckers Chicken Wings"
-              className="object-cover w-full h-full"
-              style={{ borderRadius: ".5vw", transform: "scale(1.08)" }} // Extra zoom/scale here for effect
-            />
-          </div>
+         {/* Card 2 - Center */}
+         <div 
+           className="flex flex-col items-center bg-[#111] rounded-[1vw] shadow-xl overflow-hidden w-[24vw] h-[34vw] min-w-[170px] relative max-w-[290px]"
+           style={{
+             transform: "none",
+             zIndex: 2,
+             marginTop: "-1vw",
+             boxShadow: "0 12px 42px #000d, 0 3vw 1vw #0007"
+           }}
+         >
+           <img
+             src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/img%20sec%203%202.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvaW1nIHNlYyAzIDIuanBnIiwiaWF0IjoxNzcxNDQyMjYwLCJleHAiOjE4MDI5NzgyNjB9.5Icjw6a9vIzWP0MmJW2Reg4MsXRyQ6VSXPPmKScd0mE"
+             alt="Peckers Chicken Wings"
+             className="object-cover w-full h-full"
+             style={{ borderRadius: "1vw", transform: "scale(1.10)" }}
+           />
+         </div>
 
-          {/* Right Image - Inclined Right with lower brightness */}
-          <div 
-            className="flex flex-col items-center bg-[#111] rounded-[.7vw] shadow-md overflow-hidden w-[19vw] h-[25vw] min-w-[110px] relative"
-            style={{
-              // keep the rotation for right image
-              transform: "rotate(6deg)",
-              zIndex: 1,
-              boxShadow: "0 8px 32px #0006, 0 2.5vw 2vw #0002"
-            }}
-          >
-            <img
-              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Group%206.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvR3JvdXAgNi5wbmciLCJpYXQiOjE3NzE0ODIxODUsImV4cCI6MTgwMzAxODE4NX0.T4vFk1qTuowBgTSbgXMMwNTkpYDWacD05qIDHOcNjIc"
-              alt="Burgers and Strips Meal"
-              className="object-cover w-cover h-full"
-              style={{ borderRadius: ".5vw", filter: "brightness(0.5)" }}
-            />
-          </div>
-        </div>
+         {/* Card 3 - Right */}
+         <div 
+           className="flex flex-col items-center bg-[#111] rounded-[1vw] shadow-md overflow-hidden w-[19vw] h-[27vw] min-w-[150px] relative max-w-[240px]"
+           style={{
+             transform: "rotate(3deg)",
+             zIndex: 1,
+             boxShadow: "0 8px 28px #0008, 0 2vw 1vw #0002"
+           }}
+         >
+           <img
+             src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Group%206.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvR3JvdXAgNi5wbmciLCJpYXQiOjE3NzE0ODIxODUsImV4cCI6MTgwMzAxODE4NX0.T4vFk1qTuowBgTSbgXMMwNTkpYDWacD05qIDHOcNjIc"
+             alt="Burgers and Strips Meal"
+             className="object-cover w-full h-full"
+             style={{ borderRadius: "1vw", filter: "brightness(0.5)" }}
+           />
+         </div>
+         {/* Right Arrow Button */}
+         <button
+           aria-label="Next News"
+           className="absolute right-[1vw] top-1/2 transform -translate-y-1/2 z-10 flex items-center justify-center bg-[#222] bg-opacity-30 hover:bg-opacity-90 transition-all rounded-full w-[44px] h-[44px] min-w-[44px] min-h-[44px] border border-white backdrop-blur-sm shadow-lg"
+           style={{ boxShadow: "0 2px 12px #0005" }}
+         >
+           {/* Right SVG Arrow Icon */}
+           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+             <polyline points="9 18 15 12 9 6"/>
+           </svg>
+         </button>
+       </div>
 
 
        {/* Caption below the cards */}
