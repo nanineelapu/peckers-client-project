@@ -5,26 +5,31 @@ import gsap from "gsap";
 
 /**
  * CoopHeading section animates in with a fade+reveal effect
- * when user scrolls to this section (like a scroll trigger).
- * The animation plays EVERY TIME it enters the viewport, even when scrolling up and down.
+ * When user scrolls INTO the section, it animates in ONCE,
+ * and then remains visible (doesn't disappear again).
  */
 export default function CoopHeading() {
   const containerRef = useRef(null);
   const wordsRef = useRef([]);
   const subRef = useRef(null);
   const timelineRef = useRef(null);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
-    let observer;
     const container = containerRef.current;
 
+    // Set initial hidden state
+    gsap.set(container, { opacity: 0, y: 20 });
+    gsap.set(wordsRef.current, { opacity: 0, y: 40 });
+    gsap.set(subRef.current, { opacity: 0, y: 20 });
+
+    let observer;
+
     function animateIn() {
-      // Reset previous gsap state FIRST (make elements invisible and shifted down)
-      gsap.set(container, { opacity: 0, y: 20 });
-      gsap.set(wordsRef.current, { opacity: 0, y: 40 });
-      gsap.set(subRef.current, { opacity: 0, y: 20 });
+      // Only animate if not already animated
+      if (hasAnimatedRef.current) return;
+      hasAnimatedRef.current = true;
 
       // Kill any previous timeline if still running
       if (timelineRef.current) timelineRef.current.kill();
@@ -64,24 +69,12 @@ export default function CoopHeading() {
         );
     }
 
-    // when OUT, instantly hide for next scroll in
-    function resetState() {
-      // Instantly hide all for next animation
-      gsap.set(container, { opacity: 0, y: 20 });
-      gsap.set(wordsRef.current, { opacity: 0, y: 40 });
-      gsap.set(subRef.current, { opacity: 0, y: 20 });
-      // Kill any running animation
-      if (timelineRef.current) timelineRef.current.kill();
-    }
-
     if (container) {
       observer = new window.IntersectionObserver(
         (entries) => {
           const entry = entries[0];
           if (entry.isIntersecting) {
             animateIn();
-          } else {
-            resetState();
           }
         },
         { threshold: 0.2 }

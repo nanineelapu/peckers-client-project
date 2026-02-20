@@ -4,72 +4,87 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Simple left and right smooth scroll animation, plays only once while scrolling down.
+ */
 export default function PersonDetails() {
+  const containerRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
-  const containerRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !leftRef.current || !rightRef.current || !containerRef.current) return;
+    if (typeof window === "undefined" || !containerRef.current) return;
+    // Initial hidden states for left/right
+    gsap.set(leftRef.current, {
+      opacity: 0,
+      x: -80,
+    });
+    gsap.set(rightRef.current, {
+      opacity: 0,
+      x: 80,
+    });
 
-    // Animate left in from the left, and right from the right, with smoothness, on scroll in
-    let leftTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        toggleActions: "play reverse play reverse",
+    // Only allow animation to play once
+    let hasAnimated = false;
+    const timeline = gsap.timeline({ paused: true });
+    timeline
+      .to(leftRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power3.out",
+      }, 0)
+      .to(rightRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power3.out",
+      }, 0);
+
+    const st = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        if (!hasAnimated) {
+          timeline.play();
+          hasAnimated = true;
+          st.kill();
+        }
       },
-    });
-
-    let rightTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        toggleActions: "play reverse play reverse",
-      },
-    });
-
-    // LEFT block animates in from the left
-    gsap.set(leftRef.current, { opacity: 0, x: -80 });
-    leftTimeline.to(leftRef.current, {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    // RIGHT block animates in from the right (with small delay)
-    gsap.set(rightRef.current, { opacity: 0, x: 80 });
-    rightTimeline.to(rightRef.current, {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-      ease: "power2.out",
-      delay: 0.15,
+      // Do NOT reverse or animate again
     });
 
     return () => {
-      leftTimeline.kill();
-      rightTimeline.kill();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      timeline.kill();
     };
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="w-full flex flex-row items-stretch justify-center mt-[8vw] gap-[2vw]"
+      className="relative w-full max-w-full overflow-x-hidden flex flex-col lg:flex-row items-stretch justify-center mt-[8vw] gap-[2vw] box-border px-[2vw]"
     >
       {/* Left: Person Image */}
-      <div ref={leftRef} className="flex-shrink-0">
+      <div
+        ref={leftRef}
+        className="flex-shrink-0 w-full lg:w-auto will-change-transform"
+        style={{
+          transition: "opacity 0.5s, transform 0.5s",
+        }}
+      >
         <div
-          className="w-[40vw] h-[35vw] rounded-[.7vw] overflow-hidden bg-[#222]"
+          className="w-full lg:w-[40vw] h-[55vw] lg:h-[35vw] rounded-[.7vw] overflow-hidden bg-[#222]"
           style={{ boxShadow: "0 2px 16px #0007" }}
         >
-          {/* Add your image src below */}
           <img
             src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Bleecker-BF25-POST-670x840.jpg%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvQmxlZWNrZXItQkYyNS1QT1NULTY3MHg4NDAuanBnICgxKS5wbmciLCJpYXQiOjE3NzE0NDM2MzksImV4cCI6MTgwMjk3OTYzOX0.W-IeqLybb6tea9Be-Aynr-IV69wPqs9IjiPz6oPLtDo"
             alt="Profile"
             className="w-full h-full object-cover object-center"
+            style={{
+              transition: "filter 0.4s",
+            }}
           />
         </div>
       </div>
@@ -77,17 +92,55 @@ export default function PersonDetails() {
       {/* Right: Person Details */}
       <div
         ref={rightRef}
-        className="flex flex-col justify-center bg-black px-[3vw] py-[1vw] min-h-[25vw] shadow-xl max-w-[40vw]"
+        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] py-[3vw] lg:py-[1vw] min-h-[25vw] shadow-xl relative box-border will-change-transform"
+        style={{
+          position: "relative",
+          zIndex: 2,
+          transition: "opacity 0.5s, transform 0.5s",
+        }}
       >
-        <h2 className="grid text-white font-['Share_Tech'] font-bold text-[4.5vw] leading-tight mb-[1vw]" style={{ letterSpacing: "0.01em" }}>
+        <h2
+          className="grid text-white font-['Share_Tech'] font-bold text-[4.5vw] leading-tight mb-[1vw]"
+          style={{ letterSpacing: "0.01em" }}
+        >
           FOR THE LOVE OF <span className="text-[#ffff]">CHICKEN</span>
         </h2>
-        <div className="text-white font-light text-[1.3vw] tracking-[1.2] font-sans mb-[1vw]" style={{ lineHeight: "2vw" }}>
-          Peckers started with a dream: to make wings that didn’t suck. We were tired of dry, sad chicken.
-          <br />
-          So we locked ourselves in a garage with 51lbs of peppers and didn’t come out until we made magic.
+        {/* Sub-sentence title wrapper */}
+        <div
+          className="relative flex flex-col items-center"
+          style={{ position: "relative", alignItems: "center", width: "100%" }}
+        >
+          <div
+            className="text-white font-light text-[1.3vw] tracking-[1.2] font-sans mb-[1vw] text-center"
+            style={{ lineHeight: "2vw", width: "100%" }}
+          >
+            Peckers started with a dream: to make wings that didn’t suck. We were tired of dry, sad chicken.
+            <br />
+            So we locked ourselves in a garage with 51lbs of peppers and didn’t come out until we made magic.
+          </div>
+          <div
+            className="bg-[#fff]"
+            style={{
+              width: "100px",
+              maxWidth: "150px",
+              minWidth: "80px",
+              height: "2px",
+              border: "none",
+              borderRadius: "8px",
+              margin: "0 auto",
+              marginTop: ".6vw",
+              marginBottom: "0",
+              left: 0,
+              right: 0,
+              position: "absolute",
+              bottom: "-1.8vw",
+              transform: "translateY(100%)",
+              boxSizing: "border-box",
+              overflow: "hidden",
+            }}
+          />
         </div>
-        <br />
+        <div style={{ height: "2.2vw" }} />
         <div
           className="italic font-mono text-[#ffff] text-[1.3vw] mb-[1.6vw] pl-[1.3vw] border-l-2"
           style={{
@@ -120,27 +173,7 @@ export default function PersonDetails() {
             <line x1="4" y1="12" x2="20" y2="12" />
             <polyline points="14 6 20 12 14 18" />
           </svg>
-          <span
-            className="absolute left-0 bottom-0 w-full h-[2.2px] block transition-all duration-150"
-            style={{
-              content: '""',
-              marginTop: "1vw",
-              borderRadius: "2px",
-              minWidth: "118px",
-              opacity: 1,
-            }}
-          ></span>
         </a>
-        <div
-          className="bg-[#fff] mt-[0vw] mb-[1.8vw]"
-          style={{
-            width: "35%",
-            maxWidth: "140px",
-            height: "2px",
-            border: "none",
-            borderRadius: "8px",
-          }}
-        />
       </div>
     </div>
   );

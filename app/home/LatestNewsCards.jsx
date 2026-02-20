@@ -30,47 +30,53 @@ export default function LatestNewsCards() {
   const rightCardRef = useRef(null);
   const [index, setIndex] = useState(0);
 
-  // ScrollTrigger smooth fade and zoom in animation
   useEffect(() => {
-    const cards = [
-      { ref: leftCardRef, delay: 0.12 },
-      { ref: centerCardRef, delay: 0.18 },
-      { ref: rightCardRef, delay: 0.24 },
-    ];
+    // Scope all GSAP / ScrollTrigger work to this component only
+    const ctx = gsap.context(() => {
+      const cards = [
+        { ref: leftCardRef, delay: 0.12 },
+        { ref: centerCardRef, delay: 0.18 },
+        { ref: rightCardRef, delay: 0.24 },
+      ];
 
-    // Clean up existing triggers first
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      cards.forEach(({ ref, delay }) => {
+        if (!ref.current) return;
 
-    cards.forEach(({ ref, delay }) => {
-      if (!ref.current) return;
-
-      gsap.set(ref.current, { opacity: 0, scale: 0.92, y: 40 });
-      gsap.to(ref.current, {
-        scrollTrigger: {
-          trigger: ref.current,
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
-          // markers: true, // debug
-        },
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.8,
-        delay: delay,
-        ease: "power2.out",
-        overwrite: "auto",
+        gsap.set(ref.current, { opacity: 0, scale: 0.92, y: 40 });
+        gsap.to(ref.current, {
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          delay,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
       });
-    });
+    }, containerRef);
 
-    // Kill triggers on cleanup
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      // Revert only this component's animations/triggers
+      ctx.revert();
     };
-  }, [index]);
+  }, []);
 
+  useEffect(() => {
+    const refreshTimeout = setTimeout(() => {
+      if (typeof ScrollTrigger !== "undefined" && ScrollTrigger.refresh) {
+        ScrollTrigger.refresh();
+      }
+    }, 350);
+
+    return () => clearTimeout(refreshTimeout);
+  }, [index]);
   const slideAnimation = (direction) => {
     const tl = gsap.timeline();
-
     tl.to(containerRef.current, {
       x: direction === "next" ? -100 : 100,
       opacity: 0,
@@ -95,12 +101,13 @@ export default function LatestNewsCards() {
         duration: 0.28,
         ease: "power3.out",
       });
+    // After animation, ScrollTrigger.refresh will run from the useEffect above
   };
 
   const current = newsImages[index];
 
   return (
-    <div className="relative w-full flex justify-center items-center px-[3vw] py-[3vw]">
+    <div className="relative w-full max-w-full overflow-x-hidden flex justify-center items-center px-[3vw] py-[3vw]">
       {/* LEFT ARROW */}
       <button
         onClick={() => slideAnimation("prev")}

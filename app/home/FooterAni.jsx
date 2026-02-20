@@ -20,7 +20,7 @@ const FooterAni = () => {
   useEffect(() => {
     if (!footerRef.current) return;
 
-    // Parent fade/slide-in
+    // Parent fade/slide-in: play only once when scrolled into view, never repeats
     gsap.fromTo(
       footerRef.current,
       { opacity: 0, y: 120 },
@@ -33,12 +33,13 @@ const FooterAni = () => {
         scrollTrigger: {
           trigger: footerRef.current,
           start: "top 92%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none", // play only once!
+          once: true, // Ensure no repeats, GSAP v3.11+ supports once option, else just rely on toggleActions
         },
       }
     );
 
-    // Animate each column with a stagger premium effect
+    // Animate each column with a stagger premium effect, only once
     const columns = [
       leftColRef.current,
       quickLinksRef.current,
@@ -61,7 +62,8 @@ const FooterAni = () => {
           scrollTrigger: {
             trigger: footerRef.current,
             start: "top 96%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none", // play only once!
+            once: true,
           },
         }
       );

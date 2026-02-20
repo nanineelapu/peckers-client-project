@@ -4,31 +4,39 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 /**
- * LatestNewsHeading animates both the "LATEST NEWS" heading (each word/letter, like CoopHeading)
- * and the subtitle, with fade + rise effect each time it scrolls into view.
+ * LatestNewsHeading animates the "LATEST NEWS" heading and subtitle
+ * with a fade + rise effect ONLY while scrolling down into view and will not
+ * animate or reverse when scrolling up, and disables scroll-up-based animation 
+ * after animating in once. The heading stays revealed after the first scroll down.
  */
 export default function LatestNewsHeading() {
   const containerRef = useRef(null);
   const wordsRef = useRef([]);
   const subRef = useRef(null);
   const timelineRef = useRef(null);
+  const hasAnimatedRef = useRef(false); // Only allow animation once while scrolling down
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     let observer;
+    let lastScrollY = window.scrollY;
+    let wasIntersecting = false;
+
     const container = containerRef.current;
 
-    function animateIn() {
-      // Reset previous state FIRST
-      gsap.set(container, { opacity: 0, y: 20 });
-      gsap.set(wordsRef.current, { opacity: 0, y: 40 });
-      gsap.set(subRef.current, { opacity: 0, y: 20 });
+    // Set initial hidden state
+    gsap.set(container, { opacity: 0, y: 20 });
+    gsap.set(wordsRef.current, { opacity: 0, y: 40 });
+    gsap.set(subRef.current, { opacity: 0, y: 20 });
 
-      // Kill any previous timeline
+    function animateIn() {
+      // Animate in ONLY if not already fully revealed
+      if (hasAnimatedRef.current) return; // Prevent repeated animations
+      hasAnimatedRef.current = true;
+
       if (timelineRef.current) timelineRef.current.kill();
 
-      // Animation sequence
       const tl = gsap.timeline();
       timelineRef.current = tl;
 
@@ -38,7 +46,7 @@ export default function LatestNewsHeading() {
         duration: 0.6,
         ease: "power2.out",
       })
-        // Animate each letter/word of "LATEST NEWS" in sequence
+        // Animate each word of "LATEST NEWS" in sequence
         .to(
           wordsRef.current,
           {
@@ -63,8 +71,16 @@ export default function LatestNewsHeading() {
         );
     }
 
-    function resetState() {
-      // Hide all for next animation
+    function revealInstantly() {
+      // Instantly reveal everything (no animation)
+      gsap.set(container, { opacity: 1, y: 0 });
+      gsap.set(wordsRef.current, { opacity: 1, y: 0 });
+      gsap.set(subRef.current, { opacity: 1, y: 0 });
+      if (timelineRef.current) timelineRef.current.kill();
+    }
+
+    function hideAll() {
+      // Reset to hidden state
       gsap.set(container, { opacity: 0, y: 20 });
       gsap.set(wordsRef.current, { opacity: 0, y: 40 });
       gsap.set(subRef.current, { opacity: 0, y: 20 });
@@ -75,18 +91,42 @@ export default function LatestNewsHeading() {
       observer = new window.IntersectionObserver(
         (entries) => {
           const entry = entries[0];
-          if (entry.isIntersecting) {
-            animateIn();
-          } else {
-            resetState();
+          const isNowIntersecting = entry.isIntersecting;
+          const currentScrollY = window.scrollY;
+          const scrollingDown = currentScrollY > lastScrollY;
+          lastScrollY = currentScrollY;
+
+          if (hasAnimatedRef.current) {
+            // If already animated, always keep revealed; do nothing on scroll up or out
+            if (isNowIntersecting) {
+              revealInstantly();
+            }
+            // When not intersecting, heading remains revealed
+            wasIntersecting = isNowIntersecting;
+            return;
           }
+
+          if (isNowIntersecting) {
+            if (scrollingDown || !wasIntersecting) {
+              animateIn(); // will only run once
+            } else {
+              // On scroll up, keep revealed, do not re-animate
+              revealInstantly();
+            }
+          } else {
+            // Only reset when scrolling down and animation has NOT yet run; if scrolling up, stay revealed
+            if (scrollingDown && !hasAnimatedRef.current) {
+              hideAll();
+            }
+          }
+          wasIntersecting = isNowIntersecting;
         },
-        { threshold: 0.2 }
+        { threshold: 0.22 }
       );
       observer.observe(container);
     }
 
-    // Cleanup
+    // On unmount, clean up
     return () => {
       if (observer && observer.disconnect) observer.disconnect();
       if (timelineRef.current) timelineRef.current.kill();
@@ -94,8 +134,6 @@ export default function LatestNewsHeading() {
   }, []);
 
   const title = "LATEST NEWS";
-  // Animate each word or, for even more subtlety, each letter (optional):
-  // For closer effect to CoopHeading, break by words:
   const words = title.split(" ");
 
   return (

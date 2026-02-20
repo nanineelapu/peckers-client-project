@@ -10,6 +10,7 @@ export default function RatingSection() {
   const starsRef = useRef([]);
   const ratingRef = useRef(null);
   const timelineRef = useRef(null);
+  const hasAnimatedRef = useRef(false); // To check if animation has run
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -18,6 +19,9 @@ export default function RatingSection() {
     const container = containerRef.current;
 
     function animateIn() {
+      // Only animate if not done before
+      if (hasAnimatedRef.current) return;
+
       // Reset initial state
       gsap.set(container, { opacity: 0, y: 20 });
       gsap.set(wordRefs.current, { opacity: 0, y: 30 });
@@ -71,24 +75,17 @@ export default function RatingSection() {
           },
           "-=0.18"
         );
-    }
 
-    function resetState() {
-      gsap.set(container, { opacity: 0, y: 20 });
-      gsap.set(wordRefs.current, { opacity: 0, y: 30 });
-      gsap.set(starsRef.current, { opacity: 0, y: 30 });
-      gsap.set(ratingRef.current, { opacity: 0, y: 20 });
-      if (timelineRef.current) timelineRef.current.kill();
+      hasAnimatedRef.current = true;
     }
 
     if (container) {
       observer = new window.IntersectionObserver(
         (entries) => {
           const entry = entries[0];
+          // Animate only once, on scroll down, never again
           if (entry.isIntersecting) {
             animateIn();
-          } else {
-            resetState();
           }
         },
         { threshold: 0.2 }
