@@ -4,7 +4,7 @@ import { Share_Tech } from 'next/font/google';
 
 
 const shareTech = Share_Tech({
-  weight: "400",
+  weight: ["400"],
   subsets: ["latin"],
   variable: "--font-share-tech",
   display: "swap",
@@ -27,8 +27,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} antialiased`}
       >
         {children}
@@ -36,3 +37,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
