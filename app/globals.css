@@ -1,8 +1,12 @@
 @import "tailwindcss";
+@import "locomotive-scroll/dist/locomotive-scroll.css";
 
 :root {
   --background: #1111;
   --foreground: #171717;
+}
+html, body {
+  scroll-behavior: auto;
 }
 
 @theme inline {

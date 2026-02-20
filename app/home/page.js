@@ -15,7 +15,7 @@ import FooterAni from "./FooterAni";
 
 const page = () => {
   return (
-    <div>
+    <div data-scroll-section>
       {/* Navbar */}
       <nav className="flex items-center px-[2vw] py-[.2vw] bg-black text-white font-['Share_Tech']">
 
@@ -161,11 +161,11 @@ const page = () => {
 
 
         {/* after landing page  */}
-      <CoopHeading />
+      <CoopHeading data-scroll-section/>
 
         {/* seciton2  */}
 
-      <CoopImages/>
+      <CoopImages data-scroll-section/>
 
 
 
