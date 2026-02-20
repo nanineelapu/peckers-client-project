@@ -56,7 +56,8 @@ export default function PersonDetails() {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      // Only kill this component's ScrollTrigger and timeline
+      st.kill();
       timeline.kill();
     };
   }, []);
@@ -69,10 +70,7 @@ export default function PersonDetails() {
       {/* Left: Person Image */}
       <div
         ref={leftRef}
-        className="flex-shrink-0 w-full lg:w-auto will-change-transform"
-        style={{
-          transition: "opacity 0.5s, transform 0.5s",
-        }}
+        className="flex-shrink-0 w-full lg:w-auto"
       >
         <div
           className="w-full lg:w-[40vw] h-[55vw] lg:h-[35vw] rounded-[.7vw] overflow-hidden bg-[#222]"
@@ -82,9 +80,8 @@ export default function PersonDetails() {
             src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Bleecker-BF25-POST-670x840.jpg%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvQmxlZWNrZXItQkYyNS1QT1NULTY3MHg4NDAuanBnICgxKS5wbmciLCJpYXQiOjE3NzE0NDM2MzksImV4cCI6MTgwMjk3OTYzOX0.W-IeqLybb6tea9Be-Aynr-IV69wPqs9IjiPz6oPLtDo"
             alt="Profile"
             className="w-full h-full object-cover object-center"
-            style={{
-              transition: "filter 0.4s",
-            }}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -92,11 +89,10 @@ export default function PersonDetails() {
       {/* Right: Person Details */}
       <div
         ref={rightRef}
-        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] py-[3vw] lg:py-[1vw] min-h-[25vw] shadow-xl relative box-border will-change-transform"
+        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] py-[3vw] lg:py-[1vw] min-h-[25vw] shadow-xl relative box-border"
         style={{
           position: "relative",
           zIndex: 2,
-          transition: "opacity 0.5s, transform 0.5s",
         }}
       >
         <h2

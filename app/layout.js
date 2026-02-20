@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Share_Tech } from 'next/font/google';
 import SmoothScroll from "./SmoothScroll";
-
+import Preloader from "./components/Preloader";
 
 const shareTech = Share_Tech({
   weight: ["400"],
@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} antialiased`}
       >
+        <Preloader />
         <SmoothScroll>
           {children}
         </SmoothScroll>

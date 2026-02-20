@@ -28,3 +28,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Prevent flash of content before preloader */
+body:not(.preloader-complete) {
+  overflow: hidden;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Reduce repaints on scroll */
+[data-scroll-section] {
+  contain: layout style paint;
+}
+
+/* GPU acceleration for animated elements */
+.gsap-animated,
+[class*="will-change"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

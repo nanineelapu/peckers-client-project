@@ -43,11 +43,12 @@ export default function LatestNewsCards() {
         if (!ref.current) return;
 
         gsap.set(ref.current, { opacity: 0, scale: 0.92, y: 40 });
-        gsap.to(ref.current, {
+        const animation = gsap.to(ref.current, {
           scrollTrigger: {
             trigger: ref.current,
             start: "top 80%",
             toggleActions: "play reverse play reverse",
+            once: false,
           },
           opacity: 1,
           scale: 1,
@@ -56,6 +57,12 @@ export default function LatestNewsCards() {
           delay,
           ease: "power2.out",
           overwrite: "auto",
+          onComplete: () => {
+            // Remove willChange after animation completes
+            if (ref.current) {
+              ref.current.style.willChange = "auto";
+            }
+          },
         });
       });
     }, containerRef);
@@ -67,16 +74,34 @@ export default function LatestNewsCards() {
   }, []);
 
   useEffect(() => {
+    // Debounce ScrollTrigger refresh to prevent excessive calls
     const refreshTimeout = setTimeout(() => {
       if (typeof ScrollTrigger !== "undefined" && ScrollTrigger.refresh) {
         ScrollTrigger.refresh();
       }
-    }, 350);
+    }, 500); // Increased delay for better performance
 
     return () => clearTimeout(refreshTimeout);
   }, [index]);
   const slideAnimation = (direction) => {
-    const tl = gsap.timeline();
+    // Prevent rapid clicking
+    if (containerRef.current?.style.pointerEvents === "none") return;
+    
+    // Disable pointer events during animation
+    if (containerRef.current) {
+      containerRef.current.style.pointerEvents = "none";
+    }
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        // Re-enable pointer events
+        if (containerRef.current) {
+          containerRef.current.style.pointerEvents = "auto";
+        }
+        tl.kill();
+      },
+    });
+
     tl.to(containerRef.current, {
       x: direction === "next" ? -100 : 100,
       opacity: 0,
@@ -101,13 +126,12 @@ export default function LatestNewsCards() {
         duration: 0.28,
         ease: "power3.out",
       });
-    // After animation, ScrollTrigger.refresh will run from the useEffect above
   };
 
   const current = newsImages[index];
 
   return (
-    <div className="relative w-full max-w-full overflow-x-hidden flex justify-center items-center px-[3vw] py-[3vw]">
+    <div className="relative w-full flex justify-center items-center px-[3vw] py-[3vw]">
       {/* LEFT ARROW */}
       <button
         onClick={() => slideAnimation("prev")}
@@ -128,7 +152,7 @@ export default function LatestNewsCards() {
         <div
           ref={leftCardRef}
           className="w-[19vw] h-[27vw] rounded-[1vw] overflow-hidden"
-          style={{ transform: "rotate(-2deg)", willChange: "transform, opacity" }}
+          style={{ transform: "rotate(-2deg)" }}
         >
           <img
             src={current.left}
@@ -136,6 +160,7 @@ export default function LatestNewsCards() {
             alt="news-left"
             draggable={false}
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -143,7 +168,6 @@ export default function LatestNewsCards() {
         <div
           ref={centerCardRef}
           className="w-[24vw] h-[34vw] rounded-[1vw] overflow-hidden shadow-2xl relative z-10"
-          style={{ willChange: "transform, opacity" }}
         >
           <img
             src={current.center}
@@ -151,6 +175,7 @@ export default function LatestNewsCards() {
             alt="news-center"
             draggable={false}
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -158,7 +183,7 @@ export default function LatestNewsCards() {
         <div
           ref={rightCardRef}
           className="w-[19vw] h-[27vw] rounded-[1vw] overflow-hidden"
-          style={{ transform: "rotate(3deg)", willChange: "transform, opacity" }}
+          style={{ transform: "rotate(3deg)" }}
         >
           <img
             src={current.right}
@@ -166,6 +191,7 @@ export default function LatestNewsCards() {
             alt="news-right"
             draggable={false}
             loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
