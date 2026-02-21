@@ -32,7 +32,7 @@ export default function RatingSectionCards() {
               start: "top 85%",
               end: "bottom 65%",
               toggleActions: "play none none reverse",
-              // markers: true,
+              once: true,
             },
             delay: 0.11 * idx,
           }
@@ -42,6 +42,7 @@ export default function RatingSectionCards() {
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.refresh();
     };
     // eslint-disable-next-line
   }, []);

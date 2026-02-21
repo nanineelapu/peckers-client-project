@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,64 +15,68 @@ export default function PersonDetails() {
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return;
-    // Initial hidden states for left/right
-    gsap.set(leftRef.current, {
-      opacity: 0,
-      x: -80,
-    });
-    gsap.set(rightRef.current, {
-      opacity: 0,
-      x: 80,
-    });
+    const ctx = gsap.context(() => {
+      // Initial hidden states for left/right
+      gsap.set(leftRef.current, {
+        opacity: 0,
+        x: -80,
+      });
+      gsap.set(rightRef.current, {
+        opacity: 0,
+        x: 80,
+      });
 
-    // Only allow animation to play once
-    let hasAnimated = false;
-    const timeline = gsap.timeline({ paused: true });
-    timeline
-      .to(
-        leftRef.current,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
+      // Only allow animation to play once
+      let hasAnimated = false;
+      const timeline = gsap.timeline({ paused: true });
+      timeline
+        .to(
+          leftRef.current,
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          0
+        )
+        .to(
+          rightRef.current,
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          0
+        );
+
+      // Declare st in parent scope so it can be referenced in return cleanup
+      let st = null;
+
+      // Create ScrollTrigger after st is hoisted
+      st = ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          if (!hasAnimated) {
+            timeline.play();
+            hasAnimated = true;
+            if (st) st.kill();
+          }
         },
-        0
-      )
-      .to(
-        rightRef.current,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-        },
-        0
-      );
+        // Do NOT reverse or animate again
+      });
 
-    // Declare st in parent scope so it can be referenced in return cleanup
-    let st = null;
+      return () => {
+        // Only kill this component's ScrollTrigger and timeline
+        if (st) st.kill();
+        timeline.kill();
+      };
+    }, containerRef);
 
-    // Create ScrollTrigger after st is hoisted
-    st = ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top 80%",
-      once: true,
-      onEnter: () => {
-        if (!hasAnimated) {
-          timeline.play();
-          hasAnimated = true;
-          if (st) st.kill();
-        }
-      },
-      // Do NOT reverse or animate again
-    });
-
-    return () => {
-      // Only kill this component's ScrollTrigger and timeline
-      if (st) st.kill();
-      timeline.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -84,18 +89,15 @@ export default function PersonDetails() {
         ref={leftRef}
         className="flex-shrink-0 w-full lg:w-auto"
       >
-        <div
-          className="w-full lg:w-[40vw] h-[55vw] lg:h-[35vw] rounded-[.7vw] overflow-hidden bg-[#222]"
-          style={{ boxShadow: "0 2px 16px #0007" }}
-        >
-          <img
-            src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Bleecker-BF25-POST-670x840.jpg%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvQmxlZWNrZXItQkYyNS1QT1NULTY3MHg4NDAuanBnICgxKS5wbmciLCJpYXQiOjE3NzE0NDM2MzksImV4cCI6MTgwMjk3OTYzOX0.W-IeqLybb6tea9Be-Aynr-IV69wPqs9IjiPz6oPLtDo"
-            alt="Profile"
-            className="w-full h-full object-cover object-center"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+        <Image
+          src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Person%20image.png"
+          alt="Profile"
+          className="w-full h-full object-cover object-center"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={true}
+          width={670}
+          height={840}
+        />
       </div>
 
       {/* Right: Person Details */}
@@ -178,16 +180,10 @@ export default function PersonDetails() {
               strokeWidth="2.6"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="transition-transform duration-200 group-hover:translate-x-1"
-              style={{ minWidth: "27px", minHeight: "27px" }}
             >
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <polyline points="14 6 20 12 14 18" />
+              <path d="m5 12 5 5L20 7" />
             </svg>
           </span>
-
-          {/* Underline */}
-          <span className="mt-[0.6vw] h-[1px] w-full bg-white transition-all duration-300 group-hover:w-[110%]" />
         </a>
       </div>
     </div>

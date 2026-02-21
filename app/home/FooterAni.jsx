@@ -72,6 +72,7 @@ const FooterAni = () => {
     // Clean up when unmount
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.refresh();
     };
   }, []);
 

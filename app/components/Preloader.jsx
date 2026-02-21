@@ -14,10 +14,10 @@ export default function Preloader({ onComplete = () => { } }) {
 
     const tl = gsap.timeline({
       defaults: { ease: "power3.out" },
-      onComplete: onComplete,
+      onComplete,
     });
 
-    // 🔥 Prepare main page zoom state
+    // Prepare main page zoom state
     tl.set(main, {
       scale: 1.8,
       y: -100,
@@ -76,6 +76,10 @@ export default function Preloader({ onComplete = () => { } }) {
       },
       "<"
     );
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   const word = "PEAKERS";

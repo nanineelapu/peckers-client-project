@@ -95,7 +95,7 @@ export default function SignUpSection() {
         className="w-[98%] mx-auto rounded-[1vw] shadow-lg flex flex-col items-center justify-center"
         style={{
           backgroundImage:
-            "url('https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Sign%20Up%20Section.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvU2lnbiBVcCBTZWN0aW9uLnBuZyIsImlhdCI6MTc3MTQ0ODg1MywiZXhwIjoxODAyOTg0ODUzfQ.vcqZFiUSmqzH6vpM4qMahqzOH0BHtUEaZZRppngXN6c')",
+            "url('https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Sign%20Up%20Section.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

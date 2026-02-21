@@ -10,10 +10,10 @@ export default function CoopImages() {
   const containerRef = useRef(null);
 
   const HITCHIN_IMG =
-    "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Location%20Card%201.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvTG9jYXRpb24gQ2FyZCAxLnBuZyIsImlhdCI6MTc3MTQ0MDE4MiwiZXhwIjoxODAyOTc2MTgyfQ._PTqbnjcSbilkpcYFUVrNccmvk7m2JASzsI95ygCh94";
+    "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Location%20Card%201.png";
 
   const STEVENAGE_IMG =
-    "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Location%20Card%202%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvTG9jYXRpb24gQ2FyZCAyICgxKS5wbmciLCJpYXQiOjE3NzE0NDAzNTgsImV4cCI6MTgwMjk3NjM1OH0.P6Xjw6lVRPTP3EtI9DHuWrSu5Bw6mgSWrJSc-uESTsk";
+    "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Location%20Card%201.png";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,6 +37,13 @@ export default function CoopImages() {
     }, containerRef);
 
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      ScrollTrigger.clearScrollMemory();
+      ScrollTrigger.clearMatchMedia();
+    };
   }, []);
 
   return (

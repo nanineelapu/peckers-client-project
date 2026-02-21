@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,7 +8,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
     const lenis = new Lenis({
       lerp: 0.08,
       smoothWheel: true,
@@ -43,6 +44,7 @@ export default function SmoothScroll({ children }) {
 
     return () => {
       lenis.destroy();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
