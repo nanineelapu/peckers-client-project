@@ -2,8 +2,8 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div data-scroll-section>
-      <nav className="flex items-center px-[2vw] py-[.2vw] bg-black text-white font-['Share_Tech']">
+    <div>
+      <nav className="flex items-center px-[2vw] py-[.2vw] bg-black text-white font-['Share_Tech'] border-b border-b border-[#fff3]">
 
         {/* Logo Section */}
         <div className="flex-1 flex items-center">
@@ -60,29 +60,30 @@ const page = () => {
 
 
       <div>
-        <nav className='subnavbar'>
-          <div className="flex font-['Share_Tech'] gap-[3vw] justify-center items-center">
-            <a href="#" className="whitespace-nowrap font-sharetech ">
+        <nav className='subnavbar' style={{paddingTop: '1.5vw'}}>
+          <div className="flex font-['Share_Tech'] gap-[3.4vw] justify-center items-center ">
+            <a href="#" className="whitespace-nowrap font-sharetech text-[1.3vw] border-b-2 border-red-500 pb-1">
               BURGERS
             </a>
-            <a href="#" className="whitespace-nowrap">
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
               WRAPS
             </a>
-            <a href="#" className="whitespace-nowrap">
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
               RICE BOWLS
             </a>
-            <a href="#" className="whitespace-nowrap">
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
               WINGS AND TENDERS
             </a>
-            <a href="#" className="whitespace-nowrap">
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
               GRIILLED
             </a>
-            <a href="#" className="whitespace-nowrap">
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
               MEAL BOX
             </a>
           </div>
         </nav>
       </div>
+      
     </div>
   )
 }

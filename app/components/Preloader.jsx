@@ -1,94 +1,111 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { LogoAnimation } from "./LogoAnimation";
 
-export default function Preloader() {
-  const [loading, setLoading] = useState(true);
-  const preloaderRef = useRef(null);
-  const contentRef = useRef(null);
+export default function Preloader({ onComplete = () => { } }) {
+  const containerRef = useRef(null);
+  const lettersRef = useRef([]);
+  const textRef = useRef(null);
 
   useEffect(() => {
-    // Lock body scroll during preloader and prevent content flash
-    document.body.style.overflow = "hidden";
-    document.body.classList.remove("preloader-complete");
+    const letters = lettersRef.current;
+    const main = document.querySelector("#main-content");
 
-    // Wait for page to fully load
-    const handleLoad = () => {
-      // Wait for logo animation to complete (around 3.5 seconds) + extra delay
-      // Total: Logo animation (~3.5s) + hold time (2s) + fade out (1.2s) = ~6.7s total
-      setTimeout(() => {
-        if (preloaderRef.current && contentRef.current) {
-          const tl = gsap.timeline({
-            onComplete: () => {
-              setLoading(false);
-              // Re-enable body scroll and mark preloader as complete
-              document.body.style.overflow = "";
-              document.body.classList.add("preloader-complete");
-              // Clean up timeline
-              tl.kill();
-            },
-          });
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
+      onComplete: onComplete,
+    });
 
-          // Smooth fade out with scale (removed expensive backdropFilter)
-          tl.to(contentRef.current, {
-            opacity: 0,
-            scale: 0.95,
-            y: -20,
-            duration: 0.8,
-            ease: "power3.inOut",
-          })
-            .to(
-              preloaderRef.current,
-              {
-                opacity: 0,
-                duration: 1.2,
-                ease: "power4.inOut",
-              },
-              "-=0.4"
-            );
-        } else {
-          setLoading(false);
-          document.body.style.overflow = "";
-          document.body.classList.add("preloader-complete");
-        }
-      }, 5500); // Show preloader for at least 5.5 seconds (logo animation + hold time)
-    };
+    // 🔥 Prepare main page zoom state
+    tl.set(main, {
+      scale: 1.8,
+      y: -100,
+      opacity: 0.85,
+      transformOrigin: "50% 60vh",
+    });
 
-    // Check if page is already loaded
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-      // Fallback timeout - ensure it shows for minimum time even if page loads fast
-      const fallbackTimer = setTimeout(() => {
-        handleLoad();
-      }, 7000); // Maximum 7 seconds
+    // Initial letter state
+    gsap.set(letters, {
+      yPercent: 120,
+      opacity: 0,
+    });
 
-      return () => {
-        window.removeEventListener("load", handleLoad);
-        clearTimeout(fallbackTimer);
-        document.body.style.overflow = "";
-        document.body.classList.add("preloader-complete");
-      };
-    }
+    // Letter reveal (slide + fade)
+    tl.to(letters, {
+      yPercent: 0,
+      opacity: 1,
+      stagger: 0.08,
+      duration: 1.1,
+      ease: "power4.out",
+    });
+
+    // Tighten spacing
+    tl.to(
+      textRef.current,
+      {
+        letterSpacing: "0.02em",
+        duration: 0.8,
+      },
+      "-=0.6"
+    );
+
+    // Subtle premium scale punch
+    tl.to(textRef.current, {
+      scale: 1.06,
+      duration: 0.6,
+      ease: "power2.inOut",
+    });
+
+    // Slide preloader down
+    tl.to(containerRef.current, {
+      yPercent: 100,
+      duration: 1.3,
+      ease: "power4.inOut",
+    });
+
+    // Main page zoom settles
+    tl.to(
+      main,
+      {
+        scale: 1,
+        y: 0,
+        opacity: 1,
+        duration: 1.3,
+        ease: "power3.out",
+      },
+      "<"
+    );
   }, []);
 
-  // Always render preloader initially to prevent flash
+  const word = "PEAKERS";
+
   return (
     <div
-      ref={preloaderRef}
-      className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
-      style={{ 
-        opacity: loading ? 1 : 0,
-        pointerEvents: loading ? "auto" : "none",
-        visibility: loading ? "visible" : "hidden"
-      }}
+      ref={containerRef}
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
     >
-      <div ref={contentRef} className="relative">
-        <LogoAnimation />
-      </div>
+      <h1
+        ref={textRef}
+        className="flex font-peakers font-black text-black"
+        style={{
+          fontSize: "clamp(3.5rem, 11vw, 16rem)",
+          letterSpacing: "0.4em",
+          lineHeight: 1,
+
+        }}
+      >
+        {word.split("").map((letter, i) => (
+          <span key={i} className="overflow-hidden inline-flex">
+            <span
+              ref={(el) => (lettersRef.current[i] = el)}
+              className="block"
+            >
+              {letter}
+            </span>
+          </span>
+        ))}
+      </h1>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import CoopHeading from "./CoopHeading";
-import LocationsSection from "./LocationsSection";
 import LatestNewsHeading from "./LatestNewsHeading";
 import LatestNewsCards from "./LatestNewsCards";
 import CoopImages from "./CoopImages";
@@ -12,11 +11,12 @@ import RatingSectionCards from "./RatingSectionCards";
 import SignUpSection from "./SignUpSection";
 import FooterAni from "./FooterAni";
 
-
 const page = () => {
   return (
 
-    <div>
+    <div id="main-content" >
+
+
       {/* Navbar */}
       <nav className="flex items-center px-[2vw] py-[.2vw] bg-black text-white font-['Share_Tech']">
 
@@ -37,8 +37,8 @@ const page = () => {
 
 
         {/* Center Links */}
-        <div className="flex-1 flex text-[1.5vw] justify-center gap-[3vw]">
-          <a href="#" className="whitespace-nowrap font-sharetech ">
+        <div className="flex-1 flex text-[1.5vw] justify-center gap-[3vw]" style={{ fontFamily: "var(--font-peakers)" }}>
+          <a href="#" className="whitespace-nowrap">
             MENU
           </a>
           <a href="#" className="whitespace-nowrap">
@@ -57,7 +57,7 @@ const page = () => {
 
         {/* Buttons Section */}
         <div className="flex-1 flex justify-end gap-[1.2vw]">
-          <button className="border-[0.15vw] border-white px-[1.8vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}>
+          <button className="border-[0.15vw] border-white px-[1.8vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
             CLICK & COLLECT
           </button>
 
@@ -71,6 +71,7 @@ const page = () => {
           </button>
         </div>
       </nav>
+
       <section>
 
 
@@ -78,9 +79,7 @@ const page = () => {
           <span
             className="text-[2vw] text-black uppercase font-bold tracking-[1.3]"
             style={{
-              fontFamily: "'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', monospace",
-              // Fallback to var if provided by google fonts config
-              '--font-share-tech': "'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', monospace"
+              fontFamily: "var(--font-peakers)"
             }}
           >
             UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!{' '}
@@ -91,7 +90,7 @@ const page = () => {
       </section>
 
       <section
-        className="w-full h-[95vh] bg-black flex items-center justify-start"
+        className="hero w-full h-[95vh] bg-black flex items-center justify-start"
         style={{ minHeight: '480px' }}
 
       >
@@ -162,7 +161,7 @@ const page = () => {
 
 
       {/* after landing page  */}
-      <CoopHeading data-scroll-section />
+      <CoopHeading />
 
       {/* seciton2  */}
 

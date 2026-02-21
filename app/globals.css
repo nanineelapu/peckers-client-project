@@ -10,6 +10,22 @@ html,
 body {
   scroll-behavior: auto;
 }
+#main-content {
+  will-change: transform, opacity;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(80px);
+  }
+}
+
+.animate-scroll-line {
+  animation: scrollLine 1.6s ease-in-out infinite;
+}
 
 @theme inline {
   --color-background: var(--background);
