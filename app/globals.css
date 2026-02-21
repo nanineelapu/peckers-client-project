@@ -2,8 +2,8 @@
 
 
 :root {
-  --background: #1111;
-  --foreground: #171717;
+  --background: #111;
+  --foreground: #111;
 }
 
 html,
@@ -36,10 +36,9 @@ body {
   --font-sharetech: var(--font-share-tech);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000;
   }
 }
 
