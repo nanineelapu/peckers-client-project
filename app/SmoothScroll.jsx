@@ -1,43 +1,50 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import LocomotiveScroll from "locomotive-scroll";
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }) {
-  const scrollRef = useRef(null);
-
   useEffect(() => {
-    if (!scrollRef.current) return;
-
-    const locoScroll = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-
-      // 🔥 PERFORMANCE OPTIMIZED SETTINGS
-      lerp: 0.08, // sweet spot (0.07–0.1)
-      multiplier: 0.9, // reduces heavy scroll strain
-
-      // ❗ VERY IMPORTANT (removes mobile lag & glitter)
-      smartphone: {
-        smooth: false,
-      },
-      tablet: {
-        smooth: false,
-      },
-
-      // Better performance overall
-      reloadOnContextChange: true,
-      touchMultiplier: 1,
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
     });
 
+    function raf(time) {
+      lenis.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop(value) {
+        return arguments.length
+          ? lenis.scrollTo(value)
+          : lenis.scroll;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+    });
+
+    ScrollTrigger.addEventListener("refresh", () => ScrollTrigger.update());
+    ScrollTrigger.refresh();
+
     return () => {
-      locoScroll.destroy();
+      lenis.destroy();
     };
   }, []);
 
-  return (
-    <div ref={scrollRef} data-scroll-container>
-      {children}
-    </div>
-  );
+  return <>{children}</>;
 }

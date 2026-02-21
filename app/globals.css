@@ -1,11 +1,13 @@
 @import "tailwindcss";
-@import "locomotive-scroll/dist/locomotive-scroll.css";
+
 
 :root {
   --background: #1111;
   --foreground: #171717;
 }
-html, body {
+
+html,
+body {
   scroll-behavior: auto;
 }
 
@@ -14,6 +16,8 @@ html, body {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-supernett: var(--font-supernett);
+  --font-sharetech: var(--font-share-tech);
 }
 
 @media (prefers-color-scheme: dark) {

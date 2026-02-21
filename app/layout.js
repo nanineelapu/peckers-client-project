@@ -3,9 +3,42 @@ import "./globals.css";
 import { Share_Tech } from 'next/font/google';
 import SmoothScroll from "./SmoothScroll";
 import Preloader from "./components/Preloader";
+import localFont from "next/font/local";
+
+const supernett = localFont({
+  src: [
+    {
+      path: "./fonts/Supernett-Cn-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Supernett-Cn-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Supernett-Cn-Italic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/Supernett-Cn-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Supernett Cn-Bold-Italic.otf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-supernett",
+  display: "swap",
+});
 
 const shareTech = Share_Tech({
-  weight: ["400"],
+  weight: "400",
   subsets: ["latin"],
   variable: "--font-share-tech",
   display: "swap",
@@ -31,7 +64,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${supernett.variable} antialiased`}
       >
         <Preloader />
         <SmoothScroll>
