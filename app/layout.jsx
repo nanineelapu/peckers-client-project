@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} antialiased`}
       >
-        {/* <Preloader /> */}
+        <Preloader />
         <SmoothScroll>
           <div id="main-content">
             {children}
