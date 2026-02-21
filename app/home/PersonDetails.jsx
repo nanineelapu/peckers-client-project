@@ -127,7 +127,7 @@ export default function PersonDetails() {
             So we locked ourselves in a garage with 51lbs of peppers and didn’t come out until we made magic.
           </div>
           <div
-            className="bg-[#fff]"
+            className=""
             style={{
               width: "100px",
               maxWidth: "150px",
@@ -150,7 +150,7 @@ export default function PersonDetails() {
         </div>
         <div style={{ height: "2.2vw" }} />
         <div
-          className="italic font-mono text-[#ffff] text-[1.3vw] mb-[1.6vw] pl-[1.3vw] border-l-2"
+          className="italic font-mono font-light text-[#ffff] text-[1.2vw] mb-[1.6vw] pl-[1.3vw] border-l-2"
           style={{
             fontFamily: "",
             borderColor: "#ffe066",
@@ -161,26 +161,33 @@ export default function PersonDetails() {
         </div>
         <a
           href="#"
-          className="group flex items-center gap-[1.3vw] text-white font-sans text-[1.3vw] tracking-[0.30em] font-extralight px-0 pb-2"
-          style={{ width: "fit-content", letterSpacing: "0.08em" }}
+          className="group inline-flex flex-col items-start text-white font-sans text-[1.3vw] font-extralight"
+          style={{ letterSpacing: "0.08em", width: "fit-content" }}
         >
-          <span className="block">READ MORE</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="2vw"
-            height="2vw"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="inline-block transition-transform duration-150 group-hover:translate-x-1"
-            style={{ minWidth: "27px", minHeight: "27px" }}
-          >
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <polyline points="14 6 20 12 14 18" />
-          </svg>
+          {/* Top Row */}
+          <span className="flex items-center gap-[1.3vw]">
+            <span>READ MORE</span>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2vw"
+              height="2vw"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-200 group-hover:translate-x-1"
+              style={{ minWidth: "27px", minHeight: "27px" }}
+            >
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <polyline points="14 6 20 12 14 18" />
+            </svg>
+          </span>
+
+          {/* Underline */}
+          <span className="mt-[0.6vw] h-[1px] w-full bg-white transition-all duration-300 group-hover:w-[110%]" />
         </a>
       </div>
     </div>

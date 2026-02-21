@@ -50,7 +50,6 @@ export default function RatingSectionCards() {
     <div className="w-full mt-[0vw] mb-[6vw] px-[1vw]">
       {/* Desktop and Mobile: Show ONLY first three cards, animated, no loop, no scroll, all responsive in vw */}
       <div className="flex flex-col lg:flex-row gap-[3vw] justify-center items-stretch">
-
         {/* Card 1 */}
         <div
           ref={cardRefs[0]}
@@ -62,11 +61,10 @@ export default function RatingSectionCards() {
                 {/* Optionally initials */}
               </div>
               <div className="flex flex-col">
-                <span className="text-white text-[4.5vw] lg:text-[1.3vw] leading-tight uppercase lg:leading-5 tracking-[2px] font-['Share_Tech']" style={{ fontWeight: 400 }}>
+                <span className="text-white font-extralight text-[4.5vw] lg:text-[1.3vw] leading-[1.2] uppercase lg:leading-6 tracking-[2px] " style={{ fontFamily: "var(--font-peakers)" }}>
                   SARAH JENKINS
                 </span>
                 <span className="text-[#A1A1AA] font-mono text-[3vw] lg:text-[1vw] leading-tight mt-[0.5vw] lg:mt-0" style={{
-                  fontFamily: '"Share Tech Mono", "Fira Mono", "Menlo", "monospace"',
                   fontWeight: 400,
                   letterSpacing: '0.01em',
                 }}>
@@ -76,10 +74,10 @@ export default function RatingSectionCards() {
             </div>
             {/* Double quote svg, always */}
             <svg width="10vw" height="8vw" viewBox="0 0 41 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[10vw] h-[8vw] lg:w-[3vw] lg:h-[2.5vw]">
-              <path d="M36.7031 0C38.7598 0 40.5 1.74023 40.5 3.79688V22.7812C40.5 29.8213 34.8047 35.4375 27.8438 35.4375H27.2109C26.1035 35.4375 25.3125 34.6465 25.3125 33.5391V29.7422C25.3125 28.7139 26.1035 27.8438 27.2109 27.8438H27.8438C30.6123 27.8438 32.9062 25.6289 32.9062 22.7812V17.7188H26.5781C24.4424 17.7188 22.7812 16.0576 22.7812 13.9219V3.79688C22.7812 1.74023 24.4424 0 26.5781 0H36.7031ZM13.9219 0C15.9785 0 17.7188 1.74023 17.7188 3.79688V22.7812C17.7188 29.8213 12.0234 35.4375 5.0625 35.4375H4.42969C3.32227 35.4375 2.53125 34.6465 2.53125 33.5391V29.7422C2.53125 28.7139 3.32227 27.8438 4.42969 27.8438H5.0625C7.83105 27.8438 10.125 25.6289 10.125 22.7812V17.7188H3.79688C1.66113 17.7188 0 16.0576 0 13.9219V3.79688C0 1.74023 1.66113 0 3.79688 0H13.9219Z" fill="#333333"/>
+              <path d="M36.7031 0C38.7598 0 40.5 1.74023 40.5 3.79688V22.7812C40.5 29.8213 34.8047 35.4375 27.8438 35.4375H27.2109C26.1035 35.4375 25.3125 34.6465 25.3125 33.5391V29.7422C25.3125 28.7139 26.1035 27.8438 27.2109 27.8438H27.8438C30.6123 27.8438 32.9062 25.6289 32.9062 22.7812V17.7188H26.5781C24.4424 17.7188 22.7812 16.0576 22.7812 13.9219V3.79688C22.7812 1.74023 24.4424 0 26.5781 0H36.7031ZM13.9219 0C15.9785 0 17.7188 1.74023 17.7188 3.79688V22.7812C17.7188 29.8213 12.0234 35.4375 5.0625 35.4375H4.42969C3.32227 35.4375 2.53125 34.6465 2.53125 33.5391V29.7422C2.53125 28.7139 3.32227 27.8438 4.42969 27.8438H5.0625C7.83105 27.8438 10.125 25.6289 10.125 22.7812V17.7188H3.79688C1.66113 17.7188 0 16.0576 0 13.9219V3.79688C0 1.74023 1.66113 0 3.79688 0H13.9219Z" fill="#333333" />
             </svg>
           </div>
-          <div className="text-white text-[4vw] lg:text-[1.1vw] font-light lg:font-normal font-sans mt-[1vw] lg:mt-[0.15vw] leading-[1.6] tracking-wide">
+          <div className="text-[#888] text-[4vw] lg:text-[1.1vw] font-extralight lg:font-normal font-sans mt-[1vw] lg:mt-[0.15vw] leading-[1.6] tracking-wide">
             "I would sell my soul for another basket of the Lemon Pepper wings. Absolutely unruly flavor."
           </div>
         </div>
@@ -95,20 +93,23 @@ export default function RatingSectionCards() {
                 {/* Optionally initials */}
               </div>
               <div className="flex flex-col">
-                <span className="text-white text-[4.5vw] lg:text-[1.3vw] leading-tight uppercase lg:leading-5 tracking-[2px] font-['Share_Tech']" style={{ fontWeight: 400 }}>
+                <span className="text-white font-extralight text-[4.5vw] lg:text-[1.3vw] leading-[1.2] uppercase lg:leading-6 tracking-[2px]" style={{ fontFamily: "var(--font-peakers)" }}>
                   Mike T.
                 </span>
-                <span className="text-[#bbb] text-[3vw] lg:text-[0.8vw] leading-tight" style={{ letterSpacing: '0.01em' }}>
+                <span className="text-[#A1A1AA] font-mono text-[3vw] lg:text-[1vw] leading-tight mt-[0.5vw] lg:mt-0" style={{
+                  fontWeight: 400,
+                  letterSpacing: '0.01em',
+                }}>
                   Verified Buyer
                 </span>
               </div>
             </div>
             {/* Double quote svg, always */}
             <svg width="10vw" height="8vw" viewBox="0 0 41 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[10vw] h-[8vw] lg:w-[3vw] lg:h-[2.5vw]">
-              <path d="M36.7031 0C38.7598 0 40.5 1.74023 40.5 3.79688V22.7812C40.5 29.8213 34.8047 35.4375 27.8438 35.4375H27.2109C26.1035 35.4375 25.3125 34.6465 25.3125 33.5391V29.7422C25.3125 28.7139 26.1035 27.8438 27.2109 27.8438H27.8438C30.6123 27.8438 32.9062 25.6289 32.9062 22.7812V17.7188H26.5781C24.4424 17.7188 22.7812 16.0576 22.7812 13.9219V3.79688C22.7812 1.74023 24.4424 0 26.5781 0H36.7031ZM13.9219 0C15.9785 0 17.7188 1.74023 17.7188 3.79688V22.7812C17.7188 29.8213 12.0234 35.4375 5.0625 35.4375H4.42969C3.32227 35.4375 2.53125 34.6465 2.53125 33.5391V29.7422C2.53125 28.7139 3.32227 27.8438 4.42969 27.8438H5.0625C7.83105 27.8438 10.125 25.6289 10.125 22.7812V17.7188H3.79688C1.66113 17.7188 0 16.0576 0 13.9219V3.79688C0 1.74023 1.66113 0 3.79688 0H13.9219Z" fill="#333333"/>
+              <path d="M36.7031 0C38.7598 0 40.5 1.74023 40.5 3.79688V22.7812C40.5 29.8213 34.8047 35.4375 27.8438 35.4375H27.2109C26.1035 35.4375 25.3125 34.6465 25.3125 33.5391V29.7422C25.3125 28.7139 26.1035 27.8438 27.2109 27.8438H27.8438C30.6123 27.8438 32.9062 25.6289 32.9062 22.7812V17.7188H26.5781C24.4424 17.7188 22.7812 16.0576 22.7812 13.9219V3.79688C22.7812 1.74023 24.4424 0 26.5781 0H36.7031ZM13.9219 0C15.9785 0 17.7188 1.74023 17.7188 3.79688V22.7812C17.7188 29.8213 12.0234 35.4375 5.0625 35.4375H4.42969C3.32227 35.4375 2.53125 34.6465 2.53125 33.5391V29.7422C2.53125 28.7139 3.32227 27.8438 4.42969 27.8438H5.0625C7.83105 27.8438 10.125 25.6289 10.125 22.7812V17.7188H3.79688C1.66113 17.7188 0 16.0576 0 13.9219V3.79688C0 1.74023 1.66113 0 3.79688 0H13.9219Z" fill="#333333" />
             </svg>
           </div>
-          <div className="text-white text-[4vw] lg:text-[1.1vw] font-light lg:font-normal font-sans mt-[1vw] lg:mt-[0.15vw] leading-[1.6] tracking-wide">
+          <div className="text-[#888] text-[4vw] lg:text-[1.1vw] font-extralight lg:font-normal font-sans mt-[1vw] lg:mt-[0.15vw] leading-[1.6] tracking-wide">
             "The music is loud. The crunch is glorious, and the fries are perfect. 11/10 would destroy my shirt in sauce again."
           </div>
         </div>
@@ -124,20 +125,23 @@ export default function RatingSectionCards() {
                 {/* Optionally initials */}
               </div>
               <div className="flex flex-col">
-                <span className="text-white text-[4.5vw] lg:text-[1.3vw] leading-tight uppercase lg:leading-5 tracking-[2px] font-['Share_Tech']" style={{ fontWeight: 400 }}>
+                <span className="text-white font-extralight text-[4.5vw] lg:text-[1.3vw] leading-[1.2] uppercase lg:leading-6 tracking-[2px]" style={{ fontFamily: "var(--font-peakers)" }}>
                   jessica lau
                 </span>
-                <span className="text-[#bbb] text-[3vw] lg:text-[0.8vw] leading-tight" style={{ letterSpacing: '0.01em' }}>
+                <span className="text-[#A1A1AA] font-mono text-[3vw] lg:text-[1vw] leading-tight mt-[0.5vw] lg:mt-0" style={{
+                  fontWeight: 400,
+                  letterSpacing: '0.01em',
+                }}>
                   Foodie
                 </span>
               </div>
             </div>
             {/* Double quote svg, always */}
             <svg width="10vw" height="8vw" viewBox="0 0 41 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[10vw] h-[8vw] lg:w-[3vw] lg:h-[2.5vw]">
-              <path d="M36.7031 0C38.7598 0 40.5 1.74023 40.5 3.79688V22.7812C40.5 29.8213 34.8047 35.4375 27.8438 35.4375H27.2109C26.1035 35.4375 25.3125 34.6465 25.3125 33.5391V29.7422C25.3125 28.7139 26.1035 27.8438 27.2109 27.8438H27.8438C30.6123 27.8438 32.9062 25.6289 32.9062 22.7812V17.7188H26.5781C24.4424 17.7188 22.7812 16.0576 22.7812 13.9219V3.79688C22.7812 1.74023 24.4424 0 26.5781 0H36.7031ZM13.9219 0C15.9785 0 17.7188 1.74023 17.7188 3.79688V22.7812C17.7188 29.8213 12.0234 35.4375 5.0625 35.4375H4.42969C3.32227 35.4375 2.53125 34.6465 2.53125 33.5391V29.7422C2.53125 28.7139 3.32227 27.8438 4.42969 27.8438H5.0625C7.83105 27.8438 10.125 25.6289 10.125 22.7812V17.7188H3.79688C1.66113 17.7188 0 16.0576 0 13.9219V3.79688C0 1.74023 1.66113 0 3.79688 0H13.9219Z" fill="#333333"/>
+              <path d="M36.7031 0C38.7598 0 40.5 1.74023 40.5 3.79688V22.7812C40.5 29.8213 34.8047 35.4375 27.8438 35.4375H27.2109C26.1035 35.4375 25.3125 34.6465 25.3125 33.5391V29.7422C25.3125 28.7139 26.1035 27.8438 27.2109 27.8438H27.8438C30.6123 27.8438 32.9062 25.6289 32.9062 22.7812V17.7188H26.5781C24.4424 17.7188 22.7812 16.0576 22.7812 13.9219V3.79688C22.7812 1.74023 24.4424 0 26.5781 0H36.7031ZM13.9219 0C15.9785 0 17.7188 1.74023 17.7188 3.79688V22.7812C17.7188 29.8213 12.0234 35.4375 5.0625 35.4375H4.42969C3.32227 35.4375 2.53125 34.6465 2.53125 33.5391V29.7422C2.53125 28.7139 3.32227 27.8438 4.42969 27.8438H5.0625C7.83105 27.8438 10.125 25.6289 10.125 22.7812V17.7188H3.79688C1.66113 17.7188 0 16.0576 0 13.9219V3.79688C0 1.74023 1.66113 0 3.79688 0H13.9219Z" fill="#333333" />
             </svg>
           </div>
-          <div className="text-white text-[4vw] lg:text-[1.1vw] font-light lg:font-normal font-sans mt-[1vw] lg:mt-[0.15vw] leading-[1.6] tracking-wide">
+          <div className="text-[#888] text-[4vw] lg:text-[1.1vw] font-extralight lg:font-normal font-sans mt-[1vw] lg:mt-[0.15vw] leading-[1.6] tracking-wide">
             "Hands down the crispiest wings in town. The staff always vibe and the food never disappoints."
           </div>
         </div>

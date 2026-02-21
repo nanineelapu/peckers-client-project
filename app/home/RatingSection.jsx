@@ -149,7 +149,7 @@ export default function RatingSection() {
       ref={containerRef}
       className="w-full flex items-center justify-between bg-black font-bold tracking-tight px-[2vw] pt-[13vw] pb-[3vw]"
     >
-      <span className="font-['Share_Tech'] text-[3.5vw] text-white tracking-[1.6]">
+      <span className="text-[4vw] text-white tracking-[1.6]" style={{ fontFamily: "var(--font-peakers)" }}>
         {headingWords.map((word, i) => (
           <span
             key={i}
@@ -188,6 +188,6 @@ export default function RatingSection() {
           ( 4.8/5 on Google )
         </span>
       </div>
-    </div>
+    </div >
   );
 }
