@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import CoopHeading from "./CoopHeading";
+import CoopImages from "./CoopImages";
 import LatestNewsHeading from "./LatestNewsHeading";
 import LatestNewsCards from "./LatestNewsCards";
-import CoopImages from "./CoopImages";
 import CaptionBelowNews from "./CaptionBelowNews";
 import PersonDetails from "./PersonDetails";
 import RatingSection from "./RatingSection";
