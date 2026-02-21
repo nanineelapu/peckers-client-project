@@ -143,7 +143,7 @@ export default function LatestNewsHeading() {
       style={{ height: "15vh", lineHeight: "1.2" }}
     >
       {/* Title - word by word */}
-      <span className=" text-[4.8vw] font-bold  tracking-[.2vw]" style={{ fontFamily: "var(--font-peakers)" }}>
+      <span className=" text-[4.8vw] font-bold text-white  tracking-[.2vw]" style={{ fontFamily: "var(--font-peakers)" }}>
         {words.map((word, i) => (
           <span
             key={i}
@@ -157,7 +157,7 @@ export default function LatestNewsHeading() {
       {/* Subtitle */}
       <span
         ref={subRef}
-        className="font-sans text-[1.1vw]"
+        className="font-sans text-[1.1vw] text-white"
       >
         All the latest news from Peckers
       </span>

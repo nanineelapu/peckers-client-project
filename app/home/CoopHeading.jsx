@@ -99,7 +99,7 @@ export default function CoopHeading() {
       style={{ height: "15vh", lineHeight: "1.4" }}
     >
       {/* Title (word animation) */}
-      <span className="text-[4.8vw] font-bold  tracking-1" style={{ fontFamily: "var(--font-peakers)" }}>
+      <span className="text-[4.8vw] font-bold  tracking-1" style={{ fontFamily: "var(--font-peakers)", color:"white" }}>
         {words.map((word, index) => (
           <span
             key={index}
@@ -114,7 +114,7 @@ export default function CoopHeading() {
       {/* Subtitle */}
       <span
         ref={subRef}
-        className="font-sans text-[1.2vw]"
+        className="font-sans text-[1.2vw] text-white"
       >
         More spots. Same seriously good chicken.
       </span>
