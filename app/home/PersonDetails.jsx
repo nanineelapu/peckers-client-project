@@ -28,20 +28,32 @@ export default function PersonDetails() {
     let hasAnimated = false;
     const timeline = gsap.timeline({ paused: true });
     timeline
-      .to(leftRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: "power3.out",
-      }, 0)
-      .to(rightRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: "power3.out",
-      }, 0);
+      .to(
+        leftRef.current,
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+        },
+        0
+      )
+      .to(
+        rightRef.current,
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+        },
+        0
+      );
 
-    const st = ScrollTrigger.create({
+    // Declare st in parent scope so it can be referenced in return cleanup
+    let st = null;
+
+    // Create ScrollTrigger after st is hoisted
+    st = ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top 80%",
       once: true,
@@ -49,7 +61,7 @@ export default function PersonDetails() {
         if (!hasAnimated) {
           timeline.play();
           hasAnimated = true;
-          st.kill();
+          if (st) st.kill();
         }
       },
       // Do NOT reverse or animate again
@@ -57,7 +69,7 @@ export default function PersonDetails() {
 
     return () => {
       // Only kill this component's ScrollTrigger and timeline
-      st.kill();
+      if (st) st.kill();
       timeline.kill();
     };
   }, []);
@@ -96,8 +108,8 @@ export default function PersonDetails() {
         }}
       >
         <h2
-          className="grid text-white font-['Share_Tech'] font-bold text-[4.5vw] leading-tight mb-[1vw]"
-          style={{ letterSpacing: "0.01em" }}
+          className="grid text-white font-bold text-[4.8vw] tracking-[.2vw] leading-tight mb-[1vw]"
+          style={{ letterSpacing: "0.01em", fontFamily: "var(--font-peakers)" }}
         >
           FOR THE LOVE OF <span className="text-[#ffff]">CHICKEN</span>
         </h2>
@@ -107,7 +119,7 @@ export default function PersonDetails() {
           style={{ position: "relative", alignItems: "center", width: "100%" }}
         >
           <div
-            className="text-white font-light text-[1.3vw] tracking-[1.2] font-sans mb-[1vw] text-center"
+            className="text-white text-start font-light text-[1.3vw] tracking-[1.2] font-sans mb-[1vw] text-center"
             style={{ lineHeight: "2vw", width: "100%" }}
           >
             Peckers started with a dream: to make wings that didn’t suck. We were tired of dry, sad chicken.

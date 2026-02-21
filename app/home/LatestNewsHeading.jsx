@@ -139,16 +139,16 @@ export default function LatestNewsHeading() {
   return (
     <div
       ref={containerRef}
-      className="w-full px-[2vw] py-[0vw] pt-[0vw] pb-[1vw] grid"
+      className="w-full px-[2vw] py-[0vw] pt-[0vw] pb-[0vw] grid"
       style={{ height: "15vh", lineHeight: "1.2" }}
     >
       {/* Title - word by word */}
-      <span className="font-['Share_tech'] text-[4.5vw] tracking-tight">
+      <span className=" text-[4.8vw] font-bold  tracking-[.2vw]" style={{ fontFamily: "var(--font-peakers)" }}>
         {words.map((word, i) => (
           <span
             key={i}
             ref={el => (wordsRef.current[i] = el)}
-            className="inline-block mr-[0.7vw]"
+            className="inline-block mr-[0.6vw]"
           >
             {word}
           </span>

@@ -95,11 +95,11 @@ export default function CoopHeading() {
   return (
     <div
       ref={containerRef}
-      className="w-full px-[3vw] py-[5vw] pt-[12vw] pb-[3vw] grid"
+      className="w-full px-[1.5vw] py-[5vw] pt-[12vw] pb-[3vw] grid"
       style={{ height: "15vh", lineHeight: "1.4" }}
     >
       {/* Title (word animation) */}
-      <span className="font-['Share_tech'] text-[4.5vw] tracking-tight">
+      <span className="text-[4.8vw] font-bold  tracking-1" style={{ fontFamily: "var(--font-peakers)" }}>
         {words.map((word, index) => (
           <span
             key={index}
@@ -114,7 +114,7 @@ export default function CoopHeading() {
       {/* Subtitle */}
       <span
         ref={subRef}
-        className="font-sans text-[1.3vw]"
+        className="font-sans text-[1.2vw]"
       >
         More spots. Same seriously good chicken.
       </span>
