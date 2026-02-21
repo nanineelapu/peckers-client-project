@@ -109,15 +109,16 @@ export default function SignUpSection() {
         }}
       >
         <h2
-          className="text-white font-bold text-[4.5vw] mb-[0.8vw] leading-tight font-['Share_Tech'] text-center"
+          className="text-white px-[2vw] font-bold text-[5vw] mb-[0.8vw] leading-tight font-['Share_Tech'] text-center"
           style={{
-            letterSpacing: "0.04em"
+            letterSpacing: "0.04em",
+             fontFamily: "var(--font-peakers)"
           }}
         >
           JOIN OUR MAILING LIST
         </h2>
         <p
-          className="text-[#e7e7e7e0] text-[1.8vw] font-sans mb-[4vw] mt-[0.3vw] text-center"
+          className="text-[#e7e7e7e0] text-[1.7vw] font-sans mb-[3vw] mt-[0.3vw] text-center"
           style={{
             fontWeight: 300,
             letterSpacing: "0.01em",
