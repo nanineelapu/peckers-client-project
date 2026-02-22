@@ -82,7 +82,7 @@ const BURGERS = [
 
 const TOTAL = BURGERS.length;
 
-// Ensure card ids unique across new renders, cards re-key when carousel "jumps"
+// Ensure card ids are unique across new renders
 const makeCard = (() => {
   let globalId = 0;
   return (index, slot) => ({
@@ -113,121 +113,72 @@ const POS = {
 };
 
 function getModIndex(idx) {
-  // always positive mod for index
   return ((idx % TOTAL) + TOTAL) % TOTAL;
 }
 
 export default function BurgerCarouselFinal() {
-  const [center, setCenter] = useState(0);
-  // forcibly regenerate card id whenever new center assigned (resets if direct jump)
-  const [cards, setCards] = useState(() => createInitialCards(0));
+  const [carousel, setCarousel] = useState(() => ({
+    center: 0,
+    cards: createInitialCards(0),
+  }));
+
+  // animatingRef is used ONLY as a guard inside moveBy to avoid stale closures.
+  // isAnimating (state) drives all JSX / style decisions so React re-renders
+  // when it changes — this is the key fix for blocked buttons & cursor.
   const animatingRef = useRef(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [preloaderDone, setPreloaderDone] = useState(false);
 
-  // Prevent multiple clicks firing while animating
-  const setAnimatingTimeout = () =>
+  const moveBy = useCallback((steps) => {
+    if (steps === 0 || animatingRef.current) return;
+
+    animatingRef.current = true;
+    setIsAnimating(true);
+
+    const direction = steps > 0 ? 1 : -1;
+    const count = Math.abs(steps);
+
+    setCarousel((prev) => {
+      let currentCenter = prev.center;
+      let currentCards = [...prev.cards];
+
+      for (let i = 0; i < count; i++) {
+        if (direction > 0) {
+          // Move forward: slots shift left, new card enters from right
+          currentCenter = getModIndex(currentCenter + 1);
+          currentCards = currentCards
+            .map((c) => ({ ...c, slot: c.slot - 1 }))
+            .filter((c) => c.slot >= -3);
+          currentCards.push(makeCard(getModIndex(currentCenter + 3), 3));
+        } else {
+          // Move backward: slots shift right, new card enters from left
+          currentCenter = getModIndex(currentCenter - 1);
+          currentCards = currentCards
+            .map((c) => ({ ...c, slot: c.slot + 1 }))
+            .filter((c) => c.slot <= 3);
+          currentCards.push(makeCard(getModIndex(currentCenter - 3), -3));
+        }
+      }
+
+      return { center: currentCenter, cards: currentCards };
+    });
+
     setTimeout(() => {
       animatingRef.current = false;
+      setIsAnimating(false);
     }, 650);
+  }, []);
 
-  // Always reset animating immediately before changing
   const handleCardClick = useCallback(
     (clickedSlot) => {
-      if (animatingRef.current) return;
-      if (clickedSlot === 0) return;
-  
-      animatingRef.current = true;
-  
-      const steps = -clickedSlot;
-      let newCenter = center;
-  
-      setCards((prev) => {
-        let updated = [...prev];
-  
-        if (steps > 0) {
-          // move right
-          for (let i = 0; i < steps; i++) {
-            newCenter = getModIndex(newCenter + 1);
-  
-            updated = updated
-              .map((c) => ({ ...c, slot: c.slot - 1 }))
-              .filter((c) => c.slot >= -3);
-  
-            const newIndex = getModIndex(newCenter + 3);
-            updated.push(makeCard(newIndex, 3));
-          }
-        } else {
-          // move left
-          for (let i = 0; i < Math.abs(steps); i++) {
-            newCenter = getModIndex(newCenter - 1);
-  
-            updated = updated
-              .map((c) => ({ ...c, slot: c.slot + 1 }))
-              .filter((c) => c.slot <= 3);
-  
-            const newIndex = getModIndex(newCenter - 3);
-            updated.push(makeCard(newIndex, -3));
-          }
-        }
-  
-        return updated;
-      });
-  
-      setCenter(newCenter);
-  
-      setTimeout(() => {
-        animatingRef.current = false;
-      }, 650);
+      moveBy(clickedSlot);
     },
-    [center]
+    [moveBy]
   );
 
-  const goNext = useCallback(() => {
-    if (animatingRef.current) return;
-    animatingRef.current = true;
-  
-    setCards((prevCards) => {
-      const currentCenter = prevCards.find(c => c.slot === 0).index;
-      const newCenter = getModIndex(currentCenter + 1);
-  
-      const shifted = prevCards
-        .map((c) => ({ ...c, slot: c.slot - 1 }))
-        .filter((c) => c.slot >= -3);
-  
-      const newIndex = getModIndex(newCenter + 3);
-      shifted.push(makeCard(newIndex, 3));
-  
-      return shifted;
-    });
-  
-    setTimeout(() => {
-      animatingRef.current = false;
-    }, 650);
-  }, []);
+  const goNext = useCallback(() => moveBy(1), [moveBy]);
+  const goPrev = useCallback(() => moveBy(-1), [moveBy]);
 
-  const goPrev = useCallback(() => {
-    if (animatingRef.current) return;
-    animatingRef.current = true;
-  
-    setCards((prevCards) => {
-      const currentCenter = prevCards.find(c => c.slot === 0).index;
-      const newCenter = getModIndex(currentCenter - 1);
-  
-      const shifted = prevCards
-        .map((c) => ({ ...c, slot: c.slot + 1 }))
-        .filter((c) => c.slot <= 3);
-  
-      const newIndex = getModIndex(newCenter - 3);
-      shifted.push(makeCard(newIndex, -3));
-  
-      return shifted;
-    });
-  
-    setTimeout(() => {
-      animatingRef.current = false;
-    }, 650);
-  }, []);
-  
   return (
     <>
       <MenuPreloader
@@ -244,6 +195,7 @@ export default function BurgerCarouselFinal() {
           transition: "opacity 0.4s ease",
         }}
       >
+        {/* SUB-NAV */}
         <div>
           <nav
             className="subnavbar"
@@ -277,6 +229,7 @@ export default function BurgerCarouselFinal() {
             </div>
           </nav>
         </div>
+
         {/* BURGER STAGE */}
         <div
           className="relative w-full overflow-hidden"
@@ -298,7 +251,8 @@ export default function BurgerCarouselFinal() {
           >
             <DropShadowSVG />
           </div>
-          {cards.map((card) => {
+
+          {carousel.cards.map((card) => {
             const cfg = POS[card.slot] || POS[3];
             const burger = BURGERS[card.index];
             const isCenter = card.slot === 0;
@@ -306,7 +260,7 @@ export default function BurgerCarouselFinal() {
               <div
                 key={card.id}
                 onClick={() =>
-                  !animatingRef.current && handleCardClick(card.slot)
+                  !isCenter && !isAnimating && handleCardClick(card.slot)
                 }
                 style={{
                   position: "absolute",
@@ -320,12 +274,14 @@ export default function BurgerCarouselFinal() {
                   zIndex: cfg.z,
                   transition:
                     "transform .65s cubic-bezier(.22,1,.36,1), opacity .5s ease",
+                  // Uses isAnimating state (not ref) so pointer-events actually
+                  // updates after each animation cycle
                   pointerEvents: isCenter
                     ? "none"
-                    : animatingRef.current
-                    ? "none"
-                    : "auto",
-                  cursor: isCenter ? "default" : "pointer",
+                    : isAnimating
+                      ? "none"
+                      : "auto",
+                  cursor: isCenter ? "default" : isAnimating ? "wait" : "pointer",
                   userSelect: "none",
                 }}
               >
@@ -347,6 +303,7 @@ export default function BurgerCarouselFinal() {
             );
           })}
         </div>
+
         {/* SLIDING INDICATOR */}
         <div className="flex gap-3 mt-4">
           {BURGERS.map((_, i) => (
@@ -354,25 +311,25 @@ export default function BurgerCarouselFinal() {
               key={i}
               style={{
                 height: "6px",
-                width: i === center ? "36px" : "10px",
-                background: i === center ? "#e8b800" : "#333",
+                width: i === carousel.center ? "36px" : "10px",
+                background: i === carousel.center ? "#e8b800" : "#333",
                 borderRadius: "999px",
                 transition: "all .4s cubic-bezier(.22,1,.36,1)",
               }}
             />
           ))}
         </div>
+
         {/* TITLE + ARROWS */}
         <div className="w-full flex items-center justify-center relative pb-4">
+          {/* Uses isAnimating state so the button actually re-enables after animation */}
           <button
-            onClick={() => {
-              if (!animatingRef.current) goPrev();
-            }}
+            onClick={goPrev}
             className="absolute left-0 px-[4vw]"
-            disabled={animatingRef.current}
+            disabled={isAnimating}
             style={{
-              cursor: animatingRef.current ? "not-allowed" : "pointer",
-              opacity: animatingRef.current ? 0.5 : 1,
+              cursor: isAnimating ? "wait" : "pointer",
+              opacity: isAnimating ? 0.5 : 1,
               transition: "opacity 0.2s",
             }}
           >
@@ -388,26 +345,22 @@ export default function BurgerCarouselFinal() {
               letterSpacing: "0.04em",
             }}
           >
-            {BURGERS[center].name}
+            {BURGERS[carousel.center].name}
           </h1>
 
           <button
-            onClick={() => {
-              if (!animatingRef.current) goNext();
-            }}
+            onClick={goNext}
             className="absolute right-0 px-[4vw]"
-            disabled={animatingRef.current}
+            disabled={isAnimating}
             style={{
-              cursor: animatingRef.current ? "not-allowed" : "pointer",
-              opacity: animatingRef.current ? 0.5 : 1,
+              cursor: isAnimating ? "wait" : "pointer",
+              opacity: isAnimating ? 0.5 : 1,
               transition: "opacity 0.2s",
             }}
           >
             <FiChevronRight size={38} color="#888" />
           </button>
         </div>
-
-        
       </div>
     </>
   );
