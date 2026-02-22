@@ -202,6 +202,8 @@ export default function BurgerPageText({
           Also available as a wrap, rice bowl, or salad bowl.
         </span>
       </div>
+    <div style={{ height: "40vh" }} />
     </div>
+    
   );
 }

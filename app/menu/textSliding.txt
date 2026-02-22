@@ -186,18 +186,21 @@ export default function BurgerCarouselFinal() {
     if (animatingRef.current) return;
     animatingRef.current = true;
   
-    setCards((prevCards) => {
-      const currentCenter = prevCards.find(c => c.slot === 0).index;
-      const newCenter = getModIndex(currentCenter + 1);
+    setCenter((prevCenter) => {
+      const newCenter = getModIndex(prevCenter + 1);
   
-      const shifted = prevCards
-        .map((c) => ({ ...c, slot: c.slot - 1 }))
-        .filter((c) => c.slot >= -3);
+      setCards((prevCards) => {
+        const shifted = prevCards
+          .map((c) => ({ ...c, slot: c.slot - 1 }))
+          .filter((c) => c.slot >= -3);
   
-      const newIndex = getModIndex(newCenter + 3);
-      shifted.push(makeCard(newIndex, 3));
+        const newIndex = getModIndex(newCenter + 3);
+        shifted.push(makeCard(newIndex, 3));
   
-      return shifted;
+        return shifted;
+      });
+  
+      return newCenter;
     });
   
     setTimeout(() => {
@@ -208,26 +211,22 @@ export default function BurgerCarouselFinal() {
   const goPrev = useCallback(() => {
     if (animatingRef.current) return;
     animatingRef.current = true;
-  
-    setCards((prevCards) => {
-      const currentCenter = prevCards.find(c => c.slot === 0).index;
-      const newCenter = getModIndex(currentCenter - 1);
-  
-      const shifted = prevCards
+    const newCenter = getModIndex(center - 1);
+
+    // Shift every card slot +1 and generate new leftmost
+    setCards((prev) => {
+      const shifted = prev
         .map((c) => ({ ...c, slot: c.slot + 1 }))
         .filter((c) => c.slot <= 3);
-  
+      // Find new index for slot -3
       const newIndex = getModIndex(newCenter - 3);
       shifted.push(makeCard(newIndex, -3));
-  
       return shifted;
     });
-  
-    setTimeout(() => {
-      animatingRef.current = false;
-    }, 650);
-  }, []);
-  
+    setCenter(newCenter);
+    setAnimatingTimeout();
+  }, [center]);
+
   return (
     <>
       <MenuPreloader
@@ -406,8 +405,6 @@ export default function BurgerCarouselFinal() {
             <FiChevronRight size={38} color="#888" />
           </button>
         </div>
-
-        
       </div>
     </>
   );
