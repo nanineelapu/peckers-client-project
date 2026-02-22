@@ -26,11 +26,11 @@ export default function Preloader({ onComplete = () => { } }) {
       onComplete,
     });
 
-    // Prepare main page zoom state
-    tl.set(main, {
+    // Immediately hide main content to prevent gap
+    gsap.set(main, {
       scale: 1.8,
       y: -100,
-      opacity: 0.85,
+      opacity: 0,
       transformOrigin: "50% 60vh",
     });
 
@@ -61,7 +61,7 @@ export default function Preloader({ onComplete = () => { } }) {
       ease: "power4.inOut",
     });
 
-    // Main page zoom settles
+    // Main page zoom settles - start opacity at 0 and fade in
     tl.to(
       main,
       {

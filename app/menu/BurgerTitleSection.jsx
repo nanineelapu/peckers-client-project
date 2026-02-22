@@ -132,6 +132,61 @@ export default function BurgerCarouselFinal() {
   const animatingRef = useRef(false);
   const [preloaderDone, setPreloaderDone] = useState(false);
 
+  const handleCardClick = useCallback((clickedSlot) => {
+    if (animatingRef.current) return;
+    
+    // Calculate how many steps to move to center the clicked card
+    const stepsToCenter = -clickedSlot;
+    
+    if (stepsToCenter === 0) return; // Already center, no need to move
+    
+    animatingRef.current = true;
+    
+    let newCenter = center;
+    let moves = Math.abs(stepsToCenter);
+    
+    // Move the required number of times
+    for (let i = 0; i < moves; i++) {
+      if (stepsToCenter > 0) {
+        // Move right (next)
+        newCenter = (newCenter + 1) % TOTAL;
+      } else {
+        // Move left (prev)
+        newCenter = (newCenter - 1 + TOTAL) % TOTAL;
+      }
+    }
+    
+    // Update cards array based on the movement
+    setCards((prev) => {
+      let shifted = [...prev];
+      if (stepsToCenter > 0) {
+        // Moving right - shift slots left
+        for (let i = 0; i < moves; i++) {
+          shifted = shifted.map((c) => ({ ...c, slot: c.slot - 1 }));
+          shifted = shifted.filter((c) => c.slot >= -3);
+          for (let j = 0; j < i + 1; j++) {
+            const newIndex = (newCenter + 3 - j + TOTAL * 100) % TOTAL;
+            shifted.push(makeCard(newIndex, 3 - j));
+          }
+        }
+      } else {
+        // Moving left - shift slots right
+        for (let i = 0; i < moves; i++) {
+          shifted = shifted.map((c) => ({ ...c, slot: c.slot + 1 }));
+          shifted = shifted.filter((c) => c.slot <= 3);
+          for (let j = 0; j < i + 1; j++) {
+            const newIndex = (newCenter - 3 + j + TOTAL * 100) % TOTAL;
+            shifted.push(makeCard(newIndex, -3 + j));
+          }
+        }
+      }
+      return shifted;
+    });
+    
+    setCenter(newCenter);
+    setTimeout(() => (animatingRef.current = false), 650);
+  }, [center]);
+
   const goNext = useCallback(() => {
     if (animatingRef.current) return;
     animatingRef.current = true;
@@ -243,6 +298,7 @@ export default function BurgerCarouselFinal() {
             return (
               <div
                 key={card.id}
+                onClick={() => handleCardClick(card.slot)}
                 style={{
                   position: "absolute",
                   left: "50%",
@@ -255,7 +311,8 @@ export default function BurgerCarouselFinal() {
                   zIndex: cfg.z,
                   transition:
                     "transform .65s cubic-bezier(.22,1,.36,1), opacity .5s ease",
-                  pointerEvents: "none",
+                  pointerEvents: "auto",
+                  cursor: isCenter ? "default" : "pointer",
                 }}
               >
                 <img

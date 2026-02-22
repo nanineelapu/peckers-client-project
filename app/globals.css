@@ -65,6 +65,7 @@ img {
   image-rendering: crisp-edges;
 }
 
+
 /* Reduce repaints on scroll */
 [data-scroll-section] {
   contain: layout style paint;
