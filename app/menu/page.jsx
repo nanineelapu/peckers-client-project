@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const page = () => {
   return (
-    <div>
+    <div id="main-content">
       <nav className="fixed top-0 left-0 w-full z-[999] flex items-center px-[2vw] py-[.2vw] bg-black text-white font-['Share_Tech'] border-b border-[#fff3]">
         {/* Logo Section */}
         <div className="flex-1 flex items-center">

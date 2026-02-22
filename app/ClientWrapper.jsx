@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Preloader from "./components/Preloader";
-import RoutePreloader from "./components/RoutePreloader";
 import SmoothScroll from "./SmoothScroll";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,7 +10,6 @@ export default function ClientWrapper({ children }) {
 
   return (
     <>
-      <RoutePreloader enabled={loadingDone} />
       {!loadingDone && (
         <Preloader
           onComplete={() => {
