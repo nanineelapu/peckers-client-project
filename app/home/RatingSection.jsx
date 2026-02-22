@@ -46,7 +46,7 @@ export default function RatingSection() {
   const headingWords = heading.split(" ");
 
   return (
-    <div className="w-full flex items-center justify-between bg-black font-bold tracking-tight px-[2vw] pt-[9vw] pb-[3vw]">
+    <div className="w-full flex items-center justify-between bg-black font-bold tracking-tight px-[2vw] pt-[12.5vw] pb-[2vw]">
       <span
         className="text-[4vw] text-white tracking-[1.6]"
         style={{ fontFamily: "var(--font-peakers)" }}
