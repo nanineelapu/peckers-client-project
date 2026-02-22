@@ -4,33 +4,36 @@ import { useState, useRef, useCallback } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const BURGERS = [
-    {
-        name: "OG BURGER",
-        image:
-          "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Image%201.png",
-      },
-    {
-        name: "BBQ CLASSIC",
-        image:
-          "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Imaeg%202%20BBQ.png",
-      },
+  {
+    name: "OG BURGER",
+    image:
+      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Image%201.png",
+      boost: 1,
+  },
+  {
+    name: "BBQ CLASSIC",
+    image:
+      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Imaeg%202%20BBQ.png",
+      boost:1,
+  },
   {
     name: "HOT BURGER",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20REd-Picsart-AiImageEnhancer%20Final.png",
+      boost:1.15,
   },
   {
     name: "NORMAL CHEESE",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20lit%20yellow%20Finalone-Picsart-AiImageEnhancer%20(1).png",
+      boost:1.25,
   },
   {
     name: "MORE CHEESE",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Final%20more%20cheese%20one-Picsart-AiImageEnhancer%20(1).png",
+      boost:1.25,
   },
- 
-  
 ];
 
 const TOTAL = BURGERS.length;
@@ -112,6 +115,7 @@ export default function BurgerCarouselFinal() {
           "radial-gradient(ellipse 50% 52% at 50% 38%, #3d2900 0%, #1e1200 26%, #090909 58%, #000 100%)",
       }}
     >
+      {/* BURGER STAGE */}
       <div
         className="relative w-full overflow-hidden"
         style={{ height: "clamp(320px, 54vw, 560px)" }}
@@ -129,7 +133,7 @@ export default function BurgerCarouselFinal() {
                 top: "50%",
                 transform: `
                   translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
-                  scale(${cfg.scale})
+                  scale(${cfg.scale * burger.boost})
                 `,
                 opacity: cfg.opacity,
                 zIndex: cfg.z,
@@ -152,7 +156,8 @@ export default function BurgerCarouselFinal() {
         })}
       </div>
 
-      <div className="w-full flex items-center justify-center relative pb-8">
+      {/* TITLE + ARROWS */}
+      <div className="w-full flex items-center justify-center relative pb-4">
         <button onClick={goPrev} className="absolute left-0 px-[4vw]">
           <FiChevronLeft size={38} color="#888" />
         </button>
@@ -172,6 +177,22 @@ export default function BurgerCarouselFinal() {
         <button onClick={goNext} className="absolute right-0 px-[4vw]">
           <FiChevronRight size={38} color="#888" />
         </button>
+      </div>
+
+      {/* SLIDING INDICATOR */}
+      <div className="flex gap-3 mt-4">
+        {BURGERS.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              height: "6px",
+              width: i === center ? "36px" : "10px",
+              background: i === center ? "#e8b800" : "#333",
+              borderRadius: "999px",
+              transition: "all .4s cubic-bezier(.22,1,.36,1)",
+            }}
+          />
+        ))}
       </div>
     </div>
   );
