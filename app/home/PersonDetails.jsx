@@ -1,44 +1,36 @@
 import Image from "next/image";
 
 /**
- * Simple, premium, no animation version.
+ * Clean premium person details section without animations
  */
 export default function PersonDetails() {
   return (
     <div
-      className="relative w-full max-w-full overflow-x-hidden flex flex-col lg:flex-row items-stretch justify-center mt-[3vw] gap-[2vw] border-[2vw] px-[2vw]"
+      className="relative w-full max-w-full overflow-x-hidden flex flex-col lg:flex-row items-stretch justify-center mt-[8vw] gap-[2vw] box-border px-[2vw]"
     >
       {/* Left: Person Image */}
-      <div
-        className="flex-shrink-0 w-full lg:w-[40vw]"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className="flex-shrink-0 w-full lg:w-auto">
         <Image
           src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Person%20image.png"
           alt="Profile"
-          className="w-full h-auto object-cover object-center"
-          sizes="(max-width: 768px) 95vw, 23vw"
+          className="w-full h-full object-cover object-center"
+          sizes="(max-width: 768px) 100vw, 50vw"
           priority={true}
-          width={400}
-          height={520}
-          style={{ borderRadius: "1.2vw" }}
+          width={670}
+          height={840}
         />
       </div>
 
       {/* Right: Person Details */}
       <div
-        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] mb-[1vw] py-[1vw] lg:py-[1vw] min-h-[25vw] shadow-xl relative box-border"
+        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] py-[3vw] lg:py-[1vw] min-h-[25vw] shadow-xl relative box-border"
         style={{
           position: "relative",
           zIndex: 2,
         }}
       >
         <h2
-          className="grid text-white font-bold text-[4.8vw] tracking-[.2vw] leading-tight mb-[2vw]"
+          className="grid text-white font-bold text-[4.8vw] tracking-[.2vw] leading-tight mb-[1vw]"
           style={{ letterSpacing: "0.01em", fontFamily: "var(--font-peakers)" }}
         >
           FOR THE LOVE OF <span className="text-[#ffff]">CHICKEN</span>
@@ -49,12 +41,12 @@ export default function PersonDetails() {
           style={{ position: "relative", alignItems: "center", width: "100%" }}
         >
           <div
-            className="text-white text-start font-light text-[1.3vw] tracking-[1.2] font-sans text-center"
-            style={{ lineHeight: "2.2vw", width: "100%" }}
+            className="text-white text-start font-light text-[1.3vw] tracking-[1.2] font-sans mb-[1vw] text-center"
+            style={{ lineHeight: "2vw", width: "100%" }}
           >
-            Peckers started with a dream: to make wings that didn’t suck. We were tired of dry, sad chicken.
+            Peckers started with a dream: to make wings that didn't suck. We were tired of dry, sad chicken.
             <br />
-            So we locked ourselves in a garage with 51lbs of peppers and didn’t come out until we made magic.
+            So we locked ourselves in a garage with 51lbs of peppers and didn't come out until we made magic.
           </div>
           <div
             className=""
@@ -89,61 +81,29 @@ export default function PersonDetails() {
         >
           "We're not chefs. We're flavor engineers with a disregard for sodium limits."
         </div>
-        {/* READ MORE BUTTON */}
         <a
           href="#"
-          className="group flex flex-col items-start text-white font-sans text-[1.3vw] font-extralight cursor-pointer"
+          className="group inline-flex flex-col items-start text-white font-sans text-[1.3vw] font-extralight"
           style={{ letterSpacing: "0.08em", width: "fit-content" }}
         >
-          <span
-            className="flex items-center gap-[1vw] mb-[0.2vw]"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            <span
-              className="tracking-[0.18em] font-[400] font-extralight text-[1.2vw] font-sans"
-              style={{ fontSize: "1.2vw", letterSpacing: "0.18em" }}
-            >
-              READ MORE
-            </span>
-            {/* Custom SVG Arrow: Big white right arrow in a black circle, perfectly centered */}
+          {/* Top Row */}
+          <span className="flex items-center gap-[1.3vw]">
+            <span>READ MORE</span>
+
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="45"
-              height="40"
-              viewBox="0 0 40 40"
+              width="2vw"
+              height="2vw"
+              viewBox="0 0 24 24"
               fill="none"
-              style={{ marginLeft: "-0.2vw", display: "block" }}
+              stroke="white"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <circle cx="20" cy="20" r="20" fill="black" />
-              <path
-                d="M12 20H28"
-                stroke="#fff"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-              <path
-                d="M23 15L28 20L23 25"
-                stroke="#fff"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              <path d="m5 12 5 5L20 7" />
             </svg>
           </span>
-          {/* Underline */}
-          <span
-            className="block"
-            style={{
-              width: "69%",
-              height: "2px",
-              background: "#fff",
-              borderRadius: "2px",
-              marginTop: "0.05vw",
-              marginLeft: 0,
-              marginRight: 0,
-              transition: "width 0.2s",
-            }}
-          ></span>
         </a>
       </div>
     </div>

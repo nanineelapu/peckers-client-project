@@ -18,7 +18,7 @@ const page = () => {
     <div id="main-content" >
 
 
-       <nav className="fixed top-0 left-0 w-full z-[999] flex items-center px-[2vw] py-[.2vw] bg-black text-white font-['Share_Tech'] border-b border-[#fff3]">
+       <nav className="flex top-0 left-0 w-full z-[999] flex items-center px-[2.5vw] py-[1vw] bg-black text-white font-['Share_Tech'] border-b border-[#fff3]">
         {/* Logo Section */}
         <div className="flex-1 flex items-center">
 
@@ -40,7 +40,7 @@ const page = () => {
 
 
         {/* Center Links */}
-        <div className="flex-1 flex text-[1.65vw] justify-center gap-[3vw]" style={{ fontFamily: "var(--font-peakers)" }}>
+        <div className="flex-1 flex text-[1.65vw] tracking-[.15vw] justify-center gap-[3vw]" style={{ fontFamily: "var(--font-peakers)" }}>
           <a href="menu" className="whitespace-nowrap ">
             MENU
           </a>
@@ -75,22 +75,14 @@ const page = () => {
         </div>
       </nav>
 
-      <section>
+      <div className="w-full h-[5vh] min-h-[80px] flex items-center justify-center bg-white border-t-[4px] border-b-[4px] border-black relative z-10"> 
+        <span className="text-[1vw] md:text-[2.3rem] text-black uppercase font-bold tracking-[1.3] text-center px-4" style={{ fontFamily: "var(--font-peakers), Arial, sans-serif" }} > UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!{' '}
+           <span className="text-red-600 font-bold">SIGN UP</span> {' '}FOR EXCLUSIVE REWARDS. 
+           </span> 
+           </div>
 
-
-        <div className="w-full h-[10vh] flex items-center justify-center bg-white border-t-[3px] border-b-[3px] border-black">
-          <span
-            className="text-[2vw] text-black uppercase font-bold tracking-[1.3]"
-            style={{
-              fontFamily: "var(--font-peakers)"
-            }}
-          >
-            UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!{' '}
-            <span className="text-red-600 font-bold">SIGN UP</span>
-            {' '}FOR EXCLUSIVE REWARDS.
-          </span>
-        </div>
-      </section>
+      
+      
 
       <section
         className="hero w-full h-[90vh] bg-black flex items-center justify-start"
