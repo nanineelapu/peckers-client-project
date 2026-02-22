@@ -116,9 +116,9 @@ export default function LatestNewsCards() {
       >
         <button
           onClick={goPrev}
-          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border border-white/40 rounded-full flex items-center justify-center"
+          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
         >
-          ‹
+          <span className="text-white text-3xl font-bold">‹</span>
         </button>
 
         {cards.map((card) => (
@@ -129,7 +129,7 @@ export default function LatestNewsCards() {
               left: "50%",
               top: "50%",
               width: "25vw",
-              height: "38vw",
+              height: "36vw",
               borderRadius: "1.2vw",
               overflow: "hidden",
               transition:
@@ -149,9 +149,9 @@ export default function LatestNewsCards() {
 
         <button
           onClick={goNext}
-          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border border-white/40 rounded-full flex items-center justify-center"
+          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
         >
-          ›
+          <span className="text-white text-3xl font-bold">‹</span>
         </button>
       </div>
     </div>
