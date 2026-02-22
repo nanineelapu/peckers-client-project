@@ -3,36 +3,96 @@
 import { useState, useRef, useCallback } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
+// SVG as a React Component - only the blurred radial shadow
+const DropShadowSVG = () => (
+  <svg
+    width="776"
+    height="776"
+    viewBox="0 0 776 776"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      position: "absolute",
+      left: "50%",
+      top: "40%",
+      transform: "translate(-50%, -60%)",
+      pointerEvents: "none",
+      zIndex: 0, // Ensure it stays behind the burger images
+      width: "clamp(350px, 50vw, 760px)",
+      height: "clamp(350px, 50vw, 760px)",
+    }}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <g opacity="0.6" filter="url(#filter0_f_96_6927)">
+      <rect
+        x="10.25"
+        y="10.25"
+        width="754.60"
+        height="754.60"
+        rx="377.30"
+        fill="url(#paint0_radial_96_6927)"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_f_96_6927"
+        x="0"
+        y="0"
+        width="775.101"
+        height="775.101"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="shape" in="SourceGraphic" />
+        <feGaussianBlur stdDeviation="9.12482" result="effect1_foregroundBlur_96_6927" />
+      </filter>
+      <radialGradient
+        id="paint0_radial_96_6927"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(387.551 387.551) scale(572.163)"
+      >
+        <stop stopColor="white" stopOpacity="0.7" />
+        <stop offset="0.7" stopColor="#5F5F5F" stopOpacity="0" />
+      </radialGradient>
+    </defs>
+  </svg>
+);
+
 const BURGERS = [
   {
     name: "OG BURGER",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Image%201.png",
-      boost: 1,
+    boost: 1,
   },
   {
     name: "BBQ CLASSIC",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Imaeg%202%20BBQ.png",
-      boost:1,
+    boost: 1,
   },
   {
     name: "HOT BURGER",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20REd-Picsart-AiImageEnhancer%20Final.png",
-      boost:1.15,
+    boost: 1.15,
   },
   {
     name: "NORMAL CHEESE",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20lit%20yellow%20Finalone-Picsart-AiImageEnhancer%20(1).png",
-      boost:1.25,
+    boost: 1.25,
   },
   {
     name: "MORE CHEESE",
     image:
       "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Final%20more%20cheese%20one-Picsart-AiImageEnhancer%20(1).png",
-      boost:1.25,
+    boost: 1.25,
   },
 ];
 
@@ -120,40 +180,61 @@ export default function BurgerCarouselFinal() {
         className="relative w-full overflow-hidden"
         style={{ height: "clamp(320px, 54vw, 560px)" }}
       >
+        {/* SVG Drop Shadow positioned absolutely, centered */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -33%)", // a bit higher than 50% to match beneath burgers
+            zIndex: 1, // behind images, above background
+            pointerEvents: "none",
+            width: "clamp(430px, 62vw, 880px)",
+            height: "clamp(430px, 62vw, 880px)",
+          }}
+          aria-hidden="true"
+        >
+          <DropShadowSVG />
+        </div>
         {cards.map((card) => {
-          const cfg = POS[card.slot] || POS[3];
-          const burger = BURGERS[card.index];
+  const cfg = POS[card.slot] || POS[3];
+  const burger = BURGERS[card.index];
+  const isCenter = card.slot === 0;
 
-          return (
-            <div
-              key={card.id}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: `
-                  translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
-                  scale(${cfg.scale * burger.boost})
-                `,
-                opacity: cfg.opacity,
-                zIndex: cfg.z,
-                transition:
-                  "transform .65s cubic-bezier(.22,1,.36,1), opacity .5s ease",
-                pointerEvents: "none",
-              }}
-            >
-              <img
-                src={burger.image}
-                alt={burger.name}
-                draggable={false}
-                style={{
-                  width: "clamp(270px, 40vw, 520px)",
-                  display: "block",
-                }}
-              />
-            </div>
-          );
-        })}
+  return (
+    <div
+      key={card.id}
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: `
+          translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
+          scale(${cfg.scale * burger.boost})
+        `,
+        opacity: cfg.opacity,
+        zIndex: cfg.z,
+        transition:
+          "transform .65s cubic-bezier(.22,1,.36,1), opacity .5s ease",
+        pointerEvents: "none",
+      }}
+    >
+      <img
+        src={burger.image}
+        alt={burger.name}
+        draggable={false}
+        style={{
+          width: "clamp(270px, 40vw, 520px)",
+          display: "block",
+          filter: isCenter
+            ? "drop-shadow(0 30px 80px rgba(0,0,0,0.6))"
+            : "none",
+          transition: "filter .4s ease",
+        }}
+      />
+    </div>
+  );
+})}
       </div>
 
       {/* TITLE + ARROWS */}
