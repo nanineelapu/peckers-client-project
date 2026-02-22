@@ -4,31 +4,33 @@ import { useState, useRef, useCallback } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const BURGERS = [
+    {
+        name: "OG BURGER",
+        image:
+          "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Image%201.png",
+      },
+    {
+        name: "BBQ CLASSIC",
+        image:
+          "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Imaeg%202%20BBQ.png",
+      },
   {
     name: "HOT BURGER",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20imaeg%20hot.png",
+      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20REd-Picsart-AiImageEnhancer%20Final.png",
   },
   {
     name: "NORMAL CHEESE",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20imaeg%20normal%20cheese.png",
+      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20lit%20yellow%20Finalone-Picsart-AiImageEnhancer%20(1).png",
   },
   {
     name: "MORE CHEESE",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20image%20more%20cheese.png",
+      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Final%20more%20cheese%20one-Picsart-AiImageEnhancer%20(1).png",
   },
-  {
-    name: "OG BURGER",
-    image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Image%201.png",
-  },
-  {
-    name: "BBQ CLASSIC",
-    image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Imaeg%202%20BBQ.png",
-  },
+ 
+  
 ];
 
 const TOTAL = BURGERS.length;
