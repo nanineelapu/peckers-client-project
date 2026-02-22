@@ -36,7 +36,7 @@ const SLOT_STYLES = {
   },
   [-1]: {
     transform:
-      "translate(calc(-50% - 28vw), -50%) rotateY(25deg) scale(0.85)",
+      "translate(calc(-50% - 28vw), -50%) rotate(-6deg) scale(0.85)",
     opacity: 0.75,
     zIndex: 2,
     filter: "brightness(0.7) blur(2px)",
@@ -49,7 +49,7 @@ const SLOT_STYLES = {
   },
   [1]: {
     transform:
-      "translate(calc(-50% + 28vw), -50%) rotateY(-25deg) scale(0.85)",
+      "translate(calc(-50% + 28vw), -50%) rotate(6deg) scale(0.85)",
     opacity: 0.75,
     zIndex: 2,
     filter: "brightness(0.7) blur(2px)",
@@ -128,8 +128,8 @@ export default function LatestNewsCards() {
               position: "absolute",
               left: "50%",
               top: "50%",
-              width: "26vw",
-              height: "40vw",
+              width: "25vw",
+              height: "38vw",
               borderRadius: "1.2vw",
               overflow: "hidden",
               transition:
