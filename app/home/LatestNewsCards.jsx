@@ -86,7 +86,9 @@ export default function LatestNewsCards() {
     });
 
     setCenterIdx(newCenter);
-    setTimeout(() => (animatingRef.current = false), 750);
+    setTimeout(() => {
+      animatingRef.current = false;
+    }, 750);
   }, [centerIdx]);
 
   const goPrev = useCallback(() => {
@@ -104,7 +106,9 @@ export default function LatestNewsCards() {
     });
 
     setCenterIdx(newCenter);
-    setTimeout(() => (animatingRef.current = false), 750);
+    setTimeout(() => {
+      animatingRef.current = false;
+    }, 750);
   }, [centerIdx]);
 
   // Handler for clicking on side images
@@ -119,11 +123,11 @@ export default function LatestNewsCards() {
   };
 
   return (
-    <div className="relative w-full py-[2vw] bg-black overflow-hidden">
+    <div className="relative w-full py-[3vw] bg-black overflow-hidden">
       <div
         className="relative w-full"
         style={{
-          height: "48vw",
+          height: "40vw",
           perspective: "1400px",
           transformStyle: "preserve-3d",
         }}
@@ -138,18 +142,6 @@ export default function LatestNewsCards() {
         {cards.map((card) => (
           <div
             key={card.id}
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              width: "25vw",
-              height: "36vw",
-              borderRadius: "1.2vw",
-              overflow: "hidden",
-              transition:
-                "transform .75s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease",
-              ...(SLOT_STYLES[card.slot] || SLOT_STYLES[2]),
-            }}
             // Only add onClick for left and right images
             onClick={
               card.slot === -1
@@ -179,7 +171,7 @@ export default function LatestNewsCards() {
                 : undefined
             }
             style={{
-              ...((SLOT_STYLES[card.slot]) || SLOT_STYLES[2]),
+              ...(SLOT_STYLES[card.slot] || SLOT_STYLES[2]),
               position: "absolute",
               left: "50%",
               top: "50%",

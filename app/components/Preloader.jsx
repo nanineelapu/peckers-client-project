@@ -68,7 +68,7 @@ export default function Preloader({ onComplete = () => { } }) {
     };
   }, []);
 
-  const word = "PEAKERS";
+  const word = "PECKERS";
 
   return (
     <div

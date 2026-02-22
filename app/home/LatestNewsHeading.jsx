@@ -9,7 +9,7 @@ export default function LatestNewsHeading() {
 
   return (
     <div
-      className="w-full px-[2vw] py-[0vw] pt-[0vw] pb-[0vw] grid"
+      className="w-full px-[1.4vw] py-[0vw] pt-[0vw] pb-[0vw] grid"
       style={{ height: "15vh", lineHeight: "1.2" }}
     >
       {/* Title - word by word, no animation */}
@@ -27,7 +27,7 @@ export default function LatestNewsHeading() {
         ))}
       </span>
       {/* Subtitle */}
-      <span className="font-sans text-[1.1vw] text-white">
+      <span className="font-sans mt-.9 font-extralight text-[1.3vw] text-white">
         All the latest news from Peckers
       </span>
     </div>

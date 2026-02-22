@@ -15,7 +15,7 @@ export default function CoopHeading() {
     >
       {/* Title */}
       <span
-        className="text-[4.8vw] font-bold tracking-1"
+        className="text-[4.6vw] font-bold tracking-[.2vw]"
         style={{ fontFamily: "var(--font-peakers)", color: "white" }}
       >
         {words.map((word, index) => (

@@ -3,7 +3,7 @@
 export default function CaptionBelowNews() {
   // Remove GSAP for the text, render it plainly.
   return (
-    <div className="w-full flex justify-center mt-[1vw]">
+    <div className="w-full flex justify-center">
       <div className="w-[80vw] flex flex-col items-center">
         {/* Animated border-bottom split from center, now 80% width and centered */}
         <div

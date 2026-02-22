@@ -239,7 +239,7 @@ const page = () => {
           <img
             src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/We%20Help%20Small%20Businesses%20(1)%201%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvV2UgSGVscCBTbWFsbCBCdXNpbmVzc2VzICgxKSAxICgxKS5wbmciLCJpYXQiOjE3NzE0NzI4MTAsImV4cCI6MTgwMzAwODgxMH0.HrmF768KQ1gl03PqkOLT5RVDs9vNepoEBITd-V-4C80"
             alt="Peckers Logo"
-            className="max-w-[80%] w-full object-contain"
+            className="max-w-[80%] w-full"
             style={{ filter: "brightness(1)" }}
           />
         </div>
