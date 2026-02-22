@@ -13,24 +13,27 @@ export default function PersonDetails() {
         <Image
           src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Person%20image.png"
           alt="Profile"
-          className="w-full h-full object-cover object-center"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-full object-cover object-center rounded-2xl"
+          sizes="(max-width: 768px) 90vw, 41.5vw"
           priority={true}
           width={670}
           height={840}
+          
         />
       </div>
 
       {/* Right: Person Details */}
       <div
-        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] py-[3vw] lg:py-[1vw] min-h-[25vw] shadow-xl relative box-border"
+        className="w-full lg:max-w-[40vw] flex flex-col justify-center bg-black px-[3vw] min-h-[28vw] shadow-xl relative"
         style={{
           position: "relative",
           zIndex: 2,
+          marginTop:"-2.2vw",
+          marginRight:"1vw"
         }}
       >
         <h2
-          className="grid text-white font-bold text-[4.8vw] tracking-[.2vw] leading-tight mb-[1vw]"
+          className="grid text-white font-bold text-[4.9vw] tracking-[.2vw] leading-tight mb-[1vw]"
           style={{ letterSpacing: "0.01em", fontFamily: "var(--font-peakers)" }}
         >
           FOR THE LOVE OF <span className="text-[#ffff]">CHICKEN</span>
@@ -79,31 +82,37 @@ export default function PersonDetails() {
             letterSpacing: "0.025em",
           }}
         >
-          "We're not chefs. We're flavor engineers with a disregard for sodium limits."
+          "We're not chefs. We're flavor engineers with 
+           a disregard for sodium limits."
         </div>
         <a
           href="#"
-          className="group inline-flex flex-col items-start text-white font-sans text-[1.3vw] font-extralight"
+          className="group inline-flex flex-col items-start text-white gap-[.3vw] font-sans text-[1.1vw] font-extralight"
           style={{ letterSpacing: "0.08em", width: "fit-content" }}
         >
           {/* Top Row */}
-          <span className="flex items-center gap-[1.3vw]">
-            <span>READ MORE</span>
-
+          <span className="flex items-center gap-[.4vw]">
+            <span className="border-b-[2px] border-white mt-[1vw] pb-[7px] pr-[.1vw] tracking-[0.09em]">
+              READ MORE
+            </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="2vw"
-              height="2vw"
+              width="1.7vw"
+              height="1.7vw"
               viewBox="0 0 24 24"
               fill="none"
               stroke="white"
-              strokeWidth="2.6"
+              strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ display: 'inline-block', verticalAlign: 'middle', marginTop:["1vw"] }}
             >
-              <path d="m5 12 5 5L20 7" />
+              <line x1="6" y1="12" x2="20" y2="12" />
+              <polyline points="15 7 20 12 15 17" />
             </svg>
           </span>
+          {/* Bottom border accent (full-width under READ MORE, visible in img) */}
+          
         </a>
       </div>
     </div>
