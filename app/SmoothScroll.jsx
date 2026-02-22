@@ -19,6 +19,7 @@ export default function SmoothScroll({ children, lenisRef }) {
     if (lenisRef) {
       lenisRef.current = lenis;
     }
+    //Final glitches fixed 
 
     // GSAP ticker drives Lenis — one clean loop, properly cleaned up below
     const onTick = (time) => lenis.raf(time * 1000);
