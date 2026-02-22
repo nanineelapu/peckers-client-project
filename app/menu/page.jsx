@@ -2,6 +2,7 @@ import React from 'react'
 import BurgerPageText from './BurgerPageText'
 import BurgerTitleSection from './BurgerTitleSection'
 
+
 const page = () => {
   return (
     <div>
