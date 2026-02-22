@@ -208,7 +208,7 @@ const page = () => {
 
       {/* Boring Stuff */}
 
-      <div className="w-full bg-black text-[#8B8B8B] text-[0.8vw] font-mono px-[.5vw] py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515]">
+      <div className="w-full bg-black text-[#586676] text-[0.8vw] tracking-tight font-mono px-[1vw] py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515]">
         <div className="mb-1 md:mb-0">
           © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.
         </div>
