@@ -9,7 +9,7 @@ export default function ClientWrapper({ children }) {
   const [loadingDone, setLoadingDone] = useState(false);
   const lenisRef = useRef(null);
 
-  // Lock body overflow while preloader is visible so content can't native-scroll underneath
+  // Lock body scroll while preloader is visible
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -17,23 +17,33 @@ export default function ClientWrapper({ children }) {
     };
   }, []);
 
+  // After Preloader unmounts, force Lenis to recalculate its scroll limit.
+  // Lenis caches scrollHeight on init — if the DOM changes (preloader removed)
+  // it will have a stale limit, causing phantom scroll past the real bottom.
+  useEffect(() => {
+    if (!loadingDone) return;
+
+    const timer = setTimeout(() => {
+      // Dispatch a synthetic resize so Lenis & ScrollTrigger both recalculate
+      window.dispatchEvent(new Event("resize"));
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [loadingDone]);
+
   const handlePreloaderComplete = useCallback(() => {
-    // Unlock body scroll FIRST so Lenis can take over correctly
+    // Unlock native scroll first
     document.body.style.overflow = "";
 
-    // Snap both Lenis internal pos and native scroll to top so they stay in sync
+    // Snap Lenis + native scroll to top so they stay in sync
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
     }
     window.scrollTo(0, 0);
 
-    // Remove the preloader overlay
+    // Remove the preloader — the useEffect above handles recalculation
     setLoadingDone(true);
-
-    // Let the DOM settle, then refresh ScrollTrigger measurements
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
   }, []);
 
   return (
