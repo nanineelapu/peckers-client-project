@@ -7,28 +7,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function SmoothScroll({ children }) {
+// lenisRef – optional ref that the parent can use to call lenis.scrollTo(0) etc.
+export default function SmoothScroll({ children, lenisRef }) {
   useLayoutEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.12,       // slightly snappier — less "stuck" feel
+      lerp: 0.12,
       smoothWheel: true,
     });
 
-    // Use GSAP ticker instead of a raw requestAnimationFrame loop.
-    // This guarantees exactly ONE tick per frame and is properly cleaned up.
+    // Expose instance to parent (ClientWrapper) so it can reset scroll
+    if (lenisRef) {
+      lenisRef.current = lenis;
+    }
+
+    // GSAP ticker drives Lenis — one clean loop, properly cleaned up below
     const onTick = (time) => lenis.raf(time * 1000);
     gsap.ticker.add(onTick);
+    gsap.ticker.lagSmoothing(0);
 
-    // Keep ScrollTrigger in sync with Lenis scroll position
     lenis.on("scroll", ScrollTrigger.update);
-
     ScrollTrigger.refresh();
 
     return () => {
-      // Full cleanup: no lingering loops or listeners after unmount / re-mount
       gsap.ticker.remove(onTick);
       lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
+      if (lenisRef) lenisRef.current = null;
     };
   }, []);
 

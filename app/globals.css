@@ -48,10 +48,7 @@ body {
   color: var(--foreground);
 }
 
-/* Prevent flash of content before preloader */
-body:not(.preloader-complete) {
-  overflow: hidden;
-}
+/* overflow is controlled by ClientWrapper JS, not CSS class */
 
 /* Performance optimizations */
 * {
