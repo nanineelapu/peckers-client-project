@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,55 +11,49 @@ export default function CaptionBelowNews() {
   const textRef = useRef(null);
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
+  
+  useLayoutEffect(() => {
+  const ctx = gsap.context(() => {
     const leftBorder = leftBorderRef.current;
     const rightBorder = rightBorderRef.current;
     const text = textRef.current;
 
-    // Set initial (hidden) states
     gsap.set(leftBorder, { scaleX: 0, transformOrigin: "right center" });
     gsap.set(rightBorder, { scaleX: 0, transformOrigin: "left center" });
     gsap.set(text, { opacity: 0, y: 30, clipPath: "inset(0 0 100% 0)" });
 
-    let timeline = gsap.timeline({
+    const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        // Animate BEFORE the container reaches the vertical middle: top 70% triggers when top is at 70% down viewport (fires earlier)
         start: "top 70%",
         toggleActions: "play none none reverse",
       },
     });
 
-    // Animate both left and right borders outward from center, SPEED UP the durations
     timeline
-      .to(
-        leftBorder,
-        { scaleX: 1, duration: 0.6, ease: "power2.out", transformOrigin: "right center" },
-        0
-      )
-      .to(
-        rightBorder,
-        { scaleX: 1, duration: 0.6, ease: "power2.out", transformOrigin: "left center" },
-        0
-      );
-
-    // Text fade in + move upward (slightly after border animation starts), FASTER (duration 0.5s)
-    timeline.to(
-      text,
-      {
+      .to(leftBorder, {
+        scaleX: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      }, 0)
+      .to(rightBorder, {
+        scaleX: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      }, 0)
+      .to(text, {
         opacity: 1,
         y: 0,
         clipPath: "inset(0 0 0% 0)",
         duration: 0.5,
         ease: "power2.out",
-      },
-      0.18 // slightly after border start
-    );
+      }, 0.18);
 
-    return () => timeline.kill();
-  }, []);
+    ScrollTrigger.refresh();
+  }, containerRef);
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <div ref={containerRef} className="w-full flex justify-center mt-[1vw]">
@@ -83,7 +77,6 @@ export default function CaptionBelowNews() {
             className="absolute top-0 h-full bg-[#fff3] origin-center"
             style={{
               width: "140%",
-              transform: "scaleX(1)",
               transition: "none",
               borderBottom: "2.5px solid #fff3",
               borderRadius: 2,

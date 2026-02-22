@@ -172,6 +172,7 @@ const page = () => {
       {/* section 3 Latest news  */}
 
       <LatestNewsHeading />
+      
       <LatestNewsCards />
 
 

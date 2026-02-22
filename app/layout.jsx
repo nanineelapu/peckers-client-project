@@ -1,9 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Share_Tech } from 'next/font/google';
-import SmoothScroll from "./SmoothScroll";
-import Preloader from "./components/Preloader";
+import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
+import ClientWrapper from "./ClientWrapper";
 
 const peakersFont = localFont({
   src: "./fonts/Supernett-Cn-Regular.woff2",
@@ -30,22 +29,19 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Peakers",
-  description: "Peakers - Your Ultimate Destination for Premium Automotive Accessories",
+  description:
+    "Peakers - Your Ultimate Destination for Premium Automotive Accessories",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
-        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} antialiased`}
       >
-        <Preloader />
-        <SmoothScroll>
-          <div id="main-content">
-            {children}
-          </div>
-        </SmoothScroll>
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   );

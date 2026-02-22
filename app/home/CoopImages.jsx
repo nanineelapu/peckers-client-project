@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,36 +15,32 @@ export default function CoopImages() {
   const STEVENAGE_IMG =
     "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Location%20Card%201.png";
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".coop-card");
+useLayoutEffect(() => {
+  const ctx = gsap.context(() => {
+    const cards = gsap.utils.toArray(".coop-card");
 
-      cards.forEach((card, i) => {
-        gsap.from(card, {
-          y: 80,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none none",
-            once: true
-          }
-        });
+    cards.forEach((card, i) => {
+      gsap.from(card, {
+        y: 80,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          once: true,
+        },
       });
-    }, containerRef);
+    });
 
-    return () => ctx.revert();
-  }, []);
+    // Important
+    ScrollTrigger.refresh();
+  }, containerRef);
 
-  useEffect(() => {
-    return () => {
-      ScrollTrigger.clearScrollMemory();
-      ScrollTrigger.clearMatchMedia();
-    };
-  }, []);
+  return () => ctx.revert();
+}, []);
 
   return (
     <div

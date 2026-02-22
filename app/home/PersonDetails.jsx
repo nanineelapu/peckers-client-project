@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,71 +13,47 @@ export default function PersonDetails() {
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !containerRef.current) return;
-    const ctx = gsap.context(() => {
-      // Initial hidden states for left/right
-      gsap.set(leftRef.current, {
-        opacity: 0,
-        x: -80,
-      });
-      gsap.set(rightRef.current, {
-        opacity: 0,
-        x: 80,
-      });
+useLayoutEffect(() => {
+  if (!containerRef.current) return;
 
-      // Only allow animation to play once
-      let hasAnimated = false;
-      const timeline = gsap.timeline({ paused: true });
-      timeline
-        .to(
-          leftRef.current,
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-          },
-          0
-        )
-        .to(
-          rightRef.current,
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-          },
-          0
-        );
+  const ctx = gsap.context(() => {
+    gsap.set(leftRef.current, {
+      opacity: 0,
+      x: -80,
+    });
 
-      // Declare st in parent scope so it can be referenced in return cleanup
-      let st = null;
+    gsap.set(rightRef.current, {
+      opacity: 0,
+      x: 80,
+    });
 
-      // Create ScrollTrigger after st is hoisted
-      st = ScrollTrigger.create({
+    const timeline = gsap.timeline({
+      scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%",
         once: true,
-        onEnter: () => {
-          if (!hasAnimated) {
-            timeline.play();
-            hasAnimated = true;
-            if (st) st.kill();
-          }
-        },
-        // Do NOT reverse or animate again
-      });
+      },
+    });
 
-      return () => {
-        // Only kill this component's ScrollTrigger and timeline
-        if (st) st.kill();
-        timeline.kill();
-      };
-    }, containerRef);
+    timeline
+      .to(leftRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power3.out",
+      }, 0)
+      .to(rightRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power3.out",
+      }, 0);
 
-    return () => ctx.revert();
-  }, []);
+    ScrollTrigger.refresh();
+  }, containerRef);
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <div
