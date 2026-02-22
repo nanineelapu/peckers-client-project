@@ -10,7 +10,7 @@ export default function ClientWrapper({ children }) {
 
   return (
     <>
-      {/* {!loadingDone && (
+      {!loadingDone && (
         <Preloader
           onComplete={() => {
             setLoadingDone(true);
@@ -19,7 +19,7 @@ export default function ClientWrapper({ children }) {
             }, 50);
           }}
         />
-      )} */}
+      )}
 
       <SmoothScroll>
         <div id="main-content">
