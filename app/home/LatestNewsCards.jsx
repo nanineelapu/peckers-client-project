@@ -40,12 +40,14 @@ const SLOT_STYLES = {
     opacity: 0.75,
     zIndex: 2,
     filter: "brightness(0.7) blur(2px)",
+    cursor: "pointer",
   },
   [0]: {
     transform: "translate(-50%, -50%) rotateY(0deg) scale(1.08)",
     opacity: 1,
     zIndex: 10,
     filter: "brightness(1)",
+    cursor: "default",
   },
   [1]: {
     transform:
@@ -53,6 +55,7 @@ const SLOT_STYLES = {
     opacity: 0.75,
     zIndex: 2,
     filter: "brightness(0.7) blur(2px)",
+    cursor: "pointer",
   },
   [2]: {
     transform:
@@ -104,8 +107,19 @@ export default function LatestNewsCards() {
     setTimeout(() => (animatingRef.current = false), 750);
   }, [centerIdx]);
 
+  // Handler for clicking on side images
+  const handleCardClick = (slot) => {
+    if (animatingRef.current) return;
+    if (slot === -1) {
+      goPrev();
+    } else if (slot === 1) {
+      goNext();
+    }
+    // No action for center (slot 0) or hidden slots
+  };
+
   return (
-    <div className="relative w-full py-[6vw] bg-black overflow-hidden">
+    <div className="relative w-full py-[2vw] bg-black overflow-hidden">
       <div
         className="relative w-full"
         style={{
@@ -135,6 +149,50 @@ export default function LatestNewsCards() {
               transition:
                 "transform .75s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease",
               ...(SLOT_STYLES[card.slot] || SLOT_STYLES[2]),
+            }}
+            // Only add onClick for left and right images
+            onClick={
+              card.slot === -1
+                ? () => handleCardClick(-1)
+                : card.slot === 1
+                ? () => handleCardClick(1)
+                : undefined
+            }
+            // Add role and tabIndex for accessibility if clickable
+            role={card.slot === -1 || card.slot === 1 ? "button" : undefined}
+            tabIndex={card.slot === -1 || card.slot === 1 ? 0 : undefined}
+            aria-label={
+              card.slot === -1
+                ? "Previous slide"
+                : card.slot === 1
+                ? "Next slide"
+                : undefined
+            }
+            // Keyboard accessibility for left/right images
+            onKeyDown={
+              card.slot === -1 || card.slot === 1
+                ? (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleCardClick(card.slot);
+                    }
+                  }
+                : undefined
+            }
+            style={{
+              ...((SLOT_STYLES[card.slot]) || SLOT_STYLES[2]),
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              width: "25vw",
+              height: "36vw",
+              borderRadius: "1.2vw",
+              overflow: "hidden",
+              transition:
+                "transform .75s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease",
+              cursor:
+                card.slot === -1 || card.slot === 1
+                  ? "pointer"
+                  : (SLOT_STYLES[card.slot]?.cursor || "default"),
             }}
           >
             <Image

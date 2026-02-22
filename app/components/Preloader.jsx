@@ -5,11 +5,9 @@ import gsap from "gsap";
 
 export default function Preloader({ onComplete = () => { } }) {
   const containerRef = useRef(null);
-  const lettersRef = useRef([]);
   const textRef = useRef(null);
 
   useEffect(() => {
-    const letters = lettersRef.current;
     const main = document.querySelector("#main-content");
 
     const tl = gsap.timeline({
@@ -25,32 +23,20 @@ export default function Preloader({ onComplete = () => { } }) {
       transformOrigin: "50% 60vh",
     });
 
-    // Initial letter state
-    gsap.set(letters, {
-      yPercent: 120,
-      opacity: 0,
+    // Remove text rise animation - jump directly to positioned state
+    gsap.set(textRef.current, {
+      letterSpacing: "0.4em",
     });
 
-    // Letter reveal (slide + fade)
-    tl.to(letters, {
-      yPercent: 0,
-      opacity: 1,
-      stagger: 0.08,
-      duration: 1.1,
-      ease: "power4.out",
-    });
-
-    // Tighten spacing
+    // Optionally: Retain subtle scale/spacing or just skip to preloader slide
     tl.to(
       textRef.current,
       {
         letterSpacing: "0.02em",
         duration: 0.8,
-      },
-      "-=0.6"
+      }
     );
 
-    // Subtle premium scale punch
     tl.to(textRef.current, {
       scale: 1.06,
       duration: 0.6,
@@ -96,17 +82,11 @@ export default function Preloader({ onComplete = () => { } }) {
           fontSize: "clamp(3.5rem, 11vw, 16rem)",
           letterSpacing: "0.4em",
           lineHeight: 1,
-
         }}
       >
         {word.split("").map((letter, i) => (
-          <span key={i} className="overflow-hidden inline-flex">
-            <span
-              ref={(el) => (lettersRef.current[i] = el)}
-              className="block"
-            >
-              {letter}
-            </span>
+          <span key={i}>
+            {letter}
           </span>
         ))}
       </h1>
