@@ -151,7 +151,7 @@ export default function LatestNewsCards() {
           onClick={goNext}
           className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
         >
-          <span className="text-white text-3xl font-bold">‹</span>
+          <span className="text-white text-3xl font-bold">›</span>
         </button>
       </div>
     </div>
