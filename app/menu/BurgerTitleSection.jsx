@@ -167,6 +167,7 @@ export default function BurgerCarouselFinal() {
   }, [center]);
 
   return (
+
     <div
       className="relative w-full flex flex-col items-center justify-center overflow-hidden"
       style={{
@@ -175,6 +176,30 @@ export default function BurgerCarouselFinal() {
           "radial-gradient(ellipse 50% 52% at 50% 38%, #3d2900 0%, #1e1200 26%, #090909 58%, #000 100%)",
       }}
     >
+      <div>
+        <nav className='subnavbar' style={{paddingTop: '1.5vw', color:'white'}}>
+          <div className="flex font-['Share_Tech'] gap-[3.4vw] justify-center items-center " style={{ fontFamily: "var(--font-peakers)" }}>
+            <a href="#" className="whitespace-nowrap font-sharetech text-[1.3vw] border-b-2 border-red-500 pb-1">
+              BURGERS
+            </a>
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              WRAPS
+            </a>
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              RICE BOWLS
+            </a>
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              WINGS AND TENDERS
+            </a>
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              GRIILLED
+            </a>
+            <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              MEAL BOX
+            </a>
+          </div>
+        </nav>
+      </div>
       {/* BURGER STAGE */}
       <div
         className="relative w-full overflow-hidden"
