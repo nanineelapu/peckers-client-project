@@ -38,7 +38,7 @@ const page = () => {
 
         {/* Center Links */}
         <div className="flex-1 flex text-[1.5vw] justify-center gap-[3vw]" style={{ fontFamily: "var(--font-peakers)" }}>
-          <a href="#" className="whitespace-nowrap">
+          <a href="menu" className="whitespace-nowrap">
             MENU
           </a>
           <a href="#" className="whitespace-nowrap">
