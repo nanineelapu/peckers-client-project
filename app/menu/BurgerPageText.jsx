@@ -1,0 +1,94 @@
+"use client";
+
+export default function BurgerPageText({
+  subtitle = "HOT SAUCE BLAZE / BLUE CHEESE / CELERY SLAW",
+}) {
+  return (
+    <div className="w-full flex flex-col items-center justify-center mt-6 mb-8 relative">
+      {/* Subtitle/Ingredients */}
+      <div className="flex items-center mt-1 gap-[0.85vw] pt-0.5">
+        <svg width="20" height="20" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.16667 6.41667C1.16667 6.92222 1.26875 7.40104 1.47292 7.85313C1.67708 8.30521 1.96875 8.70139 2.34792 9.04167C2.33819 8.99306 2.33333 8.94931 2.33333 8.91042C2.33333 8.87153 2.33333 8.82778 2.33333 8.77917C2.33333 8.46805 2.39167 8.17639 2.50833 7.90417C2.625 7.63194 2.79514 7.38403 3.01875 7.16042L4.66667 5.54167L6.31458 7.16042C6.53819 7.38403 6.70833 7.63194 6.825 7.90417C6.94167 8.17639 7 8.46805 7 8.77917C7 8.82778 7 8.87153 7 8.91042C7 8.94931 6.99514 8.99306 6.98542 9.04167C7.36458 8.70139 7.65625 8.30521 7.86042 7.85313C8.06458 7.40104 8.16667 6.92222 8.16667 6.41667C8.16667 5.93056 8.07674 5.47118 7.89687 5.03854C7.71701 4.6059 7.45694 4.21944 7.11667 3.87917C6.92222 4.00556 6.71806 4.10035 6.50417 4.16354C6.29028 4.22674 6.07153 4.25833 5.84792 4.25833C5.24514 4.25833 4.72257 4.05903 4.28021 3.66042C3.83785 3.26181 3.58264 2.77083 3.51458 2.1875C3.13542 2.50833 2.8 2.84132 2.50833 3.18646C2.21667 3.5316 1.97118 3.8816 1.77188 4.23646C1.57257 4.59132 1.42188 4.95347 1.31979 5.32292C1.21771 5.69236 1.16667 6.05694 1.16667 6.41667ZM4.66667 7.175L3.83542 7.99167C3.72847 8.09861 3.64583 8.22014 3.5875 8.35625C3.52917 8.49236 3.5 8.63333 3.5 8.77917C3.5 9.09028 3.61424 9.35764 3.84271 9.58125C4.07118 9.80486 4.34583 9.91667 4.66667 9.91667C4.9875 9.91667 5.26215 9.80486 5.49062 9.58125C5.7191 9.35764 5.83333 9.09028 5.83333 8.77917C5.83333 8.62361 5.80417 8.48021 5.74583 8.34896C5.6875 8.21771 5.60486 8.09861 5.49792 7.99167L4.66667 7.175ZM4.66667 0V1.925C4.66667 2.25556 4.7809 2.53264 5.00938 2.75625C5.23785 2.97986 5.51736 3.09167 5.84792 3.09167C6.02292 3.09167 6.18576 3.05521 6.33646 2.98229C6.48715 2.90937 6.62083 2.8 6.7375 2.65417L7 2.33333C7.71944 2.74167 8.28819 3.31042 8.70625 4.03958C9.12431 4.76875 9.33333 5.56111 9.33333 6.41667C9.33333 7.71944 8.88125 8.82292 7.97708 9.72708C7.07292 10.6312 5.96944 11.0833 4.66667 11.0833C3.36389 11.0833 2.26042 10.6312 1.35625 9.72708C0.452083 8.82292 0 7.71944 0 6.41667C0 5.1625 0.420486 3.97153 1.26146 2.84375C2.10243 1.71597 3.2375 0.768056 4.66667 0Z" fill="#F2DF0D"/>
+        </svg>
+        <span className="text-[0.9rem] md:text-base text-white/80 font-peakers uppercase tracking-wide" style={{ fontSize: '1.5vw', paddingTop: '0.1em', display: "inline-block" }}>
+          {subtitle}
+        </span>
+      </div>
+      <div className="flex gap-3 mt-5.5">
+        <button
+          className="flex items-center justify-center px-6 py-1 rounded-[.4vw] border-[.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.25vw] md:text-base cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150"
+          style={{ minWidth: 115, letterSpacing: '0.04em', fontSize: '1vw', paddingTop: '0.60em', paddingBottom: '0.60em' }}
+        >
+          Click & Collect
+        </button>
+        <button
+          className="flex items-center justify-center px-7 py-2 rounded border-[.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.25vw] md:text-base cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150"
+          style={{ minWidth: 115, letterSpacing: '0.04em', fontSize: '1vw', paddingTop: '0.7em', paddingBottom: '0.7em' }}
+        >
+          Delivery
+          <svg
+            width="18"
+            height="18"
+            className="ml-1.5"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M6 15L13 8L6 1"
+                stroke="#F2DF0D"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-[11vw] mt-7 ml-12 text-white/90 font-mono text-[2.4vw] md:text-[1rem] pt-0">
+        {/* Energy */}
+        <div className="min-w-[90px] border-l-2 border-[#616132] pl-6 pt-0">
+          <div className="text-sm text-[#c4b40a] text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">CALORIES</div>
+          <div className="font-sans font-semibold text-[2.6vw] md:text-[1.1rem] tracking-tight pt-0">760 KCAL</div>
+        </div>
+        {/* Sodium */}
+        <div className="min-w-[105px] pt-0">
+          <div className="text-sm text-[#575750] font-mono text-[.8vw] uppercase mb-1 tracking-wide font-bold pt-0.5">Peackers Rating</div>
+          <div className="font-sans font-semibold text-[2.6vw] md:text-[1.1rem] tracking-tight pt-0">9/10</div>
+        </div>
+        {/* Allergens */}
+        <div className="min-w-[105px] pt-0">
+          <div className="text-sm text-[#575750] text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">Allergens</div>
+          <div className="font-sans font-semibold text-[2.6vw] md:text-[1.1rem] tracking-tight pt-0">GLUTEN, DAIRY</div>
+        </div>
+        {/* Spice Level */}
+        <div className="min-w-[105px] pt-0">
+          <div className="text-sm text-[#c4b40a] uppercase mb-1 text-[.8vw] tracking-wide font-bold pt-0.5">Spice Level</div>
+          <div className="flex items-center gap-1.5 mt-1 h-[1.1em] pt-0">
+            {/* 3/4 bars filled */}
+            <svg width="17" height="10" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="17" height="9" rx="2.5" fill="#F2DF0D"/>
+            </svg>
+            <svg width="17" height="10" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="17" height="9" rx="2.5" fill="#F2DF0D"/>
+            </svg>
+            <svg width="17" height="10" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="17" height="9" rx="2.5" fill="#F2DF0D"/>
+            </svg>
+            <svg width="17" height="10" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="17" height="9" rx="2.5" fill="white" fillOpacity="0.2" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full flex justify-center pt-5">
+        <span className="text-white font-peakers text-[2.2vw] tracking-3 font-normal">
+          Also available as a wrap, rice bowl, or salad bowl.
+        </span>
+      </div>
+    </div>
+  );
+}

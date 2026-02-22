@@ -1,4 +1,6 @@
 import React from 'react'
+import BurgerPageText from './BurgerPageText'
+import BurgerTitleSection from './BurgerTitleSection'
 
 const page = () => {
   return (
@@ -22,8 +24,8 @@ const page = () => {
 
 
         {/* Center Links */}
-        <div className="flex-1 flex text-[1.5vw] justify-center gap-[3vw]">
-          <a href="#" className="whitespace-nowrap font-sharetech ">
+        <div className="flex-1 flex text-[1.65vw] justify-center gap-[3vw]" style={{ fontFamily: "var(--font-peakers)" }}>
+          <a href="#" className="whitespace-nowrap ">
             MENU
           </a>
           <a href="#" className="whitespace-nowrap">
@@ -60,8 +62,8 @@ const page = () => {
 
 
       <div>
-        <nav className='subnavbar' style={{paddingTop: '1.5vw'}}>
-          <div className="flex font-['Share_Tech'] gap-[3.4vw] justify-center items-center ">
+        <nav className='subnavbar' style={{paddingTop: '1.5vw', color:'white'}}>
+          <div className="flex font-['Share_Tech'] gap-[3.4vw] justify-center items-center " style={{ fontFamily: "var(--font-peakers)" }}>
             <a href="#" className="whitespace-nowrap font-sharetech text-[1.3vw] border-b-2 border-red-500 pb-1">
               BURGERS
             </a>
@@ -83,6 +85,8 @@ const page = () => {
           </div>
         </nav>
       </div>
+      <BurgerTitleSection/>
+      <BurgerPageText/>
       
     </div>
   )
