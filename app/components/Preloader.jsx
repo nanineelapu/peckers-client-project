@@ -1,13 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 
+// Only show preloader on the homepage ("/")
 export default function Preloader({ onComplete = () => { } }) {
   const containerRef = useRef(null);
   const textRef = useRef(null);
+  const pathname = usePathname();
+
+  // Only allow preloader to show if we're on the home page ("/" or "/home")
+  const isHomePage =
+    pathname === "/" ||
+    pathname === "/home" ||
+    pathname === "/home/";
 
   useEffect(() => {
+    if (!isHomePage) return; // Do nothing if not home
+
     const main = document.querySelector("#main-content");
 
     const tl = gsap.timeline({
@@ -66,9 +77,11 @@ export default function Preloader({ onComplete = () => { } }) {
     return () => {
       tl.kill();
     };
-  }, []);
+  }, [isHomePage]);
 
   const word = "PECKERS";
+
+  if (!isHomePage) return null; // Don't render preloader on other pages
 
   return (
     <div
