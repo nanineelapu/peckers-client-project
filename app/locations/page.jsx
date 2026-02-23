@@ -1,4 +1,7 @@
 import React from 'react'
+import EnquiriesSection from './EnquireSection'
+import LocationFooter from './LocationFooter'
+import LocationAddress from './LocationAddress'
 
 const page = () => {
     return (
@@ -68,137 +71,118 @@ const page = () => {
                 (HERO VIDEO)
             </div>
         </div>
-
-            <section>
-                <div className="flex justify-center items-center min-h-[90vh] mt-6">
-                    <div
-                        className="bg-[#181818] rounded-[18px] px-[5vw] py-[3vw] flex shadow-lg h-[70vh] w-[67vw]"
-                        style={{ border: '1px solid #333' }}
-                    >
-                        {/* Left Side (Info) */}
-                        <div
-                            className="flex flex-col w-[50%]  pr-[0vw] px-[0vw] "
-                            style={{ borderRadius: '0.6vw', marginRight: '2vw', background: 'transparent' }}
-                        >
-                            <div className="text-white text-[3.2vw] tracking-[0.1vw] font-bold" style={{ fontFamily: "var(--font-peakers)" }}>
-                                HITCHIN PECKERS
-                            </div>
-                            <div className="flex items-center gap-[1vw] mt-7 mb-2">
-                                <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 12.5C10 12.5 10.1719 12.5 10.5156 12.5C10.8594 12.5 11.276 12.2552 11.7656 11.7656C12.2552 11.276 12.5 10.6875 12.5 10C12.5 9.3125 12.2552 8.72396 11.7656 8.23438C11.276 7.74479 10.6875 7.5 10 7.5C9.3125 7.5 8.72396 7.74479 8.23438 8.23438C7.74479 8.72396 7.5 9.3125 7.5 10C7.5 10.6875 7.74479 11.276 8.23438 11.7656C8.72396 12.2552 9.3125 12.5 10 12.5ZM10 21.6875C12.5417 19.3542 14.4271 17.2344 15.6562 15.3281C16.8854 13.4219 17.5 11.7292 17.5 10.25C17.5 7.97917 16.776 6.11979 15.3281 4.67188C13.8802 3.22396 12.1042 2.5 10 2.5C7.89583 2.5 6.11979 3.22396 4.67188 4.67188C3.22396 6.11979 2.5 7.97917 2.5 10.25C2.5 11.7292 3.11458 13.4219 4.34375 15.3281C5.57292 17.2344 7.45833 19.3542 10 21.6875ZM10 25C6.64583 22.1458 4.14062 19.4948 2.48438 17.0469C0.828125 14.599 0 12.3333 0 10.25C0 7.125 1.00521 4.63542 3.01562 2.78125C5.02604 0.927084 7.35417 1.90735e-06 10 1.90735e-06C12.6458 1.90735e-06 14.974 0.927084 16.9844 2.78125C18.9948 4.63542 20 7.125 20 10.25C20 12.3333 19.1719 14.599 17.5156 17.0469C15.8594 19.4948 13.3542 22.1458 10 25Z" fill="white"/>
-                                </svg>
-                                <div className="text-[#e3e3e5] text-[.9vw] font-peakers">
-                                    25 Jhon Barker PI,<br />Hitchin SG5 2PD
-                                </div>
-                            </div>
-                            <br />
-                            <div className="flex items-center gap-[1vw] mb-2">
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16.625 18.375L18.375 16.625L13.75 12V6.25H11.25V13L16.625 18.375ZM12.5 25C10.7708 25 9.14583 24.6719 7.625 24.0156C6.10417 23.3594 4.78125 22.4688 3.65625 21.3438C2.53125 20.2188 1.64062 18.8958 0.984375 17.375C0.328125 15.8542 0 14.2292 0 12.5C0 10.7708 0.328125 9.14583 0.984375 7.625C1.64062 6.10417 2.53125 4.78125 3.65625 3.65625C4.78125 2.53125 6.10417 1.64063 7.625 0.984377C9.14583 0.328127 10.7708 1.90735e-06 12.5 1.90735e-06C14.2292 1.90735e-06 15.8542 0.328127 17.375 0.984377C18.8958 1.64063 20.2188 2.53125 21.3438 3.65625C22.4688 4.78125 23.3594 6.10417 24.0156 7.625C24.6719 9.14583 25 10.7708 25 12.5C25 14.2292 24.6719 15.8542 24.0156 17.375C23.3594 18.8958 22.4688 20.2188 21.3438 21.3438C20.2188 22.4688 18.8958 23.3594 17.375 24.0156C15.8542 24.6719 14.2292 25 12.5 25ZM12.5 22.5C15.2708 22.5 17.6302 21.526 19.5781 19.5781C21.526 17.6302 22.5 15.2708 22.5 12.5C22.5 9.72917 21.526 7.36979 19.5781 5.42188C17.6302 3.47396 15.2708 2.5 12.5 2.5C9.72917 2.5 7.36979 3.47396 5.42188 5.42188C3.47396 7.36979 2.5 9.72917 2.5 12.5C2.5 15.2708 3.47396 17.6302 5.42188 19.5781C7.36979 21.526 9.72917 22.5 12.5 22.5Z" fill="white"/>
-                                </svg>
-                                <div className="text-[#e3e3e5] text-[.9vw] font-peakers ">MON-SUN</div>
-                            </div>
-                            <br />
-                            <div className="flex items-center gap-[1vw] mb-4">
-                                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21.1875 22.5C18.5833 22.5 16.0104 21.9323 13.4688 20.7969C10.9271 19.6615 8.61458 18.0521 6.53125 15.9688C4.44792 13.8854 2.83854 11.5729 1.70312 9.03125C0.567708 6.48958 0 3.91667 0 1.3125C0 0.9375 0.125 0.625 0.375 0.375C0.625 0.125 0.9375 0 1.3125 0H6.375C6.66667 0 6.92708 0.098959 7.15625 0.296875C7.38542 0.494791 7.52083 0.729166 7.5625 1L8.375 5.375C8.41667 5.70833 8.40625 5.98958 8.34375 6.21875C8.28125 6.44792 8.16667 6.64583 8 6.8125L4.96875 9.875C5.38542 10.6458 5.88021 11.3906 6.45312 12.1094C7.02604 12.8281 7.65625 13.5208 8.34375 14.1875C8.98958 14.8333 9.66667 15.4323 10.375 15.9844C11.0833 16.5365 11.8333 17.0417 12.625 17.5L15.5625 14.5625C15.75 14.375 15.9948 14.2344 16.2969 14.1406C16.599 14.0469 16.8958 14.0208 17.1875 14.0625L21.5 14.9375C21.7917 15.0208 22.0312 15.1719 22.2188 15.3906C22.4062 15.6094 22.5 15.8542 22.5 16.125V21.1875C22.5 21.5625 22.375 21.875 22.125 22.125C21.875 22.375 21.5625 22.5 21.1875 22.5ZM3.78125 7.5L5.84375 5.4375L5.3125 2.5H2.53125C2.63542 3.35417 2.78125 4.19792 2.96875 5.03125C3.15625 5.86458 3.42708 6.6875 3.78125 7.5ZM14.9688 18.6875C15.7812 19.0417 16.6094 19.3229 17.4531 19.5312C18.2969 19.7396 19.1458 19.875 20 19.9375V17.1875L17.0625 16.5938L14.9688 18.6875Z" fill="white"/>
-                                </svg>
-                                <div className="text-[#e3e3e5] text-[.9vw] font-peakers">01462 451852</div>
-                            </div>
-                            <br />
-                            <div className="flex gap-4">
-                                <button
-                                    className="text-[#e3e3e5] px-[1vw] py-[.4vw] rounded-[0.6vw] text-[.97vw] tracking-wide transition-all duration-300 hover:bg-[#232323]"
-                                    style={{
-                                        fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'",
-                                        border: '1px solid #333'
-                                    }}
-                                >
-                                    CLICK & COLLECT
-                                </button>
-                                <button
-                                    className="text-black px-[1vw] py-[.4vw] rounded-[0.6vw] text-[.97vw] tracking-wide transition-all duration-300 hover:bg-[#ffff] bg-[#ffff]"
-                                    style={{
-                                        fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'",
-                                        border: '1px solid #333'
-                                    }}
-                                >
-                                    DELIVERY
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* DEtails of Map  */}
-                        <div
-                            className="h-[40vh] w-[50%] rounded-[0.6vw] flex items-center justify-center"
-                            style={{ border: '1px solid #333' }}
-                        >
-                            <a
-                                href="https://maps.google.com/?q=21-23+Market+Pl,+Hitchin+SG5+1DT"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-[#181818] px-4 py-2 text-white transition-all duration-200 border border-[#333] text-[1vw] tracking-widest flex items-center gap-2 hover:bg-[#232323]"
-                                style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'", fontSize: "1vw", border: '1px solid #333' }}
-                            >
-                                VIEW ON MAP
-                                <span className="ml-1" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                    <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="18" height="18" rx="4" fill="#393E46" />
-                                        <path d="M11.75 7.75L8.25 11.25M9.25 6.75H12.25V9.75" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        <rect x="4.75" y="4.75" width="8.5" height="8.5" rx="2" stroke="#fff" strokeWidth="1.5" />
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+        
+        <LocationAddress/>
 
             <section id='history'>
-                <div className="flex flex-col items-center justify-center w-full pt-[2vw] pb-[3vw] bg-[#111]">
+                <div className="flex flex-col items-center justify-center w-full  pt-[2vw] pb-[3vw] bg-[#111]">
                     <div className="flex flex-col items-center w-[80vw]">
                         {/* History Title, Logo, EST */}
-                        <div className="flex flex-col items-center mb-[1.6vw]">
-                            {/* Logo could be here if there is one. Placeholder for now */}
-                            {/* <img src="/logo.svg" alt="Logo" className="mb-[0.8vw] w-[3vw]" /> */}
-                            <img src="" alt="" />
-                            <div className="flex items-center mb-[0.3vw]">
-                                <span
-                                    className="h-[1.2px] w-[3vw] bg-[#555] opacity-70 mr-[1vw]"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    className="text-[#888] text-[0.95vw] tracking-[0.22em] font-mono"
-                                    style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
-                                >
-                                    EST. 2023
-                                </span>
-                                <span
-                                    className="h-[1.2px] w-[3vw] bg-[#555] opacity-70 ml-[1vw]"
-                                    aria-hidden="true"
-                                ></span>
-                            </div>
-                            <h2
-                                className="font-bold text-[3vw] font-peakers text-[#fff] mt-[0.2vw] tracking-[0.05em]"
+                        <div className="flex flex-row  items-center mb-[1.6vw] mr-[16vw]">
+                            <div
+                                className="relative w-[10vw] h-[10vw] flex items-center justify-center mb-[0.8vw]"
+                                style={{ alignSelf: 'flex-start', marginRight: '43vw' }}
                             >
-                                HISTORY
-                            </h2>
+                                <img 
+                                    src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Location%20logo%20png.png" 
+                                    alt="Peckers Location Logo"
+                                    className="rounded-full shadow-lg"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'contain',
+                                        background: '#181818',
+                                        marginBottom: '2vw'
+                                    }}
+                                />
+                            </div>
+                            <div className="flex absolute flex-col items-center ml-[28vw] mt-[2vw]">
+                                <div className="flex items-center mb-[0.3vw]">
+                                    <span
+                                        className="h-[1.2px] w-[3vw] bg-[#555] opacity-70 mr-[1vw]"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        className="text-[#888] text-[0.95vw] tracking-[0.22em] font-mono"
+                                        style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
+                                    >
+                                        EST. 2023
+                                    </span>
+                                    <span
+                                        className="h-[1.2px] w-[3vw] bg-[#555] opacity-70 ml-[1vw]"
+                                        aria-hidden="true"
+                                    ></span>
+                                </div>
+                                <h2
+                                    className="font-bold text-[4.5vw] font-peakers text-[#fff] mt-[0.2vw] tracking-[0.05em]"
+                                >
+                                    HISTORY
+                                </h2>
+                            </div>
                         </div>
                         {/* History Details */}
-                        <div className="w-full flex justify-center">
+                        <div className="w-[80%] flex justify-center">
                             <p
-                                className="text-[#e3e3e5]/70 text-center leading-[1.5] text-[1vw] max-w-[60vw] font-mono"
-                                style={{
-                                    
-                                }}
+                                className="text-[#e3e3e5]/70 text-center font-extralight  leading-[1.5] text-[1vw] max-w-[99vw] font-mono"
                             >
-                                Hitchin has always had a certain local spirit, and so do we. Nestled in the historic heart of St. John’s Road, Peace. This spot isn’t just a kitchen – it’s where the Popcorn menu began for the soul of the town. We cook as one, together, open and mindful in both action & heart felt. Serving each customer to our best quality, our Hitchin location is the headquarters that sets the standard for everything we do. Boujee round the edges, perfect on the palate.
+                                Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
+                                isn't just a kitchen—it's where the Peckers revolution began for this side of town. We took an old, forgotten space
+                                and turned it into a high-octane flavor lab. Serving serious chicken to serious people, our Hitchin location is the
+                                Hero Kitchen that sets the standard for everything we do. Rough around the edges, perfect on the plate.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <EnquiriesSection/>
+            <LocationFooter/>
+
+             {/* Boring Stuff */}
+
+      <div className="w-full bg-black text-[#586676] text-[0.8vw] tracking-tight font-mono px-[1vw] py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515]">
+        <div className="mb-1 md:mb-0">
+          © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.
+        </div>
+
+
+        <div className="text-[0.8vw] flex flex-row flex-wrap items-center space-x-2 px-4">
+          <span>Designed and Developed By Webcros</span>
+          <svg
+            width="10"
+            height="12"
+            viewBox="0 0 9 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="ml-0 inline-block align-middle"
+            style={{ display: "inline-flex", verticalAlign: "middle" }}
+          >
+            <path
+              d="M7.85742 4.21875C8.33203 4.21875 8.64844 4.77246 8.38477 5.16797L3.74414 13.1836C3.63867 13.3945 3.42773 13.5 3.19043 13.5C2.79492 13.5 2.50488 13.1309 2.58398 12.7354L3.79688 7.59375H0.685547C0.290039 7.59375 0 7.27734 0.0527344 6.88184L0.896484 0.553711C0.922852 0.237305 1.21289 0 1.5293 0H5.32617C5.72168 0 6.03809 0.395508 5.93262 0.817383L4.79883 4.21875H7.85742Z"
+              fill="#CCFF00"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Final bottom logo 
+     */}
+      <div className="flex-1 flex items-center">
+
+        <div className="w-full flex justify-center items-center py-8 bg-[#000]">
+          <img
+            src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/We%20Help%20Small%20Businesses%20(1)%201%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvV2UgSGVscCBTbWFsbCBCdXNpbmVzc2VzICgxKSAxICgxKS5wbmciLCJpYXQiOjE3NzE0NzI4MTAsImV4cCI6MTgwMzAwODgxMH0.HrmF768KQ1gl03PqkOLT5RVDs9vNepoEBITd-V-4C80"
+            alt="Peckers Logo"
+            className="max-w-[80%] w-full"
+            style={{ filter: "brightness(1)" }}
+          />
+        </div>
+      </div>
+
+
+
+
+
             
 
 
