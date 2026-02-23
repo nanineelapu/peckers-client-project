@@ -34,10 +34,10 @@ const page = () => {
           <a href="menu" className="whitespace-nowrap cursor-pointer">
             MENU
           </a>
-          <a href="#" className="whitespace-nowrap">
+          <a href="locations" className="whitespace-nowrap">
             LOCATIONS
           </a>
-          <a href="#" className="whitespace-nowrap">
+          <a href="ourstory" className="whitespace-nowrap">
             OUR STORY
           </a>
           <a href="#" className="whitespace-nowrap">
