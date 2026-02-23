@@ -28,14 +28,14 @@ const page = () => {
 
 
                 {/* Center Links */}
-                <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
+                <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-normal gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
                     <a href="menu" className="whitespace-nowrap cursor-pointer">
                         MENU
                     </a>
-                    <a href="locations" className="whitespace-nowrap">
+                    <a href="locations" className="whitespace-nowrap cursor-pointer">
                         LOCATIONS
                     </a>
-                    <a href="ourstory" className="whitespace-nowrap">
+                    <a href="ourstory" className="whitespace-nowrap cursor-pointer">
                         OUR STORY
                     </a>
                     <a href="#" className="whitespace-nowrap">
