@@ -21,7 +21,7 @@ export default function OurStorySection() {
           <defs>
             <linearGradient id="paint0_linear_96_5451" x1="0" y1="72" x2="584" y2="72" gradientUnits="userSpaceOnUse">
               <stop stopColor="#F3F4F6" />
-              <stop offset="1" stop-color="#4B5563" />
+              <stop offset="1" stopColor="#4B5563" />
             </linearGradient>
           </defs>
         </svg>
