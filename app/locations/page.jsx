@@ -67,7 +67,7 @@ const page = () => {
                 <div className="text-white text-[10vw] font-bold leading-tight" style={{ fontFamily: "var(--font-peakers)", letterSpacing: '0.1em' ,  }}>
                 HITCHIN
             </div>
-            <div className="mt-2 text-[#b2bac8] text-[1.2vw] italic" style={{ fontFamily: "var(--font-peakers)" }}>
+            <div className="mt-2 text-[#b2bac8] text-[3vw] italic" style={{ fontFamily: "var(--font-peakers)" }}>
                 (HERO VIDEO)
             </div>
         </div>
@@ -81,7 +81,7 @@ const page = () => {
                         <div className="flex flex-row  items-center mb-[1.6vw] mr-[16vw]">
                             <div
                                 className="relative w-[10vw] h-[10vw] flex items-center justify-center mb-[0.8vw]"
-                                style={{ alignSelf: 'flex-start', marginRight: '43vw' }}
+                                style={{ alignSelf: 'flex-start', marginRight: '44vw' }}
                             >
                                 <img 
                                     src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Location%20logo%20png.png" 
@@ -121,16 +121,19 @@ const page = () => {
                             </div>
                         </div>
                         {/* History Details */}
-                        <div className="w-[80%] flex justify-center">
-                            <p
-                                className="text-[#e3e3e5]/70 text-center font-extralight  leading-[1.5] text-[1vw] max-w-[99vw] font-mono"
-                            >
-                                Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
-                                isn't just a kitchen—it's where the Peckers revolution began for this side of town. We took an old, forgotten space
-                                and turned it into a high-octane flavor lab. Serving serious chicken to serious people, our Hitchin location is the
-                                Hero Kitchen that sets the standard for everything we do. Rough around the edges, perfect on the plate.
-                            </p>
-                        </div>
+                        <div className="w-full flex justify-center">
+  <p
+    className="text-[#e3e3e5]/70 text-center font-extralight 
+               leading-[1.6] text-[1vw] 
+               max-w-[70vw] 
+               font-mono"
+  >
+    Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
+    isn't just a kitchen—it's where the Peckers revolution began for this side of town. We took an old, forgotten space
+    and turned it into a high-octane flavor lab. Serving serious chicken to serious people, our Hitchin location is the
+    Hero Kitchen that sets the standard for everything we do. Rough around the edges, perfect on the plate.
+  </p>
+</div>
                     </div>
                 </div>
             </section>
