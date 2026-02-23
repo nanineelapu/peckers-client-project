@@ -75,7 +75,7 @@ const page = () => {
         <LocationAddress/>
 
             <section id='history'>
-                <div className="flex flex-col items-center justify-center w-full  pt-[2vw] pb-[4vw] bg-[#111]">
+                <div className="flex flex-col items-center justify-center w-full  pt-[2vw] pb-[4vw] bg-[#0A0A0B]">
                     <div className="flex flex-col items-center w-[80vw]">
                         {/* History Title, Logo, EST */}
                         <div className="flex flex-row  items-center mb-[1.6vw] mr-[16vw]">

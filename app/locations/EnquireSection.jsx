@@ -67,7 +67,7 @@ export default function EnquiriesSection() {
               <input
                 type="text"
                 placeholder="Ex. Colonel Sanders"
-                className="bg-[#111317] text-[1.1vw] border border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#1F2937] transition"
+                className="bg-[#111111] text-[1.1vw] border border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 focus:outline-none"
                 style={{
                     fontFamily:'monospace'
                 }}
@@ -81,7 +81,7 @@ export default function EnquiriesSection() {
               <input
                 type="text"
                 placeholder="Ex. Wing Fest 2024"
-                className="bg-[#111317] text-[1.1vw] border border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#1F2937] transition"
+                className="bg-[#111111] text-[1.1vw] border border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 focus:outline-none"
                 style={{
                     fontFamily:'monospace'
                 }}
@@ -99,7 +99,7 @@ export default function EnquiriesSection() {
               <input
                 type="number"
                 placeholder="00"
-                className="bg-[#111317] border text-[1.1vw] border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#1F2937] transition"
+                className="bg-[#111111] border text-[1.1vw] border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 focus:outline-none transition"
                 style={{
                     fontFamily:'monospace'
                 }}
@@ -114,7 +114,7 @@ export default function EnquiriesSection() {
               <input
                 type="date"
                 placeholder="mm/dd/yy"
-                className="bg-[#111317] border text-[1.1vw] border-[#1F2937] rounded-xl px-6 py-4 text-white/80 focus:outline-none focus:border-[#1F2937] transition"
+                className="bg-[#111111] border text-[1.1vw] border-[#1F2937] rounded-xl px-6 py-4 text-white/80 focus:outline-none "
                 style={{
                     fontFamily:'monospace'
                 }}
@@ -128,7 +128,7 @@ export default function EnquiriesSection() {
               <input
                 type="time"
                 placeholder="--:-- --"
-                className="bg-[#111317] border text-[1.4vw] border-[#1F2937] rounded-xl px-6 py-4 text-white/80 focus:outline-none focus:border-[#1F2937] transition"
+                className="bg-[#111111] border text-[1.4vw] border-[#1F2937] rounded-xl px-6 py-4 text-white/80 focus:outline-none focus:border-[#1F2937] transition"
               />
             </div>
 
@@ -145,7 +145,7 @@ export default function EnquiriesSection() {
               style={{
                 fontFamily:'monospace'
             }}
-              className="bg-[#111317] border font-extralight text-[1.2vw] border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 resize-none focus:outline-none focus:border-[#1F2937] transition"
+              className="bg-[#111111] border font-extralight text-[1.2vw] border-[#1F2937] rounded-xl px-6 py-4 text-white placeholder-white/40 resize-none focus:outline-none "
             />
           </div>
 
