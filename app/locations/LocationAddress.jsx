@@ -5,7 +5,7 @@ export default function LocationAddress() {
         <section>
         <div className="flex justify-center items-center min-h-[90vh] mt-6">
             <div
-                className="bg-[#181818] rounded-[18px] px-[5vw] py-[4vw] gap-[2vw] flex shadow-lg h-[77vh] w-[72vw]"
+                className="bg-[#121212] rounded-[18px] px-[5vw] py-[4vw] gap-[2vw] flex shadow-lg h-[77vh] w-[72vw]"
                 style={{ border: '1px solid #333', }}
             >
                 {/* Left Side (Info) */}
@@ -63,7 +63,7 @@ export default function LocationAddress() {
 
                 {/* DEtails of Map  */}
                 <div
-                    className="h-[58vh] w-[50%] rounded-[0.6vw] flex items-center justify-center"
+                    className="h-[58vh] w-[50%] rounded-[0.6vw] bg-[#1111] flex items-center justify-center"
                     style={{ border: '1px solid #333' }}
                 >
                     <a

@@ -32,8 +32,8 @@ const socialButtons = [
 
 const LocationFooter = () => {
   return (
-    <footer className="w-full bg-black pt-[3vw] pb-[1vw] mt-[3vw] overflow-clip">
-      <div className="max-w-[100vw] mx-auto px-[.5vw] gap-[2vw] flex flex-col md:flex-row justify-between items-start text-white border-b border-[#262626] pb-[5vw]">
+    <footer className="w-full bg-black pt-[4vw] pb-[1vw] mt-[4vw] overflow-clip " style={{ borderTop: '1px solid #4444' }}>
+      <div className="max-w-[100vw] mx-auto px-[.5vw] gap-[2vw] flex flex-col md:flex-row justify-between items-start text-white pb-[5vw]">
         {/* Left Section */}
         <div className="flex flex-col items-start md:w-1/4 mb-[2vw] md:mb-0">
           <div className="flex items-center mb-[0vw]">
