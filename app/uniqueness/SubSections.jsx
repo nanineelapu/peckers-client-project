@@ -18,7 +18,7 @@ const SubSections = () => {
               }`}
           > 
             {/* IMAGE SECTION */}
-            <div className="w-[60%] h-full relative overflow-hidden flex items-center justify-center bg-black">
+            <div className="w-[59%] h-full relative overflow-hidden flex items-center justify-center bg-black">
               <img
                 src={
                   index === 1
@@ -35,18 +35,18 @@ const SubSections = () => {
 
             {/* CONTENT SECTION */}
             <div className="w-[30%] h-full bg-black text-white flex items-center">
-              <div className="px-[6vw]">
-                <p className="text-yellow-400 text-[0.9vw] font-mono tracking-[0.2vw] mb-[1vw]">
+              <div className="px-[7vw] mb-[6vw] leading-[4.1vw]">
+                <p className="text-[#FFD700] font-semibold text-[0.9vw] font-mono tracking-[0.2vw] mb-[1vw]" style={{fontFamily:"space mono"}}>
                   {num.toString().padStart(2, "0")}
                 </p>
 
                 <svg
-                  width="356"
-                  height="152"
+                  width="420"
+                  height="180"
                   viewBox="0 0 356 152"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mb-[2vw] w-[26vw] md:w-[23vw] lg:w-[22vw] xl:w-[20vw] h-auto"
+                  className="mb-[2vw] w-[32vw] md:w-[28vw] lg:w-[26vw] xl:w-[24vw] h-auto"
                   aria-label="THE CRUNCH MATTERS"
                 >
                   <path
@@ -55,16 +55,21 @@ const SubSections = () => {
                   />
                 </svg>
 
-                <p className="text-[1.1vw] text-gray-300 leading-[1.9vw] mb-[3vw] max-w-[28vw]">
+                <p className="text-[1.4vw] pb-[2vw] text-[#9CA3AF] leading-[2.2vw] font-normal max-w-[32vw] w-full">
                   Our breading isn't an afterthought; it's hands-on artistry. We
                   hand-coat every piece, feeling the texture and ensuring the
                   moisture is locked deep inside while building that jagged,
                   shattered-glass exterior.
                 </p>
 
-                <div className="w-[20vw] h-[0.05vw] bg-gray-600 mb-[2vw]" />
+                <div className="w-[26.8vw] h-[0.04vw] absolute  bg-gray-600 mt-[2.8vw] " />
+                
+                <p className=" flex text-[0.8vw] items-center gap-[.9vw] tracking-[0.09vw] font-mono  absolute mt-[3.6vw]  text-gray-500" style={{fontFamily:"space mono"}}>
 
-                <p className="text-[0.8vw] tracking-[0.2vw] text-gray-500">
+                <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.85 15.75C5.5 15.75 5.17187 15.675 4.86562 15.525C4.55937 15.375 4.3 15.1625 4.0875 14.8875L0 9.69375L0.35625 9.31875C0.60625 9.05625 0.90625 8.9 1.25625 8.85C1.60625 8.8 1.93125 8.86875 2.23125 9.05625L3.61875 9.9V3.75C3.61875 3.5375 3.69062 3.35938 3.83437 3.21563C3.97812 3.07188 4.15625 3 4.36875 3C4.58125 3 4.7625 3.07188 4.9125 3.21563C5.0625 3.35938 5.1375 3.5375 5.1375 3.75V12.6L3.31875 11.475L5.26875 13.9688C5.34375 14.0562 5.43125 14.125 5.53125 14.175C5.63125 14.225 5.7375 14.25 5.85 14.25H9.99375C10.4062 14.25 10.7594 14.1031 11.0531 13.8094C11.3469 13.5156 11.4937 13.1625 11.4937 12.75V9.75C11.4937 9.5375 11.4219 9.35937 11.2781 9.21562C11.1344 9.07187 10.9562 9 10.7437 9H6.6375V7.5H10.7437C11.3687 7.5 11.9 7.71875 12.3375 8.15625C12.775 8.59375 12.9937 9.125 12.9937 9.75V12.75C12.9937 13.575 12.7 14.2812 12.1125 14.8687C11.525 15.4562 10.8187 15.75 9.99375 15.75H5.85ZM1.125 5.625C0.9625 5.35 0.8375 5.05312 0.75 4.73438C0.6625 4.41563 0.61875 4.0875 0.61875 3.75C0.61875 2.7125 0.984375 1.82812 1.71563 1.09687C2.44688 0.365625 3.33125 0 4.36875 0C5.40625 0 6.29062 0.365625 7.02187 1.09687C7.75312 1.82812 8.11875 2.7125 8.11875 3.75C8.11875 4.0875 8.075 4.41563 7.9875 4.73438C7.9 5.05312 7.775 5.35 7.6125 5.625L6.31875 4.875C6.41875 4.7 6.49375 4.52187 6.54375 4.34062C6.59375 4.15937 6.61875 3.9625 6.61875 3.75C6.61875 3.125 6.4 2.59375 5.9625 2.15625C5.525 1.71875 4.99375 1.5 4.36875 1.5C3.74375 1.5 3.2125 1.71875 2.775 2.15625C2.3375 2.59375 2.11875 3.125 2.11875 3.75C2.11875 3.9625 2.14375 4.15937 2.19375 4.34062C2.24375 4.52187 2.31875 4.7 2.41875 4.875L1.125 5.625Z" fill="white" fillOpacity="0.3"/>
+</svg>
+
                   MANUAL DREDGE PROCESS
                 </p>
               </div>

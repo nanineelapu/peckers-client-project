@@ -4,7 +4,7 @@ import React from "react";
 
 const timelineData = [
     {
-        year: "",
+        year: "APR 2022 & SEP 2022",
         title: "PECKERS IS BORN",
         description:
             "Back where it started. Peckers opens in the same spot as Grandad's original store.",
