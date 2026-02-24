@@ -1,9 +1,9 @@
 import React from "react";
 
 const backgroundImageUrl =
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness%20Folder/Uniqueness%20Background.png";
+  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Uniqueness%20Background.webp";
 const gradientImageUrl =
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness%20Folder/Gradient.png";
+  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Gradient.webp";
 
 const UniquenessLandingPage = () => {
   return (

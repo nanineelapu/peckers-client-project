@@ -4,24 +4,24 @@ import React from "react";
 
 const timelineData = [
     {
-        year: "APR 2022 & OCT 2022",
-        title: "HITCHIN & STEVWALTON & MEPPERSHALL ENAGE",
+        year: "",
+        title: "PECKERS IS BORN",
         description:
-            "Two new locations. Small footprint, big impact.",
-        borderStyle: "border border-zinc-700",
+            "Back where it started. Peckers opens in the same spot as Grandad's original store.",
+        borderStyle: "border-dashed border-zinc-700",
     },
     {
-        year: "MARCH 2020",
-        title: "COMMUNITY FIRST",
+        year: "1978",
+        title: "GRANDAD'S OFF-LICENSE STOREa",
         description:
-            "During COVID-19, we stepped up — supporting locals when it mattered most.",
+            "Where the passion for quality produce began. The original inspiration.",
         highlight: true,
     },
     {
-        year: "OCT 2019",
-        title: "STORE RENOVATION",
+        year: "2002",
+        title: "WALKERN BUDGENS",
         description:
-            "A fresh new look for Walkern Budgens. Modern space, same community heart.",
+            "Taking the next step. A new chapter serving the local community.",
         borderStyle: "border-solid border-zinc-800",
     },
 ];
@@ -29,11 +29,11 @@ const timelineData = [
 export default function PeckersTimeline2() {
 
     return (
-        <div className="bg-black text-white flex justify-center mt-[13vw] py-[4vw] font-peckers">
-            <div className="w-full max-w-[88vw] relative">
+        <div className="bg-black text-white flex justify-center mt-[8vw] py-[4vw] font-peckers">
+            <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}
-                <div className="flex bg-[121212] justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
+                <div className="flex justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
                     {timelineData.map((item, index) => {
 
                         const alignment =
@@ -42,7 +42,7 @@ export default function PeckersTimeline2() {
                                 : index === 1
                                     ? "items-center text-center"
                                     : "items-start text-left";
-                        const offset = index === 1 ? "-mt-[-6vw]" : "";
+                        const offset = index === 1 ? "-mt-[4vw]" : "";
 
 
                         return (
@@ -60,24 +60,19 @@ export default function PeckersTimeline2() {
                                     }`}
                             >
                                 <span
-                                    className={`text-[1.65vw] text-[#ffff] font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
+                                    className={`text-[1.65vw] font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
                                         }`}
-                                    style={{
-                                        fontFamily: "Space Mono",
-                                        color: "#ffff",
-                                        ...(index === 0 ? { marginBottom: ".2vw" } : {})
-                                    }}
-
+                                    style={{ fontFamily: "Space Mono" }}
                                 >
                                     {item.year}
                                 </span>
 
-                                <h3 className="text-[1.4vw] font-peakers mb-[1vw] leading-none">
+                                <h3 className="text-[1.5vw] font-peakers mb-[1vw] leading-none">
                                     {item.title}
                                 </h3>
 
                                 <p className="text-zinc-500 font-peakers text-[0.85vw] leading-none font-medium"
-                                    style={index === 1 ? { fontSize: ".9vw" } : {}}>
+                                    style={index === 1 ? { fontFamily: "Space Mono", fontSize: ".7vw" } : {}}>
 
                                     {item.description}
                                 </p>

@@ -1,10 +1,10 @@
 import React from "react";
 
 const imageUrl =
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness%20Folder/Hand-coating%20process.png";
+  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Chicken%20prep.webp";
 
 const SubSections = () => {
-  const sections = Array.from({ length: 8 }, (_, i) => i + 1);
+  const sections = Array.from({ length: 9 }, (_, i) => i + 1);
 
   return (
     <div className="w-full flex flex-col">
@@ -16,15 +16,15 @@ const SubSections = () => {
             key={num}
             className={`w-full h-[118vh] flex ${isAlternate ? "flex-row-reverse" : "flex-row"
               }`}
-          >
+          > 
             {/* IMAGE SECTION */}
             <div className="w-[60%] h-full relative overflow-hidden flex items-center justify-center bg-black">
               <img
                 src={
                   index === 1
-                    ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness%20Folder/Raw%20spice%20rub.png"
+                    ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Raw%20spice%20rub.webp"
                     : index >= 2 && index <= 5
-                      ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness%20Folder/Hand-pouring%20sauce.png"
+                      ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Hand-pouring%20sauce.webp"
                       : imageUrl
                 }
                 alt={`Hand Coating Process ${num}`}
