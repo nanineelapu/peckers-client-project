@@ -43,7 +43,7 @@ const page = () => {
           <a href="#" className="whitespace-nowrap">
             UNIQUENESS
           </a>
-          <a href="#" className="whitespace-nowrap">
+          <a href="careers" className="whitespace-nowrap">
             CAREERS
           </a>
         </div>
