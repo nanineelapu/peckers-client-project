@@ -7,12 +7,12 @@ const page = () => {
     return (
         <div id="main-content" className='z-9999' style={{ color: 'white' }}>
 
-<nav className="flex items-center px-[1.8vw] py-[.4vw] bg-black text-white font-['Share_Tech']">
+<nav className="absolute top-0 left-0 w-full z-50 flex items-center px-[1.8vw] py-[.6vw] bg-black text-white font-['Share_Tech']">
 
 {/* Logo Section */}
 <div className="flex-1 flex items-center">
 
-  <a href="/home">
+  <a href="home">
     <svg width="240" height="82" viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
       <defs>
@@ -29,26 +29,26 @@ const page = () => {
 
 {/* Center Links */}
 <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
-  <a href="/menu" className="whitespace-nowrap cursor-pointer">
+  <a href="menu" className="whitespace-nowrap cursor-pointer">
     MENU
   </a>
-  <a href="/locations" className="whitespace-nowrap">
+  <a href="locations" className="whitespace-nowrap">
     LOCATIONS
   </a>
-  <a href="/ourstory" className="whitespace-nowrap">
+  <a href="ourstory" className="whitespace-nowrap">
     OUR STORY
   </a>
-  <a href="/uniqueness" className="whitespace-nowrap">
+  <a href="uniqueness" className="whitespace-nowrap">
     UNIQUENESS
   </a>
-  <a href="/careers" className="whitespace-nowrap">
+  <a href="careers" className="whitespace-nowrap">
     CAREERS
   </a>
 </div>
 
 {/* Buttons Section */}
-<div className="flex-1 flex justify-end gap-[1.2vw]">
-  <button className="border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
+<div className="flex-1 flex justify-end gap-[1vw]">
+  <button className="border-[0.15vw] font-mono border-white px-[1.6vw] py-[.5vw] rounded-[0.95vw] text-[.9vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
     CLICK & COLLECT
   </button>
 

@@ -47,8 +47,8 @@ const page = ()=>{
 </div>
 
 {/* Buttons Section */}
-<div className="flex-1 flex justify-end gap-[1.2vw]">
-  <button className="border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
+<div className="flex-1 flex justify-end gap-[1vw]">
+  <button className="border-[0.15vw] font-mono border-white px-[1.6vw] py-[.5vw] rounded-[0.95vw] text-[.9vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
     CLICK & COLLECT
   </button>
 
