@@ -49,7 +49,7 @@ const page = () => {
           <a href="ourstory" className="whitespace-nowrap">
             OUR STORY
           </a>
-          <a href="#" className="whitespace-nowrap">
+          <a href="uniqueness" className="whitespace-nowrap">
             UNIQUENESS
           </a>
           <a href="#" className="whitespace-nowrap">

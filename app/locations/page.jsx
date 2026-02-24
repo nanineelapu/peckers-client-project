@@ -38,7 +38,7 @@ const page = () => {
                     <a href="ourstory" className="whitespace-nowrap cursor-pointer">
                         OUR STORY
                     </a>
-                    <a href="#" className="whitespace-nowrap">
+                    <a href="uniqueness" className="whitespace-nowrap cursor-pointer">
                         UNIQUENESS
                     </a>
                     <a href="#" className="whitespace-nowrap">
