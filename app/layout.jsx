@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
@@ -14,6 +14,13 @@ const shareTech = Share_Tech({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-share-tech",
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-space-mono",
   display: "swap",
 });
 
@@ -37,7 +44,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} antialiased`}
       >
         <ClientWrapper>
           {children}

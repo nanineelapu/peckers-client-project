@@ -4,45 +4,45 @@ import React from "react";
 
 const timelineData = [
     {
-        year: "2025",
-        title: "PECKERS IS BORN",
+        year: "APR 2022 & OCT 2022",
+        title: "Hitchin & StevWALTON & MEPPERSHALL enage",
         description:
             "Back where it started. Peckers opens in the same spot as Grandad's original store.",
-        borderStyle: "border-dashed border-zinc-700",
+        borderStyle: "border border-zinc-700",
     },
     {
-        year: "1978",
-        title: "GRANDAD'S OFF-LICENSE STORE",
+        year: "MARCH 2020",
+        title: "COMMUNITY FIRST",
         description:
-            "Where the passion for quality produce began. The original inspiration.",
+            "During COVID-19, we stepped up — supporting locals when it mattered most.",
         highlight: true,
     },
     {
-        year: "2002",
-        title: "WALKERN BUDGENS",
+        year: "OCT 2019",
+        title: "STORE RENOVATION",
         description:
-            "Taking the next step. A new chapter serving the local community.",
+            "A fresh new look for Walkern Budgens. Modern space, same community heart.",
         borderStyle: "border-solid border-zinc-800",
     },
 ];
 
-export default function PeckersTimeline() {
+export default function PeckersTimeline2() {
 
     return (
-        <div className="bg-black text-white flex justify-center py-[2vw] font-peckers">
+        <div className="bg-black text-white flex justify-center mt-[12vw] py-[5vw] font-peckers">
             <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}
-                <div className="flex justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
+                <div className="flex justify-between px-[2vw] gap-[1vw] h-[4vw] items-center mb-[8vw]">
                     {timelineData.map((item, index) => {
 
                         const alignment =
                             index === 0
-                                ? "items-end text-right"
+                                ? "items-end text-right "
                                 : index === 1
                                     ? "items-center text-center"
                                     : "items-start text-left";
-                        const offset = index === 1 ? "-mt-[4vw]" : "";
+                        const offset = index === 1 ? "-mb-[4vw]" : "";
 
 
                         return (
@@ -54,15 +54,15 @@ export default function PeckersTimeline() {
                                         : {}
                                 }
                                 className={`relative px-[1vw] py-[1vw] rounded-[1vw] flex flex-col ${alignment} ${offset} w-[17vw] h-[12vw]
-  ${item.highlight
-                                        ? "bg-[#121212] border border-yellow-500/60"
-                                        : `bg-[#0a0a0a] border ${item.borderStyle || "border-zinc-800"}`
+  bg-[#121212] ${item.highlight
+                                        ? "border border-yellow-500/60"
+                                        : `border ${item.borderStyle || "border-zinc-800"}`
                                     }`}
                             >
                                 <span
-                                    className={`text-[1.65vw] font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
+                                    className={`text-[1.65vw]  font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
                                         }`}
-                                    style={{ fontFamily: "Space Mono" }}
+                                    style={{ fontFamily: "Space Mono", color:"#ffff" }}
                                 >
                                     {item.year}
                                 </span>
@@ -72,7 +72,7 @@ export default function PeckersTimeline() {
                                 </h3>
 
                                 <p className="text-zinc-500 font-peakers text-[0.85vw] leading-none font-medium"
-                                    style={index === 1 ? { fontFamily: "Space Mono", fontSize: ".7vw" } : {}}>
+                                    style={index === 1 ? { fontSize: ".9vw" } : {}}>
 
                                     {item.description}
                                 </p>

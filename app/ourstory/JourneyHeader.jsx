@@ -30,14 +30,7 @@ export default function JourneyIntroSection() {
                 <div className="absolute top-0 w-[3vw] h-[6vw] bg-yellow-400 blur-[2vw] opacity-80"></div>
 
                 {/* Card */}
-                <div
-                    className="relative w-[60vw] 
-                   bg-gradient-to-b from-[#1a1a1a] to-[#0f1115]
-                   rounded-[2vw]
-                   border-2 border-dashed border-yellow-500
-                   px-[6vw] py-[6vw]
-                   flex flex-col items-center gap-[3vw]"
-                >
+                <div className="relative w-[60vw] bg-gradient-to-b from-[#1a1a1a] to-[#0f1115] rounded-[2vw] border-2 border-dashed border-yellow-500 px-[6vw] py-[6vw] flex flex-col items-center gap-[3vw]">
 
                     {/* Corner Dots */}
                     <div className="absolute top-[1vw] left-[1vw] w-[1vw] h-[1vw] bg-[#2b2b2b] rounded-full"></div>
@@ -54,27 +47,11 @@ export default function JourneyIntroSection() {
                     <input
                         type="text"
                         placeholder="Suggest a city..."
-                        className="w-[40vw] h-[4vw]
-                     bg-black
-                     border border-[#2a2f3a]
-                     rounded-[0.6vw]
-                     text-[1vw]
-                     text-white
-                     placeholder:text-white/40
-                     px-[1.5vw]
-                     focus:outline-none"
+                        className="w-[40vw] h-[4vw] bg-black border border-[#2a2f3a] rounded-[0.6vw] text-[1vw] text-white placeholder:text-white/40 px-[1.5vw] focus:outline-none"
                     />
 
                     {/* Button */}
-                    <button
-                        className="w-[20vw] h-[4vw]
-                     border-[0.25vw] border-white
-                     rounded-[2vw]
-                     text-[1.2vw]
-                     tracking-[0.3vw]
-                     hover:bg-white hover:text-black
-                     transition-all duration-300"
-                    >
+                    <button className="w-[20vw] h-[4vw] border-[0.25vw] border-white rounded-[2vw] text-[1.2vw] tracking-[0.3vw] hover:bg-white hover:text-black transition-all duration-300">
                         SUBMIT
                     </button>
 

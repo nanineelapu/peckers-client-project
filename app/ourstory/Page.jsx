@@ -4,6 +4,7 @@ import StoryCircle from "./StoryCircle";
 import ActualCircle from "./ActualCircle";
 import JourneyIntroSection from "./JourneyHeader";
 import OurStoryFooter from "./OurStoryFooter";
+import ActualCircle2 from "./ActualCircle2";
 
 const page = () => {
   return (
@@ -68,8 +69,132 @@ const page = () => {
       <OurStorySection />
       <StoryCircle />
       <ActualCircle />
+      <div className="w-full relative flex justify-center mt-[6vw] pt-[0vw]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+          <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.6" filter="url(#filter0_d_297_13)">
+              <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="white" fillOpacity="0.01" shapeRendering="crispEdges" />
+              <path d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges" />
+            </g>
+            <g filter="url(#filter1_d_297_13)">
+              <rect x="514" y="12" width="16" height="16" rx="8" fill="black" />
+              <rect x="515" y="13" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+            </g>
+            <g filter="url(#filter2_d_297_13)">
+              <rect x="889" y="31" width="16" height="16" rx="8" fill="black" />
+              <rect x="890" y="32" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+            </g>
+            <g filter="url(#filter3_d_297_13)">
+              <rect x="882" y="407" width="16" height="16" rx="8" fill="black" />
+              <rect x="883" y="408" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+            </g>
+            <g filter="url(#filter4_d_297_13)">
+              <rect x="514" y="426" width="16" height="16" rx="8" fill="black" />
+              <rect x="515" y="427" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+            </g>
+            <g filter="url(#filter5_d_297_13)">
+              <rect x="168" y="418" width="16" height="16" rx="8" fill="black" />
+              <rect x="169" y="419" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+            </g>
+            <g filter="url(#filter6_d_297_13)">
+              <rect x="138" y="31" width="16" height="16" rx="8" fill="black" />
+              <rect x="139" y="32" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+            </g>
+            <defs>
+              <filter id="filter0_d_297_13" x="0" y="0" width="1038" height="454" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="10" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+              <filter id="filter1_d_297_13" x="506" y="4" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+              <filter id="filter2_d_297_13" x="881" y="23" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+              <filter id="filter3_d_297_13" x="874" y="399" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+              <filter id="filter4_d_297_13" x="506" y="418" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+              <filter id="filter5_d_297_13" x="160" y="410" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+              <filter id="filter6_d_297_13" x="130" y="23" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+              </filter>
+            </defs>
+          </svg>
+
+        </div>
+
+
+      </div>
+
+      <ActualCircle2 />
+
+
+
+
+
+
       <JourneyIntroSection />
+
+
+
       <OurStoryFooter />
+
+
+
+
 
       <div className="w-full bg-black text-[#586676] text-[0.8vw] tracking-tight font-mono px-[1vw] py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515]">
         <div className="mb-1 md:mb-0">

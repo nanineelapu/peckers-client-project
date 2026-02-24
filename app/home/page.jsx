@@ -46,7 +46,7 @@ const page = () => {
           <a href="locations" className="whitespace-nowrap">
             LOCATIONS
           </a>
-          <a href="#" className="whitespace-nowrap">
+          <a href="ourstory" className="whitespace-nowrap">
             OUR STORY
           </a>
           <a href="#" className="whitespace-nowrap">
