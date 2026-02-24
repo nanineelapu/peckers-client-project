@@ -184,11 +184,6 @@ const page = () => {
 
       <ActualCircle2 />
 
-
-
-
-
-
       <JourneyIntroSection />
 
 
