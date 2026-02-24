@@ -4,24 +4,24 @@ import React from "react";
 
 const timelineData = [
     {
-        year: "APR 2022 & SEP 2022",
-        title: "PECKERS IS BORN",
+        year: "APR 2022 & OCT 2022",
+        title: "HITCHIN & STEWALTON & MEPPERSHALL ENAGE",
         description:
-            "Back where it started. Peckers opens in the same spot as Grandad's original store.",
-        borderStyle: "border-dashed border-zinc-700",
+            "Two new locations. Small footprint, big impact.",
+        borderStyle: "border-solid border-zinc-800",
     },
     {
-        year: "1978",
-        title: "GRANDAD'S OFF-LICENSE STOREa",
+        year: "MARCH 2020",
+        title: "COMMUNITY FIRST",
         description:
-            "Where the passion for quality produce began. The original inspiration.",
+            "During COVID-19, we stepped up — supporting locals when it mattered most.",
         highlight: true,
     },
     {
-        year: "2002",
-        title: "WALKERN BUDGENS",
+        year: "OCT 2019",
+        title: "STORE RENOVATION",
         description:
-            "Taking the next step. A new chapter serving the local community.",
+            "A fresh new look for Walkern Budgens. Modern space, same community heart.",
         borderStyle: "border-solid border-zinc-800",
     },
 ];
@@ -29,11 +29,11 @@ const timelineData = [
 export default function PeckersTimeline2() {
 
     return (
-        <div className="bg-black text-white flex justify-center mt-[8vw] py-[4vw] font-peckers">
+        <div className="bg-black text-white flex justify-center mt-[14vw] py-[4vw] font-peckers">
             <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}
-                <div className="flex justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
+                <div className="flex justify-between gap-[8vw] h-[4vw] items-center leading-7 mb-[8vw]">
                     {timelineData.map((item, index) => {
 
                         const alignment =
@@ -42,7 +42,7 @@ export default function PeckersTimeline2() {
                                 : index === 1
                                     ? "items-center text-center"
                                     : "items-start text-left";
-                        const offset = index === 1 ? "-mt-[4vw]" : "";
+                        const offset = index === 1 ? "-mt-[-4vw]" : "";
 
 
                         return (
@@ -72,7 +72,7 @@ export default function PeckersTimeline2() {
                                 </h3>
 
                                 <p className="text-zinc-500 font-peakers text-[0.85vw] leading-none font-medium"
-                                    style={index === 1 ? { fontFamily: "Space Mono", fontSize: ".7vw" } : {}}>
+                                    style={index === 1 ? { fontFamily: "", fontSize: ".9vw" } : {}}>
 
                                     {item.description}
                                 </p>

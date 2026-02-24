@@ -2,7 +2,7 @@
 
 export default function OurStorySection() {
   return (
-    <section className="w-full min-h-screen mt-[0vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center">
+    <section className="w-full min-h-screen pt-[10.5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center">
 
       {/* LEFT SIDE – TEXT */}
       <div className="w-1/2 px-[6vw] flex flex-col justify-center">
@@ -51,7 +51,7 @@ export default function OurStorySection() {
       {/* RIGHT SIDE – IMAGE */}
       <div className="w-1/2 h-screen px-[2vw] items-center justify-center bg-black">
         <img
-          src={"https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Founder%20Portrait%20black%20and%20white%20high%20contrast.png"}
+          src={"https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Founder%20Portrait%20black%20and%20white%20high%20contrast.webp"}
           alt="Founder"
           className="h-[92%] object-contain"
         />
