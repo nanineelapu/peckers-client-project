@@ -6,7 +6,7 @@ import JourneyIntroSection from "./JourneyHeader";
 import OurStoryFooter from "./OurStoryFooter";
 import ActualCircle2 from "./ActualCircle2";
 
-const page = () => {
+const OurStoryPage = () => {
   return (
     <div id="main-content">
       <nav className="flex items-center px-[1.8vw] py-[.4vw] bg-black text-white font-['Share_Tech']">
@@ -14,7 +14,7 @@ const page = () => {
         {/* Logo Section */}
         <div className="flex-1 flex items-center">
 
-          <a href="home">
+          <a href="/home">
             <svg width="240" height="82" viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
               <defs>
@@ -31,19 +31,19 @@ const page = () => {
 
         {/* Center Links */}
         <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
-          <a href="menu" className="whitespace-nowrap cursor-pointer">
+          <a href="/menu" className="whitespace-nowrap cursor-pointer">
             MENU
           </a>
-          <a href="locations" className="whitespace-nowrap">
+          <a href="/locations" className="whitespace-nowrap">
             LOCATIONS
           </a>
-          <a href="ourstory" className="whitespace-nowrap">
+          <a href="/ourstory" className="whitespace-nowrap">
             OUR STORY
           </a>
-          <a href="uniqueness" className="whitespace-nowrap">
+          <a href="/uniqueness" className="whitespace-nowrap">
             UNIQUENESS
           </a>
-          <a href="careers" className="whitespace-nowrap">
+          <a href="/careers" className="whitespace-nowrap">
             CAREERS
           </a>
         </div>
@@ -240,4 +240,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default OurStoryPage;
