@@ -8,7 +8,7 @@ const timelineData = [
         title: "HITCHIN & STEVWALTON & MEPPERSHALL ENAGE",
         description:
             "Two new locations. Small footprint, big impact.",
-        borderStyle: "border-dashed border-zinc-700",
+        borderStyle: "border border-zinc-700",
     },
     {
         year: "MARCH 2020",
@@ -33,7 +33,7 @@ export default function PeckersTimeline2() {
             <div className="w-full max-w-[88vw] relative">
 
                 {/* Cards */}
-                <div className="flex justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
+                <div className="flex bg-[121212] justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
                     {timelineData.map((item, index) => {
 
                         const alignment =
@@ -60,19 +60,24 @@ export default function PeckersTimeline2() {
                                     }`}
                             >
                                 <span
-                                    className={`text-[1.65vw] font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
+                                    className={`text-[1.65vw] text-[#ffff] font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
                                         }`}
-                                    style={{ fontFamily: "Space Mono" }}
+                                    style={{
+                                        fontFamily: "Space Mono",
+                                        color: "#ffff",
+                                        ...(index === 0 ? { marginBottom: ".2vw" } : {})
+                                    }}
+
                                 >
                                     {item.year}
                                 </span>
 
-                                <h3 className="text-[1.5vw] font-peakers mb-[1vw] leading-none">
+                                <h3 className="text-[1.4vw] font-peakers mb-[1vw] leading-none">
                                     {item.title}
                                 </h3>
 
                                 <p className="text-zinc-500 font-peakers text-[0.85vw] leading-none font-medium"
-                                    style={index === 1 ? { fontFamily: "Space Mono", fontSize: ".7vw" } : {}}>
+                                    style={index === 1 ? { fontSize: ".9vw" } : {}}>
 
                                     {item.description}
                                 </p>
