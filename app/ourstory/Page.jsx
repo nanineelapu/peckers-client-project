@@ -71,6 +71,9 @@ const page = () => {
       <ActualCircle />
       <div className="w-full relative flex justify-center mt-[6vw] pt-[0vw]">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+        <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <img src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/We%20Help%20Small%20Businesses%20(1)%201%20(2).png" alt="" />
+        </div>
           <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g opacity="0.6" filter="url(#filter0_d_297_13)">
               <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="white" fillOpacity="0.01" shapeRendering="crispEdges" />

@@ -42,7 +42,7 @@ export default function PeckersTimeline2() {
                                 : index === 1
                                     ? "items-center text-center"
                                     : "items-start text-left";
-                        const offset = index === 1 ? "-mb-[4vw]" : "";
+                        const offset = index === 1 ? "-mb-[3vw]" : "";
 
 
                         return (
@@ -55,7 +55,7 @@ export default function PeckersTimeline2() {
                                 }
                                 className={`relative px-[1vw] py-[1vw] rounded-[1vw] flex flex-col ${alignment} ${offset} w-[17vw] h-[12vw]
   bg-[#121212] ${item.highlight
-                                        ? "border border-yellow-500/60"
+                                        ? "border border-yellow-500/70"
                                         : `border ${item.borderStyle || "border-zinc-800"}`
                                     }`}
                             >
