@@ -1,4 +1,3 @@
-"use client";
 
 export default function JourneyIntroSection() {
     return (
@@ -32,18 +31,18 @@ export default function JourneyIntroSection() {
                         </g>
                         <defs>
                             <filter id="filter0_d_96_5574" x="-0.00016588" y="7.82609e-05" width="8.94305" height="8.94329" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                                <feOffset dx="0.745283" dy="0.745283"/>
-                                <feGaussianBlur stdDeviation="0.745283"/>
-                                <feComposite in2="hardAlpha" operator="out"/>
-                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0"/>
-                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574"/>
-                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape"/>
+                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dx="0.745283" dy="0.745283" />
+                                <feGaussianBlur stdDeviation="0.745283" />
+                                <feComposite in2="hardAlpha" operator="out" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0" />
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape" />
                             </filter>
                             <radialGradient id="paint0_radial_96_5574" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2.5338 2.53404) scale(5.90234)">
-                                <stop stopColor="#555555"/>
-                                <stop offset="1" stopColor="#111111"/>
+                                <stop stopColor="#555555" />
+                                <stop offset="1" stopColor="#111111" />
                             </radialGradient>
                         </defs>
                     </svg>
@@ -60,18 +59,18 @@ export default function JourneyIntroSection() {
                         </g>
                         <defs>
                             <filter id="filter0_d_96_5574" x="-0.00016588" y="7.82609e-05" width="8.94305" height="8.94329" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                                <feOffset dx="0.745283" dy="0.745283"/>
-                                <feGaussianBlur stdDeviation="0.745283"/>
-                                <feComposite in2="hardAlpha" operator="out"/>
-                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0"/>
-                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574"/>
-                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape"/>
+                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dx="0.745283" dy="0.745283" />
+                                <feGaussianBlur stdDeviation="0.745283" />
+                                <feComposite in2="hardAlpha" operator="out" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0" />
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape" />
                             </filter>
                             <radialGradient id="paint0_radial_96_5574" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2.5338 2.53404) scale(5.90234)">
-                                <stop stopColor="#555555"/>
-                                <stop offset="1" stopColor="#111111"/>
+                                <stop stopColor="#555555" />
+                                <stop offset="1" stopColor="#111111" />
                             </radialGradient>
                         </defs>
                     </svg>
@@ -88,18 +87,18 @@ export default function JourneyIntroSection() {
                         </g>
                         <defs>
                             <filter id="filter0_d_96_5574" x="-0.00016588" y="7.82609e-05" width="8.94305" height="8.94329" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                                <feOffset dx="0.745283" dy="0.745283"/>
-                                <feGaussianBlur stdDeviation="0.745283"/>
-                                <feComposite in2="hardAlpha" operator="out"/>
-                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0"/>
-                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574"/>
-                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape"/>
+                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dx="0.745283" dy="0.745283" />
+                                <feGaussianBlur stdDeviation="0.745283" />
+                                <feComposite in2="hardAlpha" operator="out" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0" />
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape" />
                             </filter>
                             <radialGradient id="paint0_radial_96_5574" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2.5338 2.53404) scale(5.90234)">
-                                <stop stopColor="#555555"/>
-                                <stop offset="1" stopColor="#111111"/>
+                                <stop stopColor="#555555" />
+                                <stop offset="1" stopColor="#111111" />
                             </radialGradient>
                         </defs>
                     </svg>
@@ -116,18 +115,18 @@ export default function JourneyIntroSection() {
                         </g>
                         <defs>
                             <filter id="filter0_d_96_5574" x="-0.00016588" y="7.82609e-05" width="8.94305" height="8.94329" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                                <feOffset dx="0.745283" dy="0.745283"/>
-                                <feGaussianBlur stdDeviation="0.745283"/>
-                                <feComposite in2="hardAlpha" operator="out"/>
-                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0"/>
-                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574"/>
-                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape"/>
+                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dx="0.745283" dy="0.745283" />
+                                <feGaussianBlur stdDeviation="0.745283" />
+                                <feComposite in2="hardAlpha" operator="out" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0" />
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_96_5574" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_96_5574" result="shape" />
                             </filter>
                             <radialGradient id="paint0_radial_96_5574" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2.5338 2.53404) scale(5.90234)">
-                                <stop stopColor="#555555"/>
-                                <stop offset="1" stopColor="#111111"/>
+                                <stop stopColor="#555555" />
+                                <stop offset="1" stopColor="#111111" />
                             </radialGradient>
                         </defs>
                     </svg>
