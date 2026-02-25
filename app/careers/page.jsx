@@ -2,6 +2,7 @@ import React from "react";
 import CareersLandingPage from "./CareersLandingPage";
 import CrewPage from "./CrewPage";
 import RolesWithPeckers from "./RolesWithPeckers";
+import ApplyDetailsPage from "./ApplyDetailsPage";
 
 const page = () => {
     return (
@@ -65,6 +66,7 @@ const page = () => {
             <CareersLandingPage />
             <CrewPage />
             <RolesWithPeckers />
+            <ApplyDetailsPage />
         </div>
     )
 }
