@@ -103,13 +103,11 @@ const createInitialCards = (center) => [
 ];
 
 const POS = {
-  [-3]: { x: -58, y: -120, scale: 0.07, opacity: 0, z: 0 },
-  [-2]: { x: -42, y: -90, scale: 0.25, opacity: 0.65, z: 1 },
-  [-1]: { x: -27, y: -48, scale: 0.43, opacity: 0.85, z: 2 },
-  [0]: { x: 0, y: 0, scale: 1, opacity: 1, z: 5 },
-  [1]: { x: 27, y: -48, scale: 0.43, opacity: 0.85, z: 2 },
-  [2]: { x: 42, y: -90, scale: 0.25, opacity: 0.65, z: 1 },
-  [3]: { x: 58, y: -120, scale: 0.07, opacity: 0, z: 0 },
+  [0]: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
+  [1]: { x: 30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
+  [2]: { x: 18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
+  [3]: { x: -18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
+  [4]: { x: -30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
 };
 
 function getModIndex(idx) {
@@ -119,12 +117,10 @@ function getModIndex(idx) {
 export default function BurgerCarouselFinal() {
   const [carousel, setCarousel] = useState(() => ({
     center: 0,
-    cards: createInitialCards(0),
+    cards: BURGERS.map((_, i) => ({ id: i, index: i, slot: i })),
   }));
 
   // animatingRef is used ONLY as a guard inside moveBy to avoid stale closures.
-  // isAnimating (state) drives all JSX / style decisions so React re-renders
-  // when it changes — this is the key fix for blocked buttons & cursor.
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [preloaderDone, setPreloaderDone] = useState(false);
@@ -135,32 +131,15 @@ export default function BurgerCarouselFinal() {
     animatingRef.current = true;
     setIsAnimating(true);
 
-    const direction = steps > 0 ? 1 : -1;
-    const count = Math.abs(steps);
-
     setCarousel((prev) => {
-      let currentCenter = prev.center;
-      let currentCards = [...prev.cards];
+      const nextCenter = getModIndex(prev.center + steps);
+      const nextCards = prev.cards.map((card) => {
+        // Calculate the new slot relative to the new center
+        const nextSlot = getModIndex(card.index - nextCenter);
+        return { ...card, slot: nextSlot };
+      });
 
-      for (let i = 0; i < count; i++) {
-        if (direction > 0) {
-          // Move forward: slots shift left, new card enters from right
-          currentCenter = getModIndex(currentCenter + 1);
-          currentCards = currentCards
-            .map((c) => ({ ...c, slot: c.slot - 1 }))
-            .filter((c) => c.slot >= -3);
-          currentCards.push(makeCard(getModIndex(currentCenter + 3), 3));
-        } else {
-          // Move backward: slots shift right, new card enters from left
-          currentCenter = getModIndex(currentCenter - 1);
-          currentCards = currentCards
-            .map((c) => ({ ...c, slot: c.slot + 1 }))
-            .filter((c) => c.slot <= 3);
-          currentCards.push(makeCard(getModIndex(currentCenter - 3), -3));
-        }
-      }
-
-      return { center: currentCenter, cards: currentCards };
+      return { center: nextCenter, cards: nextCards };
     });
 
     setTimeout(() => {
@@ -171,7 +150,11 @@ export default function BurgerCarouselFinal() {
 
   const handleCardClick = useCallback(
     (clickedSlot) => {
-      moveBy(clickedSlot);
+      // For circular logic, we might want to slide the shortest distance
+      let steps = clickedSlot;
+      if (steps > TOTAL / 2) steps -= TOTAL;
+      if (steps < -TOTAL / 2) steps += TOTAL;
+      moveBy(steps);
     },
     [moveBy]
   );
@@ -190,7 +173,7 @@ export default function BurgerCarouselFinal() {
         style={{
           minHeight: "100vh",
           background:
-            "radial-gradient(ellipse 50% 52% at 50% 38%, #3d2900 0%, #1e1200 26%, #090909 58%, #000 100%)",
+            "radial-gradient(ellipse 50% 52% at 50% 38%, #222222 0%, #111111 26%, #090909 58%, #000 100%)",
           opacity: preloaderDone ? 1 : 0,
           transition: "opacity 0.4s ease",
         }}
@@ -240,12 +223,12 @@ export default function BurgerCarouselFinal() {
             style={{
               position: "absolute",
               left: "50%",
-              top: "50%",
+              top: "52%",
               transform: "translate(-50%, -33%)",
               zIndex: 1,
               pointerEvents: "none",
-              width: "clamp(430px, 62vw, 880px)",
-              height: "clamp(430px, 62vw, 880px)",
+              width: "clamp(450px, 55vw, 780px)",
+              height: "clamp(450px, 55vw, 780px)",
             }}
             aria-hidden="true"
           >
@@ -253,9 +236,15 @@ export default function BurgerCarouselFinal() {
           </div>
 
           {carousel.cards.map((card) => {
-            const cfg = POS[card.slot] || POS[3];
+            const cfg = POS[card.slot] || POS[2];
             const burger = BURGERS[card.index];
             const isCenter = card.slot === 0;
+
+            // Simple logic to detect if a card is crossing the "back" of the circle
+            // during a transition. If it moves from say 1 to 4 directly across the front,
+            // it looks bad. But with fixed circular slots, CSS transition will 
+            // naturally move it along the specified coordinates.
+
             return (
               <div
                 key={card.id}
@@ -268,14 +257,12 @@ export default function BurgerCarouselFinal() {
                   top: "50%",
                   transform: `
                     translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
-                    scale(${cfg.scale * burger.boost})
+                    scale(${cfg.scale * (burger.boost || 1)})
                   `,
                   opacity: cfg.opacity,
                   zIndex: cfg.z,
                   transition:
-                    "transform .65s cubic-bezier(.22,1,.36,1), opacity .5s ease",
-                  // Uses isAnimating state (not ref) so pointer-events actually
-                  // updates after each animation cycle
+                    "transform .7s cubic-bezier(.34, 1.56, .64, 1), opacity .5s ease",
                   pointerEvents: isCenter
                     ? "none"
                     : isAnimating
