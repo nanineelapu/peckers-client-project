@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const imageUrl =
   "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Chicken%20prep.webp";
@@ -18,7 +19,7 @@ const SubSections = () => {
           >
             {/* IMAGE SECTION */}
             <div className="w-[59%] h-full relative overflow-hidden flex items-center justify-center bg-black">
-              <img
+              <Image
                 src={
                   index === 1
                     ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Raw%20spice%20rub.webp"
@@ -27,8 +28,9 @@ const SubSections = () => {
                       : imageUrl
                 }
                 alt={`Hand Coating Process ${num}`}
-                className="w-full object-contain mx-auto my-auto"
-                style={{ width: "100%" }}
+                fill
+                className="object-contain"
+                priority={index === 0}
               />
             </div>
 
