@@ -35,7 +35,7 @@ const SubSections = () => {
 
             {/* CONTENT SECTION */}
             <div
-              className="w-[30%] h-full text-white flex items-center"
+              className="w-[42%] h-full text-white flex items-center"
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
               <div className="px-[7vw] mb-[6vw] leading-[4.1vw]">
