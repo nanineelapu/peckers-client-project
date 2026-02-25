@@ -29,7 +29,7 @@ const timelineData = [
 export default function PeckersTimeline2() {
 
     return (
-        <div className="bg-black text-white flex justify-center mt-[14vw] py-[4vw] font-peckers">
+        <div className="bg-black text-white flex justify-center mt-[16vw] py-[4vw] font-peckers">
             <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}

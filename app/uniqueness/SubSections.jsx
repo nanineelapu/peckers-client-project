@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const imageUrl =
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Compressed%20png%20chicken%20section%201.png";
+  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Chicken%20prep.webp";
 
 const SubSections = () => {
   const sections = Array.from({ length: 9 }, (_, i) => i + 1);
@@ -22,9 +22,9 @@ const SubSections = () => {
               <Image
                 src={
                   index === 1
-                    ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Raw%20spice%20rub.webp"
+                    ? "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Raw%20spice%20rub.webp"
                     : index >= 2 && index <= 5
-                      ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Daily%20prep%20knives.webp"
+                      ? "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Daily%20prep%20knives.webp"
                       : imageUrl
                 }
                 alt={`Hand Coating Process ${num}`}

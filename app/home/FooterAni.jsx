@@ -38,7 +38,7 @@ const FooterAni = () => {
         <div className="flex flex-col items-start md:w-1/4 mb-[2vw] md:mb-0">
           <div className="flex items-center mb-[0vw]">
             <img
-              src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/sign/PEACKERS%20CLIENT/Logo%20image%20peckers.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jYWE5ZjEwMy04N2RlLTQzMTItYjc4ZC01YjhjZTZkNWJiNGMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQRUFDS0VSUyBDTElFTlQvTG9nbyBpbWFnZSBwZWNrZXJzLnBuZyIsImlhdCI6MTc3MTQ3Mjk1OSwiZXhwIjoxODAzMDA4OTU5fQ.7ayB7QZghC7pHhlZUKwK1JaAWMMnQNOzcVQ_4DOSt4g"
+              src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201.png"
               alt="Peckers Logo"
               className="w-[16vw] h-auto object-contain mr-3"
               style={{ maxWidth: "16vw" }}

@@ -4,9 +4,9 @@ import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 
 const IMAGES = [
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/img%20slide%202.jpeg",
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/img%20slide%201.jpeg",
-  "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/latest%20news%20car%202.png",
+  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/homepage%20slide%20card%20image.webp",
+  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/img%20slide%201.webp",
+  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/img%20slide%202.webp"
 ];
 
 const N = IMAGES.length;
@@ -147,8 +147,8 @@ export default function LatestNewsCards() {
               card.slot === -1
                 ? () => handleCardClick(-1)
                 : card.slot === 1
-                ? () => handleCardClick(1)
-                : undefined
+                  ? () => handleCardClick(1)
+                  : undefined
             }
             // Add role and tabIndex for accessibility if clickable
             role={card.slot === -1 || card.slot === 1 ? "button" : undefined}
@@ -157,17 +157,17 @@ export default function LatestNewsCards() {
               card.slot === -1
                 ? "Previous slide"
                 : card.slot === 1
-                ? "Next slide"
-                : undefined
+                  ? "Next slide"
+                  : undefined
             }
             // Keyboard accessibility for left/right images
             onKeyDown={
               card.slot === -1 || card.slot === 1
                 ? (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      handleCardClick(card.slot);
-                    }
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleCardClick(card.slot);
                   }
+                }
                 : undefined
             }
             style={{

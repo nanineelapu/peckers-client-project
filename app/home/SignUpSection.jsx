@@ -24,7 +24,7 @@ export default function SignUpSection() {
       ease: "power2.inOut",
       yoyo: false,
       delay: 0.3,
-      onUpdate: () => {},
+      onUpdate: () => { },
       onRepeat: () => {
         gsap.set(gloss, { left: "-60%", opacity: 0.34 });
       },
@@ -42,7 +42,7 @@ export default function SignUpSection() {
         className="w-[98%] mx-auto rounded-[1vw] shadow-lg flex flex-col items-center justify-center"
         style={{
           backgroundImage:
-            "url('https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Sign%20Up%20Section.png')",
+            "url('https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Sign%20Up%20Section.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

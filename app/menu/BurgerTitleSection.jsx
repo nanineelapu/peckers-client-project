@@ -51,31 +51,31 @@ const BURGERS = [
   {
     name: "OG BURGER",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Image%201.png",
+      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Image%201.webp",
     boost: 1,
   },
   {
     name: "BBQ CLASSIC",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Imaeg%202%20BBQ.png",
+      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Imaeg%202%20BBQ.webp",
     boost: 1,
   },
   {
     name: "HOT BURGER",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20REd-Picsart-AiImageEnhancer%20Final.png",
+      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20REd-Picsart-AiImageEnhancer.webp",
     boost: 1.15,
   },
   {
     name: "NORMAL CHEESE",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20lit%20yellow%20Finalone-Picsart-AiImageEnhancer%20(1).png",
+      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20lit%20yellow.webp",
     boost: 1.25,
   },
   {
     name: "MORE CHEESE",
     image:
-      "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Burger%20Final%20more%20cheese%20one-Picsart-AiImageEnhancer%20(1).png",
+      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20image%20more%20cheese%20one.webp",
     boost: 1.25,
   },
 ];
@@ -186,7 +186,7 @@ export default function BurgerCarouselFinal() {
         onComplete={() => setPreloaderDone(true)}
       />
       <div
-        className="relative w-full flex flex-col items-center justify-center overflow-hidden"
+        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[12vh]"
         style={{
           minHeight: "100vh",
           background:

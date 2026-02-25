@@ -2,10 +2,10 @@
 
 export default function CoopImages() {
   const HITCHIN_IMG =
-    "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Location%20Card%201.png";
+    "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Location%20Card%201.webp";
 
   const STEVENAGE_IMG =
-    "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Location%20Card%201.png";
+    "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Location%20Card%202%20%281%29.webp";
 
   return (
     <div

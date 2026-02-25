@@ -11,14 +11,14 @@ export default function PersonDetails() {
       {/* Left: Person Image */}
       <div className="flex-shrink-0 w-full lg:w-auto">
         <Image
-          src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/PEACKERS%20CLIENT/Person%20image.png"
+          src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Person%20image.webp"
           alt="Profile"
           className="w-full h-full object-cover object-center rounded-2xl"
           sizes="(max-width: 768px) 90vw, 41.5vw"
           priority={true}
           width={670}
           height={840}
-          
+
         />
       </div>
 
@@ -28,8 +28,8 @@ export default function PersonDetails() {
         style={{
           position: "relative",
           zIndex: 2,
-          marginTop:"-2.2vw",
-          marginRight:"1vw"
+          marginTop: "-2.2vw",
+          marginRight: "1vw"
         }}
       >
         <h2
@@ -82,8 +82,8 @@ export default function PersonDetails() {
             letterSpacing: "0.025em",
           }}
         >
-          "We're not chefs. We're flavor engineers with 
-           a disregard for sodium limits."
+          "We're not chefs. We're flavor engineers with
+          a disregard for sodium limits."
         </div>
         <a
           href="#"
@@ -105,14 +105,14 @@ export default function PersonDetails() {
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{ display: 'inline-block', verticalAlign: 'middle', marginTop:["1vw"] }}
+              style={{ display: 'inline-block', verticalAlign: 'middle', marginTop: ["1vw"] }}
             >
               <line x1="6" y1="12" x2="20" y2="12" />
               <polyline points="15 7 20 12 15 17" />
             </svg>
           </span>
           {/* Bottom border accent (full-width under READ MORE, visible in img) */}
-          
+
         </a>
       </div>
     </div>

@@ -84,7 +84,7 @@ const page = () => {
                                 style={{ alignSelf: 'flex-start', marginRight: '44vw' }}
                             >
                                 <img
-                                    src="https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Location%20logo%20png.png"
+                                    src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Location%20logo%20png.webp"
                                     alt="Peckers Location Logo"
                                     className="rounded-full shadow-lg"
                                     style={{
