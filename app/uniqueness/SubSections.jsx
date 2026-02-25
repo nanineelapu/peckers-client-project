@@ -29,6 +29,7 @@ const SubSections = () => {
                 }
                 alt={`Hand Coating Process ${num}`}
                 fill
+                unoptimized
                 className="object-contain"
                 priority={index === 0}
               />
