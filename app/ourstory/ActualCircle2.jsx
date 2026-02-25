@@ -60,9 +60,9 @@ export default function PeckersTimeline2() {
                                     }`}
                             >
                                 <span
-                                    className={`text-[1.65vw] font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
+                                    className={`text-[1.65vw] text-white font-bold mb-[1.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
                                         }`}
-                                    style={{ fontFamily: "Space Mono" }}
+                                    style={{ fontFamily: "Space Mono", color: "white" }}
                                 >
                                     {item.year}
                                 </span>

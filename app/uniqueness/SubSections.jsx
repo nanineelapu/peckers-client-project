@@ -31,7 +31,7 @@ const SubSections = () => {
     { width: "384", height: "324", viewBox: "0 0 384 324" },
     { width: "384", height: "324", viewBox: "0 0 384 152" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 324" },
+    { width: "384", height: "324", viewBox: "0 0 384 222" },
 
 
   ]
