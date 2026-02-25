@@ -152,7 +152,7 @@ export default function JourneyIntroSection() {
 
                 {/* Image below card */}
                 <img
-                    src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/OurStory/Founder%20Portrait%20black%20and%20white%20high%20contrast%20%281%29.webp"
+                    src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/OurStory/Jouney%20Our%20Story.webp"
                     alt="The Peckers Journey"
                     className="w-full object-cover z-0"
                 />

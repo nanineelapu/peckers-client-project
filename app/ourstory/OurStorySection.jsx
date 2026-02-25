@@ -50,7 +50,7 @@ export default function OurStorySection() {
       {/* RIGHT SIDE – IMAGE */}
       <div className="w-1/2 h-screen px-[2vw] items-center justify-center bg-black">
         <img
-          src={"https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Founder%20Portrait%20black%20and%20white%20high%20contrast.webp"}
+          src={"https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/OurStory/Founder%20Portrait%20black%20and%20white%20high%20contrast%20%281%29.webp"}
           alt="Founder"
           className="h-[92%] object-contain"
         />
