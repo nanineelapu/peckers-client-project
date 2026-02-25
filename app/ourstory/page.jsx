@@ -70,6 +70,7 @@ const OurStoryPage = () => {
       <OurStorySection />
       <StoryCircle />
       <ActualCircle />
+      <br />
       <div className="w-full relative flex justify-center mt-[6vw] pt-[0vw]">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
           <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
