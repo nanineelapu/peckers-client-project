@@ -174,7 +174,7 @@ const page = () => {
 
                 <div className="w-full flex justify-center items-center py-8 bg-[#000]">
                     <img
-                        src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201%20%282%29%20%281%29.webp"
+                        src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png"
                         alt="Peckers Logo"
                         className="max-w-[80%] w-full"
                         style={{ filter: "brightness(1)" }}
