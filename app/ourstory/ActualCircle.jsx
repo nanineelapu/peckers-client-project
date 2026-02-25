@@ -33,7 +33,7 @@ export default function PeckersTimeline() {
             <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}
-                <div className="flex bg-[#121212] justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
+                <div className="flex bg-black justify-between gap-[9vw] h-[4vw] items-center mb-[8vw]">
                     {timelineData.map((item, index) => {
 
                         const alignment =

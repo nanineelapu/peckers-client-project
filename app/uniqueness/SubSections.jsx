@@ -10,7 +10,6 @@ const SubSections = () => {
     <div className="w-full flex flex-col">
       {sections.map((num, index) => {
         const isAlternate = index % 2 !== 0;
-
         return (
           <section
             key={num}
@@ -24,7 +23,7 @@ const SubSections = () => {
                   index === 1
                     ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Raw%20spice%20rub.webp"
                     : index >= 2 && index <= 5
-                      ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Hand-pouring%20sauce.webp"
+                      ? "https://masizvgutzgmuetrzfyk.supabase.co/storage/v1/object/public/Peckers%20Sub%20pages%20Bucket/Uniqueness/Daily%20prep%20knives.webp"
                       : imageUrl
                 }
                 alt={`Hand Coating Process ${num}`}
