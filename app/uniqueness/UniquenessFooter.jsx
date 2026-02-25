@@ -201,7 +201,7 @@ const UniquenessFooter = () => {
             </div>
         </footer>
 
-        
+
     )
 }
 
