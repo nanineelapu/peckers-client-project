@@ -2,6 +2,9 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  experimental: {
+    optimizePackageImports: ["gsap", "react-icons", "lucide-react"],
+  },
   images: {
     remotePatterns: [
       {

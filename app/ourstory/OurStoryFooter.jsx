@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react'
+import Link from 'next/link';
 const socialButtons = [
     {
         label: "Instagram",
@@ -89,40 +90,40 @@ const OurStoryFooter = () => {
                     />
                     <ul className="space-y-[1vw] text-[1vw] font-[400] text-[#a9adb8]">
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href="/menu"
                                 className="hover:underline"
                                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
                             >
                                 Our Menu
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href="/ourstory"
                                 className="hover:underline"
                                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
                             >
                                 Our Story
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href="/careers"
                                 className="hover:underline"
                                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
                             >
                                 Careers (Join the Cult)
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href="/contact"
                                 className="hover:underline"
                                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
                             >
                                 Contact Us
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -153,13 +154,13 @@ const OurStoryFooter = () => {
                         <div>Stevenage - North Hertfordshire</div>
                         <div>Coming Soon!</div>
                         <div>
-                            <a
-                                href="#"
+                            <Link
+                                href="/locations"
                                 className="underline decoration-[#C41718] decoration-1 underline-offset-2 text-[#C41718] hover:text-[#f22] transition-colors"
                                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
                             >
                                 View All Locations
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -184,19 +185,19 @@ const OurStoryFooter = () => {
                     />
                     <ul className="space-y-[1.2vw] text-[1vw] font-mono text-[#B7BAC8]">
                         <li>
-                            <a href="#" className="hover:underline">
+                            <Link href="/privacy" className="hover:underline">
                                 Privacy Policy
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="hover:underline">
+                            <Link href="/terms" className="hover:underline">
                                 Terms of Service
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="hover:underline">
+                            <Link href="/allergen" className="hover:underline">
                                 Allergen Info
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
