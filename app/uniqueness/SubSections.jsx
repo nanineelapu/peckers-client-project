@@ -32,7 +32,7 @@ const SubSections = () => {
                 alt={`Hand Coating Process ${num}`}
                 fill
                 unoptimized
-                className="object-contain"
+                className="object-cover"
                 priority={index === 0}
               />
             </div>
