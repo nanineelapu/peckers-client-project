@@ -47,7 +47,7 @@ const SubSections = () => {
               }`}
           >
             {/* IMAGE SECTION */}
-            <div className="w-[59%] h-full relative overflow-hidden flex items-center justify-center bg-black">
+            <div className="w-[60%] h-full relative overflow-hidden flex items-center justify-center bg-black">
               <Image
                 src={
                   index === 1
