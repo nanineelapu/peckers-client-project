@@ -91,10 +91,64 @@ const SubSections = () => {
                 </svg>
 
                 <p className={`text-[1.4vw] pb-[2vw] text-[#9CA3AF] leading-[2.2vw] font-normal max-w-[38vw] w-full ${index === 1 ? 'mt-[4vw]' : ''}`}>
-                  {index === 1
-                    ? <>We don&apos;t hide behind sauce. Our 24-hour marination is a slow, visceral process of infusion. We rub the spices by hand, ensuring every crevice of the British chicken is primed for the heat.</>
-                    : <>Our breading isn&apos;t an afterthought; it&apos;s hands-on artistry. We hand-coat every piece, feeling the texture and ensuring the moisture is locked deep inside while building that jagged, shattered-glass exterior.</>
-                  }
+
+                  {index === 0 ? (
+                    <>Our breading isn&apos;t an afterthought; it&apos;s hands-on artistry. We hand-coat every piece, feeling the texture and ensuring the moisture is locked deep inside while building that jagged, shattered-glass exterior.</>
+                  ) : index === 1 ? (
+                    <>We don&apos;t hide behind sauce. Our 24-hour marination is a slow, visceral process of infusion. We rub the spices by hand, ensuring every crevice of the British chicken is primed for the heat.</>
+                  ) : index === 2 ? (
+                    <>
+                      Small batches only. Our sauces are
+                      whisked by hand to maintain a perfect
+                      structural balance—acid to cut the fat,
+                      heat to wake the palate, and sweetness to
+                      round the finish.</>
+                  ) : index === 3 ? (
+                    <>
+                      Our kitchen starts when the sun comes up.
+                      Fresh produce arrives and is immediately
+                      prepped by hand. No pre-cut bags, no
+                      shortcuts. Just sharp knives and fresh
+                      ingredients.
+                    </>
+                  ) : index === 4 ? (
+                    <>
+                      We don't buy from catalogs. We source
+                      from the heart of London. Our greens
+                      come from the legendary New Covent
+                      Garden Market, picked for their vibrancy
+                      and crispness.
+                    </>
+                  ) : index === 5 ? (
+                    <>
+                      We partner with specialists for our sides.
+                      Consistent fluffiness and crunch aren't an
+                      accident—they are the result of choosing
+                      the gold standard in crisp retention.</>
+                  ) : index === 6 ? (
+                    <>
+                      Our supply chain is built on handshakes.
+                      We back local vendors because we know
+                      them by name. It’s not just about logistics;
+                      it’s about shared values and raw quality.</>
+                  ) : index === 7 ? (
+                    <>
+                      We use precision technology to control the
+                      variables that humans can't. Jetic Machine
+                      Technology keeps our oil at the exact
+                      thermal threshold to ensure the crunch is
+                      consistent, batch after batch.
+                    </>
+                  ) : (
+                    <>
+                      Ethical sourcing is the only way we work.
+                      We exclusively use British chicken that
+                      meets the highest welfare standards and
+                      is 100% Halal certified. Better welfare
+                      means better flavor.
+                    </>
+                  )}
+
                 </p>
 
                 <div className="w-[26.8vw] h-[0.04vw] absolute  bg-gray-600 mt-[2.8vw] " />
