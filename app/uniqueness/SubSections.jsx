@@ -23,8 +23,8 @@ const SubSections = () => {
   ]
 
   const svgSizes = [
-    { width: "384", height: "324", viewBox: "0 0 384 152" },
-    { width: "384", height: "324", viewBox: "0 0 384 324" },
+    { width: "384", height: "250", viewBox: "0 0 384 152" },
+    { width: "384", height: "250", viewBox: "0 0 384 318" },
     { width: "384", height: "324", viewBox: "0 0 384 152" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
     { width: "384", height: "324", viewBox: "0 0 384 152" },
@@ -43,7 +43,7 @@ const SubSections = () => {
         return (
           <section
             key={num}
-            className={`w-full h-[116vh] flex ${isAlternate ? "flex-row-reverse" : "flex-row"
+            className={`w-full ${index === 1 ? 'h-[150vh]' : 'h-[116vh]'} flex bg-black ${isAlternate ? "flex-row-reverse" : "flex-row"
               }`}
           >
             {/* IMAGE SECTION */}
@@ -61,18 +61,18 @@ const SubSections = () => {
                 alt={`Hand Coating Process ${num}`}
                 fill
                 unoptimized
-                className="object-cover"
+                className={`object-contain ${index === 1 ? 'object-top' : 'object-center'}`}
                 priority={index === 0}
               />
             </div>
 
             {/* CONTENT SECTION */}
             <div
-              className="w-[41%] h-full text-white flex items-center"
+              className={`w-[41%] h-full text-white flex ${index === 1 ? 'items-start pt-[8vw]' : 'items-center'}`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
-              <div className="px-[7vw] mb-[1vw] leading-[4.1vw]">
-                <p className="text-[#FFD700] font-semibold text-[0.9vw] font-mono tracking-[0.2vw] mb-[0.5vw]" style={{ fontFamily: "space mono" }}>
+              <div className="px-[7vw] mb-[6vw] leading-[0vw]">
+                <p className="text-[#FFD700] font-semibold text-[0.95vw] font-mono tracking-[0.2vw] mb-[0.5vw]" style={{ fontFamily: "space mono" }}>
                   {num.toString().padStart(2, "0")}
                 </p>
 
@@ -82,7 +82,7 @@ const SubSections = () => {
                   viewBox={svgSizes[index].viewBox}
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mb-[0.5vw] w-[32vw] md:w-[28vw] lg:w-[26vw] xl:w-[24vw] h-auto"
+                  className={`${index === 1 ? 'mb-[2.5vw]' : 'mb-[0.5vw]'} w-[36vw] md:w-[32vw] lg:w-[30vw] xl:w-[27vw] ${index === 1 ? 'h-[45vh]' : 'h-[31vh]'}`}
                   aria-label={index === 1 ? "FLAVOR STARTS HERE" : "THE CRUNCH MATTERS"}
                 >
                   <path
@@ -90,22 +90,28 @@ const SubSections = () => {
                   />
                 </svg>
 
-                <p className="text-[1.4vw] pb-[2vw] text-[#9CA3AF] leading-[2.2vw] font-normal max-w-[32vw] w-full">
-                  Our breading isn't an afterthought; it's hands-on artistry. We
-                  hand-coat every piece, feeling the texture and ensuring the
-                  moisture is locked deep inside while building that jagged,
-                  shattered-glass exterior.
+                <p className={`text-[1.4vw] pb-[2vw] text-[#9CA3AF] leading-[2.2vw] font-normal max-w-[38vw] w-full ${index === 1 ? 'mt-[4vw]' : ''}`}>
+                  {index === 1
+                    ? <>We don&apos;t hide behind sauce. Our 24-hour marination is a slow, visceral process of infusion. We rub the spices by hand, ensuring every crevice of the British chicken is primed for the heat.</>
+                    : <>Our breading isn&apos;t an afterthought; it&apos;s hands-on artistry. We hand-coat every piece, feeling the texture and ensuring the moisture is locked deep inside while building that jagged, shattered-glass exterior.</>
+                  }
                 </p>
 
                 <div className="w-[26.8vw] h-[0.04vw] absolute  bg-gray-600 mt-[2.8vw] " />
 
-                <p className=" flex text-[0.8vw] items-center gap-[.9vw] tracking-[0.09vw] font-mono  absolute mt-[3.6vw]  text-gray-500" style={{ fontFamily: "space mono" }}>
+                <p className=" flex text-[0.8vw] items-center gap-[.9vw] tracking-[0.09vw] font-mono  absolute mt-[5vw]  text-gray-500" style={{ fontFamily: "space mono" }}>
 
-                  <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.85 15.75C5.5 15.75 5.17187 15.675 4.86562 15.525C4.55937 15.375 4.3 15.1625 4.0875 14.8875L0 9.69375L0.35625 9.31875C0.60625 9.05625 0.90625 8.9 1.25625 8.85C1.60625 8.8 1.93125 8.86875 2.23125 9.05625L3.61875 9.9V3.75C3.61875 3.5375 3.69062 3.35938 3.83437 3.21563C3.97812 3.07188 4.15625 3 4.36875 3C4.58125 3 4.7625 3.07188 4.9125 3.21563C5.0625 3.35938 5.1375 3.5375 5.1375 3.75V12.6L3.31875 11.475L5.26875 13.9688C5.34375 14.0562 5.43125 14.125 5.53125 14.175C5.63125 14.225 5.7375 14.25 5.85 14.25H9.99375C10.4062 14.25 10.7594 14.1031 11.0531 13.8094C11.3469 13.5156 11.4937 13.1625 11.4937 12.75V9.75C11.4937 9.5375 11.4219 9.35937 11.2781 9.21562C11.1344 9.07187 10.9562 9 10.7437 9H6.6375V7.5H10.7437C11.3687 7.5 11.9 7.71875 12.3375 8.15625C12.775 8.59375 12.9937 9.125 12.9937 9.75V12.75C12.9937 13.575 12.7 14.2812 12.1125 14.8687C11.525 15.4562 10.8187 15.75 9.99375 15.75H5.85ZM1.125 5.625C0.9625 5.35 0.8375 5.05312 0.75 4.73438C0.6625 4.41563 0.61875 4.0875 0.61875 3.75C0.61875 2.7125 0.984375 1.82812 1.71563 1.09687C2.44688 0.365625 3.33125 0 4.36875 0C5.40625 0 6.29062 0.365625 7.02187 1.09687C7.75312 1.82812 8.11875 2.7125 8.11875 3.75C8.11875 4.0875 8.075 4.41563 7.9875 4.73438C7.9 5.05312 7.775 5.35 7.6125 5.625L6.31875 4.875C6.41875 4.7 6.49375 4.52187 6.54375 4.34062C6.59375 4.15937 6.61875 3.9625 6.61875 3.75C6.61875 3.125 6.4 2.59375 5.9625 2.15625C5.525 1.71875 4.99375 1.5 4.36875 1.5C3.74375 1.5 3.2125 1.71875 2.775 2.15625C2.3375 2.59375 2.11875 3.125 2.11875 3.75C2.11875 3.9625 2.14375 4.15937 2.19375 4.34062C2.24375 4.52187 2.31875 4.7 2.41875 4.875L1.125 5.625Z" fill="white" fillOpacity="0.3" />
-                  </svg>
+                  {index === 1 ? (
+                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.5 1.5V0H9V1.5H4.5ZM6 9.75H7.5V5.25H6V9.75ZM6.75 15.75C5.825 15.75 4.95312 15.5719 4.13438 15.2156C3.31563 14.8594 2.6 14.375 1.9875 13.7625C1.375 13.15 0.890625 12.4344 0.534375 11.6156C0.178125 10.7969 0 9.925 0 9C0 8.075 0.178125 7.20312 0.534375 6.38438C0.890625 5.56563 1.375 4.85 1.9875 4.2375C2.6 3.625 3.31563 3.14062 4.13438 2.78437C4.95312 2.42812 5.825 2.25 6.75 2.25C7.525 2.25 8.26875 2.375 8.98125 2.625C9.69375 2.875 10.3625 3.2375 10.9875 3.7125L12.0375 2.6625L13.0875 3.7125L12.0375 4.7625C12.5125 5.3875 12.875 6.05625 13.125 6.76875C13.375 7.48125 13.5 8.225 13.5 9C13.5 9.925 13.3219 10.7969 12.9656 11.6156C12.6094 12.4344 12.125 13.15 11.5125 13.7625C10.9 14.375 10.1844 14.8594 9.36563 15.2156C8.54688 15.5719 7.675 15.75 6.75 15.75ZM6.75 14.25C8.2 14.25 9.4375 13.7375 10.4625 12.7125C11.4875 11.6875 12 10.45 12 9C12 7.55 11.4875 6.3125 10.4625 5.2875C9.4375 4.2625 8.2 3.75 6.75 3.75C5.3 3.75 4.0625 4.2625 3.0375 5.2875C2.0125 6.3125 1.5 7.55 1.5 9C1.5 10.45 2.0125 11.6875 3.0375 12.7125C4.0625 13.7375 5.3 14.25 6.75 14.25Z" fill="white" fillOpacity="0.3" />
+                    </svg>
+                  ) : (
+                    <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.85 15.75C5.5 15.75 5.17187 15.675 4.86562 15.525C4.55937 15.375 4.3 15.1625 4.0875 14.8875L0 9.69375L0.35625 9.31875C0.60625 9.05625 0.90625 8.9 1.25625 8.85C1.60625 8.8 1.93125 8.86875 2.23125 9.05625L3.61875 9.9V3.75C3.61875 3.5375 3.69062 3.35938 3.83437 3.21563C3.97812 3.07188 4.15625 3 4.36875 3C4.58125 3 4.7625 3.07188 4.9125 3.21563C5.0625 3.35938 5.1375 3.5375 5.1375 3.75V12.6L3.31875 11.475L5.26875 13.9688C5.34375 14.0562 5.43125 14.125 5.53125 14.175C5.63125 14.225 5.7375 14.25 5.85 14.25H9.99375C10.4062 14.25 10.7594 14.1031 11.0531 13.8094C11.3469 13.5156 11.4937 13.1625 11.4937 12.75V9.75C11.4937 9.5375 11.4219 9.35937 11.2781 9.21562C11.1344 9.07187 10.9562 9 10.7437 9H6.6375V7.5H10.7437C11.3687 7.5 11.9 7.71875 12.3375 8.15625C12.775 8.59375 12.9937 9.125 12.9937 9.75V12.75C12.9937 13.575 12.7 14.2812 12.1125 14.8687C11.525 15.4562 10.8187 15.75 9.99375 15.75H5.85ZM1.125 5.625C0.9625 5.35 0.8375 5.05312 0.75 4.73438C0.6625 4.41563 0.61875 4.0875 0.61875 3.75C0.61875 2.7125 0.984375 1.82812 1.71563 1.09687C2.44688 0.365625 3.33125 0 4.36875 0C5.40625 0 6.29062 0.365625 7.02187 1.09687C7.75312 1.82812 8.11875 2.7125 8.11875 3.75C8.11875 4.0875 8.075 4.41563 7.9875 4.73438C7.9 5.05312 7.775 5.35 7.6125 5.625L6.31875 4.875C6.41875 4.7 6.49375 4.52187 6.54375 4.34062C6.59375 4.15937 6.61875 3.9625 6.61875 3.75C6.61875 3.125 6.4 2.59375 5.9625 2.15625C5.525 1.71875 4.99375 1.5 4.36875 1.5C3.74375 1.5 3.2125 1.71875 2.775 2.15625C2.3375 2.59375 2.11875 3.125 2.11875 3.75C2.11875 3.9625 2.14375 4.15937 2.19375 4.34062C2.24375 4.52187 2.31875 4.7 2.41875 4.875L1.125 5.625Z" fill="white" fillOpacity="0.3" />
+                    </svg>
+                  )}
 
-                  MANUAL DREDGE PROCESS
+                  {index === 1 ? '24-HOUR DEEP SOAK' : 'MANUAL DREDGE PROCESS'}
                 </p>
               </div>
             </div>
