@@ -5,7 +5,7 @@ export default function OurStorySection() {
     <section className="relative w-full min-h-screen pt-[10.5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center overflow-hidden">
 
       {/* BACKGROUND SVG LAYER */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute top-0 bottom-0 right-0 w-1/2 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
           height="100%"
