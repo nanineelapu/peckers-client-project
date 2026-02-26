@@ -61,14 +61,14 @@ const SubSections = () => {
                 alt={`Hand Coating Process ${num}`}
                 fill
                 unoptimized
-                className={`object-contain ${index === 1 ? 'object-top' : 'object-center'}`}
+                className={`object-cover ${index === 1 ? 'object-top' : 'object-center'}`}
                 priority={index === 0}
               />
             </div>
 
             {/* CONTENT SECTION */}
             <div
-              className={`w-[41%] h-full text-white flex ${index === 1 ? 'items-start pt-[8vw]' : 'items-center'}`}
+              className={`w-[40%] h-full text-white flex ${index === 1 ? 'items-start pt-[8vw]' : 'items-center'}`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
               <div className="px-[7vw] mb-[6vw] leading-[0vw]">
