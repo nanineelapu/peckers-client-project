@@ -46,38 +46,38 @@ export default function RatingSection() {
   const headingWords = heading.split(" ");
 
   return (
-    <div className="w-full flex items-center justify-between bg-black font-bold tracking-tight px-[2vw] pt-[12.5vw] pb-[2vw]">
+    <div className="w-full flex flex-col md:flex-row items-center justify-between bg-black font-bold tracking-tight px-[5vw] md:px-[2vw] pt-[20vw] md:pt-[12.5vw] pb-[6vw] md:pb-[2vw] gap-[4vw] md:gap-0">
       <span
-        className="text-[4vw] text-white tracking-[1.6]"
+        className="text-[10vw] sm:text-[8vw] md:text-[4vw] text-white tracking-[1.6]"
         style={{ fontFamily: "var(--font-peakers)" }}
       >
         {headingWords.map((word, i) => (
           <span
             key={i}
-            className="inline-block mr-[1vw]"
+            className="inline-block mr-[2vw] md:mr-[1vw]"
           >
             {word}
           </span>
         ))}
       </span>
-      <div className="flex items-center gap-[0.6vw]">
-        <span className="flex gap-[0.5vw]">
+      <div className="flex flex-col sm:flex-row items-center gap-[2vw] md:gap-[0.6vw]">
+        <span className="flex gap-[1vw] md:gap-[0.5vw]">
           {[0, 1, 2, 3].map((i) => (
             <span
               key={i}
-              style={{ display: "inline-block" }}
+              className="inline-block w-[6vw] sm:w-[5vw] md:w-auto h-[6vw] sm:h-[5vw] md:h-auto"
             >
               {starSVG()}
             </span>
           ))}
           {/* Star 5 (Half) */}
-          <span style={{ display: "inline-block" }}>
+          <span className="inline-block w-[6vw] sm:w-[5vw] md:w-auto h-[6vw] sm:h-[5vw] md:h-auto">
             {halfStarSVG}
           </span>
         </span>
         <span
-          className="text-white text-[1vw] font-sans font-light"
-          style={{ letterSpacing: "0.04em", marginLeft: "0.4vw" }}
+          className="text-white text-[3.5vw] sm:text-[3vw] md:text-[1vw] font-sans font-light mt-[1vw] sm:mt-0 ml-0 md:ml-[0.4vw]"
+          style={{ letterSpacing: "0.04em" }}
         >
           ( 4.8/5 on Google )
         </span>

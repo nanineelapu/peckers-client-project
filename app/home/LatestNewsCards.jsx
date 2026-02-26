@@ -26,46 +26,6 @@ const createInitialCards = (centerIdx) => [
   makeCard((centerIdx + 2) % N, 2),
 ];
 
-const SLOT_STYLES = {
-  [-2]: {
-    transform:
-      "translate(calc(-50% - 85vw), -50%) rotateY(45deg) scale(0.6)",
-    opacity: 0,
-    zIndex: 0,
-    pointerEvents: "none",
-  },
-  [-1]: {
-    transform:
-      "translate(calc(-50% - 28vw), -50%) rotate(-6deg) scale(0.85)",
-    opacity: 0.75,
-    zIndex: 2,
-    filter: "brightness(0.7) blur(2px)",
-    cursor: "pointer",
-  },
-  [0]: {
-    transform: "translate(-50%, -50%) rotateY(0deg) scale(1.08)",
-    opacity: 1,
-    zIndex: 10,
-    filter: "brightness(1)",
-    cursor: "default",
-  },
-  [1]: {
-    transform:
-      "translate(calc(-50% + 28vw), -50%) rotate(6deg) scale(0.85)",
-    opacity: 0.75,
-    zIndex: 2,
-    filter: "brightness(0.7) blur(2px)",
-    cursor: "pointer",
-  },
-  [2]: {
-    transform:
-      "translate(calc(-50% + 85vw), -50%) rotateY(-45deg) scale(0.6)",
-    opacity: 0,
-    zIndex: 0,
-    pointerEvents: "none",
-  },
-};
-
 export default function LatestNewsCards() {
   const [cards, setCards] = useState(() => createInitialCards(0));
   const [centerIdx, setCenterIdx] = useState(0);
@@ -123,20 +83,44 @@ export default function LatestNewsCards() {
   };
 
   return (
-    <div className="relative w-full py-[3vw] bg-black overflow-hidden">
+    <div className="relative w-full py-[10vw] md:py-[3vw] bg-black overflow-hidden">
+      <style>{`
+        .card-slot-m2 { transform: translate(calc(-50% - 140vw), -50%) rotateY(45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
+        .card-slot-m1 { transform: translate(calc(-50% - 40vw), -50%) rotate(-6deg) scale(0.85); opacity: 0.75; z-index: 2; filter: brightness(0.7) blur(2px); cursor: pointer; }
+        .card-slot-0  { transform: translate(-50%, -50%) rotateY(0deg) scale(1.08); opacity: 1; z-index: 10; filter: brightness(1); cursor: default;}
+        .card-slot-1  { transform: translate(calc(-50% + 40vw), -50%) rotate(6deg) scale(0.85); opacity: 0.75; z-index: 2; filter: brightness(0.7) blur(2px); cursor: pointer; }
+        .card-slot-2  { transform: translate(calc(-50% + 140vw), -50%) rotateY(-45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
+        
+        .latest-card {
+           width: 60vw;
+           height: 85vw;
+           border-radius: 3vw;
+        }
+
+        @media (min-width: 768px) {
+          .card-slot-m2 { transform: translate(calc(-50% - 85vw), -50%) rotateY(45deg) scale(0.6); }
+          .card-slot-m1 { transform: translate(calc(-50% - 28vw), -50%) rotate(-6deg) scale(0.85); }
+          .card-slot-1  { transform: translate(calc(-50% + 28vw), -50%) rotate(6deg) scale(0.85); }
+          .card-slot-2  { transform: translate(calc(-50% + 85vw), -50%) rotateY(-45deg) scale(0.6); }
+          .latest-card {
+             width: 25vw;
+             height: 36vw;
+             border-radius: 1.2vw;
+          }
+        }
+      `}</style>
       <div
-        className="relative w-full"
+        className="relative w-full h-[120vw] md:h-[40vw]"
         style={{
-          height: "40vw",
           perspective: "1400px",
           transformStyle: "preserve-3d",
         }}
       >
         <button
           onClick={goPrev}
-          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
+          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
         >
-          <span className="text-white text-3xl font-bold">‹</span>
+          <span className="text-white text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">‹</span>
         </button>
 
         {cards.map((card) => (
@@ -170,21 +154,10 @@ export default function LatestNewsCards() {
                 }
                 : undefined
             }
+            className={`latest-card card-slot-${card.slot < 0 ? 'm' + Math.abs(card.slot) : card.slot} absolute left-1/2 top-1/2 overflow-hidden`}
             style={{
-              ...(SLOT_STYLES[card.slot] || SLOT_STYLES[2]),
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              width: "25vw",
-              height: "36vw",
-              borderRadius: "1.2vw",
-              overflow: "hidden",
               transition:
                 "transform .75s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease",
-              cursor:
-                card.slot === -1 || card.slot === 1
-                  ? "pointer"
-                  : (SLOT_STYLES[card.slot]?.cursor || "default"),
             }}
           >
             <Image
@@ -199,9 +172,9 @@ export default function LatestNewsCards() {
 
         <button
           onClick={goNext}
-          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[60px] h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
+          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
         >
-          <span className="text-white text-3xl font-bold">›</span>
+          <span className="text-white text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">›</span>
         </button>
       </div>
     </div>
