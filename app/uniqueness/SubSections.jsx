@@ -27,11 +27,11 @@ const SubSections = () => {
     { width: "384", height: "250", viewBox: "0 0 384 318" },
     { width: "384", height: "324", viewBox: "0 0 384 152" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 152" },
+    { width: "384", height: "324", viewBox: "0 0 384 245" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 152" },
+    { width: "384", height: "324", viewBox: "0 0 384 170" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 222" },
+    { width: "384", height: "324", viewBox: "0 0 384 245" },
 
 
   ]
@@ -71,26 +71,25 @@ const SubSections = () => {
               className={`w-[40%] h-full text-white flex ${index === 1 ? 'items-start pt-[8vw]' : 'items-center'}`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
-              <div className="px-[7vw] mb-[6vw] leading-[0vw]">
-                <p className="text-[#FFD700] font-semibold text-[0.95vw] font-mono tracking-[0.2vw] mb-[0.5vw]" style={{ fontFamily: "space mono" }}>
+              <div className={`${index >= 5 ? 'pl-[7vw] pr-0' : 'px-[7vw]'} mb-[6vw] leading-[0vw]`}>
+                <p className={`text-[#FFD700] font-semibold ${index === 4 ? 'text-[1.1vw]' : 'text-[0.95vw]'} font-mono tracking-[0.2vw] mb-[0.5vw]`} style={{ fontFamily: "space mono" }}>
                   {num.toString().padStart(2, "0")}
                 </p>
-
                 <svg
                   width={svgSizes[index].width}
                   height={svgSizes[index].height}
                   viewBox={svgSizes[index].viewBox}
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`${index === 1 ? 'mb-[2.5vw]' : 'mb-[0.5vw]'} w-[36vw] md:w-[32vw] lg:w-[30vw] xl:w-[27vw] ${index === 1 ? 'h-[45vh]' : index === 3 ? 'h-[42vh]' : 'h-[31vh]'}`}
-                  aria-label={index === 1 ? "FLAVOR STARTS HERE" : "THE CRUNCH MATTERS"}
+                  className={`${index === 1 ? 'mb-[2.5vw]' : index === 3 ? 'mb-0' : index === 4 ? 'mb-[1vw]' : 'mb-[0.5vw]'} w-[36vw] md:w-[32vw] lg:w-[30vw] xl:w-[27vw] ${index === 1 ? 'h-[45vh]' : index === 3 ? 'h-[50vh]' : index === 4 || index === 5 || index === 7 ? 'h-[36vh]' : 'h-[31vh]'} ${index === 4 || index === 5 ? 'mt-[4vw]' : index === 6 ? 'mt-[2vw]' : index === 7 ? 'mt-[2vw]' : index === 8 ? 'mt-[2vw]' : ''} ${index === 5 ? 'ml-[-3.4vw]' : index === 7 || index === 8 ? 'ml-[-2vw]' : index > 5 ? 'mr-[1.2vw]' : ''}`}
+                  aria-label={index === 1 ? "FLAVOR STARTS HERE" : index === 4 ? "COVENT GARDEN SOURCED." : "THE CRUNCH MATTERS"}
                 >
                   <path
                     d={svgPaths[index]} fill="white"
                   />
                 </svg>
 
-                <p className={`text-[1.4vw] pb-[2vw] text-[#9CA3AF] leading-[2.2vw] font-normal max-w-[38vw] w-full ${index === 1 ? 'mt-[4vw]' : ''}`}>
+                <p className={`text-[#9CA3AF] font-normal max-w-[38vw] w-full ${index === 4 ? 'text-[1.55vw] leading-[2.5vw]' : 'text-[1.4vw] leading-[2.2vw]'} pb-[2vw] ${index === 1 ? 'mt-[4vw]' : index === 3 ? 'mt-[-3.5vw]' : ''}`}>
 
                   {index === 0 ? (
                     <>Our breading isn&apos;t an afterthought; it&apos;s hands-on artistry. We hand-coat every piece, feeling the texture and ensuring the moisture is locked deep inside while building that jagged, shattered-glass exterior.</>
