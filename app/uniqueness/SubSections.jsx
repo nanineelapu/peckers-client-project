@@ -81,7 +81,7 @@ const SubSections = () => {
                   viewBox={svgSizes[index].viewBox}
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`w-[88vw] md:w-[32vw] lg:w-[30vw] xl:w-[27vw] h-auto ${index === 1 ? 'mb-[6vw] md:mb-[2.5vw]' : index === 3 ? 'mb-[2vw] md:mb-0' : index === 4 ? 'mb-[4vw] md:mb-[1vw]' : 'mb-[2vw] md:mb-[0.5vw]'} ${index === 1 ? 'md:h-[45vh]' : index === 3 ? 'md:h-[50vh]' : index === 4 || index === 5 || index === 7 ? 'md:h-[36vh]' : 'md:h-[31vh]'} ${index === 4 || index === 5 ? 'mt-[6vw] md:mt-[4vw]' : index === 6 ? 'mt-[3vw] md:mt-[2vw]' : index === 7 ? 'mt-[3vw] md:mt-[2vw]' : index === 8 ? 'mt-[3vw] md:mt-[2vw]' : ''} ${index === 5 ? 'md:ml-[-3.4vw]' : index === 7 || index === 8 ? 'md:ml-[-2vw]' : index > 5 ? 'md:mr-[1.2vw]' : ''}`}
+                  className={`w-[88vw] ${index === 7 ? 'md:w-[40vw] lg:w-[38vw] xl:w-[35vw] ml-[-.5vw]' : 'md:w-[32vw] lg:w-[30vw] xl:w-[27vw]'} h-auto ${index === 1 ? 'mb-[4vw] md:mb-[2vw] ml-[-.7vw] mt-[2vw]' : index === 3 ? 'mb-[2vw] md:mb-0 mt-[2vw]' : index === 4 ? 'mb-[4vw] md:mb-[1vw]' : index === 7 ? 'mb-0 md:mb-[-1.5vw]' : 'mb-[2vw] md:mb-[0.5vw]'} ${index === 1 ? 'md:h-[45vh]' : index === 3 ? 'md:h-[50vh]' : index === 7 ? 'md:h-[48vh]' : index === 4 || index === 5 ? 'md:h-[36vh]' : 'md:h-[31vh]'} ${index === 4 || index === 5 ? 'mt-[6vw] md:mt-[4vw]' : index === 6 ? 'mt-[3vw] md:mt-[2vw]' : index === 7 ? 'mt-[3vw] md:mt-[2vw]' : index === 8 ? 'mt-[3vw] md:mt-[2vw]' : ''} ${index === 5 ? 'md:ml-[-3.4vw]' : index === 7 ? 'md:ml-[-4vw]' : index === 8 ? 'md:ml-[-2vw]' : index > 5 ? 'md:mr-[1.2vw]' : ''}`}
                   aria-label={index === 1 ? "FLAVOR STARTS HERE" : index === 4 ? "COVENT GARDEN SOURCED." : "THE CRUNCH MATTERS"}
                 >
                   <path
@@ -89,7 +89,7 @@ const SubSections = () => {
                   />
                 </svg>
 
-                <p className={`text-[#9CA3AF] font-normal w-full max-w-[90vw] md:max-w-[38vw] text-[4.2vw] leading-[6vw] ${index === 4 ? 'md:text-[1.55vw] md:leading-[2.5vw]' : 'md:text-[1.4vw] md:leading-[2.2vw]'} pb-[6vw] md:pb-[2vw] mt-[5vw] ${index === 1 ? 'md:mt-[4vw]' : index === 3 ? 'md:mt-[-3.5vw]' : 'md:mt-0'}`}>
+                <p className={`text-[#9CA3AF] font-normal w-full max-w-[90vw] md:max-w-[38vw] text-[4.2vw] leading-[6vw] ${index === 4 ? 'md:text-[1.55vw] md:leading-[2.5vw]' : 'md:text-[1.4vw] md:leading-[2.2vw]'} pb-[6vw] md:pb-[2vw] ${index === 7 ? 'mt-[2vw] md:mt-[-2vw]' : 'mt-[5vw]'} ${index === 1 ? 'md:mt-[4vw]' : index === 3 ? 'md:mt-[-3.5vw]' : index !== 7 ? 'md:mt-0' : ''}`}>
 
                   {index === 0 ? (
                     <>Our breading isn&apos;t an afterthought; it&apos;s hands-on artistry. We hand-coat every piece, feeling the texture and ensuring the moisture is locked deep inside while building that jagged, shattered-glass exterior.</>

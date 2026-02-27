@@ -66,20 +66,20 @@ export default function Preloader({ onComplete = () => { } }) {
       textRef.current,
       {
         letterSpacing: "0.02em",
-        duration: 0.3, // Speed up text contracting
+        duration: 0.5, // Speed up text contracting
       }
     );
 
     tl.to(textRef.current, {
       scale: 1.06,
-      duration: 0.4, // Speed up final scale bounce
+      duration: 0.6, // Speed up final scale bounce
       ease: "power2.inOut",
     });
 
     // Slide preloader down
     tl.to(containerRef.current, {
       yPercent: 100,
-      duration: 1, // Speed up exit slide
+      duration: 1.3, // Speed up exit slide
       ease: "power4.inOut",
     });
 
