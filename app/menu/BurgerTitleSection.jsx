@@ -30,9 +30,9 @@ const DropShadowSVG = () => (
         <feGaussianBlur stdDeviation="35" />
       </filter>
       <radialGradient id="burgerWhiteGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-        <stop offset="40%" stopColor="#ffffff" stopOpacity="0.6" />
-        <stop offset="70%" stopColor="#ffffff" stopOpacity="0.25" />
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+        <stop offset="40%" stopColor="#ffffff" stopOpacity="0.5" />
+        <stop offset="70%" stopColor="#ffffff" stopOpacity="0.2" />
         <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
       </radialGradient>
     </defs>
@@ -40,7 +40,7 @@ const DropShadowSVG = () => (
     <circle
       cx="388"
       cy="388"
-      r="260"
+      r="250"
       fill="url(#burgerWhiteGlow)"
       filter="url(#burgerGlow)"
     />
@@ -64,7 +64,7 @@ const BURGERS = [
     name: "HOT BURGER",
     image:
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20REd-Picsart-AiImageEnhancer.webp",
-    boost: 1.55,
+    boost: 1.45,
   },
   {
     name: "NORMAL CHEESE",
@@ -172,7 +172,7 @@ export default function BurgerCarouselFinal() {
         className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[4vh] md:pt-[1vh] min-h-0 md:min-h-screen pb-[2vh] md:pb-0"
         style={{
           background:
-            "radial-gradient(ellipse 50% 52% at 50% 38%, #222222 0%, #111111 26%, #090909 58%, #000 100%)",
+            "radial-gradient(ellipse 50% 52% at 50% 38%, #1c1c1c 0%, #0d0d0d 26%, #070707 58%, #000 100%)",
           opacity: preloaderDone ? 1 : 0,
           transition: "opacity 0.4s ease",
         }}
@@ -215,9 +215,36 @@ export default function BurgerCarouselFinal() {
 
         {/* BURGER STAGE */}
         <div
-          className="relative w-full overflow-hidden"
-          style={{ height: "clamp(260px, 54vw, 560px)" }}
+          className="relative w-full overflow-hidden flex items-center justify-center"
+          style={{ height: "clamp(260px, 48vw, 500px)" }}
         >
+          {/* NAVIGATION ARROWS IN IMAGE CONTAINER */}
+          <button
+            onClick={goPrev}
+            className="absolute left-[2vw] md:left-[6vw] top-1/2 -translate-y-1/2 z-30"
+            disabled={isAnimating}
+            style={{
+              cursor: isAnimating ? "wait" : "pointer",
+              opacity: isAnimating ? 0.5 : 1,
+              transition: "opacity 0.2s",
+            }}
+          >
+            <FiChevronLeft className="text-[40px] md:text-[50px] w-[1em] h-[1em]" color="#ffffff" />
+          </button>
+
+          <button
+            onClick={goNext}
+            className="absolute right-[2vw] md:right-[6vw] top-1/2 -translate-y-1/2 z-30"
+            disabled={isAnimating}
+            style={{
+              cursor: isAnimating ? "wait" : "pointer",
+              opacity: isAnimating ? 0.5 : 1,
+              transition: "opacity 0.2s",
+            }}
+          >
+            <FiChevronRight className="text-[40px] md:text-[50px] w-[1em] h-[1em]" color="#ffffff" />
+          </button>
+
           {/* SVG Drop Shadow */}
           <div
             style={{
@@ -227,8 +254,8 @@ export default function BurgerCarouselFinal() {
               transform: "translate(-50%, -33%)",
               zIndex: 1,
               pointerEvents: "none",
-              width: "clamp(300px, 55vw, 780px)",
-              height: "clamp(300px, 55vw, 780px)",
+              width: "clamp(280px, 50vw, 760px)",
+              height: "clamp(280px, 50vw, 760px)",
             }}
             aria-hidden="true"
           >
@@ -292,7 +319,7 @@ export default function BurgerCarouselFinal() {
         </div>
 
         {/* SLIDING INDICATOR */}
-        <div className="flex gap-3 mt-4">
+        <div className="flex gap-3 mt-0 md:mt-2">
           {BURGERS.map((_, i) => (
             <div
               key={i}
@@ -307,24 +334,10 @@ export default function BurgerCarouselFinal() {
           ))}
         </div>
 
-        {/* TITLE + ARROWS */}
-        <div className="w-full flex items-center justify-center relative pb-4">
-          {/* Uses isAnimating state so the button actually re-enables after animation */}
-          <button
-            onClick={goPrev}
-            className="absolute left-0 px-[4vw]"
-            disabled={isAnimating}
-            style={{
-              cursor: isAnimating ? "wait" : "pointer",
-              opacity: isAnimating ? 0.5 : 1,
-              transition: "opacity 0.2s",
-            }}
-          >
-            <FiChevronLeft className="text-[32px] md:text-[38px] w-[1em] h-[1em]" color="#888" />
-          </button>
-
+        {/* TITLE */}
+        <div className="w-full flex items-center justify-center relative pb-0 md:pb-4 md:pt-2">
           <h1
-            className="uppercase text-white text-center px-[12vw] md:px-0"
+            className="uppercase text-white text-center"
             style={{
               fontFamily: "var(--font-peakers)",
               fontSize: "clamp(1.8rem, 7.5vw, 6rem)",
@@ -335,19 +348,6 @@ export default function BurgerCarouselFinal() {
           >
             {BURGERS[carousel.center].name}
           </h1>
-
-          <button
-            onClick={goNext}
-            className="absolute right-0 px-[4vw]"
-            disabled={isAnimating}
-            style={{
-              cursor: isAnimating ? "wait" : "pointer",
-              opacity: isAnimating ? 0.5 : 1,
-              transition: "opacity 0.2s",
-            }}
-          >
-            <FiChevronRight className="text-[32px] md:text-[38px] w-[1em] h-[1em]" color="#888" />
-          </button>
         </div>
       </div>
     </>
