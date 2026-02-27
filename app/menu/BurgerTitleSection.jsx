@@ -52,31 +52,31 @@ const BURGERS = [
     name: "OG BURGER",
     image:
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Image%201.webp",
-    boost: 1,
+    boost: 0.9,
   },
   {
     name: "BBQ CLASSIC",
     image:
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Imaeg%202%20BBQ.webp",
-    boost: 1,
+    boost: 0.95,
   },
   {
     name: "HOT BURGER",
     image:
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20REd-Picsart-AiImageEnhancer.webp",
-    boost: 1.15,
+    boost: 1.55,
   },
   {
     name: "NORMAL CHEESE",
     image:
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20lit%20yellow.webp",
-    boost: 1.25,
+    boost: 1.85,
   },
   {
     name: "MORE CHEESE",
     image:
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20image%20more%20cheese%20one.webp",
-    boost: 1.25,
+    boost: 1.3,
   },
 ];
 
@@ -262,7 +262,7 @@ export default function BurgerCarouselFinal() {
                   opacity: cfg.opacity,
                   zIndex: cfg.z,
                   transition:
-                    "transform .7s cubic-bezier(.34, 1.56, .64, 1), opacity .5s ease",
+                    "transform .5s ease, opacity .5s ease",
                   pointerEvents: isCenter
                     ? "none"
                     : isAnimating
