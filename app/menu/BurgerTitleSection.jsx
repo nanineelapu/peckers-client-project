@@ -2,7 +2,6 @@
 
 import { useState, useRef, useCallback } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import MenuPreloader from "./MenuPreloader";
 
 // SVG as a React Component - only the blurred radial shadow
 const DropShadowSVG = () => (
@@ -123,7 +122,6 @@ export default function BurgerCarouselFinal() {
   // animatingRef is used ONLY as a guard inside moveBy to avoid stale closures.
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [preloaderDone, setPreloaderDone] = useState(false);
 
   const moveBy = useCallback((steps) => {
     if (steps === 0 || animatingRef.current) return;
@@ -164,17 +162,11 @@ export default function BurgerCarouselFinal() {
 
   return (
     <>
-      <MenuPreloader
-        images={BURGERS.map((b) => b.image)}
-        onComplete={() => setPreloaderDone(true)}
-      />
       <div
-        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[4vh] md:pt-[1vh] min-h-0 md:min-h-screen pb-[2vh] md:pb-0"
+        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[0vh] md:pt-[1vh] min-h-0 md:min-h-screen pb-[2vh] md:pb-0"
         style={{
           background:
             "radial-gradient(ellipse 50% 52% at 50% 38%, #1c1c1c 0%, #0d0d0d 26%, #070707 58%, #000 100%)",
-          opacity: preloaderDone ? 1 : 0,
-          transition: "opacity 0.4s ease",
         }}
       >
         {/* SUB-NAV */}
@@ -185,28 +177,28 @@ export default function BurgerCarouselFinal() {
           >
             <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
             <div
-              className="flex font-['Share_Tech'] gap-[6vw] md:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] md:px-0 pt-[4vw] md:pt-[1.5vw]"
+              className="flex font-['Share_Tech'] gap-[6vw] md:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] sm:px-[5vw] md:px-0 pt-[4vw] sm:pt-[4vw] md:pt-[1.5vw]"
               style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               <a
                 href="#"
-                className="whitespace-nowrap font-sharetech text-[16px] md:text-[1.3vw] border-b-2 border-red-500 pb-1"
+                className="whitespace-nowrap font-sharetech text-[18px] sm:text-[22px] md:text-[1.3vw] border-b-2 border-red-500 pb-1 md:pb-1 tracking-wider"
               >
                 BURGERS
               </a>
-              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 WRAPS
               </a>
-              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 RICE BOWLS
               </a>
-              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 WINGS AND TENDERS
               </a>
-              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 GRIILLED
               </a>
-              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 MEAL BOX
               </a>
             </div>
@@ -215,34 +207,34 @@ export default function BurgerCarouselFinal() {
 
         {/* BURGER STAGE */}
         <div
-          className="relative w-full overflow-hidden flex items-center justify-center"
+          className="relative w-full overflow-hidden flex items-center justify-center mt-0 md:mt-0"
           style={{ height: "clamp(260px, 48vw, 500px)" }}
         >
           {/* NAVIGATION ARROWS IN IMAGE CONTAINER */}
           <button
             onClick={goPrev}
-            className="absolute left-[2vw] md:left-[6vw] top-1/2 -translate-y-1/2 z-30"
+            className="absolute left-[2vw] sm:left-[4vw] md:left-[6vw] top-1/2 -translate-y-1/2 z-30 p-[2vw] md:p-0"
             disabled={isAnimating}
             style={{
               cursor: isAnimating ? "wait" : "pointer",
-              opacity: isAnimating ? 0.5 : 1,
+              opacity: isAnimating ? 0.3 : 0.8,
               transition: "opacity 0.2s",
             }}
           >
-            <FiChevronLeft className="text-[40px] md:text-[50px] w-[1em] h-[1em]" color="#ffffff" />
+            <FiChevronLeft className="text-[35px] sm:text-[45px] md:text-[50px] w-[1.2em] h-[1.2em]" color="#ffffff" />
           </button>
 
           <button
             onClick={goNext}
-            className="absolute right-[2vw] md:right-[6vw] top-1/2 -translate-y-1/2 z-30"
+            className="absolute right-[2vw] sm:right-[4vw] md:right-[6vw] top-1/2 -translate-y-1/2 z-30 p-[2vw] md:p-0"
             disabled={isAnimating}
             style={{
               cursor: isAnimating ? "wait" : "pointer",
-              opacity: isAnimating ? 0.5 : 1,
+              opacity: isAnimating ? 0.3 : 0.8,
               transition: "opacity 0.2s",
             }}
           >
-            <FiChevronRight className="text-[40px] md:text-[50px] w-[1em] h-[1em]" color="#ffffff" />
+            <FiChevronRight className="text-[35px] sm:text-[45px] md:text-[50px] w-[1.2em] h-[1.2em]" color="#ffffff" />
           </button>
 
           {/* SVG Drop Shadow */}
@@ -307,7 +299,7 @@ export default function BurgerCarouselFinal() {
                     width: "clamp(220px, 45vw, 520px)",
                     display: "block",
                     filter: isCenter
-                      ? "drop-shadow(0 30px 80px rgba(0,0,0,0.6))"
+                      ? "drop-shadow(0 5px 15px rgba(0,0,0,0.3))"
                       : "none",
                     transition: "filter .4s ease",
                     userSelect: "none",
@@ -319,14 +311,15 @@ export default function BurgerCarouselFinal() {
         </div>
 
         {/* SLIDING INDICATOR */}
-        <div className="flex gap-3 mt-0 md:mt-2">
+        <div className="flex gap-[4vw] md:gap-3 mt-2 md:mt-2">
           {BURGERS.map((_, i) => (
             <div
               key={i}
               style={{
                 height: "6px",
-                width: i === carousel.center ? "36px" : "10px",
-                background: i === carousel.center ? "#e8b800" : "#333",
+                width: i === carousel.center ? "10vw" : "3vw",
+                maxWidth: i === carousel.center ? "36px" : "10px",
+                background: i === carousel.center ? "#e8b800" : "#444",
                 borderRadius: "999px",
                 transition: "all .4s cubic-bezier(.22,1,.36,1)",
               }}
@@ -335,15 +328,16 @@ export default function BurgerCarouselFinal() {
         </div>
 
         {/* TITLE */}
-        <div className="w-full flex items-center justify-center relative pb-0 md:pb-4 md:pt-2">
+        <div className="w-full flex items-center justify-center relative pb-2 md:pb-4 pt-2 md:pt-2">
           <h1
-            className="uppercase text-white text-center"
+            className="uppercase text-white text-center font-black"
             style={{
               fontFamily: "var(--font-peakers)",
-              fontSize: "clamp(1.8rem, 7.5vw, 6rem)",
+              fontSize: "clamp(2.5rem, 11vw, 6rem)",
               fontWeight: 900,
-              letterSpacing: "0.04em",
+              letterSpacing: "0.05em",
               lineHeight: "1.1",
+              textShadow: "0px 2px 6px rgba(0,0,0,0.4)",
             }}
           >
             {BURGERS[carousel.center].name}

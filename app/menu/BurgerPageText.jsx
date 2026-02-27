@@ -125,10 +125,10 @@ export default function BurgerPageText({
         {/* Sodium */}
         <div className="min-w-[105px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
           <div className="text-[#575750] font-mono text-[2.5vw] md:text-[.8vw] uppercase mb-1 tracking-wide font-bold pt-0.5">
-            Peackers Rating
+            Protein and Energy
           </div>
           <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
-            9/10
+            25g Protein | 760 Kcal
           </div>
         </div>
         {/* Allergens */}

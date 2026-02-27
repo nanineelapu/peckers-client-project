@@ -16,7 +16,7 @@ const page = () => {
         {/* Logo Section */}
         <div className="flex-1 flex items-center z-50">
           <a href="home">
-            <svg width="240" height="82" viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[180px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
               <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
               <defs>
                 <pattern id="pattern0_1_243" patternContentUnits="objectBoundingBox" width="1" height="1">

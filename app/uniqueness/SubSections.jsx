@@ -88,7 +88,6 @@ const SubSections = () => {
                     d={svgPaths[index]} fill="white"
                   />
                 </svg>
-
                 <p className={`text-[#9CA3AF] font-normal w-full max-w-[90vw] md:max-w-[38vw] text-[4.2vw] leading-[6vw] ${index === 4 ? 'md:text-[1.55vw] md:leading-[2.5vw]' : 'md:text-[1.4vw] md:leading-[2.2vw]'} pb-[6vw] md:pb-[2vw] ${index === 7 ? 'mt-[2vw] md:mt-[-2vw]' : 'mt-[5vw]'} ${index === 1 ? 'md:mt-[4vw]' : index === 3 ? 'md:mt-[-3.5vw]' : index !== 7 ? 'md:mt-0' : ''}`}>
 
                   {index === 0 ? (

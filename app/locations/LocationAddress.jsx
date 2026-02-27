@@ -62,8 +62,13 @@ export default function LocationAddress() {
 
                     {/* DEtails of Map  */}
                     <div
-                        className="h-[40vh] md:h-[58vh] w-full md:w-[50%] rounded-[2vw] md:rounded-[0.6vw] bg-[#1111] flex items-center justify-center mt-[4vw] md:mt-0"
-                        style={{ border: '1px solid #333' }}
+                        className="h-[40vh] md:h-[58vh] w-full md:w-[50%] rounded-[2vw] md:rounded-[0.6vw] flex items-center justify-center mt-[4vw] md:mt-0"
+                        style={{
+                            border: '1px solid #333',
+                            backgroundImage: "url('https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Screenshot%202026-02-28%20004028.png')",
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }}
                     >
                         <a
                             href="https://maps.google.com/?q=21-23+Market+Pl,+Hitchin+SG5+1DT"
