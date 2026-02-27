@@ -39,7 +39,7 @@ const OurStoryFooter = () => {
                 <div className="flex flex-col items-center md:items-start w-full md:w-1/4 mb-[6vw] md:mb-0">
                     <div className="flex items-center mb-[4vw] md:mb-0">
                         <img
-                            src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201.png"
+                            src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201%20%282%29.webp"
                             alt="Peckers Logo"
                             className="w-[50vw] md:w-[16vw] h-auto object-contain mr-0 md:mr-3"
                         />
