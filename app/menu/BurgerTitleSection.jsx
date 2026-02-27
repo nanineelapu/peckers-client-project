@@ -19,8 +19,8 @@ const DropShadowSVG = () => (
       transform: "translate(-50%, -60%)",
       pointerEvents: "none",
       zIndex: 0,
-      width: "clamp(350px, 50vw, 760px)",
-      height: "clamp(350px, 50vw, 760px)",
+      width: "clamp(250px, 50vw, 760px)",
+      height: "clamp(250px, 50vw, 760px)",
       mixBlendMode: "screen",
     }}
     aria-hidden="true"
@@ -169,9 +169,8 @@ export default function BurgerCarouselFinal() {
         onComplete={() => setPreloaderDone(true)}
       />
       <div
-        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[12vh]"
+        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[4vh] md:pt-[1vh] min-h-0 md:min-h-screen pb-[2vh] md:pb-0"
         style={{
-          minHeight: "100vh",
           background:
             "radial-gradient(ellipse 50% 52% at 50% 38%, #222222 0%, #111111 26%, #090909 58%, #000 100%)",
           opacity: preloaderDone ? 1 : 0,
@@ -179,34 +178,35 @@ export default function BurgerCarouselFinal() {
         }}
       >
         {/* SUB-NAV */}
-        <div>
+        <div className="w-full">
           <nav
             className="subnavbar"
-            style={{ paddingTop: "1.5vw", color: "white" }}
+            style={{ color: "white" }}
           >
+            <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
             <div
-              className="flex font-['Share_Tech'] gap-[3.4vw] justify-center items-center"
-              style={{ fontFamily: "var(--font-peakers)" }}
+              className="flex font-['Share_Tech'] gap-[6vw] md:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] md:px-0 pt-[4vw] md:pt-[1.5vw]"
+              style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               <a
                 href="#"
-                className="whitespace-nowrap font-sharetech text-[1.3vw] border-b-2 border-red-500 pb-1"
+                className="whitespace-nowrap font-sharetech text-[16px] md:text-[1.3vw] border-b-2 border-red-500 pb-1"
               >
                 BURGERS
               </a>
-              <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
                 WRAPS
               </a>
-              <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
                 RICE BOWLS
               </a>
-              <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
                 WINGS AND TENDERS
               </a>
-              <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
                 GRIILLED
               </a>
-              <a href="#" className="whitespace-nowrap text-[1.4vw] pb-2">
+              <a href="#" className="whitespace-nowrap text-[15px] md:text-[1.4vw] pb-2">
                 MEAL BOX
               </a>
             </div>
@@ -216,7 +216,7 @@ export default function BurgerCarouselFinal() {
         {/* BURGER STAGE */}
         <div
           className="relative w-full overflow-hidden"
-          style={{ height: "clamp(320px, 54vw, 560px)" }}
+          style={{ height: "clamp(260px, 54vw, 560px)" }}
         >
           {/* SVG Drop Shadow */}
           <div
@@ -227,8 +227,8 @@ export default function BurgerCarouselFinal() {
               transform: "translate(-50%, -33%)",
               zIndex: 1,
               pointerEvents: "none",
-              width: "clamp(450px, 55vw, 780px)",
-              height: "clamp(450px, 55vw, 780px)",
+              width: "clamp(300px, 55vw, 780px)",
+              height: "clamp(300px, 55vw, 780px)",
             }}
             aria-hidden="true"
           >
@@ -277,7 +277,7 @@ export default function BurgerCarouselFinal() {
                   alt={burger.name}
                   draggable={false}
                   style={{
-                    width: "clamp(270px, 40vw, 520px)",
+                    width: "clamp(220px, 45vw, 520px)",
                     display: "block",
                     filter: isCenter
                       ? "drop-shadow(0 30px 80px rgba(0,0,0,0.6))"
@@ -320,16 +320,17 @@ export default function BurgerCarouselFinal() {
               transition: "opacity 0.2s",
             }}
           >
-            <FiChevronLeft size={38} color="#888" />
+            <FiChevronLeft className="text-[32px] md:text-[38px] w-[1em] h-[1em]" color="#888" />
           </button>
 
           <h1
-            className="uppercase text-white text-center"
+            className="uppercase text-white text-center px-[12vw] md:px-0"
             style={{
               fontFamily: "var(--font-peakers)",
-              fontSize: "clamp(2.2rem, 7.5vw, 6rem)",
+              fontSize: "clamp(1.8rem, 7.5vw, 6rem)",
               fontWeight: 900,
               letterSpacing: "0.04em",
+              lineHeight: "1.1",
             }}
           >
             {BURGERS[carousel.center].name}
@@ -345,7 +346,7 @@ export default function BurgerCarouselFinal() {
               transition: "opacity 0.2s",
             }}
           >
-            <FiChevronRight size={38} color="#888" />
+            <FiChevronRight className="text-[32px] md:text-[38px] w-[1em] h-[1em]" color="#888" />
           </button>
         </div>
       </div>

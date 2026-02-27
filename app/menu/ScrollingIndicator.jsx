@@ -29,16 +29,14 @@ export default function ScrollIndicator() {
   }, []);
 
   return (
-    <div className="fixed bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-50">
+    <div className="fixed bottom-[6vw] md:bottom-10 left-1/2 -translate-x-1/2 flex gap-[2vw] md:gap-3 z-50">
       {[0, 1, 2, 3, 4].map((i) => (
         <div
           key={i}
-          className="h-[6px] rounded-full transition-all duration-500"
-          style={{
-            width: i === active ? "36px" : "10px",
-            background:
-              i === active ? "#e8b800" : "#333",
-          }}
+          className={`rounded-full transition-all duration-500 h-[4px] md:h-[6px] ${i === active
+            ? "w-[8vw] md:w-[36px] bg-[#e8b800]"
+            : "w-[2.5vw] md:w-[10px] bg-[#333]"
+            }`}
         />
       ))}
     </div>
