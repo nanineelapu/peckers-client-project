@@ -43,7 +43,7 @@ const SubSections = () => {
         return (
           <section
             key={num}
-            className={`w-full h-auto ${index === 1 ? 'md:h-[150vh]' : 'md:h-[116vh]'} flex flex-col md:${isAlternate ? "flex-row-reverse" : "flex-row"
+            className={`w-full h-auto ${index === 1 ? 'md:h-[150vh]' : 'md:h-[116vh]'} flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
               } bg-black`}
           >
             {/* IMAGE SECTION */}

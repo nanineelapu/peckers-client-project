@@ -17,8 +17,6 @@ const page = () => {
   return (
 
     <div id="main-content" >
-
-
       {/* Navbar */}
       <nav className="relative flex items-center px-[1.8vw] py-[.4vw] bg-black text-white font-['Share_Tech']">
 
@@ -101,11 +99,6 @@ const page = () => {
           </div>
         </div>
       </nav>
-
-
-
-
-
       <section>
         <div className="w-full h-[7vh] md:h-[10vh] flex items-center justify-center bg-white border-y-[3px] border-black overflow-hidden">
           <span

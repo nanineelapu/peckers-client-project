@@ -56,7 +56,6 @@ export default function Preloader({ onComplete = () => { } }) {
         transformOrigin: "50% 60vh",
       });
     }
-
     // Remove text rise animation - jump directly to positioned state
     gsap.set(textRef.current, {
       letterSpacing: "0.4em",
