@@ -11,12 +11,12 @@ const page = () => {
     return (
         <div id="main-content" className='z-9999' style={{ color: 'white' }}>
 
-            <nav className="relative flex items-center px-[1.8vw] py-[.4vw] bg-black text-white font-['Share_Tech']">
+            <nav className="relative flex items-center px-4 py-4 md:px-[1.8vw] md:py-[.4vw] bg-black text-white font-['Share_Tech']">
 
                 {/* Logo Section */}
                 <div className="flex-1 flex items-center z-50">
                     <a href="home">
-                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[180px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
+                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
                             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
                             <defs>
                                 <pattern id="pattern0_1_243" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -57,7 +57,7 @@ const page = () => {
 
                 {/* Hamburger Button (Mobile Only) */}
                 <div className="md:hidden z-50">
-                    <button onClick={() => setOpen(!open)} className="text-2xl">
+                    <button onClick={() => setOpen(!open)} className="text-3xl">
                         ☰
                     </button>
                 </div>
@@ -93,7 +93,8 @@ const page = () => {
                 </div>
             </nav>
 
-            <div className="w-full flex flex-col items-center justify-center" style={{ background: "#bbbbbb", minHeight: "70vh" }}>
+            <div
+                className="w-full flex flex-col items-center justify-center" style={{ background: "#bbbbbb", minHeight: "70vh" }}>
                 <div className="text-white text-[10vw] font-bold leading-tight" style={{ fontFamily: "var(--font-peakers)", letterSpacing: '0.1em', }}>
                     HITCHIN
                 </div>
@@ -102,9 +103,13 @@ const page = () => {
                 </div>
             </div>
 
-            <LocationAddress />
+            <div>
+                <LocationAddress />
+            </div>
 
-            <section id='history'>
+            <section
+                id='history'
+            >
                 <div className="flex flex-col items-center mt-[12vw] md:mt-[6vw] justify-center w-full pt-[8vw] md:pt-[2vw] pb-[12vw] md:pb-[4vw] bg-[#0A0A0B]">
                     <div className="flex flex-col items-center w-[90vw] md:w-[80vw]">
                         {/* History Title, Logo, EST */}
@@ -167,12 +172,18 @@ const page = () => {
                 </div>
             </section>
 
-            <EnquiriesSection />
-            <LocationFooter />
+            <div>
+                <EnquiriesSection />
+            </div>
+
+            <div>
+                <LocationFooter />
+            </div>
 
             {/* Boring Stuff */}
 
-            <div className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
+            <div
+                className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
                 <div className="mb-1 md:mb-0 text-center md:text-left">
                     © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.
                 </div>
@@ -199,7 +210,9 @@ const page = () => {
 
             {/* Final bottom logo 
      */}
-            <div className="flex-1 flex items-center">
+            <div
+                className="flex-1 flex items-center"
+            >
 
                 <div className="w-full flex justify-center items-center py-8 bg-[#000]">
                     <img
@@ -217,7 +230,7 @@ const page = () => {
 
 
 
-        </div>
+        </div >
     )
 }
 

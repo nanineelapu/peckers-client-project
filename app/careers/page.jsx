@@ -8,13 +8,13 @@ const page = () => {
     return (
 
         <div id="main-content">
-            <nav className="flex items-center px-[1.8vw] py-[.4vw] bg-black text-white font-['Share_Tech']">
+            <nav className="flex items-center px-4 py-4 md:px-[1.8vw] md:py-[.4vw] bg-black text-white font-['Share_Tech']">
 
                 {/* Logo Section */}
                 <div className="flex-1 flex items-center">
 
                     <a href="home">
-                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[180px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
+                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
                             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
                             <defs>
                                 <pattern id="pattern0_1_243" patternContentUnits="objectBoundingBox" width="1" height="1">
