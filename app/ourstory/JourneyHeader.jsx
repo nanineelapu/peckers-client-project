@@ -15,13 +15,11 @@ export default function JourneyIntroSection() {
             </p>
 
             {/* Card - moved above the image */}
-            <div className="w-full relative flex flex-col items-end">
-                <div className="z-10  mx-auto w-[17.5vw] h-[11vw] mt-[24.2vw] mr-[10vw] mb-[-6vw] rounded-[.7vw] border border-dashed border-[#cab53d] px-[3vw] py-[2vw] flex flex-col items-center gap-[.8vw] bg-black/95 absolute">
+            <div className="w-full relative flex flex-col items-center md:items-end mt-[10vw] md:mt-0">
+                <div className="z-10 relative md:absolute mx-auto md:mx-0 w-[80vw] md:w-[17.5vw] h-[55vw] md:h-[11vw] mt-0 md:mt-[24.2vw] mr-auto md:mr-[10vw] mb-[-4vw] md:mb-[-6vw] rounded-[3vw] md:rounded-[.7vw] border-[0.4vw] md:border border-dashed border-[#cab53d] px-[6vw] md:px-[3vw] py-[8vw] md:py-[2vw] flex flex-col items-center gap-[4vw] md:gap-[.8vw] bg-black/95">
                     {/* Corner Dots */}
                     <svg
-                        className="absolute top-[0.5vw] left-[0.5vw]"
-                        width="0.7vw"
-                        height="0.7vw"
+                        className="absolute top-[3vw] left-[3vw] md:top-[0.5vw] md:left-[0.5vw] w-[2vw] h-[2vw] md:w-[0.7vw] md:h-[0.7vw]"
                         viewBox="0 0 9 9"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +45,7 @@ export default function JourneyIntroSection() {
                         </defs>
                     </svg>
                     <svg
-                        className="absolute top-[0.5vw] right-[0.5vw]"
-                        width="0.7vw"
-                        height="0.7vw"
+                        className="absolute top-[3vw] right-[3vw] md:top-[0.5vw] md:right-[0.5vw] w-[2vw] h-[2vw] md:w-[0.7vw] md:h-[0.7vw]"
                         viewBox="0 0 9 9"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +71,7 @@ export default function JourneyIntroSection() {
                         </defs>
                     </svg>
                     <svg
-                        className="absolute bottom-[0.5vw] left-[0.5vw]"
-                        width="0.7vw"
-                        height="0.7vw"
+                        className="absolute bottom-[3vw] left-[3vw] md:bottom-[0.5vw] md:left-[0.5vw] w-[2vw] h-[2vw] md:w-[0.7vw] md:h-[0.7vw]"
                         viewBox="0 0 9 9"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -103,9 +97,7 @@ export default function JourneyIntroSection() {
                         </defs>
                     </svg>
                     <svg
-                        className="absolute bottom-[0.5vw] right-[0.5vw]"
-                        width="0.7vw"
-                        height="0.7vw"
+                        className="absolute bottom-[3vw] right-[3vw] md:bottom-[0.5vw] md:right-[0.5vw] w-[2vw] h-[2vw] md:w-[0.7vw] md:h-[0.7vw]"
                         viewBox="0 0 9 9"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +124,7 @@ export default function JourneyIntroSection() {
                     </svg>
 
                     {/* Heading */}
-                    <h2 className="text-[1.5vw]  text-white font-peakers tracking-wide">
+                    <h2 className="text-[6vw] md:text-[1.5vw] text-white font-peakers tracking-wide">
                         WHERE NEXT ?
                     </h2>
 
@@ -140,22 +132,24 @@ export default function JourneyIntroSection() {
                     <input
                         type="text"
                         placeholder="Suggest a city..."
-                        className="w-[15vw] py-[.6vw] bg-black border border-[#2a2f3a] font-mono text-[0.7vw] text-white placeholder:text-white/40 px-[0.9vw] focus:outline-none"
+                        className="w-[65vw] md:w-[15vw] py-[2vw] md:py-[.6vw] bg-black border border-[#2a2f3a] font-mono text-[4vw] md:text-[0.7vw] text-white placeholder:text-white/40 px-[3vw] md:px-[0.9vw] focus:outline-none"
                     />
 
                     {/* Button */}
-                    <button className="w-[11vw] h-[2vw] border-[0.15vw] font-mono text-white border-white rounded-[.6vw] text-[0.9vw] tracking-[0.1vw] hover:bg-white hover:text-black transition-all duration-300">
+                    <button className="w-[45vw] md:w-[11vw] h-[10vw] md:h-[2vw] border-[0.4vw] md:border-[0.15vw] font-mono text-white border-white rounded-[2vw] md:rounded-[.6vw] text-[4vw] md:text-[0.9vw] tracking-[0.2vw] md:tracking-[0.1vw] hover:bg-white hover:text-black transition-all duration-300">
                         SUBMIT
                     </button>
 
                 </div>
 
                 {/* Image below card */}
-                <img
-                    src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/OurStory/Jouney%20Our%20Story.webp"
-                    alt="The Peckers Journey"
-                    className="w-full object-cover z-0"
-                />
+                <div className="w-full h-[50vh] md:h-auto overflow-hidden">
+                    <img
+                        src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/OurStory/Jouney%20Our%20Story.webp"
+                        alt="The Peckers Journey"
+                        className="w-full h-full object-cover md:h-auto z-0"
+                    />
+                </div>
             </div>
         </section>
     );

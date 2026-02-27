@@ -57,12 +57,12 @@ const FooterAni = () => {
             {socialButtons.map((data) => (
               <button
                 key={data.label}
-                className="w-[12vw] h-[12vw] md:w-11 md:h-11 bg-[#161616] flex items-center justify-center rounded-[2vw] md:rounded transition-all duration-200 hover:scale-110 hover:bg-[#232323] hover:shadow-[0_4px_28px_0_rgba(196,23,24,0.12)]"
+                className="w-[10vw] h-[10vw] md:w-11 md:h-11 bg-[#161616] flex items-center justify-center rounded-[2vw] md:rounded transition-all duration-200 hover:scale-110 hover:bg-[#232323] hover:shadow-[0_4px_28px_0_rgba(196,23,24,0.12)]"
                 aria-label={data.label}
                 tabIndex={0}
                 type="button"
               >
-                <div className="scale-[1.5] md:scale-100 flex items-center justify-center w-full h-full">
+                <div className="scale-[1.2] md:scale-100 flex items-center justify-center w-full h-full">
                   {data.svg}
                 </div>
               </button>
