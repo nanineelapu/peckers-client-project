@@ -4,12 +4,12 @@ export default function JourneyIntroSection() {
         <section className="w-full bg-black py-[5vw] flex flex-col items-center text-center">
 
             {/* Main Heading */}
-            <h2 className="text-[3.35vw] font-peakers text-white leading-none font-bold tracking-tight mb-[2vw]">
+            <h2 className="text-[8vw] md:text-[3.35vw] font-peakers text-white leading-none font-bold tracking-tight mb-[4vw] md:mb-[2vw]">
                 THE PECKERS JOURNEY
             </h2>
 
             {/* Subtitle */}
-            <p className="text-[1vw] font-peakers text-[#FFD700] tracking-[0.35vw] leading-[1.4] max-w-[60vw]">
+            <p className="text-[3vw] md:text-[1vw] font-peakers text-[#FFD700] tracking-[1vw] md:tracking-[0.35vw] leading-[1.4] max-w-[90vw] md:max-w-[60vw]">
                 FROM ONE STORE TO GROWING COMMUNITY BRAND <br />
                 - THE JOURNEY CONTINUES
             </p>

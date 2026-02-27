@@ -1,17 +1,20 @@
-import React from 'react'
+"use client";
+
+import React, { useState } from 'react'
 import EnquiriesSection from './EnquireSection'
 import LocationFooter from './LocationFooter'
 import LocationAddress from './LocationAddress'
 
 const page = () => {
+    const [open, setOpen] = useState(false);
+
     return (
         <div id="main-content" className='z-9999' style={{ color: 'white' }}>
 
-            <nav className="absolute top-0 left-0 w-full z-50 flex items-center px-[1.8vw] py-[.6vw] bg-black text-white font-['Share_Tech']">
+            <nav className="relative flex items-center px-[1.8vw] py-[.4vw] bg-black text-white font-['Share_Tech']">
 
                 {/* Logo Section */}
-                <div className="flex-1 flex items-center">
-
+                <div className="flex-1 flex items-center z-50">
                     <a href="home">
                         <svg width="240" height="82" viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
@@ -26,40 +29,67 @@ const page = () => {
                     </a>
                 </div>
 
-
-                {/* Center Links */}
-                <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
-                    <a href="menu" className="whitespace-nowrap cursor-pointer">
-                        MENU
-                    </a>
-                    <a href="locations" className="whitespace-nowrap">
-                        LOCATIONS
-                    </a>
-                    <a href="ourstory" className="whitespace-nowrap">
-                        OUR STORY
-                    </a>
-                    <a href="uniqueness" className="whitespace-nowrap">
-                        UNIQUENESS
-                    </a>
-                    <a href="careers" className="whitespace-nowrap">
-                        CAREERS
-                    </a>
+                {/* Desktop Center Links */}
+                <div
+                    className="hidden md:flex flex-1 text-[1.5vw] justify-center tracking-[.2vw] font-semibold gap-[2.7vw]"
+                    style={{ fontFamily: "var(--font-peakers)" }}
+                >
+                    <a href="menu" className="whitespace-nowrap">MENU</a>
+                    <a href="locations" className="whitespace-nowrap">LOCATIONS</a>
+                    <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
+                    <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
+                    <a href="#">CAREERS</a>
                 </div>
 
-                {/* Buttons Section */}
-                <div className="flex-1 flex justify-end gap-[1vw]">
-                    <button className="border-[0.15vw] font-mono border-white px-[1.6vw] py-[.5vw] rounded-[0.95vw] text-[.9vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
+                {/* Desktop Buttons */}
+                <div
+                    className="hidden md:flex flex-1 justify-end gap-[1.2vw]"
+                    style={{ fontFamily: "monospace" }}
+                >
+                    <button className="border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
                         CLICK & COLLECT
                     </button>
 
-                    <button className="flex items-center gap-2 border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}>
-                        <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M13.5527 3.375C15.3984 3.40137 16.9014 4.9043 16.9277 6.72363C16.9277 8.62207 15.3984 10.1514 13.5 10.125C11.6807 10.125 10.1777 8.62207 10.1777 6.77637C10.1514 5.74805 10.626 4.8252 11.3379 4.19238L11.0215 3.63867C9.99316 4.48242 9.49219 5.69531 9.54492 6.93457C9.54492 7.30371 9.25488 7.59375 8.91211 7.59375H6.69727C6.30176 9.07031 4.9834 10.125 3.42773 10.125C1.5293 10.125 0 8.5957 0.0527344 6.6709C0.0791016 4.9043 1.50293 3.4541 3.2959 3.40137C3.66504 3.375 4.03418 3.42773 4.37695 3.5332L4.66699 2.97949C4.42969 2.61035 4.06055 2.32031 3.42773 2.32031H1.95117C1.58203 2.32031 1.31836 2.05664 1.31836 1.71387C1.29199 1.34473 1.6084 1.05469 1.95117 1.05469H3.42773C4.87793 1.05469 5.58984 1.50293 6.03809 2.10938H10.0986L9.59766 1.26562H7.85742C7.62012 1.26562 7.43555 1.08105 7.43555 0.84375V0.421875C7.43555 0.210938 7.62012 0 7.85742 0H9.9668C10.1777 0 10.3887 0.131836 10.4941 0.316406L11.1006 1.31836L12.0762 0.210938C12.208 0.0791016 12.3662 0 12.5508 0H13.7637C14.1064 0 14.3965 0.290039 14.3965 0.632812V1.47656C14.3965 1.8457 14.1064 2.10938 13.7637 2.10938H11.5752L12.4453 3.55957C12.7881 3.4541 13.1836 3.375 13.5527 3.375ZM3.42773 8.85938C4.27148 8.85938 5.00977 8.3584 5.35254 7.59375H3.2168C2.71582 7.59375 2.42578 7.09277 2.66309 6.6709L3.74414 4.66699C3.63867 4.66699 3.5332 4.64062 3.42773 4.64062C2.24121 4.64062 1.31836 5.58984 1.31836 6.75C1.31836 7.93652 2.24121 8.85938 3.42773 8.85938ZM15.6357 6.88184C15.7148 5.66895 14.7393 4.64062 13.5527 4.66699C13.3945 4.66699 13.2627 4.66699 13.1309 4.69336L14.3965 6.8291C14.5283 7.04004 14.4492 7.30371 14.2646 7.40918L13.8955 7.62012C13.6846 7.75195 13.4473 7.67285 13.3154 7.48828L12.0234 5.2998C11.6543 5.69531 11.4434 6.19629 11.4434 6.75C11.4434 7.96289 12.4453 8.93848 13.6582 8.85938C14.7129 8.80664 15.583 7.93652 15.6357 6.88184Z"
-                                fill="white" />
-                        </svg>
+                    <button className="flex items-center gap-2 border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
                         DELIVERY
                     </button>
+                </div>
+
+                {/* Hamburger Button (Mobile Only) */}
+                <div className="md:hidden z-50">
+                    <button onClick={() => setOpen(!open)} className="text-2xl">
+                        ☰
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                <div
+                    className={`absolute left-0 w-full bg-black flex flex-col items-center justify-start text-xl tracking-wider transition-all duration-500 ease-in-out overflow-hidden md:hidden z-40`}
+                    style={{
+                        fontFamily: "var(--font-peakers)",
+                        top: "100%",
+                        maxHeight: open ? "600px" : "0px",
+                        opacity: open ? 1 : 0,
+                        paddingTop: open ? "2.5rem" : "0px",
+                        paddingBottom: open ? "2.5rem" : "0px"
+                    }}
+                >
+                    <div className="flex flex-col items-center gap-8 w-full">
+                        <a href="menu" onClick={() => setOpen(false)}>MENU</a>
+                        <a href="locations" onClick={() => setOpen(false)}>LOCATIONS</a>
+                        <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
+                        <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
+                        <a href="#" onClick={() => setOpen(false)}>CAREERS</a>
+
+                        <div className="flex flex-col gap-4 mt-2 w-3/4">
+                            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
+                                CLICK & COLLECT
+                            </button>
+                            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
+                                DELIVERY
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </nav>
 
@@ -75,13 +105,12 @@ const page = () => {
             <LocationAddress />
 
             <section id='history'>
-                <div className="flex flex-col items-center mt-[6vw] justify-center w-full  pt-[2vw] pb-[4vw] bg-[#0A0A0B]">
-                    <div className="flex flex-col items-center w-[80vw]">
+                <div className="flex flex-col items-center mt-[12vw] md:mt-[6vw] justify-center w-full pt-[8vw] md:pt-[2vw] pb-[12vw] md:pb-[4vw] bg-[#0A0A0B]">
+                    <div className="flex flex-col items-center w-[90vw] md:w-[80vw]">
                         {/* History Title, Logo, EST */}
-                        <div className="flex flex-row  items-center mb-[1.6vw] mr-[16vw]">
+                        <div className="flex flex-col md:flex-row items-center mb-[6vw] md:mb-[1.6vw] mr-0 md:mr-[16vw] relative w-full justify-center">
                             <div
-                                className="relative w-[10vw] h-[10vw] flex items-center justify-center mb-[0.8vw]"
-                                style={{ alignSelf: 'flex-start', marginRight: '44vw' }}
+                                className="relative w-[30vw] h-[30vw] md:w-[10vw] md:h-[10vw] flex items-center justify-center mb-[4vw] md:mb-[0.8vw] self-center md:self-start mr-0 md:mr-[44vw]"
                             >
                                 <img
                                     src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Location%20logo%20png.webp"
@@ -96,36 +125,36 @@ const page = () => {
                                     }}
                                 />
                             </div>
-                            <div className="flex absolute flex-col items-center ml-[28vw] mt-[2vw]">
-                                <div className="flex items-center mb-[0.3vw]">
+                            <div className="flex md:absolute flex-col items-center ml-0 md:ml-[28vw] mt-0 md:mt-[2vw]">
+                                <div className="flex items-center mb-[2vw] md:mb-[0.3vw]">
                                     <span
-                                        className="h-[1.2px] w-[3vw] bg-[#555] opacity-70 mr-[1vw]"
+                                        className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 mr-[2vw] md:mr-[1vw]"
                                         aria-hidden="true"
                                     ></span>
                                     <span
-                                        className="text-[#888] text-[0.95vw] tracking-[0.22em] font-mono"
+                                        className="text-[#888] text-[3.5vw] md:text-[0.95vw] tracking-[0.22em] font-mono"
                                         style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
                                     >
                                         EST. 2023
                                     </span>
                                     <span
-                                        className="h-[1.2px] w-[3vw] bg-[#555] opacity-70 ml-[1vw]"
+                                        className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 ml-[2vw] md:ml-[1vw]"
                                         aria-hidden="true"
                                     ></span>
                                 </div>
                                 <h2
-                                    className="font-bold text-[4.5vw] font-peakers text-[#fff] mt-[0.2vw] tracking-[0.05em]"
+                                    className="font-bold text-[12vw] md:text-[4.5vw] font-peakers text-[#fff] mt-[1vw] md:mt-[0.2vw] tracking-[0.05em]"
                                 >
                                     HISTORY
                                 </h2>
                             </div>
                         </div>
                         {/* History Details */}
-                        <div className="w-full flex justify-center">
+                        <div className="w-full flex justify-center mt-[4vw] md:mt-0">
                             <p
                                 className="text-[#e3e3e5]/70 text-center font-extralight 
-               leading-[1.6] text-[1vw] 
-               max-w-[70vw] 
+               leading-[1.6] text-[4vw] md:text-[1vw] 
+               max-w-[90vw] md:max-w-[70vw] 
                font-mono"
                             >
                                 Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
@@ -143,13 +172,13 @@ const page = () => {
 
             {/* Boring Stuff */}
 
-            <div className="w-full bg-black text-[#586676] text-[0.8vw] tracking-tight font-mono px-[1vw] py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515]">
-                <div className="mb-1 md:mb-0">
+            <div className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
+                <div className="mb-1 md:mb-0 text-center md:text-left">
                     © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.
                 </div>
 
 
-                <div className="text-[0.8vw] flex flex-row flex-wrap items-center space-x-2 px-4">
+                <div className="text-[10px] md:text-[0.8vw] flex flex-row flex-wrap justify-center items-center space-x-2 px-4">
                     <span>Designed and Developed By Webcros</span>
                     <svg
                         width="10"
@@ -181,7 +210,6 @@ const page = () => {
                     />
                 </div>
             </div>
-
 
 
 
