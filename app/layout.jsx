@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} antialiased w-full max-w-[100vw] overflow-x-clip`}
       >
         <ClientWrapper>
           {children}

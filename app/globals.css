@@ -6,15 +6,37 @@
   --foreground: #000;
 }
 
-html,
+html, 
 body {
   scroll-behavior: auto;
+  position: relative;
   /* Hide native scrollbar — Lenis handles all scrolling */
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
   /* IE / Edge */
 }
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
