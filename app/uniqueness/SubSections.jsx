@@ -43,11 +43,11 @@ const SubSections = () => {
         return (
           <section
             key={num}
-            className={`w-full ${index === 1 ? 'h-[150vh]' : 'h-[116vh]'} flex bg-black ${isAlternate ? "flex-row-reverse" : "flex-row"
-              }`}
+            className={`w-full h-auto ${index === 1 ? 'md:h-[150vh]' : 'md:h-[116vh]'} flex flex-col md:${isAlternate ? "flex-row-reverse" : "flex-row"
+              } bg-black`}
           >
             {/* IMAGE SECTION */}
-            <div className="w-[60%] h-full relative overflow-hidden flex items-center justify-center bg-black">
+            <div className="w-full md:w-[60%] h-[110vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black">
               <Image
                 src={
                   index === 1
@@ -68,11 +68,11 @@ const SubSections = () => {
 
             {/* CONTENT SECTION */}
             <div
-              className={`w-[40%] h-full text-white flex ${index === 1 ? 'items-start pt-[8vw]' : 'items-center'}`}
+              className={`w-full md:w-[40%] h-auto md:h-full text-white flex py-[12vw] md:py-0 ${index === 1 ? 'items-start md:pt-[8vw]' : 'items-center'}`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
-              <div className={`${index >= 5 ? 'pl-[7vw] pr-0' : 'px-[7vw]'} mb-[6vw] leading-[0vw]`}>
-                <p className={`text-[#FFD700] font-semibold ${index === 4 ? 'text-[1.1vw]' : 'text-[0.95vw]'} font-mono tracking-[0.2vw] mb-[0.5vw]`} style={{ fontFamily: "space mono" }}>
+              <div className={`px-[6vw] ${index >= 5 ? 'md:pl-[7vw] md:pr-0' : 'md:px-[7vw]'} mb-[6vw] leading-normal md:leading-[0vw] w-full`}>
+                <p className={`text-[#FFD700] font-semibold text-[3.5vw] ${index === 4 ? 'md:text-[1.1vw]' : 'md:text-[0.95vw]'} font-mono tracking-[0.8vw] md:tracking-[0.2vw] mb-[2vw] md:mb-[0.5vw]`} style={{ fontFamily: "space mono" }}>
                   {num.toString().padStart(2, "0")}
                 </p>
                 <svg
@@ -81,7 +81,7 @@ const SubSections = () => {
                   viewBox={svgSizes[index].viewBox}
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`${index === 1 ? 'mb-[2.5vw]' : index === 3 ? 'mb-0' : index === 4 ? 'mb-[1vw]' : 'mb-[0.5vw]'} w-[36vw] md:w-[32vw] lg:w-[30vw] xl:w-[27vw] ${index === 1 ? 'h-[45vh]' : index === 3 ? 'h-[50vh]' : index === 4 || index === 5 || index === 7 ? 'h-[36vh]' : 'h-[31vh]'} ${index === 4 || index === 5 ? 'mt-[4vw]' : index === 6 ? 'mt-[2vw]' : index === 7 ? 'mt-[2vw]' : index === 8 ? 'mt-[2vw]' : ''} ${index === 5 ? 'ml-[-3.4vw]' : index === 7 || index === 8 ? 'ml-[-2vw]' : index > 5 ? 'mr-[1.2vw]' : ''}`}
+                  className={`w-[88vw] md:w-[32vw] lg:w-[30vw] xl:w-[27vw] h-auto ${index === 1 ? 'mb-[6vw] md:mb-[2.5vw]' : index === 3 ? 'mb-[2vw] md:mb-0' : index === 4 ? 'mb-[4vw] md:mb-[1vw]' : 'mb-[2vw] md:mb-[0.5vw]'} ${index === 1 ? 'md:h-[45vh]' : index === 3 ? 'md:h-[50vh]' : index === 4 || index === 5 || index === 7 ? 'md:h-[36vh]' : 'md:h-[31vh]'} ${index === 4 || index === 5 ? 'mt-[6vw] md:mt-[4vw]' : index === 6 ? 'mt-[3vw] md:mt-[2vw]' : index === 7 ? 'mt-[3vw] md:mt-[2vw]' : index === 8 ? 'mt-[3vw] md:mt-[2vw]' : ''} ${index === 5 ? 'md:ml-[-3.4vw]' : index === 7 || index === 8 ? 'md:ml-[-2vw]' : index > 5 ? 'md:mr-[1.2vw]' : ''}`}
                   aria-label={index === 1 ? "FLAVOR STARTS HERE" : index === 4 ? "COVENT GARDEN SOURCED." : "THE CRUNCH MATTERS"}
                 >
                   <path
@@ -89,7 +89,7 @@ const SubSections = () => {
                   />
                 </svg>
 
-                <p className={`text-[#9CA3AF] font-normal max-w-[38vw] w-full ${index === 4 ? 'text-[1.55vw] leading-[2.5vw]' : 'text-[1.4vw] leading-[2.2vw]'} pb-[2vw] ${index === 1 ? 'mt-[4vw]' : index === 3 ? 'mt-[-3.5vw]' : ''}`}>
+                <p className={`text-[#9CA3AF] font-normal w-full max-w-[90vw] md:max-w-[38vw] text-[4.2vw] leading-[6vw] ${index === 4 ? 'md:text-[1.55vw] md:leading-[2.5vw]' : 'md:text-[1.4vw] md:leading-[2.2vw]'} pb-[6vw] md:pb-[2vw] mt-[5vw] ${index === 1 ? 'md:mt-[4vw]' : index === 3 ? 'md:mt-[-3.5vw]' : 'md:mt-0'}`}>
 
                   {index === 0 ? (
                     <>Our breading isn&apos;t an afterthought; it&apos;s hands-on artistry. We hand-coat every piece, feeling the texture and ensuring the moisture is locked deep inside while building that jagged, shattered-glass exterior.</>
@@ -150,9 +150,9 @@ const SubSections = () => {
 
                 </p>
 
-                <div className="w-[26.8vw] h-[0.04vw] absolute  bg-gray-600 mt-[2.8vw] " />
+                <div className="w-full md:w-[26.8vw] h-[1px] md:h-[0.04vw] relative md:absolute bg-gray-600 mt-[6vw] md:mt-[2.8vw] mb-[8vw] md:mb-0" />
 
-                <p className=" flex text-[0.8vw] items-center gap-[.9vw] tracking-[0.09vw] font-mono  absolute mt-[5vw]  text-gray-500" style={{ fontFamily: "space mono" }}>
+                <p className="flex text-[2.8vw] md:text-[0.8vw] items-center gap-[2vw] md:gap-[.9vw] tracking-[0.4vw] md:tracking-[0.09vw] font-mono relative md:absolute md:mt-[5vw] text-gray-500" style={{ fontFamily: "space mono" }}>
 
                   {
                     index === 0 ? (
