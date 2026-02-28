@@ -43,7 +43,7 @@ const page = () => {
                         UNIQUENESS
                     </a>
                     <a href="#" className="whitespace-nowrap">
-                        CAREERS
+                        <a href="careers">CAREERS</a>
                     </a>
                 </div>
 

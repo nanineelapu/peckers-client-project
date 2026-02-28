@@ -38,7 +38,7 @@ const page = () => {
           <a href="locations" className="whitespace-nowrap">LOCATIONS</a>
           <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
           <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
-          <a href="#">CAREERS</a>
+          <a href="careers" className="whitespace-nowrap">CAREERS</a>
         </div>
 
         {/* Desktop Buttons */}
@@ -79,7 +79,7 @@ const page = () => {
             <a href="locations" onClick={() => setOpen(false)}>LOCATIONS</a>
             <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
             <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
-            <a href="#" onClick={() => setOpen(false)}>CAREERS</a>
+            <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
 
             <div className="flex flex-col gap-4 mt-2 w-3/4">
               <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">

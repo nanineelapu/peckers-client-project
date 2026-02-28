@@ -45,7 +45,7 @@ export default function Navbar() {
           UNIQUENESS
         </Link>
         <Link href="/careers" className="whitespace-nowrap">
-          CAREERS
+          <a href="careers" className="whitespace-nowrap">CAREERS</a>
         </Link>
       </div>
 
