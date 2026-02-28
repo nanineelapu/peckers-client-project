@@ -1,16 +1,7 @@
 "use client";
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
 
 export default function RatingSectionCards() {
-  const targetRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-60%"]);
-
   const cards = [
     {
       name: "SARAH JENKINS",
@@ -45,9 +36,9 @@ export default function RatingSectionCards() {
   ];
 
   return (
-    <div ref={targetRef} className="w-full mt-[2vw] md:mt-0 mb-[2vw] md:mb-[2vw] lg:h-[250vh] relative">
+    <div className="w-full mt-[2vw] md:mt-0 mb-[2vw] md:mb-[2vw] relative">
       {/* Mobile/Tablet View: Standard stack/scroll without Framer Motion */}
-      <div className="flex lg:hidden flex-col gap-[8vw] md:gap-[3vw] px-[2vw] md:px-[1vw]">
+      <div className="flex lg:hidden flex-col gap-[8vw] md:gap-[3vw] px-[6vw] md:px-[1vw]">
         {cards.map((card, index) => (
           <div
             key={index}
@@ -95,10 +86,25 @@ export default function RatingSectionCards() {
         ))}
       </div>
 
-      {/* Laptop View: Framer Motion Horizontal Scroll */}
-      <div className="hidden lg:flex sticky top-[15vh] h-[40vh] items-center px-[-10vw] overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-[1vw] items-stretch">
-          {cards.map((card, index) => (
+      <style>{`
+        .rating-marquee {
+          display: flex;
+          width: max-content;
+          animation: rating-scroll 40s linear infinite;
+        }
+        .rating-marquee:hover {
+          animation-play-state: paused;
+        }
+        @keyframes rating-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
+      {/* Laptop View: Infinite horizontal scroll */}
+      <div className="hidden lg:block px-[2vw] overflow-hidden">
+        <div className="rating-marquee gap-[1vw] items-stretch">
+          {[...cards, ...cards].map((card, index) => (
             <div
               key={index}
               className="w-[30vw] min-w-[30vw] min-h-[12vw] h-auto bg-[#181818] rounded-[1vw] p-[2vw] flex flex-col shadow-lg border border-[#1F2937] relative shrink-0"
@@ -143,7 +149,7 @@ export default function RatingSectionCards() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

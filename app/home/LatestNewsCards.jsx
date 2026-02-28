@@ -118,9 +118,9 @@ export default function LatestNewsCards() {
       >
         <button
           onClick={goPrev}
-          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
+          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] flex items-center justify-center text-white"
         >
-          <span className="text-white text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">‹</span>
+          <span className="text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">‹</span>
         </button>
 
         {cards.map((card) => (
@@ -172,9 +172,9 @@ export default function LatestNewsCards() {
 
         <button
           onClick={goNext}
-          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] bg-black/70 border-[2px] border-white rounded-full flex items-center justify-center"
+          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] flex items-center justify-center text-white"
         >
-          <span className="text-white text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">›</span>
+          <span className="text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">›</span>
         </button>
       </div>
     </div>
