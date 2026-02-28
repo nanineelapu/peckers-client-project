@@ -16,7 +16,7 @@ export default function SmoothScroll({ children, lenisRef }) {
     const lenis = new Lenis({
       lerp: 0.12,
       smoothWheel: true,
-      smoothTouch: true,
+      smoothTouch: false,
       touchMultiplier: 1.5,
       wheelMultiplier: 0.8,
       normalizeWheel: true,
