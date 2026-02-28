@@ -92,19 +92,19 @@ export default function LatestNewsCards() {
         .card-slot-2  { transform: translate(calc(-50% + 140vw), -50%) rotateY(-45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
         
         .latest-card {
-           width: 60vw;
-           height: 85vw;
+           width: 65vw;
+           height: 90vw;
            border-radius: 3vw;
         }
 
         @media (min-width: 768px) {
-          .card-slot-m2 { transform: translate(calc(-50% - 85vw), -50%) rotateY(45deg) scale(0.6); }
-          .card-slot-m1 { transform: translate(calc(-50% - 28vw), -50%) rotate(-6deg) scale(0.85); }
-          .card-slot-1  { transform: translate(calc(-50% + 28vw), -50%) rotate(6deg) scale(0.85); }
-          .card-slot-2  { transform: translate(calc(-50% + 85vw), -50%) rotateY(-45deg) scale(0.6); }
+          .card-slot-m2 { transform: translate(calc(-50% - 92vw), -50%) rotateY(45deg) scale(0.6); }
+          .card-slot-m1 { transform: translate(calc(-50% - 30vw), -50%) rotate(-6deg) scale(0.85); }
+          .card-slot-1  { transform: translate(calc(-50% + 30vw), -50%) rotate(6deg) scale(0.85); }
+          .card-slot-2  { transform: translate(calc(-50% + 92vw), -50%) rotateY(-45deg) scale(0.6); }
           .latest-card {
-             width: 25vw;
-             height: 36vw;
+             width: 28vw;
+             height: 40vw;
              border-radius: 1.2vw;
           }
         }
@@ -118,7 +118,7 @@ export default function LatestNewsCards() {
       >
         <button
           onClick={goPrev}
-          className="absolute left-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] flex items-center justify-center text-white"
+          className="absolute left-[1vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] flex items-center justify-center text-white"
         >
           <span className="text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">‹</span>
         </button>
@@ -172,7 +172,7 @@ export default function LatestNewsCards() {
 
         <button
           onClick={goNext}
-          className="absolute right-[4vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] flex items-center justify-center text-white"
+          className="absolute right-[1vw] top-1/2 -translate-y-1/2 z-40 w-[12vw] md:w-[60px] h-[12vw] md:h-[60px] flex items-center justify-center text-white"
         >
           <span className="text-[8vw] md:text-3xl font-bold font-sans pb-[1vw] md:pb-1">›</span>
         </button>
