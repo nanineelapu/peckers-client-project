@@ -39,13 +39,14 @@ export const metadata = {
   title: "Peakers",
   description:
     "Peakers - Your Ultimate Destination for Premium Automotive Accessories",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} antialiased w-full max-w-[100vw] overflow-x-clip`}
+        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} antialiased`}
       >
         <ClientWrapper>
           {children}

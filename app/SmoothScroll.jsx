@@ -13,6 +13,10 @@ export default function SmoothScroll({ children, lenisRef }) {
     const lenis = new Lenis({
       lerp: 0.12,
       smoothWheel: true,
+      smoothTouch: true,
+      touchMultiplier: 1.5,
+      wheelMultiplier: 0.8,
+      normalizeWheel: true,
     });
 
     // Expose instance to parent (ClientWrapper) so it can reset scroll

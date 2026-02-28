@@ -114,7 +114,7 @@ export default function Preloader({ onComplete = () => { } }) {
     >
       <h1
         ref={textRef}
-        className="flex font-peakers font-black text-black text-[10vw] md:text-[clamp(3.5rem,11vw,16rem)]"
+        className="flex font-peakers font-black text-black text-[16vw] md:text-[clamp(3.5rem,11vw,16rem)]"
         style={{
           letterSpacing: "0.4em",
           lineHeight: 1,

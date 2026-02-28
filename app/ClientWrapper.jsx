@@ -53,7 +53,7 @@ export default function ClientWrapper({ children }) {
       )}
 
       <SmoothScroll lenisRef={lenisRef}>
-        <div id="main-content">
+        <div id="main-content" className="w-full overflow-x-clip">
           {children}
         </div>
       </SmoothScroll>
