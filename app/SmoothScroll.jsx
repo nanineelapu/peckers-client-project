@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 // lenisRef – optional ref that the parent can use to call lenis.scrollTo(0) etc.
 export default function SmoothScroll({ children, lenisRef }) {
+  const pathname = usePathname();
+  
   useLayoutEffect(() => {
     const lenis = new Lenis({
       lerp: 0.12,
@@ -40,6 +43,25 @@ export default function SmoothScroll({ children, lenisRef }) {
       if (lenisRef) lenisRef.current = null;
     };
   }, []);
+
+  // Force Lenis to recalculate on route changes
+  useLayoutEffect(() => {
+    if (lenisRef.current) {
+      // Reset scroll to top
+      lenisRef.current.scrollTo(0, { immediate: true });
+      window.scrollTo(0, 0);
+      
+      // Force recalculation after a brief delay to allow DOM to update
+      const timer = setTimeout(() => {
+        if (lenisRef.current) {
+          lenisRef.current.resize();
+          ScrollTrigger.refresh();
+        }
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, lenisRef]);
 
   return <>{children}</>;
 }
