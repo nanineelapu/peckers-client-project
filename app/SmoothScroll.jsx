@@ -31,7 +31,6 @@ export default function SmoothScroll({ children, lenisRef }) {
     // GSAP ticker drives Lenis — one clean loop, properly cleaned up below
     const onTick = (time) => lenis.raf(time * 1000);
     gsap.ticker.add(onTick);
-    gsap.ticker.lagSmoothing(0);
 
     lenis.on("scroll", ScrollTrigger.update);
     ScrollTrigger.refresh();

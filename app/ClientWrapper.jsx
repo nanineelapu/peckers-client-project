@@ -21,16 +21,19 @@ export default function ClientWrapper({ children }) {
   // Lenis caches scrollHeight on init — if the DOM changes (preloader removed)
   // it will have a stale limit, causing phantom scroll past the real bottom.
   useEffect(() => {
-    if (!loadingDone) return;
+     if (!loadingDone) return;
 
-    const timer = setTimeout(() => {
-      // Dispatch a synthetic resize so Lenis & ScrollTrigger both recalculate
-      window.dispatchEvent(new Event("resize"));
-      ScrollTrigger.refresh();
-    }, 150);
+  const timer = setTimeout(() => {
+    if (lenisRef.current) {
+      lenisRef.current.resize();   // 🔥 THIS is critical
+      lenisRef.current.start();    // ensure it's active
+    }
 
-    return () => clearTimeout(timer);
-  }, [loadingDone]);
+    ScrollTrigger.refresh();
+  }, 300); // give DOM more time on mobile
+
+  return () => clearTimeout(timer);
+}, [loadingDone]);
 
   const handlePreloaderComplete = useCallback(() => {
     // Unlock native scroll first
