@@ -36,7 +36,7 @@ export default function RatingSectionCards() {
   ];
 
   return (
-    <div className="w-full mt-[2vw] md:mt-0 mb-[2vw] md:mb-[2vw] relative">
+    <div className="w-full mt-[6vw] md:mt-[3vw] mb-[2vw] md:mb-[2vw] relative">
       {/* Mobile/Tablet View: Standard stack/scroll without Framer Motion */}
       <div className="flex lg:hidden flex-col gap-[8vw] md:gap-[3vw] px-[6vw] md:px-[1vw]">
         {cards.map((card, index) => (

@@ -62,19 +62,26 @@ export default function LocationAddress() {
 
                     {/* DEtails of Map  */}
                     <div
-                        className="h-[40vh] md:h-[58vh] w-full md:w-[50%] rounded-[2vw] md:rounded-[0.6vw] flex items-center justify-center mt-[4vw] md:mt-0"
+                        className="h-[40vh] md:h-[58vh] w-full md:w-[50%] rounded-[2vw] md:rounded-[0.6vw] flex items-center justify-center mt-[4vw] md:mt-0 relative overflow-hidden"
                         style={{
                             border: '1px solid #333',
-                            backgroundImage: "url('https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Screenshot%202026-02-28%20004028.png')",
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center'
                         }}
                     >
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262521.727374963!2d-0.6723116326238529!3d51.882665954173305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487635dab81e5c55%3A0x25836d282f1fe28b!2sPeckers!5e0!3m2!1sen!2sde!4v1772289431208!5m2!1sen!2sde"
+                            width="600"
+                            height="450"
+                            style={{ border: 0, width: "100%", height: "100%" }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="Peckers location map"
+                        />
                         <a
                             href="https://maps.google.com/?q=21-23+Market+Pl,+Hitchin+SG5+1DT"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-[#181818] px-[6vw] md:px-4 py-[3vw] md:py-2 text-white transition-all duration-200 border border-[#333] text-[3.5vw] md:text-[1vw] tracking-widest flex items-center gap-2 hover:bg-[#232323]"
+                            className="bg-[#181818] px-[6vw] md:px-4 py-[3vw] md:py-2 text-white transition-all duration-200 border border-[#333] text-[3.5vw] md:text-[1vw] tracking-widest flex items-center gap-2 hover:bg-[#232323] absolute bottom-[4vw] md:bottom-4 left-1/2 -translate-x-1/2"
                             style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'", border: '1px solid #333' }}
                         >
                             VIEW ON MAP

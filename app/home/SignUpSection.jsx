@@ -35,7 +35,7 @@ export default function SignUpSection() {
 
   return (
     <div
-      className="w-full flex justify-center items-center py-[10vw] md:py-[4vw] px-[5vw] md:px-[2vw] border-b border-[#262626]"
+      className="w-full flex justify-center items-center pt-[14vw] pb-[10vw] md:pt-[5vw] md:pb-[4vw] px-[5vw] md:px-[2vw] border-b border-[#262626]"
       style={{ overflow: "visible" }}
     >
       <div
