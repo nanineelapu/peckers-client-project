@@ -6,7 +6,7 @@
   --foreground: #000;
 }
 
-html, 
+html,
 body {
   scroll-behavior: auto;
   position: relative;
@@ -17,9 +17,7 @@ body {
   /* IE / Edge */
 }
 
-html.lenis, html.lenis body {
-  height: auto;
-}
+
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
@@ -29,9 +27,8 @@ html.lenis, html.lenis body {
   overscroll-behavior: contain;
 }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+
+
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
@@ -98,10 +95,7 @@ img {
 }
 
 
-/* Reduce repaints on scroll */
-[data-scroll-section] {
-  contain: layout style paint;
-}
+
 
 /* GPU acceleration for animated elements */
 .gsap-animated,
