@@ -13,14 +13,14 @@ export default function SmoothScroll({ children, lenisRef }) {
   const pathname = usePathname();
   
   useLayoutEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.12,
-      smoothWheel: true,
-      smoothTouch: false,
-      touchMultiplier: 1.5,
-      wheelMultiplier: 0.8,
-      normalizeWheel: true,
-    });
+    // const lenis = new Lenis({
+    //   lerp: 0.12,
+    //   smoothWheel: true,
+    //   smoothTouch: false,
+    //   touchMultiplier: 1.5,
+    //   wheelMultiplier: 0.8,
+    //   normalizeWheel: true,
+    // });
 
     // Expose instance to parent (ClientWrapper) so it can reset scroll
     if (lenisRef) {
