@@ -8,6 +8,7 @@ import SubFooter from "./SubFooter";
 
 const page = () => {
   const [open, setOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
   return (
     <div id="main-content">
       <nav className="relative flex items-center px-4 py-4 md:px-[1.8vw] md:py-[.4vw] bg-black text-white font-['Share_Tech']">
@@ -34,7 +35,15 @@ const page = () => {
           style={{ fontFamily: "var(--font-peakers)" }}
         >
           <a href="menu" className="whitespace-nowrap">MENU</a>
-          <a href="locations" className="whitespace-nowrap">LOCATIONS</a>
+          <div className="relative group">
+            <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
+                <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+                <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+              </div>
+            </div>
+          </div>
           <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
           <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
           <a href="#">CAREERS</a>
@@ -75,7 +84,17 @@ const page = () => {
         >
           <div className="flex flex-col items-center gap-8 w-full">
             <a href="menu" onClick={() => setOpen(false)}>MENU</a>
-            <a href="locations" onClick={() => setOpen(false)}>LOCATIONS</a>
+            <div className="flex flex-col items-center w-full">
+              <button type="button" onClick={() => setLocationsOpen(!locationsOpen)} className="w-full text-center py-1">
+                LOCATIONS {locationsOpen ? "−" : "+"}
+              </button>
+              {(locationsOpen) && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                  <a href="locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
+                  <a href="locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
+                </div>
+              )}
+            </div>
             <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
             <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
             <a href="#" onClick={() => setOpen(false)}>CAREERS</a>

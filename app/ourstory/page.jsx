@@ -7,9 +7,11 @@ import ActualCircle from "./ActualCircle";
 import JourneyIntroSection from "./JourneyHeader";
 import OurStoryFooter from "./OurStoryFooter";
 import ActualCircle2 from "./ActualCircle2";
+import MobileRoadmap from "./MobileRoadmap";
 
 const OurStoryPage = () => {
   const [open, setOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
 
   return (
     <div id="main-content">
@@ -37,7 +39,15 @@ const OurStoryPage = () => {
           style={{ fontFamily: "var(--font-peakers)" }}
         >
           <a href="menu" className="whitespace-nowrap">MENU</a>
-          <a href="locations" className="whitespace-nowrap">LOCATIONS</a>
+          <div className="relative group">
+            <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
+                <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+                <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+              </div>
+            </div>
+          </div>
           <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
           <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
           <a href="#">CAREERS</a>
@@ -78,7 +88,17 @@ const OurStoryPage = () => {
         >
           <div className="flex flex-col items-center gap-8 w-full">
             <a href="menu" onClick={() => setOpen(false)}>MENU</a>
-            <a href="locations" onClick={() => setOpen(false)}>LOCATIONS</a>
+            <div className="flex flex-col items-center w-full">
+              <button type="button" onClick={() => setLocationsOpen(!locationsOpen)} className="w-full text-center py-1">
+                LOCATIONS {locationsOpen ? "−" : "+"}
+              </button>
+              {(locationsOpen) && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                  <a href="locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
+                  <a href="locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
+                </div>
+              )}
+            </div>
             <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
             <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
             <a href="#" onClick={() => setOpen(false)}>CAREERS</a>
@@ -96,123 +116,122 @@ const OurStoryPage = () => {
       </nav>
 
       <OurStorySection />
-      <StoryCircle />
-      <ActualCircle />
-      <br />
-      <div className="w-full relative flex justify-center mt-[20vw] md:mt-[6vw] pt-[0vw] min-h-[50vw] md:min-h-[30vw]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
-          <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-auto">
-            <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="" className="w-full h-auto" />
+      <MobileRoadmap />
+      <div className="hidden md:block">
+        <StoryCircle />
+        <ActualCircle />
+        <br />
+        <div className="w-full relative flex justify-center mt-[0vw] md:mt-[0vw] pt-[0vw] min-h-[50vw] md:min-h-[30vw]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
+            <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-auto">
+              <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="" className="w-full h-auto" />
+            </div>
+            <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-auto h-auto">
+              <g opacity="0.6" filter="url(#filter0_d_297_13)">
+                <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="white" fillOpacity="0.01" shapeRendering="crispEdges" />
+                <path d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges" />
+              </g>
+              <g filter="url(#filter1_d_297_13)">
+                <rect x="514" y="12" width="16" height="16" rx="8" fill="black" />
+                <rect x="515" y="13" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+              </g>
+              <g filter="url(#filter2_d_297_13)">
+                <rect x="889" y="31" width="16" height="16" rx="8" fill="black" />
+                <rect x="890" y="32" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+              </g>
+              <g filter="url(#filter3_d_297_13)">
+                <rect x="882" y="407" width="16" height="16" rx="8" fill="black" />
+                <rect x="883" y="408" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+              </g>
+              <g filter="url(#filter4_d_297_13)">
+                <rect x="514" y="426" width="16" height="16" rx="8" fill="black" />
+                <rect x="515" y="427" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+              </g>
+              <g filter="url(#filter5_d_297_13)">
+                <rect x="168" y="418" width="16" height="16" rx="8" fill="black" />
+                <rect x="169" y="419" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+              </g>
+              <g filter="url(#filter6_d_297_13)">
+                <rect x="138" y="31" width="16" height="16" rx="8" fill="black" />
+                <rect x="139" y="32" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
+              </g>
+              <defs>
+                <filter id="filter0_d_297_13" x="0" y="0" width="1038" height="454" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="10" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+                <filter id="filter1_d_297_13" x="506" y="4" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+                <filter id="filter2_d_297_13" x="881" y="23" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+                <filter id="filter3_d_297_13" x="874" y="399" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+                <filter id="filter4_d_297_13" x="506" y="418" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+                <filter id="filter5_d_297_13" x="160" y="410" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+                <filter id="filter6_d_297_13" x="130" y="23" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="4" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                </filter>
+              </defs>
+            </svg>
           </div>
-          <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-auto h-auto">
-            <g opacity="0.6" filter="url(#filter0_d_297_13)">
-              <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="white" fillOpacity="0.01" shapeRendering="crispEdges" />
-              <path d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges" />
-            </g>
-            <g filter="url(#filter1_d_297_13)">
-              <rect x="514" y="12" width="16" height="16" rx="8" fill="black" />
-              <rect x="515" y="13" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
-            </g>
-            <g filter="url(#filter2_d_297_13)">
-              <rect x="889" y="31" width="16" height="16" rx="8" fill="black" />
-              <rect x="890" y="32" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
-            </g>
-            <g filter="url(#filter3_d_297_13)">
-              <rect x="882" y="407" width="16" height="16" rx="8" fill="black" />
-              <rect x="883" y="408" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
-            </g>
-            <g filter="url(#filter4_d_297_13)">
-              <rect x="514" y="426" width="16" height="16" rx="8" fill="black" />
-              <rect x="515" y="427" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
-            </g>
-            <g filter="url(#filter5_d_297_13)">
-              <rect x="168" y="418" width="16" height="16" rx="8" fill="black" />
-              <rect x="169" y="419" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
-            </g>
-            <g filter="url(#filter6_d_297_13)">
-              <rect x="138" y="31" width="16" height="16" rx="8" fill="black" />
-              <rect x="139" y="32" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
-            </g>
-            <defs>
-              <filter id="filter0_d_297_13" x="0" y="0" width="1038" height="454" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="10" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-              <filter id="filter1_d_297_13" x="506" y="4" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="4" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-              <filter id="filter2_d_297_13" x="881" y="23" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="4" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-              <filter id="filter3_d_297_13" x="874" y="399" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="4" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-              <filter id="filter4_d_297_13" x="506" y="418" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="4" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-              <filter id="filter5_d_297_13" x="160" y="410" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="4" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-              <filter id="filter6_d_297_13" x="130" y="23" width="32" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                <feOffset />
-                <feGaussianBlur stdDeviation="4" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-              </filter>
-            </defs>
-          </svg>
-
         </div>
-
-
+        <ActualCircle2 />
       </div>
-
-      <ActualCircle2 />
 
       <JourneyIntroSection />
 

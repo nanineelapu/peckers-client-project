@@ -29,11 +29,11 @@ const timelineData = [
 export default function PeckersTimeline() {
 
     return (
-        <div className="bg-black z-10 text-white flex justify-center py-[12vw] md:py-[4vw] font-peckers">
+        <div className="bg-black z-10 text-white flex justify-center py-[1vw] md:py-[1vw] font-peckers">
             <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}
-                <div className="flex flex-col md:flex-row bg-black justify-between gap-[12vw] md:gap-[9vw] h-auto md:h-[4vw] items-center mb-[8vw]">
+                <div className="flex flex-col md:flex-row bg-black justify-between gap-[6vw] md:gap-[4vw] h-auto md:h-[4vw] items-center mb-[4vw]">
                     {timelineData.map((item, index) => {
 
                         const alignment =

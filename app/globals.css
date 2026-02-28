@@ -34,6 +34,12 @@ body {
   pointer-events: none;
 }
 
+/* Allow map iframes to be interactive (pan, zoom, click) */
+.lenis.lenis-smooth .map-interactive,
+.lenis.lenis-smooth .map-interactive iframe {
+  pointer-events: auto;
+}
+
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {

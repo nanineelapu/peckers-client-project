@@ -1,7 +1,7 @@
 
 export default function JourneyIntroSection() {
     return (
-        <section className="w-full bg-black py-[5vw] flex flex-col items-center text-center">
+        <section className="w-full bg-black pt-[9vw] flex flex-col items-center text-center">
 
             {/* Main Heading */}
             <h2 className="text-[8vw] md:text-[3.35vw] font-peakers text-white leading-none font-bold tracking-tight mb-[4vw] md:mb-[2vw]">

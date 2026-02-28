@@ -1,6 +1,21 @@
+const LOCATION_DATA = {
+  hitchin: {
+    title: "HITCHIN PECKERS",
+    address: "25 Jhon Barker PI,\nHitchin SG5 2PD",
+    phone: "07599 828189",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262521.727374963!2d-0.6723116326238529!3d51.882665954173305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487635dab81e5c55%3A0x25836d282f1fe28b!2sPeckers!5e0!3m2!1sen!2sde!4v1772289431208!5m2!1sen!2sde",
+  },
+  stevenage: {
+    title: "STEVENAGE PECKERS",
+    address: "Stevenage, Hertfordshire",
+    phone: "07599 828189",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d157418.756!2d-0.202!3d51.902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487631a1b2e0b0b1%3A0x1!2sStevenage!5e0!3m2!1sen!2suk!4v1!5m2!1sen!2suk",
+  },
+};
 
-export default function LocationAddress() {
-    return (
+export default function LocationAddress({ location = "hitchin" }) {
+  const data = LOCATION_DATA[location] || LOCATION_DATA.hitchin;
+  return (
         <section>
             <div className="flex justify-center items-center min-h-[90vh] mt-6">
                 <div
@@ -13,14 +28,16 @@ export default function LocationAddress() {
                         style={{ borderRadius: '0.6vw', background: 'transparent' }}
                     >
                         <div className="text-white text-[8vw] md:text-[3.6vw] tracking-[0.1vw] font-bold" style={{ fontFamily: "var(--font-peakers)", lineHeight: "1.1" }}>
-                            HITCHIN PECKERS
+                            {data.title}
                         </div>
                         <div className="flex items-center gap-[4vw] md:gap-[1vw] mt-7 mb-2">
                             <svg className="w-[6vw] h-[7.5vw] md:w-[20px] md:h-[25px] min-w-[20px]" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 12.5C10 12.5 10.1719 12.5 10.5156 12.5C10.8594 12.5 11.276 12.2552 11.7656 11.7656C12.2552 11.276 12.5 10.6875 12.5 10C12.5 9.3125 12.2552 8.72396 11.7656 8.23438C11.276 7.74479 10.6875 7.5 10 7.5C9.3125 7.5 8.72396 7.74479 8.23438 8.23438C7.74479 8.72396 7.5 9.3125 7.5 10C7.5 10.6875 7.74479 11.276 8.23438 11.7656C8.72396 12.2552 9.3125 12.5 10 12.5ZM10 21.6875C12.5417 19.3542 14.4271 17.2344 15.6562 15.3281C16.8854 13.4219 17.5 11.7292 17.5 10.25C17.5 7.97917 16.776 6.11979 15.3281 4.67188C13.8802 3.22396 12.1042 2.5 10 2.5C7.89583 2.5 6.11979 3.22396 4.67188 4.67188C3.22396 6.11979 2.5 7.97917 2.5 10.25C2.5 11.7292 3.11458 13.4219 4.34375 15.3281C5.57292 17.2344 7.45833 19.3542 10 21.6875ZM10 25C6.64583 22.1458 4.14062 19.4948 2.48438 17.0469C0.828125 14.599 0 12.3333 0 10.25C0 7.125 1.00521 4.63542 3.01562 2.78125C5.02604 0.927084 7.35417 1.90735e-06 10 1.90735e-06C12.6458 1.90735e-06 14.974 0.927084 16.9844 2.78125C18.9948 4.63542 20 7.125 20 10.25C20 12.3333 19.1719 14.599 17.5156 17.0469C15.8594 19.4948 13.3542 22.1458 10 25Z" fill="white" />
                             </svg>
                             <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] py-[1vw] font-peakers">
-                                25 Jhon Barker PI,<br />Hitchin SG5 2PD
+                                {data.address.split("\n").map((line, i, arr) => (
+                                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                                ))}
                             </div>
                         </div>
                         <br />
@@ -35,7 +52,7 @@ export default function LocationAddress() {
                             <svg className="w-[7vw] h-[7vw] md:w-[23px] md:h-[23px] min-w-[23px]" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21.1875 22.5C18.5833 22.5 16.0104 21.9323 13.4688 20.7969C10.9271 19.6615 8.61458 18.0521 6.53125 15.9688C4.44792 13.8854 2.83854 11.5729 1.70312 9.03125C0.567708 6.48958 0 3.91667 0 1.3125C0 0.9375 0.125 0.625 0.375 0.375C0.625 0.125 0.9375 0 1.3125 0H6.375C6.66667 0 6.92708 0.098959 7.15625 0.296875C7.38542 0.494791 7.52083 0.729166 7.5625 1L8.375 5.375C8.41667 5.70833 8.40625 5.98958 8.34375 6.21875C8.28125 6.44792 8.16667 6.64583 8 6.8125L4.96875 9.875C5.38542 10.6458 5.88021 11.3906 6.45312 12.1094C7.02604 12.8281 7.65625 13.5208 8.34375 14.1875C8.98958 14.8333 9.66667 15.4323 10.375 15.9844C11.0833 16.5365 11.8333 17.0417 12.625 17.5L15.5625 14.5625C15.75 14.375 15.9948 14.2344 16.2969 14.1406C16.599 14.0469 16.8958 14.0208 17.1875 14.0625L21.5 14.9375C21.7917 15.0208 22.0312 15.1719 22.2188 15.3906C22.4062 15.6094 22.5 15.8542 22.5 16.125V21.1875C22.5 21.5625 22.375 21.875 22.125 22.125C21.875 22.375 21.5625 22.5 21.1875 22.5ZM3.78125 7.5L5.84375 5.4375L5.3125 2.5H2.53125C2.63542 3.35417 2.78125 4.19792 2.96875 5.03125C3.15625 5.86458 3.42708 6.6875 3.78125 7.5ZM14.9688 18.6875C15.7812 19.0417 16.6094 19.3229 17.4531 19.5312C18.2969 19.7396 19.1458 19.875 20 19.9375V17.1875L17.0625 16.5938L14.9688 18.6875Z" fill="white" />
                             </svg>
-                            <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] font-peakers">07599 828189</div>
+                            <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] font-peakers">{data.phone}</div>
                         </div>
                         <br />
                         <div className="flex flex-col md:flex-row gap-[4vw] md:gap-4 py-[4vw] md:py-[2vw]">
@@ -60,45 +77,24 @@ export default function LocationAddress() {
                         </div>
                     </div>
 
-                    {/* DEtails of Map  */}
+                    {/* Map: interactive so users can pan, zoom, and select locations (overrides global iframe pointer-events) */}
                     <div
-                        className="h-[40vh] md:h-[58vh] w-full md:w-[50%] rounded-[2vw] md:rounded-[0.6vw] flex items-center justify-center mt-[4vw] md:mt-0 relative overflow-hidden"
+                        className="map-interactive h-[40vh] md:h-[58vh] w-full md:w-[50%] rounded-[2vw] md:rounded-[0.6vw] flex items-center justify-center mt-[4vw] md:mt-0 relative overflow-hidden"
                         style={{
                             border: '1px solid #333',
+                            pointerEvents: 'auto',
                         }}
                     >
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262521.727374963!2d-0.6723116326238529!3d51.882665954173305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487635dab81e5c55%3A0x25836d282f1fe28b!2sPeckers!5e0!3m2!1sen!2sde!4v1772289431208!5m2!1sen!2sde"
+                            src={data.mapEmbed}
                             width="600"
                             height="450"
-                            style={{ border: 0, width: "100%", height: "100%" }}
+                            style={{ border: 0, width: "100%", height: "100%", pointerEvents: "auto" }}
                             allowFullScreen
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Peckers location map"
                         />
-                        <a
-                            href="https://maps.google.com/?q=21-23+Market+Pl,+Hitchin+SG5+1DT"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-[#181818] px-[6vw] md:px-4 py-[3vw] md:py-2 text-white transition-all duration-200 border border-[#333] text-[3.5vw] md:text-[1vw] tracking-widest flex items-center gap-2 hover:bg-[#232323] absolute bottom-[4vw] md:bottom-4 left-1/2 -translate-x-1/2"
-                            style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'", border: '1px solid #333' }}
-                        >
-                            VIEW ON MAP
-                            <span className="ml-1" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                                <svg className="w-[6vw] h-[6vw] md:w-[26px] md:h-[26px] min-w-[20px]" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="1" y="1" width="24" height="24" rx="6" fill="#82A6C9" stroke="#425D76" strokeWidth="2" />
-                                    <g filter="url(#shadow)">
-                                        <path d="M8 18.5L18.5 8M8 8H18.5V18.5" fill="none" stroke="#fff" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
-                                    </g>
-                                    <defs>
-                                        <filter id="shadow" x="2" y="2" width="22" height="22" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                                            <feDropShadow dx="0" dy="1.5" stdDeviation="2" floodColor="#000" floodOpacity="0.28" />
-                                        </filter>
-                                    </defs>
-                                </svg>
-                            </span>
-                        </a>
                     </div>
                 </div>
             </div>
