@@ -16,10 +16,11 @@ export default function SmoothScroll({ children, lenisRef }) {
     const lenis = new Lenis({
       lerp: 0.12,
       smoothWheel: true,
-      smoothTouch: false,
-      touchMultiplier: 1.5,
-      wheelMultiplier: 0.8,
+      smoothTouch: true,
+      touchMultiplier: 2,
+      wheelMultiplier: 1,
       normalizeWheel: true,
+      duration: 1.2,
     });
 
     // Expose instance to parent (ClientWrapper) so it can reset scroll
@@ -56,11 +57,21 @@ export default function SmoothScroll({ children, lenisRef }) {
           lenisRef.current.resize();
           ScrollTrigger.refresh();
         }
-      }, 100);
+      }, 150);
       
       return () => clearTimeout(timer);
     }
   }, [pathname, lenisRef]);
+
+  // Mobile fallback - ensure content is scrollable even if Lenis fails
+  useLayoutEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile && lenisRef.current) {
+      // Ensure mobile can always scroll
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+    }
+  }, [lenisRef]);
 
   return <>{children}</>;
 }
