@@ -85,11 +85,11 @@ export default function LatestNewsCards() {
   return (
     <div className="relative w-full py-[10vw] md:py-[3vw] bg-black overflow-hidden">
       <style>{`
-        .card-slot-m2 { transform: translate(calc(-50% - 140vw), -50%) rotateY(45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
-        .card-slot-m1 { transform: translate(calc(-50% - 40vw), -50%) rotate(-6deg) scale(0.85); opacity: 0.75; z-index: 2; filter: brightness(0.7) blur(2px); cursor: pointer; }
+        .card-slot-m2 { transform: translate(calc(-50% - 150vw), -50%) rotateY(45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
+        .card-slot-m1 { transform: translate(calc(-50% - 45vw), -50%) rotate(-6deg) scale(0.92); opacity: 0.75; z-index: 2; filter: brightness(0.7) blur(2px); cursor: pointer; }
         .card-slot-0  { transform: translate(-50%, -50%) rotateY(0deg) scale(1.08); opacity: 1; z-index: 10; filter: brightness(1); cursor: default;}
-        .card-slot-1  { transform: translate(calc(-50% + 40vw), -50%) rotate(6deg) scale(0.85); opacity: 0.75; z-index: 2; filter: brightness(0.7) blur(2px); cursor: pointer; }
-        .card-slot-2  { transform: translate(calc(-50% + 140vw), -50%) rotateY(-45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
+        .card-slot-1  { transform: translate(calc(-50% + 45vw), -50%) rotate(6deg) scale(0.92); opacity: 0.75; z-index: 2; filter: brightness(0.7) blur(2px); cursor: pointer; }
+        .card-slot-2  { transform: translate(calc(-50% + 150vw), -50%) rotateY(-45deg) scale(0.6); opacity: 0; z-index: 0; pointer-events: none; }
         
         .latest-card {
            width: 65vw;
@@ -98,13 +98,13 @@ export default function LatestNewsCards() {
         }
 
         @media (min-width: 768px) {
-          .card-slot-m2 { transform: translate(calc(-50% - 92vw), -50%) rotateY(45deg) scale(0.6); }
-          .card-slot-m1 { transform: translate(calc(-50% - 30vw), -50%) rotate(-6deg) scale(0.85); }
-          .card-slot-1  { transform: translate(calc(-50% + 30vw), -50%) rotate(6deg) scale(0.85); }
-          .card-slot-2  { transform: translate(calc(-50% + 92vw), -50%) rotateY(-45deg) scale(0.6); }
+          .card-slot-m2 { transform: translate(calc(-50% - 97vw), -50%) rotateY(45deg) scale(0.6); }
+          .card-slot-m1 { transform: translate(calc(-50% - 33vw), -50%) rotate(-5deg) scale(0.92); }
+          .card-slot-1  { transform: translate(calc(-50% + 33vw), -50%) rotate(5deg) scale(0.92); }
+          .card-slot-2  { transform: translate(calc(-50% + 97vw), -50%) rotateY(-45deg) scale(0.6); }
           .latest-card {
-             width: 28vw;
-             height: 40vw;
+             width: 29vw;
+             height: 42vw;
              border-radius: 1.2vw;
           }
         }

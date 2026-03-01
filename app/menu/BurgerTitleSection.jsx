@@ -207,8 +207,8 @@ export default function BurgerCarouselFinal() {
 
         {/* BURGER STAGE */}
         <div
-          className="relative w-full overflow-hidden flex items-center justify-center mt-0 md:mt-0"
-          style={{ height: "clamp(260px, 48vw, 500px)" }}
+          className="relative w-full flex items-center justify-center mt-0 md:mt-0"
+          style={{ height: "clamp(230px, 42vw, 450px)" }}
         >
           {/* NAVIGATION ARROWS IN IMAGE CONTAINER */}
           <button
@@ -310,25 +310,9 @@ export default function BurgerCarouselFinal() {
           })}
         </div>
 
-        {/* SLIDING INDICATOR */}
-        <div className="flex gap-[4vw] md:gap-3 mt-2 md:mt-2">
-          {BURGERS.map((_, i) => (
-            <div
-              key={i}
-              style={{
-                height: "6px",
-                width: i === carousel.center ? "10vw" : "3vw",
-                maxWidth: i === carousel.center ? "36px" : "10px",
-                background: i === carousel.center ? "#e8b800" : "#444",
-                borderRadius: "999px",
-                transition: "all .4s cubic-bezier(.22,1,.36,1)",
-              }}
-            />
-          ))}
-        </div>
 
         {/* TITLE */}
-        <div className="w-full flex items-center justify-center relative pb-2 md:pb-4 pt-2 md:pt-2">
+        <div className="w-full flex items-center justify-center relative pb-2 md:pb-4 pt-2 md:pt-2 z-20">
           <h1
             className="uppercase text-white text-center font-black"
             style={{
