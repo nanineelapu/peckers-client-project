@@ -85,7 +85,7 @@ const LocationFooter = () => {
           <ul className="space-y-[3vw] md:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-[400] text-[#a9adb8] w-full">
             <li>
               <a
-                href="#"
+                href="/menu"
                 className="hover:underline inline-block"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >
@@ -94,7 +94,7 @@ const LocationFooter = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/ourstory"
                 className="hover:underline inline-block"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >
@@ -103,7 +103,7 @@ const LocationFooter = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/careers"
                 className="hover:underline inline-block"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >
@@ -142,7 +142,7 @@ const LocationFooter = () => {
             <div>Coming Soon!</div>
             <div>
               <a
-                href="#"
+                href="/locations"
                 className="underline decoration-[#C41718] decoration-1 underline-offset-[1vw] md:underline-offset-2 text-[#C41718] hover:text-[#f22] transition-colors inline-block mt-[1vw] md:mt-0"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >

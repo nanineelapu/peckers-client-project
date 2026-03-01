@@ -50,7 +50,7 @@ const OurStoryPage = () => {
           </div>
           <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
           <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
-          <a href="#">CAREERS</a>
+          <a href="careers" className="whitespace-nowrap">CAREERS</a>
         </div>
 
         {/* Desktop Buttons */}

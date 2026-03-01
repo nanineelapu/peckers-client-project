@@ -27,30 +27,12 @@ export default function Navbar() {
       {/* Center Links */}
       <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
         <Link href="/menu" className="whitespace-nowrap cursor-pointer">
-          MENU
-        </Link>
-        <div className="relative group">
-          <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
-          <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
-              <Link href="/locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</Link>
-              <Link href="/locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</Link>
-            </div>
-          </div>
-        </div>
-        <Link href="/ourstory" className="whitespace-nowrap">
-          OUR STORY
-        </Link>
-        <Link href="/uniqueness" className="whitespace-nowrap">
-          UNIQUENESS
-        </Link>
-        <Link href="/careers" className="whitespace-nowrap">
           <a href="careers" className="whitespace-nowrap">CAREERS</a>
         </Link>
       </div>
 
       {/* Buttons Section */}
-      <div className="flex-1 flex justify-end gap-[1.2vw]">
+      <div className="hidden md:flex flex-1 justify-end gap-[1.2vw]">
         <button className="border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}>
           CLICK & COLLECT
         </button>

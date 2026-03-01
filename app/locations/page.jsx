@@ -17,7 +17,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
 
                 {/* Logo Section */}
                 <div className="flex-1 flex items-center z-50">
-                    <a href="home">
+                    <a href="/home">
                         <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
                             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
                             <defs>
@@ -36,19 +36,19 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                     className="hidden md:flex flex-1 text-[1.5vw] justify-center tracking-[.2vw] font-semibold gap-[2.7vw]"
                     style={{ fontFamily: "var(--font-peakers)" }}
                 >
-                    <a href="menu" className="whitespace-nowrap">MENU</a>
+                    <a href="/menu" className="whitespace-nowrap">MENU</a>
                     <div className="relative group">
-                      <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
-                          <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
-                          <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+                        <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
+                        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
+                                <a href="/locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+                                <a href="/locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                    <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
-                    <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
-          <a href="careers" className="whitespace-nowrap">CAREERS</a>
+                    <a href="/ourstory" className="whitespace-nowrap">OUR STORY</a>
+                    <a href="/uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
+                    <a href="/careers" className="whitespace-nowrap">CAREERS</a>
                 </div>
 
                 {/* Desktop Buttons */}
@@ -85,30 +85,23 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                     }}
                 >
                     <div className="flex flex-col items-center gap-8 w-full">
-                        <a href="menu" onClick={() => setOpen(false)}>MENU</a>
+                        <a href="/menu" onClick={() => setOpen(false)}>MENU</a>
                         <div className="flex flex-col items-center w-full">
-                          <button type="button" onClick={() => setLocationsOpen(!locationsOpen)} className="w-full text-center py-1">
-                            LOCATIONS {locationsOpen ? "−" : "+"}
-                          </button>
-                          {(locationsOpen) && (
-                            <div className="flex flex-col items-center gap-2 mt-2 w-full">
-                              <a href="locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
-                              <a href="locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
-                            </div>
-                          )}
+                            <button type="button" onClick={() => setLocationsOpen(!locationsOpen)} className="w-full text-center py-1">
+                                LOCATIONS {locationsOpen ? "−" : "+"}
+                            </button>
+                            {(locationsOpen) && (
+                                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                                    <a href="/locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
+                                    <a href="/locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
+                                </div>
+                            )}
                         </div>
-                        <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
-                        <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
-                        <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
+                        <a href="/ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
+                        <a href="/uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
+                        <a href="/careers" onClick={() => setOpen(false)}>CAREERS</a>
 
-                        <div className="flex flex-col gap-4 mt-2 w-3/4">
-                            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
-                                CLICK & COLLECT
-                            </button>
-                            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
-                                DELIVERY
-                            </button>
-                        </div>
+
                     </div>
                 </div>
             </nav>
@@ -177,10 +170,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                         {/* History Details */}
                         <div className="w-full flex justify-center mt-[4vw] md:mt-0">
                             <p
-                                className="text-[#e3e3e5]/70 text-center font-extralight 
-               leading-[1.6] text-[4vw] md:text-[1vw] 
-               max-w-[90vw] md:max-w-[70vw] 
-               font-mono"
+                                className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
                             >
                                 Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
                                 isn't just a kitchen—it's where the Peckers revolution began for this side of town. We took an old, forgotten space
@@ -238,17 +228,41 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                     <img
                         src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png"
                         alt="Peckers Logo"
-                        className="max-w-[80%] w-full"
+                        className="max-w-[80%] w-full pb-[18vw] md:pb-0"
                         style={{ filter: "brightness(1)" }}
                     />
                 </div>
             </div>
 
-
-
-
-
-
+            {/* Mobile Fixed Bottom Bar */}
+            <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#006A3A] flex items-center justify-between px-2 py-4 z-[100] border-t border-[#005c33]">
+                <a href="#" className="flex-1 flex items-center justify-center gap-3">
+                    {/* SVG for Click & Collect */}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[6vw] h-[6vw]">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <div className="flex flex-col items-start leading-[1.1] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-peakers)" }}>
+                        <span className="text-[3.5vw] whitespace-nowrap">CLICK &</span>
+                        <span className="text-[3.5vw] whitespace-nowrap">COLLECT</span>
+                    </div>
+                </a>
+                <div className="w-[1px] h-[8vw] bg-white opacity-40"></div>
+                <a href="#" className="flex-1 flex items-center justify-center gap-3">
+                    {/* SVG for Delivery */}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[7vw] h-[7vw]">
+                        <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                        <circle cx="7" cy="17" r="2" />
+                        <path d="M9 17h6" />
+                        <circle cx="17" cy="17" r="2" />
+                    </svg>
+                    <div className="flex flex-col items-start leading-[1.1] font-bold text-white tracking-wide" style={{ fontFamily: "var(--font-peakers)" }}>
+                        <span className="text-[3.5vw] whitespace-nowrap">ORDER</span>
+                        <span className="text-[3.5vw] whitespace-nowrap">DELIVERY</span>
+                    </div>
+                </a>
+            </div>
 
         </div >
     )
