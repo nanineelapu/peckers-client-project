@@ -193,13 +193,11 @@ export default function BurgerPageText({
         </div>
       </div>
 
-      <div className="w-full flex justify-center pt-[8vw] md:pt-5 burger-available text-center px-[5vw]">
+      <div className="w-full flex justify-center pt-[8vw] md:pt-5 pb-[15vw] md:pb-[5vw] burger-available text-center px-[5vw]">
         <span className="text-white font-peakers text-[4vw] md:text-[2.2vw] tracking-3 font-normal">
           Also available as a wrap, rice bowl, or salad bowl.
         </span>
       </div>
-      <div style={{ height: "40vh" }} />
     </div>
-
   );
 }
