@@ -96,7 +96,6 @@ export default function LatestNewsCards() {
            height: 90vw;
            border-radius: 3vw;
         }
-
         @media (min-width: 768px) {
           .card-slot-m2 { transform: translate(calc(-50% - 97vw), -50%) rotateY(45deg) scale(0.6); }
           .card-slot-m1 { transform: translate(calc(-50% - 33vw), -50%) rotate(-5deg) scale(0.92); }

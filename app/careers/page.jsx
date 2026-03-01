@@ -1,17 +1,21 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import CareersLandingPage from "./CareersLandingPage";
 import CrewPage from "./CrewPage";
 import RolesWithPeckers from "./RolesWithPeckers";
 import ApplyDetailsPage from "./ApplyDetailsPage";
 
 const page = () => {
+    const [open, setOpen] = useState(false);
+    const [locationsOpen, setLocationsOpen] = useState(false);
+
     return (
 
         <div id="main-content">
-            <nav className="flex items-center px-4 py-4 md:px-[1.8vw] md:py-[.4vw] bg-black text-white font-['Share_Tech']">
+            <nav className="relative flex items-center px-4 py-4 md:px-[1.8vw] md:py-[.4vw] bg-black text-white font-['Share_Tech']">
 
                 {/* Logo Section */}
-                <div className="flex-1 flex items-center">
+                <div className="flex-1 flex items-center z-50">
 
                     <a href="home">
                         <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
@@ -29,13 +33,19 @@ const page = () => {
 
 
                 {/* Center Links */}
-                <div className="flex-1 flex text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
+                <div className="hidden md:flex flex-1 text-[1.5vw] justify-center tracking-[.2vw]  font-semibold gap-[2.7vw]" style={{ fontFamily: "var(--font-peakers)" }}>
                     <a href="menu" className="whitespace-nowrap cursor-pointer">
                         MENU
                     </a>
-                    <a href="locations" className="whitespace-nowrap">
-                        LOCATIONS
-                    </a>
+                    <div className="relative group">
+                        <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
+                        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
+                                <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+                                <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="ourstory" className="whitespace-nowrap">
                         OUR STORY
                     </a>
@@ -48,7 +58,7 @@ const page = () => {
                 </div>
 
                 {/* Buttons Section */}
-                <div className="flex-1 flex justify-end gap-[1.2vw]">
+                <div className="hidden md:flex flex-1 justify-end gap-[1.2vw]">
                     <button className="border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]" style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono', " }}>
                         CLICK & COLLECT
                     </button>
@@ -61,6 +71,53 @@ const page = () => {
                         </svg>
                         DELIVERY
                     </button>
+                </div>
+
+                {/* Hamburger Button (Mobile Only) */}
+                <div className="md:hidden z-50">
+                    <button onClick={() => setOpen(!open)} className="text-3xl">
+                        ☰
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                <div
+                    className={`absolute left-0 w-full bg-black flex flex-col items-center justify-start text-xl tracking-wider transition-all duration-500 ease-in-out overflow-hidden md:hidden z-40`}
+                    style={{
+                        fontFamily: "var(--font-peakers)",
+                        top: "100%",
+                        maxHeight: open ? "600px" : "0px",
+                        opacity: open ? 1 : 0,
+                        paddingTop: open ? "2.5rem" : "0px",
+                        paddingBottom: open ? "2.5rem" : "0px"
+                    }}
+                >
+                    <div className="flex flex-col items-center gap-8 w-full">
+                        <a href="menu" onClick={() => setOpen(false)}>MENU</a>
+                        <div className="flex flex-col items-center w-full">
+                            <button type="button" onClick={() => setLocationsOpen(!locationsOpen)} className="w-full text-center py-1">
+                                LOCATIONS {locationsOpen ? "−" : "+"}
+                            </button>
+                            {locationsOpen && (
+                                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                                    <a href="locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
+                                    <a href="locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
+                                </div>
+                            )}
+                        </div>
+                        <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
+                        <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
+                        <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
+
+                        <div className="flex flex-col gap-4 mt-2 w-3/4">
+                            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
+                                CLICK & COLLECT
+                            </button>
+                            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
+                                DELIVERY
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <CareersLandingPage />
