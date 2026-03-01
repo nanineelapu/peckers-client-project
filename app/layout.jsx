@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Space_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Mono, Inconsolata } from "next/font/google";
 import "./globals.css";
 import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
@@ -35,6 +35,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inconsolata = Inconsolata({
+  subsets: ["latin"],
+  variable: "--font-inconsolata",
+  display: "swap",
+});
+
 export const metadata = {
   title: "Peakers",
   description:
@@ -46,7 +52,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} ${inconsolata.variable} antialiased`}
       >
         <ClientWrapper>
           {children}
