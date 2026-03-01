@@ -163,7 +163,7 @@ export default function BurgerCarouselFinal() {
   return (
     <>
       <div
-        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[0vh] md:pt-[1vh] min-h-screen md:min-h-screen pb-[2vh] md:pb-0"
+        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[0vh] md:pt-[1vh] min-h-0 md:min-h-screen pb-[4vh] md:pb-0"
         style={{
           background:
             "radial-gradient(ellipse 50% 52% at 50% 38%, #1c1c1c 0%, #0d0d0d 26%, #070707 58%, #000 100%)",
