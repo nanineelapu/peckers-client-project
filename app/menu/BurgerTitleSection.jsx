@@ -122,12 +122,14 @@ export default function BurgerCarouselFinal() {
   // animatingRef is used ONLY as a guard inside moveBy to avoid stale closures.
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [glowVisible, setGlowVisible] = useState(true);
 
   const moveBy = useCallback((steps) => {
     if (steps === 0 || animatingRef.current) return;
 
     animatingRef.current = true;
     setIsAnimating(true);
+    setGlowVisible(false);
 
     setCarousel((prev) => {
       const nextCenter = getModIndex(prev.center + steps);
@@ -139,6 +141,10 @@ export default function BurgerCarouselFinal() {
 
       return { center: nextCenter, cards: nextCards };
     });
+
+    setTimeout(() => {
+      setGlowVisible(true);
+    }, 150);
 
     setTimeout(() => {
       animatingRef.current = false;
@@ -248,8 +254,8 @@ export default function BurgerCarouselFinal() {
               pointerEvents: "none",
               width: "clamp(280px, 50vw, 760px)",
               height: "clamp(280px, 50vw, 760px)",
-              opacity: isAnimating ? 0 : 1,
-              transition: "opacity 0.3s ease",
+              opacity: glowVisible ? 1 : 0,
+              transition: glowVisible ? "opacity 0.4s ease" : "opacity 0.1s ease",
             }}
             aria-hidden="true"
           >
