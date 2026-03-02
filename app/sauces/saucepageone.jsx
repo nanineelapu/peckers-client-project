@@ -16,8 +16,8 @@ const saucesData = [
         title: "HONEY GLAZE BBQ",
         descLine1: "Tomato base slow-simmered with smoked spices and finished with ",
         descLine2: "pure honey.",
-        bgUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/Sauce2.webp", // Replace with real image later
-        sauceUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%202.webp" // Replace with real image later
+        bgUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/Sauce2.webp",
+        sauceUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%202.webp"
     }
 ];
 

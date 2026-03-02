@@ -1,8 +1,8 @@
 export default function MobileBottomBar() {
     return (
-        <div className="md:hidden fixed bottom-0 left-0 w-full bg-black flex items-center justify-between gap-[2vw] px-4 py-3 z-50">
+        <div className="md:hidden fixed bottom-0 left-0 w-full bg-grey flex items-center gap-[1vw] px-4 py-3 z-50">
             <button
-                className="flex-1 flex items-center justify-center gap-[1.5vw] border-[0.15vw] border-white text-white py-[2.5vw] rounded-[1.5vw] text-[3.8vw] font-bold transition-all duration-300 hover:bg-white hover:text-black tracking-wider"
+                className="flex-1 flex bg-white items-center justify-center gap-[1.5vw] border-[0.15vw] border-white text-[#222] py-[2.5vw] rounded-[1.5vw] text-[3.8vw] font-bold transition-all duration-300 hover:bg-[#ffff] hover:text-[#fff] tracking-wider"
                 style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
             >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[4vw] h-[4vw]">
@@ -13,7 +13,7 @@ export default function MobileBottomBar() {
                 CLICK & COLLECT
             </button>
             <button
-                className="flex-1 flex items-center justify-center gap-[1.5vw] border-[0.15vw] border-white text-white py-[2.5vw] rounded-[1.5vw] text-[3.8vw] font-bold transition-all duration-300 hover:bg-white hover:text-black tracking-wider"
+                className="flex-1  bg-white flex items-center justify-center gap-[1.5vw] border-[0.15vw] border-[#ffff] text-[#22222] py-[2.5vw] rounded-[1.5vw] text-[3.8vw] font-bold transition-all duration-300 hover:bg-white hover:text-black tracking-wider"
                 style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
             >
                 <svg width="14" height="14" viewBox="0 0 17 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="w-[4vw] h-auto">
