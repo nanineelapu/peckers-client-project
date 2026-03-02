@@ -119,15 +119,30 @@ const page = () => {
         </div>
       </nav>
       <section>
-        <div className="w-full h-[7vh] md:h-[10vh] flex items-center justify-center bg-white border-y-[3px] border-black overflow-hidden">
-          <span
-            className="text-[4vw] md:text-[2.4vw] whitespace-nowrap text-black uppercase font-bold tracking-tighter md:tracking-normal"
+        <div className="w-full min-h-[8vh] md:h-[10vh] md:min-h-0 flex items-center justify-center bg-white border-y-[2px] md:border-y-[3px] border-black overflow-hidden px-4 py-3 md:px-0 md:py-0">
+          <div
+            className="text-center md:text-left text-black uppercase font-bold md:italic w-full"
             style={{ fontFamily: "var(--font-peakers)" }}
           >
-            UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!{" "}
-            <span className="text-red-600 font-bold">SIGN UP</span>{" "}
-            FOR EXCLUSIVE REWARDS.
-          </span>
+            {/* Mobile View - Minimal and Clean */}
+            <div className="md:hidden flex flex-col items-center justify-center gap-1.5 w-full">
+              <span className="text-[12px] xs:text-[13px] sm:text-[15px] tracking-widest text-gray-800 leading-tight">
+                UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!
+              </span>
+              <span className="text-[14px] xs:text-[15px] sm:text-[17px] tracking-wider leading-tight">
+                <span className="text-red-600 font-black underline decoration-2 underline-offset-2">SIGN UP</span> FOR EXCLUSIVE REWARDS.
+              </span>
+            </div>
+
+            {/* Desktop View - Untouched */}
+            <div className="hidden md:flex items-center justify-center w-full">
+              <span className="text-[2.4vw] whitespace-nowrap tracking-wide">
+                UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!{" "}
+                <span className="text-red-600 font-bold">SIGN UP</span>{" "}
+                FOR EXCLUSIVE REWARDS.
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 

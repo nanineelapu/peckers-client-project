@@ -248,6 +248,8 @@ export default function BurgerCarouselFinal() {
               pointerEvents: "none",
               width: "clamp(280px, 50vw, 760px)",
               height: "clamp(280px, 50vw, 760px)",
+              opacity: isAnimating ? 0 : 1,
+              transition: "opacity 0.3s ease",
             }}
             aria-hidden="true"
           >

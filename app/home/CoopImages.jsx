@@ -11,8 +11,19 @@ export default function CoopImages() {
     <div
       className="flex flex-col md:flex-row gap-[8vw] md:gap-[1.5vw] w-full justify-between items-center px-[5vw] md:px-[1.3vw] py-[10vw]"
     >
-      {/* Hitchin */}
-      <div className="coop-card relative w-full md:w-[37vw] h-[60vw] md:h-[19vw] flex items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
+      {/* Hitchin Mobile */}
+      <div className="flex md:hidden w-full items-center justify-between bg-[#1a1a1a] rounded-[3vw] p-[3vw] shadow-lg border border-[#333]">
+        <div className="flex items-center gap-[2vw] pl-[2vw]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-red-600 w-[7vw] h-[7vw]">
+            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor" />
+          </svg>
+          <span className="text-white text-[6.5vw] uppercase tracking-wide" style={{ fontFamily: "var(--font-peakers)" }}>Hitchin</span>
+        </div>
+        <img src={HITCHIN_IMG} alt="Hitchin" className="w-[30vw] h-[25vw] object-cover rounded-[2vw] shadow-md border border-[#333]" />
+      </div>
+
+      {/* Hitchin Desktop */}
+      <div className="coop-card hidden md:flex relative w-[37vw] h-[19vw] items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
         <img
           src={HITCHIN_IMG}
           alt="Hitchin"
@@ -20,15 +31,26 @@ export default function CoopImages() {
         />
         <div className="absolute inset-0 bg-black/10" />
         <span
-          className="relative z-10 text-white text-[8vw] md:text-[3vw] drop-shadow-lg uppercase"
+          className="relative z-10 text-white text-[3vw] drop-shadow-lg uppercase"
           style={{ fontFamily: "var(--font-peakers)" }}
         >
           Hitchin
         </span>
       </div>
 
-      {/* Stevenage */}
-      <div className="coop-card relative w-full md:w-[37vw] h-[60vw] md:h-[19vw] flex items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
+      {/* Stevenage Mobile */}
+      <div className="flex md:hidden w-full items-center justify-between bg-[#1a1a1a] rounded-[3vw] p-[3vw] shadow-lg border border-[#333]">
+        <img src={STEVENAGE_IMG} alt="Stevenage" className="w-[30vw] h-[25vw] object-cover rounded-[2vw] shadow-md border border-[#333]" />
+        <div className="flex items-center gap-[2vw] pr-[2vw]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-red-600 w-[7vw] h-[7vw]">
+            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor" />
+          </svg>
+          <span className="text-white text-[6.5vw] uppercase tracking-wide text-right" style={{ fontFamily: "var(--font-peakers)" }}>Stevenage</span>
+        </div>
+      </div>
+
+      {/* Stevenage Desktop */}
+      <div className="coop-card hidden md:flex relative w-[37vw] h-[19vw] items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
         <img
           src={STEVENAGE_IMG}
           alt="Stevenage"
@@ -36,7 +58,7 @@ export default function CoopImages() {
         />
         <div className="absolute inset-0 bg-black/10" />
         <span
-          className="relative z-10 text-white text-[8vw] md:text-[3vw] font-['Share_Tech'] drop-shadow-lg uppercase"
+          className="relative z-10 text-white text-[3vw] font-['Share_Tech'] drop-shadow-lg uppercase"
           style={{ fontFamily: "var(--font-peakers)" }}
         >
           Stevenage
