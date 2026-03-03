@@ -213,7 +213,7 @@ export default function BurgerCarouselFinal() {
 
         {/* BURGER STAGE */}
         <div
-          className="relative w-full flex items-center justify-center mt-0 md:mt-0"
+          className="relative w-full flex items-center justify-center mt-[10vw] md:mt-0"
           style={{ height: "clamp(230px, 42vw, 450px)" }}
         >
           {/* NAVIGATION ARROWS IN IMAGE CONTAINER */}
