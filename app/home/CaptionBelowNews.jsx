@@ -54,7 +54,7 @@ export default function CaptionBelowNews() {
           </svg>
           {/* Plain text, no GSAP */}
           <span
-            className="text-white text-[4vw] sm:text-[3vw] md:text-[1.3vw] leading-[6vw] md:leading-[1.7vw] font-sans font-light text-left tracking-wide inline-block"
+            className="text-white text-[4vw] sm:text-[3vw] md:text-[2vw] xl:text-[1.3vw] leading-[6vw] md:leading-[3vw] xl:leading-[1.7vw] font-sans font-light text-left tracking-wide inline-block"
             style={{
               letterSpacing: ".005em",
               // Remove opacity, clipPath, willChange, etc.

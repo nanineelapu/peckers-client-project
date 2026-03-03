@@ -36,15 +36,15 @@ const FooterAni = () => {
       <div className="w-full mx-auto px-[5vw] md:px-[.5vw] gap-[8vw] md:gap-[2vw] flex flex-col md:flex-row justify-between items-start text-white border-b border-[#262626] pb-[10vw] md:pb-[5vw]">
         {/* Left Section */}
         <div className="flex flex-col items-center md:items-start w-full md:w-1/4 mb-[6vw] md:mb-0">
-          <div className="flex items-center mb-[4vw] md:mb-0">
+          <div className="flex items-center mb-[4vw] xl:mb-0">
             <img
               src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201%20%282%29.webp"
               alt="Peckers Logo"
-              className="w-[50vw] md:w-[16vw] h-auto object-contain mr-0 md:mr-3"
+              className="w-[50vw] md:w-[25vw] xl:w-[16vw] h-auto object-contain mr-0 md:mr-3"
             />
           </div>
           <p
-            className="text-[#E3E3E3] px-[2vw] md:px-[1vw] font-mono mb-[6vw] md:mb-[1.3vw] leading-snug text-[3.5vw] sm:text-[3vw] md:text-[1vw] text-center md:text-left w-full"
+            className="text-[#E3E3E3] px-[2vw] md:px-[1vw] font-mono mb-[6vw] md:mb-[3vw] xl:mb-[1.3vw] leading-snug text-[3.5vw] sm:text-[3vw] md:text-[1.8vw] xl:text-[1vw] text-center md:text-left w-full"
             style={{ letterSpacing: "0.09em", fontWeight: "300" }}
           >
             Respect the wing. Fear the
@@ -57,7 +57,7 @@ const FooterAni = () => {
             {socialButtons.map((data) => (
               <button
                 key={data.label}
-                className="w-[10vw] h-[10vw] md:w-11 md:h-11 bg-[#161616] flex items-center justify-center rounded-[2vw] md:rounded transition-all duration-200 hover:scale-110 hover:bg-[#232323] hover:shadow-[0_4px_28px_0_rgba(196,23,24,0.12)]"
+                className="w-[10vw] h-[10vw] md:w-[6vw] md:h-[6vw] xl:w-11 xl:h-11 bg-[#161616] flex items-center justify-center rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.5vw] transition-all duration-200 hover:scale-110 hover:bg-[#232323] hover:shadow-[0_4px_28px_0_rgba(196,23,24,0.12)]"
                 aria-label={data.label}
                 tabIndex={0}
                 type="button"
@@ -71,17 +71,17 @@ const FooterAni = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col w-full md:w-1/4 mt-[4vw] md:mt-[1.6vw] mb-[6vw] md:mb-0 items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col w-full md:w-1/4 mt-[4vw] xl:mt-[1.6vw] mb-[6vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
-            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
+            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
             <span>Quick Links</span>
           </h3>
           <div
-            className="bg-[#333] mt-[0vw] mb-[4vw] md:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
+            className="bg-[#333] mt-0 mb-[4vw] md:mb-[2.5vw] xl:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
           />
-          <ul className="space-y-[3vw] md:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-[400] text-[#a9adb8] w-full">
+          <ul className="space-y-[3vw] md:space-y-[1.5vw] xl:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1.6vw] xl:text-[1vw] font-normal text-[#a9adb8] w-full">
             <li>
               <a
                 href="#"
@@ -124,16 +124,16 @@ const FooterAni = () => {
         {/* Find Us */}
         <div className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
-            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
+            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
             FIND US
           </h3>
           <div
-            className="bg-[#333] mt-[0vw] mb-[4vw] md:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
+            className="bg-[#333] mt-0 mb-[4vw] md:mb-[2.5vw] xl:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
           />
           <div
-            className="space-y-[3vw] md:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-[400] text-[#a9adb8] leading-snug font-normal w-full"
+            className="space-y-[3vw] md:space-y-[1.5vw] xl:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1.6vw] xl:text-[1vw] text-[#a9adb8] leading-snug font-normal w-full"
             style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
           >
             <div>Hitchin - North Hertfordshire</div>
@@ -154,15 +154,15 @@ const FooterAni = () => {
         {/* Boring Stuff Column */}
         <div className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
-            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
+            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
             BORING STUFF
           </h3>
           <div
-            className="bg-[#333] mt-[0vw] mb-[4vw] md:mb-[1.8vw] w-[40vw] md:w-[41%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
+            className="bg-[#333] mt-0 mb-[4vw] md:mb-[2.5vw] xl:mb-[1.8vw] w-[40vw] md:w-[41%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
           />
-          <ul className="space-y-[4vw] md:space-y-[1.2vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-mono text-[#B7BAC8] w-full">
+          <ul className="space-y-[4vw] xl:space-y-[1.2vw] text-[4vw] sm:text-[3vw] md:text-[1.6vw] xl:text-[1vw] font-mono text-[#B7BAC8] w-full">
             <li>
               <a href="#" className="hover:underline inline-block">
                 Privacy Policy

@@ -40,7 +40,7 @@ const SaucePageOne = () => {
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
                 {saucesData.map((sauce, idx) => (
-                    <div key={sauce.id} className="w-full shrink-0 relative overflow-hidden flex flex-col items-center pb-[30vw] md:pb-[20vw] bg-black">
+                    <div key={sauce.id} className="w-full shrink-0 relative overflow-hidden flex flex-col items-center pb-[120vw] sm:pb-[100vw] md:pb-[50vw] lg:pb-[40vw] xl:pb-[20vw] bg-black">
                         {/* Background Image */}
                         <img
                             src={sauce.bgUrl}
@@ -49,26 +49,26 @@ const SaucePageOne = () => {
                         />
 
                         {/* Text Overlay */}
-                        <div className="absolute top-[11%] md:top-[4%] left-1/2 -translate-x-1/2 text-center text-white w-[90%] md:w-[70%] lg:w-[50%] z-20">
+                        <div className="absolute top-[8%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[4%] left-1/2 -translate-x-1/2 text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20">
                             <h1
-                                className="text-4xl sm:text-5xl md:text-[5vw] font-bold tracking-wide mb-2 md:mb-[1vw]"
+                                className="text-3xl sm:text-4xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-2 md:mb-4 xl:mb-[1vw]"
                                 style={{ fontFamily: 'var(--font-peakers)' }}
                             >
                                 {sauce.title}
                             </h1>
 
-                            <div className="text-[10px] py-[2vw] font-light md:text-sm lg:text-[1.3vw] font-['Inconsolata'] leading-[1.3vw] tracking-wider space-y-1 md:space-y-[0.5vw]">
+                            <div className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[1.3vw] leading-[1.4em] md:leading-[1.6em] xl:leading-[1.3vw] py-[1.5vw] font-light md:font-normal lg:font-normal xl:font-light font-['Inconsolata'] tracking-wider space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-[0.5vw]">
                                 <p>
                                     {sauce.descLine1}<br />
                                     {sauce.descLine2}
                                 </p>
-                                <p>{sauce.descLine3}</p>
-                                <p className="font-bold pt-2 md:pt-[0.5vw]">MADE FRESHLY DAILY</p>
+                                <p className="hidden sm:block">{sauce.descLine3}</p>
+                                <p className="font-bold pt-3 md:pt-4 xl:pt-[0.5vw]">MADE FRESHLY DAILY</p>
                             </div>
                         </div>
 
                         {/* Circular Carousel Element placed absolutely at the bottom */}
-                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[-15vw] md:bottom-[-7vw] w-[85vw] h-[85vw] md:w-[65vw] md:h-[65vw] flex items-center justify-center z-10 pointer-events-none">
+                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[20vw] sm:bottom-[15vw] md:bottom-[10vw] lg:bottom-[8vw] xl:bottom-[7vw] w-[85vw] h-[85vw] sm:w-[75vw] sm:h-[75vw] md:w-[60vw] md:h-[60vw] lg:w-[50vw] lg:h-[50vw] xl:w-[65vw] xl:h-[65vw] flex items-center justify-center z-10 pointer-events-none">
 
                             {/* Rotating Circular Text SVG */}
                             <div
@@ -106,18 +106,18 @@ const SaucePageOne = () => {
             </div>
 
             {/* Carousel Arrows */}
-            <div className="absolute bottom-[20%] md:bottom-[50%] xl:bottom-[50%] w-[90%] md:w-[80%] left-1/2 -translate-x-1/2 flex justify-between items-center z-20 pointer-events-none">
+            <div className="absolute bottom-[15%] sm:bottom-[12%] md:bottom-[45%] lg:bottom-[40%] xl:bottom-[50%] w-[90%] sm:w-[85%] md:w-[90%] lg:w-[85%] xl:w-[80%] left-1/2 -translate-x-1/2 flex justify-between items-center z-20 pointer-events-none">
                 <button
                     onClick={prevSlide}
-                    className="w-10 h-10 md:w-[3vw] md:h-[3vw] rounded-full border border-white/50 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all pointer-events-auto backdrop-blur-sm group"
+                    className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all pointer-events-auto backdrop-blur-sm group"
                 >
-                    <svg width="20" height="20" className="md:w-[1.2vw] md:h-[1.2vw] group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5" /><path d="M12 19l-7-7 7-7" /></svg>
+                    <svg width="20" height="20" className="md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-[1.2vw] xl:h-[1.2vw] group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5" /><path d="M12 19l-7-7 7-7" /></svg>
                 </button>
                 <button
                     onClick={nextSlide}
-                    className="w-10 h-10 md:w-[3vw] md:h-[3vw] rounded-full border border-white/50 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all pointer-events-auto backdrop-blur-sm group"
+                    className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all pointer-events-auto backdrop-blur-sm group"
                 >
-                    <svg width="20" height="20" className="md:w-[1.2vw] md:h-[1.2vw] group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
+                    <svg width="20" height="20" className="md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-[1.2vw] xl:h-[1.2vw] group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
                 </button>
             </div>
         </div>

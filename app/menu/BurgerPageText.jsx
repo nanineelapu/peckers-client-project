@@ -60,7 +60,7 @@ export default function BurgerPageText({
           />
         </svg>
         <span
-          className="text-[3.2vw] md:text-[1.5vw] text-white/80 font-peakers uppercase tracking-wide"
+          className="text-[3.2vw] md:text-[16px] lg:text-[18px] xl:text-[1.5vw] text-white/80 font-peakers uppercase tracking-wide"
           style={{
             paddingTop: "0.1em",
             display: "inline-block",
@@ -71,7 +71,7 @@ export default function BurgerPageText({
       </div>
       <div className="flex gap-[3vw] md:gap-3 mt-[4vw] md:mt-5.5">
         <button
-          className="flex items-center justify-center px-[4vw] py-[2vw] md:px-6 md:py-1 rounded-[.4vw] border-[1.5px] md:border-[.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-cc"
+          className="flex items-center justify-center px-[4vw] py-[2vw] md:px-6 md:py-2 rounded-[.4vw] border-[1.5px] md:border-2 xl:border-[0.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[14px] lg:text-[16px] xl:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-cc"
           style={{
             minWidth: 115,
             letterSpacing: "0.04em",
@@ -82,7 +82,7 @@ export default function BurgerPageText({
           Click & Collect
         </button>
         <button
-          className="flex items-center justify-center px-[5vw] py-[2vw] md:px-7 md:py-2 rounded border-[1.5px] md:border-[.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-delivery"
+          className="flex items-center justify-center px-[5vw] py-[2vw] md:px-7 md:py-2 rounded border-[1.5px] md:border-2 xl:border-[0.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[14px] lg:text-[16px] xl:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-delivery"
           style={{
             minWidth: 115,
             letterSpacing: "0.04em",
@@ -112,10 +112,10 @@ export default function BurgerPageText({
         </button>
       </div>
 
-      <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-[6vw] md:gap-[11vw] mt-[8vw] md:mt-7 ml-0 md:ml-12 text-white/90 font-mono pt-0 burger-stats px-[5vw] md:px-0">
+      <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-[6vw] md:gap-8 lg:gap-12 xl:gap-[11vw] mt-[8vw] md:mt-7 ml-0 md:ml-12 text-white/90 font-mono pt-0 burger-stats px-[5vw] md:px-0">
         {/* Energy */}
         <div className="min-w-[90px] border-l-2 border-[#616132] pl-[3vw] md:pl-6 pt-0">
-          <div className="text-[#c4b40a] text-[2.5vw] md:text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
+          <div className="text-[#c4b40a] text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
             CALORIES
           </div>
           <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
@@ -124,7 +124,7 @@ export default function BurgerPageText({
         </div>
         {/* Sodium */}
         <div className="min-w-[105px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
-          <div className="text-[#575750] font-mono text-[2.5vw] md:text-[.8vw] uppercase mb-1 tracking-wide font-bold pt-0.5">
+          <div className="text-[#575750] font-mono text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] uppercase mb-1 tracking-wide font-bold pt-0.5">
             Protein and Energy
           </div>
           <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
@@ -133,7 +133,7 @@ export default function BurgerPageText({
         </div>
         {/* Allergens */}
         <div className="min-w-[105px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
-          <div className="text-[#575750] text-[2.5vw] md:text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
+          <div className="text-[#575750] text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
             Allergens
           </div>
           <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
@@ -142,7 +142,7 @@ export default function BurgerPageText({
         </div>
         {/* Spice Level */}
         <div className="min-w-[105px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
-          <div className="text-[#c4b40a] uppercase mb-1 text-[2.5vw] md:text-[.8vw] tracking-wide font-bold pt-0.5">
+          <div className="text-[#c4b40a] uppercase mb-1 text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] tracking-wide font-bold pt-0.5">
             Spice Level
           </div>
           <div className="flex items-center gap-1.5 mt-1 h-[1.1em] pt-0">
@@ -194,7 +194,7 @@ export default function BurgerPageText({
       </div>
 
       <div className="w-full flex justify-center pt-[8vw] md:pt-5 pb-[15vw] md:pb-[5vw] burger-available text-center px-[5vw]">
-        <span className="text-white font-peakers text-[4vw] md:text-[2.2vw] tracking-3 font-normal">
+        <span className="text-white font-peakers text-[4vw] md:text-[20px] lg:text-[24px] xl:text-[2.2vw] tracking-3 font-normal">
           Also available as a wrap, rice bowl, or salad bowl.
         </span>
       </div>

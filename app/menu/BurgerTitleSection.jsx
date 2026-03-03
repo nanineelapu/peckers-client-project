@@ -183,28 +183,28 @@ export default function BurgerCarouselFinal() {
           >
             <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
             <div
-              className="flex font-['Share_Tech'] gap-[6vw] md:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] sm:px-[5vw] md:px-0 pt-[4vw] sm:pt-[4vw] md:pt-[1.5vw]"
+              className="flex font-['Share_Tech'] gap-[6vw] md:gap-6 lg:gap-8 xl:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] sm:px-[5vw] md:px-0 pt-[4vw] sm:pt-[4vw] md:pt-4 lg:pt-6 xl:pt-[1.5vw]"
               style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               <a
                 href="#"
-                className="whitespace-nowrap font-sharetech text-[18px] sm:text-[22px] md:text-[1.3vw] border-b-2 border-red-500 pb-1 md:pb-1 tracking-wider"
+                className="whitespace-nowrap font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500 pb-1 md:pb-1 tracking-wider"
               >
                 BURGERS
               </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 WRAPS
               </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 RICE BOWLS
               </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 WINGS AND TENDERS
               </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 GRIILLED
               </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                 MEAL BOX
               </a>
             </div>

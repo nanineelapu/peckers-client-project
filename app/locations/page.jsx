@@ -13,12 +13,12 @@ export function LocationsPageContent({ location = 'hitchin' }) {
     return (
         <div id="main-content" className='z-9999' style={{ color: 'white' }}>
 
-            <nav className="relative flex items-center px-4 py-4 md:px-[1.8vw] md:py-[.4vw] bg-black text-white font-['Share_Tech']">
+            <nav className="relative flex items-center px-4 py-4 md:px-6 md:py-2 lg:px-10 lg:py-3 xl:px-[1.8vw] xl:py-[.4vw] bg-black text-white font-['Share_Tech']">
 
                 {/* Logo Section */}
                 <div className="flex-1 flex items-center z-50">
                     <a href="/home">
-                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[240px] h-auto md:h-[82px] transition-all duration-300">
+                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[180px] lg:w-[200px] xl:w-[240px] h-auto xl:h-[82px] transition-all duration-300">
                             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
                             <defs>
                                 <pattern id="pattern0_1_243" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -33,7 +33,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
 
                 {/* Desktop Center Links */}
                 <div
-                    className="hidden md:flex flex-1 text-[1.5vw] justify-center tracking-[.2vw] font-semibold gap-[2.7vw]"
+                    className="hidden md:flex flex-1 text-[14px] lg:text-[16px] xl:text-[1.5vw] justify-center tracking-[.2vw] font-semibold gap-4 lg:gap-6 xl:gap-[2.7vw]"
                     style={{ fontFamily: "var(--font-peakers)" }}
                 >
                     <a href="/menu" className="whitespace-nowrap">MENU</a>
@@ -41,8 +41,8 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                         <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
                         <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                             <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
-                                <a href="/locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
-                                <a href="/locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+                                <a href="/locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[14px] lg:text-[16px] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+                                <a href="/locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[14px] lg:text-[16px] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
                             </div>
                         </div>
                     </div>
@@ -53,14 +53,14 @@ export function LocationsPageContent({ location = 'hitchin' }) {
 
                 {/* Desktop Buttons */}
                 <div
-                    className="hidden md:flex flex-1 justify-end gap-[1.2vw]"
+                    className="hidden md:flex flex-1 justify-end gap-2 lg:gap-4 xl:gap-[1.2vw]"
                     style={{ fontFamily: "monospace" }}
                 >
-                    <button className="border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
+                    <button className="border-2 xl:border-[0.15vw] border-white px-4 py-1.5 lg:px-5 lg:py-2 xl:px-[2.3vw] xl:py-[.5vw] rounded-lg xl:rounded-[0.95vw] text-xs lg:text-sm xl:text-[1vw] transition-all duration-300 hover:shadow-[4px_4px_0px_white] xl:hover:shadow-[0.4vw_0.4vw_0px_white]">
                         CLICK & COLLECT
                     </button>
 
-                    <button className="flex items-center gap-2 border-[0.15vw] border-white px-[2.3vw] py-[.5vw] rounded-[0.95vw] text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
+                    <button className="flex items-center gap-2 border-2 xl:border-[0.15vw] border-white px-4 py-1.5 lg:px-5 lg:py-2 xl:px-[2.3vw] xl:py-[.5vw] rounded-lg xl:rounded-[0.95vw] text-xs lg:text-sm xl:text-[1vw] transition-all duration-300 hover:shadow-[4px_4px_0px_white] xl:hover:shadow-[0.4vw_0.4vw_0px_white]">
                         DELIVERY
                     </button>
                 </div>
@@ -123,12 +123,12 @@ export function LocationsPageContent({ location = 'hitchin' }) {
             <section
                 id='history'
             >
-                <div className="flex flex-col items-center mt-[12vw] md:mt-[6vw] justify-center w-full pt-[8vw] md:pt-[2vw] pb-[12vw] md:pb-[4vw] bg-[#0A0A0B]">
-                    <div className="flex flex-col items-center w-[90vw] md:w-[80vw]">
+                <div className="flex flex-col items-center mt-[12vw] md:mt-[6vw] lg:mt-[4vw] justify-center w-full pt-[8vw] md:pt-[2vw] lg:pt-[3vw] pb-[12vw] md:pb-[4vw] lg:pb-[5vw] bg-[#0A0A0B]">
+                    <div className="flex flex-col items-center w-[90vw] md:w-[80vw] lg:w-[82vw]">
                         {/* History Title, Logo, EST */}
                         <div className="flex flex-col md:flex-row items-center mb-[6vw] md:mb-[1.6vw] mr-0 md:mr-[16vw] relative w-full justify-center">
                             <div
-                                className="relative w-[30vw] h-[30vw] md:w-[10vw] md:h-[10vw] flex items-center justify-center mb-[4vw] md:mb-[0.8vw] self-center md:self-start mr-0 md:mr-[44vw]"
+                                className="relative w-[30vw] h-[30vw] md:w-[10vw] md:h-[10vw] lg:w-[8vw] lg:h-[8vw] flex items-center justify-center mb-[4vw] md:mb-[0.8vw] self-center md:self-start mr-0 md:mr-[44vw] lg:mr-[38vw]"
                             >
                                 <img
                                     src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Location%20logo%20png.webp"
@@ -143,25 +143,25 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                                     }}
                                 />
                             </div>
-                            <div className="flex md:absolute flex-col items-center ml-0 md:ml-[28vw] mt-0 md:mt-[2vw]">
+                            <div className="flex md:absolute flex-col items-center ml-0 md:ml-[28vw] lg:ml-[22vw] mt-0 md:mt-[2vw]">
                                 <div className="flex items-center mb-[2vw] md:mb-[0.3vw]">
                                     <span
-                                        className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 mr-[2vw] md:mr-[1vw]"
+                                        className="h-[1.2px] w-[8vw] md:w-[3vw] lg:w-[2vw] bg-[#555] opacity-70 mr-[2vw] md:mr-[1vw]"
                                         aria-hidden="true"
                                     ></span>
                                     <span
-                                        className="text-[#888] text-[3.5vw] md:text-[0.95vw] tracking-[0.22em] font-mono"
+                                        className="text-[#888] text-[3.5vw] md:text-[0.95vw] lg:text-xs tracking-[0.22em] font-mono"
                                         style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
                                     >
                                         EST. 2023
                                     </span>
                                     <span
-                                        className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 ml-[2vw] md:ml-[1vw]"
+                                        className="h-[1.2px] w-[8vw] md:w-[3vw] lg:w-[2vw] bg-[#555] opacity-70 ml-[2vw] md:ml-[1vw]"
                                         aria-hidden="true"
                                     ></span>
                                 </div>
                                 <h2
-                                    className="font-bold text-[12vw] md:text-[4.5vw] font-peakers text-[#fff] mt-[1vw] md:mt-[0.2vw] tracking-[0.05em]"
+                                    className="font-bold text-[12vw] md:text-[4.5vw] lg:text-4xl font-peakers text-[#fff] mt-[1vw] md:mt-[0.2vw] tracking-[0.05em]"
                                 >
                                     HISTORY
                                 </h2>
@@ -170,7 +170,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                         {/* History Details */}
                         <div className="w-full flex justify-center mt-[4vw] md:mt-0">
                             <p
-                                className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
+                                className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] lg:text-sm max-w-[90vw] md:max-w-[70vw] lg:max-w-[72vw] font-mono"
                             >
                                 Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
                                 isn't just a kitchen—it's where the Peckers revolution began for this side of town. We took an old, forgotten space
@@ -193,7 +193,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
             {/* Boring Stuff */}
 
             <div
-                className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
+                className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] lg:text-xs tracking-tight font-mono px-6 py-6 md:px-[1vw] lg:px-6 md:py-[2.5vw] lg:py-5 flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
                 <div className="mb-1 md:mb-0 text-center md:text-left">
                     © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.
                 </div>
@@ -228,7 +228,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                     <img
                         src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png"
                         alt="Peckers Logo"
-                        className="max-w-[80%] w-full pb-[18vw] md:pb-0"
+                        className="max-w-[80%] w-full pb-[18vw] md:pb-0 lg:pb-0"
                         style={{ filter: "brightness(1)" }}
                     />
                 </div>

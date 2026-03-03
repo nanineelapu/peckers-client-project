@@ -9,7 +9,7 @@ export default function CoopImages() {
 
   return (
     <div
-      className="flex flex-col md:flex-row gap-[8vw] md:gap-[1.5vw] w-full justify-between items-center px-[5vw] md:px-[1.3vw] py-[10vw]"
+      className="flex flex-col md:flex-row gap-[8vw] md:gap-[3vw] xl:gap-[1.5vw] w-full justify-between items-center px-[5vw] md:px-[2.5vw] xl:px-[1.3vw] py-[10vw] xl:py-[5vw]"
     >
       {/* Hitchin Mobile */}
       <div className="flex md:hidden w-full items-center justify-between bg-[#1a1a1a] rounded-[3vw] p-[3vw] shadow-lg border border-[#333]">
@@ -23,7 +23,7 @@ export default function CoopImages() {
       </div>
 
       {/* Hitchin Desktop */}
-      <div className="coop-card hidden md:flex relative w-[37vw] h-[19vw] items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
+      <div className="coop-card hidden md:flex relative w-[37vw] h-[25vw] xl:h-[19vw] items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
         <img
           src={HITCHIN_IMG}
           alt="Hitchin"
@@ -31,7 +31,7 @@ export default function CoopImages() {
         />
         <div className="absolute inset-0 bg-black/10" />
         <span
-          className="relative z-10 text-white text-[3vw] drop-shadow-lg uppercase"
+          className="relative z-10 text-white text-[4vw] xl:text-[3vw] drop-shadow-lg uppercase"
           style={{ fontFamily: "var(--font-peakers)" }}
         >
           Hitchin
@@ -50,7 +50,7 @@ export default function CoopImages() {
       </div>
 
       {/* Stevenage Desktop */}
-      <div className="coop-card hidden md:flex relative w-[37vw] h-[19vw] items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
+      <div className="coop-card hidden md:flex relative w-[37vw] h-[25vw] xl:h-[19vw] items-center justify-center rounded-lg overflow-hidden shadow-lg bg-black/40">
         <img
           src={STEVENAGE_IMG}
           alt="Stevenage"
@@ -58,7 +58,7 @@ export default function CoopImages() {
         />
         <div className="absolute inset-0 bg-black/10" />
         <span
-          className="relative z-10 text-white text-[3vw] font-['Share_Tech'] drop-shadow-lg uppercase"
+          className="relative z-10 text-white text-[4vw] xl:text-[3vw] font-['Share_Tech'] drop-shadow-lg uppercase"
           style={{ fontFamily: "var(--font-peakers)" }}
         >
           Stevenage
@@ -66,10 +66,10 @@ export default function CoopImages() {
       </div>
 
       {/* Third Card */}
-      <div className="coop-card w-full md:w-[35vw] h-[60vw] md:h-[19vw] bg-[#2222] rounded-lg flex flex-col items-center justify-center border border-[#383838] px-[4vw] md:px-[1vw] py-[4vw] md:py-[1vw]">
-        <div className="w-full h-full flex flex-col items-center justify-center bg-[#2222] px-[4vw] md:px-[2vw] py-[4vw] md:py-[2vw]">
+      <div className="coop-card w-full md:w-[35vw] h-[60vw] md:h-[25vw] xl:h-[19vw] bg-[#2222] rounded-lg flex flex-col items-center justify-center border border-[#383838] px-[4vw] md:px-[2vw] xl:px-[1vw] py-[4vw] xl:py-[1vw]">
+        <div className="w-full h-full flex flex-col items-center justify-center bg-[#2222] px-[4vw] md:px-[3vw] xl:px-[2vw] py-[4vw] md:py-[3vw] xl:py-[2vw]">
           <span
-            className="text-white text-[7vw] md:text-[2.5vw] mb-[4vw] md:mb-[1.5vw] text-center tracking-wide"
+            className="text-white text-[7vw] md:text-[3.5vw] xl:text-[2.5vw] mb-[4vw] xl:mb-[1.5vw] text-center tracking-wide"
             style={{ fontFamily: "var(--font-peakers)" }}
           >
             WHERE NEXT ?
@@ -78,10 +78,10 @@ export default function CoopImages() {
           <input
             type="text"
             placeholder="Suggest a city..."
-            className="w-[85%] md:w-[70%] bg-transparent border border-[#383838] rounded-md text-center text-white font-mono py-[3vw] px-[4vw] md:py-[0.7vw] md:px-[1vw] mb-[4vw] md:mb-[1.6vw] placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white transition-all text-[4vw] md:text-[1vw]"
+            className="w-[85%] xl:w-[70%] bg-transparent border border-[#383838] rounded-md text-center text-white font-mono py-[3vw] px-[4vw] md:py-[1vw] md:px-[1.5vw] xl:py-[0.7vw] xl:px-[1vw] mb-[4vw] md:mb-[2vw] xl:mb-[1.6vw] placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white transition-all text-[4vw] md:text-[1.5vw] xl:text-[1vw]"
           />
 
-          <button className="w-[60%] py-[3vw] md:py-[0.2vw] border-2 border-[#383838] rounded-[4vw] md:rounded-[1vw] text-white font-mono text-[4vw] md:text-[1.2vw] tracking-widest transition-all bg-[#1111] hover:shadow-[0.4vw_0.4vw_0px_white]">
+          <button className="w-[60%] py-[3vw] md:py-[0.5vw] xl:py-[0.2vw] border-2 border-[#383838] rounded-[4vw] md:rounded-[1.5vw] xl:rounded-[1vw] text-white font-mono text-[4vw] md:text-[1.6vw] xl:text-[1.2vw] tracking-widest transition-all bg-[#1111] hover:shadow-[0.4vw_0.4vw_0px_white]">
             SUBMIT
           </button>
         </div>
