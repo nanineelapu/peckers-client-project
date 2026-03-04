@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 
 export default function JourneyIntroSection() {
     return (
@@ -7,17 +8,35 @@ export default function JourneyIntroSection() {
             <div className="hidden md:block w-full">
 
                 {/* Main Heading */}
-                <h2 className="text-[3.35vw] font-peakers text-white leading-none font-bold tracking-tight mb-[2vw]">
+                <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-[3.35vw] font-peakers text-white leading-none font-bold tracking-tight mb-[2vw]"
+                >
                     THE PECKERS JOURNEY
-                </h2>
+                </motion.h2>
 
                 {/* Subtitle */}
-                <p className="text-[1vw] font-peakers text-[#FFD700] tracking-[0.35vw] leading-[1.4] max-w-[60vw] mx-auto">
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                    className="text-[1vw] font-peakers text-[#FFD700] tracking-[0.35vw] leading-[1.4] max-w-[60vw] mx-auto"
+                >
                     FROM ONE STORE TO GROWING COMMUNITY BRAND <br />
                     - THE JOURNEY CONTINUES
-                </p>
+                </motion.p>
 
-                <div className="w-full relative flex flex-col items-end">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.4 }}
+                    className="w-full relative flex flex-col items-end"
+                >
 
                     {/* Your Existing Desktop Card */}
                     <div className="z-10 mx-auto w-[17.5vw] h-[11vw] mt-[24.2vw] mr-[10vw] mb-[-6vw] rounded-[.7vw] border border-dashed border-[#cab53d] px-[3vw] py-[2vw] flex flex-col items-center gap-[.8vw] bg-black/95 absolute">
@@ -42,22 +61,34 @@ export default function JourneyIntroSection() {
                         alt="The Peckers Journey"
                         className="w-full object-cover"
                     />
-                </div>
+                </motion.div>
             </div>
 
             {/* ================= MOBILE VERSION ================= */}
             <div className="md:hidden w-full px-6 pt-10">
 
                 {/* Mobile Heading */}
-                <h2 className="text-[8vw] font-peakers text-white font-bold mb-4">
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-[8vw] font-peakers text-white font-bold mb-4"
+                >
                     THE PECKERS JOURNEY
-                </h2>
+                </motion.h2>
 
-                <p className="text-[3vw] text-[#FFD700] font-peakers tracking-[0.3em] leading-[1.4] mb-10">
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="text-[3vw] text-[#FFD700] font-peakers tracking-[0.3em] leading-[1.4] mb-10"
+                >
                     FROM ONE STORE TO GROWING COMMUNITY BRAND
                     <br />
                     THE JOURNEY CONTINUES
-                </p>
+                </motion.p>
 
                 {/* Timeline */}
                 <div className="relative max-w-md mx-auto">
@@ -66,7 +97,13 @@ export default function JourneyIntroSection() {
                     <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-[#FFD700] shadow-[0_0_12px_rgba(255,215,0,0.6)]"></div>
 
                     {/* 2022 */}
-                    <div className="relative mb-12">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="relative mb-12"
+                    >
                         <div className="absolute left-2 top-2 w-5 h-5 bg-[#FFD700] rounded-full shadow-[0_0_12px_#FFD700]"></div>
 
                         <div className="ml-12 bg-[#121212] border border-[#333] rounded-xl p-5">
@@ -75,10 +112,16 @@ export default function JourneyIntroSection() {
                                 Hitchin
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* 2024 */}
-                    <div className="relative mb-12">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="relative mb-12"
+                    >
                         <div className="absolute left-2 top-2 w-5 h-5 bg-[#FFD700] rounded-full shadow-[0_0_12px_#FFD700]"></div>
 
                         <div className="ml-12 bg-[#121212] border border-[#333] rounded-xl p-5">
@@ -87,10 +130,16 @@ export default function JourneyIntroSection() {
                                 Stevenage
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* WHERE NEXT */}
-                    <div className="relative mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="relative mb-20"
+                    >
                         <div className="absolute left-2 top-2 w-5 h-5 bg-[#FFD700] rounded-full animate-pulse"></div>
 
                         <div className="ml-12 bg-[#121212] border border-dashed border-[#FFD700] rounded-xl p-6">
@@ -111,7 +160,7 @@ export default function JourneyIntroSection() {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
             </div>

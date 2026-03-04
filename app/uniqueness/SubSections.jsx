@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const imageUrl =
   "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Chicken%20prep.webp";
@@ -47,7 +48,13 @@ const SubSections = () => {
               } bg-black`}
           >
             {/* IMAGE SECTION */}
-            <div className="w-full md:w-[60%] h-[110vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black">
+            <motion.div
+              className="w-full md:w-[60%] h-[110vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <Image
                 src={
                   index === 1
@@ -64,14 +71,20 @@ const SubSections = () => {
                 className={`object-cover ${index === 1 ? 'object-top' : 'object-center'}`}
                 priority={index === 0}
               />
-            </div>
+            </motion.div>
 
             {/* CONTENT SECTION */}
             <div
               className={`w-full md:w-[40%] h-auto md:h-full text-white flex py-[12vw] md:py-0 ${index === 1 ? 'items-start md:pt-[8vw]' : 'items-center'}`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
-              <div className={`px-[6vw] ${index >= 5 ? 'md:pl-[7vw] md:pr-0' : 'md:px-[7vw]'} mb-[6vw] leading-normal md:leading-[0vw] w-full`}>
+              <motion.div
+                className={`px-[6vw] ${index >= 5 ? 'md:pl-[7vw] md:pr-0' : 'md:px-[7vw]'} mb-[6vw] leading-normal md:leading-[0vw] w-full`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              >
                 <p className={`text-[#FFD700] font-semibold text-[3.5vw] ${index === 4 ? 'md:text-[1.1vw]' : 'md:text-[0.95vw]'} font-mono tracking-[0.8vw] md:tracking-[0.2vw] mb-[2vw] md:mb-[0.5vw]`} style={{ fontFamily: "space mono" }}>
                   {num.toString().padStart(2, "0")}
                 </p>
@@ -214,7 +227,7 @@ const SubSections = () => {
 
                   }
                 </p>
-              </div>
+              </motion.div>
             </div>
           </section>
         );

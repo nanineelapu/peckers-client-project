@@ -1,8 +1,16 @@
 
 
+import { motion } from 'framer-motion';
+
 export default function StoryCircle() {
     return (
-        <section className="w-full bg-black text-white px-[6vw] md:px-[4vw] pt-[5vw] md:pt-[3vw] pb-[14vw] md:pb-[9vw]">
+        <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="w-full bg-black text-white px-[6vw] md:px-[4vw] pt-[5vw] md:pt-[3vw] pb-[14vw] md:pb-[9vw]"
+        >
 
             {/* Top Row */}
             <div className="flex flex-col md:flex-row items-center w-full gap-[3vw] md:gap-4">
@@ -13,7 +21,13 @@ export default function StoryCircle() {
                 </h2>
 
                 {/* Line - hidden on mobile since text wraps and centers */}
-                <div className="hidden md:block flex-1 h-[1px] bg-[#1F2937]"></div>
+                <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="hidden md:block flex-1 h-[1px] bg-[#1F2937]"
+                ></motion.div>
 
                 {/* Year */}
                 <span className="text-white/60 tracking-widest font-sans md:mr-[1.5vw] text-[4vw] md:text-sm whitespace-nowrap">
@@ -23,8 +37,14 @@ export default function StoryCircle() {
             </div>
 
             {/* Bottom Divider */}
-            <div className="w-full h-[1px] bg-[#1F2937] mt-[3vw] md:mt-4"></div>
+            <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="w-full h-px bg-[#1F2937] mt-[3vw] md:mt-4"
+            ></motion.div>
 
-        </section>
+        </motion.section>
     );
 }

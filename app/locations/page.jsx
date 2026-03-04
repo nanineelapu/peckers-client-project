@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import EnquiriesSection from './EnquireSection'
 import LocationFooter from './LocationFooter'
 import LocationAddress from './LocationAddress'
@@ -113,15 +114,22 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                 </div>
             </nav>
 
-            <div
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
                 className="w-full flex flex-col items-center justify-center" style={{ background: "#bbbbbb", minHeight: "70vh" }}>
                 <div className="text-white text-[10vw] font-bold leading-tight" style={{ fontFamily: "var(--font-peakers)", letterSpacing: '0.1em', }}>
                     {locationTitle}
                 </div>
-                <div className="mt-2 text-[#b2bac8] text-[3vw] italic" style={{ fontFamily: "var(--font-peakers)" }}>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="mt-2 text-[#b2bac8] text-[3vw] italic" style={{ fontFamily: "var(--font-peakers)" }}>
                     (HERO VIDEO)
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
             <div>
                 <LocationAddress location={location} />
@@ -134,7 +142,11 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                     <div className="flex flex-col items-center w-[90vw] md:w-[80vw]">
                         {/* History Title, Logo, EST */}
                         <div className="flex flex-col md:flex-row items-center mb-[6vw] md:mb-[1.6vw] mr-0 md:mr-[16vw] relative w-full justify-center">
-                            <div
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.7, ease: "easeOut" }}
                                 className="relative w-[30vw] h-[30vw] md:w-[10vw] md:h-[10vw] flex items-center justify-center mb-[4vw] md:mb-[0.8vw] self-center md:self-start mr-0 md:mr-[44vw]"
                             >
                                 <img
@@ -149,8 +161,13 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                                         marginBottom: '2vw'
                                     }}
                                 />
-                            </div>
-                            <div className="flex md:absolute flex-col items-center ml-0 md:ml-[28vw] mt-0 md:mt-[2vw]">
+                            </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                                className="flex md:absolute flex-col items-center ml-0 md:ml-[25vw] mt-0 md:mt-[2vw]">
                                 <div className="flex items-center mb-[2vw] md:mb-[0.3vw]">
                                     <span
                                         className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 mr-[2vw] md:mr-[1vw]"
@@ -160,7 +177,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                                         className="text-[#888] text-[3.5vw] md:text-[0.95vw] tracking-[0.22em] font-mono"
                                         style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
                                     >
-                                        EST. 2023
+                                        {location === 'stevenage' ? 'EST. 2024' : 'EST. 2023'}
                                     </span>
                                     <span
                                         className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 ml-[2vw] md:ml-[1vw]"
@@ -172,25 +189,45 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                                 >
                                     HISTORY
                                 </h2>
-                            </div>
+                            </motion.div>
                         </div>
                         {/* History Details */}
-                        <div className="w-full flex justify-center mt-[4vw] md:mt-0">
-                            <p
-                                className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
-                            >
-                                Hitchin has always had a rebellious spirit, and so do we. Nestled right in the heart of John Barker Place, this spot
-                                isn't just a kitchen—it's where the Peckers revolution began for this side of town. We took an old, forgotten space
-                                and turned it into a high-octane flavor lab. Serving serious chicken to serious people, our Hitchin location is the
-                                Hero Kitchen that sets the standard for everything we do. Rough around the edges, perfect on the plate.
-                            </p>
-                        </div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                            className="w-full flex justify-center mt-[4vw] md:mt-0">
+                            {location === 'stevenage' ? (
+                                <p
+                                    className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
+                                >
+                                    Following the incredible response at our original site, Stevenage was established as our second location to bring
+                                    Peckers to a larger audience. This inviting store is designed for the community to gather, offering a high-energy
+                                    environment and a comfortable space to dine in.
+                                    Known for its fast-paced service and exceptional team, Stevenage is where our vision truly scaled up. Located
+                                    within proximity to our Budgens stores in Walkern and Watton, it stands as a testament to our journey providing a
+                                    welcoming, vibrant spot for everyone to enjoy seriously good chicken together.
+                                </p>
+                            ) : (
+                                <p
+                                    className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
+                                >
+                                    Peckers Hitchin is where the vision first took flight. Nestled in the heart of Westmill, this location stands on the
+                                    same ground where our family’s journey began over 50 years ago at our grandfather’s original shop.
+                                    It is the birthplace of our flavours and the community-driven spirit that defines us. As our original location, Hitchin
+                                    remains a dedicated staple for the neighbourhood, serving seriously good chicken to the community that first
+                                    supported our vision. While we continue to grow, this site stays true to its purpose: providing the local area with
+                                    the quality and craft that started the legacy.
+                                </p>
+                            )}
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
             <div>
-                <EnquiriesSection />
+                <EnquiriesSection location={location} />
             </div>
 
             <div>
@@ -240,7 +277,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                     />
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

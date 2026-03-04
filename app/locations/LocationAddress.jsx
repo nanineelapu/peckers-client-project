@@ -1,21 +1,23 @@
 const LOCATION_DATA = {
-  hitchin: {
-    title: "HITCHIN PECKERS",
-    address: "25 Jhon Barker PI,\nHitchin SG5 2PD",
-    phone: "07599 828189",
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262521.727374963!2d-0.6723116326238529!3d51.882665954173305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487635dab81e5c55%3A0x25836d282f1fe28b!2sPeckers!5e0!3m2!1sen!2sde!4v1772289431208!5m2!1sen!2sde",
-  },
-  stevenage: {
-    title: "STEVENAGE PECKERS",
-    address: "Stevenage, Hertfordshire",
-    phone: "07599 828189",
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d157418.756!2d-0.202!3d51.902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487631a1b2e0b0b1%3A0x1!2sStevenage!5e0!3m2!1sen!2suk!4v1!5m2!1sen!2suk",
-  },
+    hitchin: {
+        title: "HITCHIN PECKERS",
+        address: "25 Jhon Barker PI,\nHitchin SG5 2PD",
+        phone: "07599 828189",
+        hours: "Monday - Sunday",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d262521.727374963!2d-0.6723116326238529!3d51.882665954173305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487635dab81e5c55%3A0x25836d282f1fe28b!2sPeckers!5e0!3m2!1sen!2sde!4v1772289431208!5m2!1sen!2sde",
+    },
+    stevenage: {
+        title: "STEVENAGE PECKERS",
+        address: "46 Hertford Rd, Bragbury End,\nStevenage SG2 8ED",
+        phone: "07879 512344",
+        hours: "Monday – Thursday: 12 PM - 10 PM\nFriday & Saturday: 11:30 AM - 11 PM\nSunday: 11:30 AM - 10:00 PM",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d157418.756!2d-0.202!3d51.902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487631a1b2e0b0b1%3A0x1!2sStevenage!5e0!3m2!1sen!2suk!4v1!5m2!1sen!2suk",
+    },
 };
 
 export default function LocationAddress({ location = "hitchin" }) {
-  const data = LOCATION_DATA[location] || LOCATION_DATA.hitchin;
-  return (
+    const data = LOCATION_DATA[location] || LOCATION_DATA.hitchin;
+    return (
         <section>
             <div className="flex justify-center items-center min-h-[90vh] mt-6">
                 <div
@@ -36,7 +38,7 @@ export default function LocationAddress({ location = "hitchin" }) {
                             </svg>
                             <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] py-[1vw] font-peakers">
                                 {data.address.split("\n").map((line, i, arr) => (
-                                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                                    <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
                                 ))}
                             </div>
                         </div>
@@ -45,7 +47,11 @@ export default function LocationAddress({ location = "hitchin" }) {
                             <svg className="w-[7.5vw] h-[10.5vw] md:w-[25px] md:h-[35px] min-w-[25px]" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.625 18.375L18.375 16.625L13.75 12V6.25H11.25V13L16.625 18.375ZM12.5 25C10.7708 25 9.14583 24.6719 7.625 24.0156C6.10417 23.3594 4.78125 22.4688 3.65625 21.3438C2.53125 20.2188 1.64062 18.8958 0.984375 17.375C0.328125 15.8542 0 14.2292 0 12.5C0 10.7708 0.328125 9.14583 0.984375 7.625C1.64062 6.10417 2.53125 4.78125 3.65625 3.65625C4.78125 2.53125 6.10417 1.64063 7.625 0.984377C9.14583 0.328127 10.7708 1.90735e-06 12.5 1.90735e-06C14.2292 1.90735e-06 15.8542 0.328127 17.375 0.984377C18.8958 1.64063 20.2188 2.53125 21.3438 3.65625C22.4688 4.78125 23.3594 6.10417 24.0156 7.625C24.6719 9.14583 25 10.7708 25 12.5C25 14.2292 24.6719 15.8542 24.0156 17.375C23.3594 18.8958 22.4688 20.2188 21.3438 21.3438C20.2188 22.4688 18.8958 23.3594 17.375 24.0156C15.8542 24.6719 14.2292 25 12.5 25ZM12.5 22.5C15.2708 22.5 17.6302 21.526 19.5781 19.5781C21.526 17.6302 22.5 15.2708 22.5 12.5C22.5 9.72917 21.526 7.36979 19.5781 5.42188C17.6302 3.47396 15.2708 2.5 12.5 2.5C9.72917 2.5 7.36979 3.47396 5.42188 5.42188C3.47396 7.36979 2.5 9.72917 2.5 12.5C2.5 15.2708 3.47396 17.6302 5.42188 19.5781C7.36979 21.526 9.72917 22.5 12.5 22.5Z" fill="white" />
                             </svg>
-                            <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] font-peakers ">Monday - Sunday</div>
+                            <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] font-peakers ">
+                                {data.hours.split("\n").map((line, i, arr) => (
+                                    <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                                ))}
+                            </div>
                         </div>
                         <br />
                         <div className="flex items-center gap-[4vw] md:gap-[1vw] mb-4">

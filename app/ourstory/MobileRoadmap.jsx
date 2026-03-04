@@ -59,12 +59,20 @@ const ArrowRightToLeft = () => (
     </div>
 );
 
+import { motion } from 'framer-motion';
+
 export default function MobileRoadmap() {
     return (
         <section className="block md:hidden w-full bg-black text-white px-[4vw] pt-[10vw] pb-[20vw] overflow-hidden">
 
             {/* Heading */}
-            <div className="flex flex-col items-center w-full mb-[8vw]">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col items-center w-full mb-[8vw]"
+            >
                 <h2 className="text-[7.5vw] text-center font-bold leading-none font-peakers px-[1vw] tracking-wide mb-[2vw]">
                     A LEGACY THAT CAME FULL CIRCLE
                 </h2>
@@ -72,7 +80,7 @@ export default function MobileRoadmap() {
                     EST. 1978
                 </span>
                 <div className="w-full h-[1px] bg-[#1F2937] mt-[6vw]"></div>
-            </div>
+            </motion.div>
 
             {/* Timeline container */}
             <div className="flex flex-col w-full relative">
@@ -80,7 +88,13 @@ export default function MobileRoadmap() {
                     const isRight = index % 2 === 1; // 0=Left, 1=Right, 2=Left, 3=Right...
                     return (
                         <React.Fragment key={index}>
-                            <div className={`w-full flex ${isRight ? 'justify-end' : 'justify-start'} z-10`}>
+                            <motion.div
+                                initial={{ opacity: 0, x: isRight ? 30 : -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.6 }}
+                                className={`w-full flex ${isRight ? 'justify-end' : 'justify-start'} z-10`}
+                            >
                                 <div
                                     style={item.highlight ? { boxShadow: "0 0 15px rgba(234,179,8,0.6)" } : {}}
                                     className={`relative px-[5vw] py-[6vw] rounded-[4vw] flex flex-col items-center text-center w-[65vw]
@@ -102,7 +116,7 @@ export default function MobileRoadmap() {
                                         {item.description}
                                     </p>
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Insert appropriate arrow */}
                             {index < timelineData.length - 1 && (

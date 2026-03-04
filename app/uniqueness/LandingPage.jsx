@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const backgroundImageUrl =
   "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Uniqueness/Uniqueness%20Background%20%281%29.webp";
@@ -10,7 +11,10 @@ const UniquenessLandingPage = () => {
     <div className="w-full relative">
       {/* Navbar would be here */}
       {/* Background Image */}
-      <img
+      <motion.img
+        initial={{ scale: 1.05, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         src={backgroundImageUrl}
         alt="Uniqueness Background"
         className="w-full h-[150vw] md:h-[61vw] object-cover block"
@@ -27,7 +31,12 @@ const UniquenessLandingPage = () => {
       <div
         className="absolute left-0 top-0 w-full flex flex-col items-center justify-center pointer-events-none h-[150vw] md:h-[61vw] z-[2]"
       >
-        <h1 className="text-center font-peakers font-bold text-white text-[2.9vw] md:text-[3.1vw] leading-none drop-shadow-lg pointer-events-auto">
+        <motion.h1
+          className="text-center font-peakers font-bold text-white text-[2.9vw] md:text-[3.1vw] leading-none drop-shadow-lg pointer-events-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+        >
           <span
             className="block font-peakers text-[14vw] md:text-[7.7vw]"
           >
@@ -44,14 +53,19 @@ const UniquenessLandingPage = () => {
           <span className="block text-[#f7e229] font-peakers text-[15vw] md:text-[7.7vw] font-bold">
             SPECIAL
           </span>
-        </h1>
-        <div className="w-full flex justify-center px-[4vw] md:px-0 mt-[6vw] md:mt-0">
+        </motion.h1>
+        <motion.div
+          className="w-full flex justify-center px-[4vw] md:px-0 mt-[6vw] md:mt-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        >
           <span
             className="uppercase tracking-[0.5em] font-semibold text-[3.2vw] md:text-[1.1vw] text-[#d3d3d3] font-peakers md:mt-[1.7vw] text-center pointer-events-auto leading-relaxed"
           >
             IT&apos;S NOT ONE THING. IT&apos;S EVERYTHING.
           </span>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

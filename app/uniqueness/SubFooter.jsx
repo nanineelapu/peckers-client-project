@@ -1,11 +1,18 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const SubFooter = () => {
   return (
     <section className="relative w-full h-[50vh] md:h-[80vh] bg-black text-white">
 
       {/* CENTERED CONTENT */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-[90vw] md:w-auto flex flex-col items-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: "-40%", x: "-50%", filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, scale: 1, y: "-50%", x: "-50%", filter: "blur(0px)" }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute top-1/2 left-1/2 text-center w-[90vw] md:w-auto flex flex-col items-center"
+      >
 
         {/* SVG TITLE */}
         <div className="w-[85vw] md:w-auto mb-[8vw] md:mb-[3vw] mx-auto flex justify-center">
@@ -16,7 +23,7 @@ const SubFooter = () => {
         </div>
 
         {/* BUTTONS */}
-        <div className="flex flex-col md:flex-row gap-[4vw] md:gap-4 py-[0vw] w-[85vw] md:w-auto items-center justify-center">
+        <div className="flex flex-col md:flex-row gap-[4vw] md:gap-4 py-0 w-[85vw] md:w-auto items-center justify-center">
           <button
             className="text-[#ffff] w-full md:w-auto px-[4vw] md:px-[1.1vw] py-[3.5vw] md:py-[.8vw] rounded-[2vw] md:rounded-[0.8vw] text-[4vw] md:text-[1.33vw] tracking-wide transition-all duration-300 hover:bg-[#232323]"
             style={{
@@ -37,7 +44,7 @@ const SubFooter = () => {
           </button>
         </div>
 
-      </div>
+      </motion.div>
 
     </section>
   );

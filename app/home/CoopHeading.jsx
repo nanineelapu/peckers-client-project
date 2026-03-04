@@ -35,12 +35,11 @@ export default function CoopHeading() {
       </span>
 
       {/* Subtitle */}
-      <motion.span
+      <span
         className="font-sans text-[4vw] sm:text-[3vw] md:text-[2vw] xl:text-[1.2vw] text-white mt-[2vw] md:mt-0"
-        {...fadeUp(words.length * 0.08 + 0.1)}
       >
         Experience our local vibe and flavour in person. Find your nearest Peckers below.
-      </motion.span>
+      </span>
     </div>
   );
 }

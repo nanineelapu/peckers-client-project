@@ -35,12 +35,11 @@ export default function LatestNewsHeading() {
       </span>
 
       {/* Subtitle */}
-      <motion.span
+      <span
         className="font-sans mt-[3vw] md:mt-.9 font-extralight text-[4vw] sm:text-[3vw] md:text-[1.3vw] text-white"
-        {...fadeUp(words.length * 0.1 + 0.1)}
       >
         Latest stories from the heart of Peckers.
-      </motion.span>
+      </span>
     </div>
   );
 }

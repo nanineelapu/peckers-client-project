@@ -26,6 +26,8 @@ const timelineData = [
     },
 ];
 
+import { motion } from 'framer-motion';
+
 export default function PeckersTimeline2() {
 
     return (
@@ -46,8 +48,12 @@ export default function PeckersTimeline2() {
 
 
                         return (
-                            <div
+                            <motion.div
                                 key={index}
+                                initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+                                whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                                viewport={{ once: true, margin: "-10%" }}
+                                transition={{ duration: 0.8, delay: index * 0.3, ease: "easeOut" }}
                                 style={
                                     item.highlight
                                         ? { boxShadow: "0 0 15px rgba(234,179,8,0.6)" }
@@ -76,7 +82,7 @@ export default function PeckersTimeline2() {
 
                                     {item.description}
                                 </p>
-                            </div>
+                            </motion.div>
                         );
                     })}
                 </div>

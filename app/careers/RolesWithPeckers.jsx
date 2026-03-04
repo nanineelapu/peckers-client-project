@@ -1,17 +1,30 @@
 import React from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion';
 
 export default function RolesWithPeckers() {
     return (
         <div className="w-full bg-black flex flex-col items-center py-[8vh]">
 
             {/* Title */}
-            <h1 className="font-peakers text-white font-semibold text-[3.5vw] text-center leading-none">
+            <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="font-peakers text-white font-semibold text-[3.5vw] text-center leading-none"
+            >
                 WHY ROLL WITH US?
-            </h1>
+            </motion.h1>
 
             {/* Underline */}
-            <div className="w-[7vw] h-[4px] bg-white mt-[2vh]"></div>
+            <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="w-[7vw] h-[4px] bg-white mt-[2vh]"
+            ></motion.div>
 
 
             <div className="w-full py-[12vh] flex justify-center">
@@ -19,7 +32,13 @@ export default function RolesWithPeckers() {
                 <div className="w-[85%] flex justify-between items-stretch">
 
                     {/* Card 1 - Proper Food */}
-                    <div className="w-[31%] h-[48vh] relative flex flex-col items-center text-center px-[2vw] py-[6vh] rounded-[0.5vw] overflow-hidden">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="w-[31%] h-[48vh] relative flex flex-col items-center text-center px-[2vw] py-[6vh] rounded-[0.5vw] overflow-hidden"
+                    >
                         <Image
                             src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/careers/Background%2BOverlay%2BBorder.webp"
                             alt="Card Background"
@@ -45,11 +64,17 @@ export default function RolesWithPeckers() {
                                 STRAIGHT TO YOUR FACE.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
 
                     {/* Card 2 - Flexible Shifts */}
-                    <div className="w-[31%] h-[48vh] relative flex flex-col items-center text-center px-[2vw] py-[6vh] rounded-[0.5vw] overflow-hidden">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="w-[31%] h-[48vh] relative flex flex-col items-center text-center px-[2vw] py-[6vh] rounded-[0.5vw] overflow-hidden"
+                    >
                         <Image
                             src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/careers/Background%2BOverlay%2BBorder.webp"
                             alt="Card Background"
@@ -75,11 +100,17 @@ export default function RolesWithPeckers() {
                                 NOT THE OTHER WAY AROUND.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
 
                     {/* Card 3 - Good Vibes */}
-                    <div className="w-[31%] h-[48vh] relative flex flex-col items-center text-center px-[2vw] py-[6vh] rounded-[0.5vw] overflow-hidden">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="w-[31%] h-[48vh] relative flex flex-col items-center text-center px-[2vw] py-[6vh] rounded-[0.5vw] overflow-hidden"
+                    >
                         <Image
                             src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/careers/Background%2BOverlay%2BBorder.webp"
                             alt="Card Background"
@@ -105,7 +136,7 @@ export default function RolesWithPeckers() {
                                 BUT IT’S THE GOOD KIND.
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
 
                 </div>
 

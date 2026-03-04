@@ -1,10 +1,18 @@
 import React from 'react'
 
+import { motion } from 'framer-motion';
+
 export default function ApplyDetailsPage() {
     return (
         <div className="w-full bg-[#080808] flex justify-center py-[8vh]">
 
-            <div className="w-[50%] border border-gray-700 p-[3vw] text-white">
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-[50%] border border-gray-700 p-[3vw] text-white"
+            >
 
                 {/* Top Row */}
                 <div className="flex items-center justify-between mb-[4vh]">
@@ -12,7 +20,7 @@ export default function ApplyDetailsPage() {
                         <h1 className="font-peakers font-semibold text-[3.5vw] tracking-[.15vw] whitespace-nowrap">
                             INTERESTED?
                         </h1>
-                        <div className="h-[1px] bg-gray-700 w-full"></div>
+                        <div className="h-px bg-gray-700 w-full"></div>
                     </div>
 
                     <p className="ml-[2vw] text-white text-[1.6vw] tracking-tight font-peakers whitespace-nowrap">
@@ -20,7 +28,7 @@ export default function ApplyDetailsPage() {
                     </p>
                 </div>
 
-                <div className="w-full h-[1px] bg-gray-800 mb-[5vh]"></div>
+                <div className="w-full h-px bg-gray-800 mb-[5vh]"></div>
 
                 {/* Form */}
                 <form className="flex flex-col gap-[4vh]">
@@ -74,7 +82,7 @@ export default function ApplyDetailsPage() {
 
                 </form>
 
-            </div>
+            </motion.div>
         </div>
     )
 }

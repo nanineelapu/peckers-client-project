@@ -1,8 +1,16 @@
 import React from 'react'
 
+import { motion } from 'framer-motion';
+
 export default function CrewPage() {
     return (
-        <div className="w-full bg-black text-white px-[6vw] py-[6vh]">
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full bg-black text-white px-[6vw] py-[6vh]"
+        >
 
             {/* Top Row */}
             <div className="flex items-start justify-between">
@@ -24,6 +32,6 @@ export default function CrewPage() {
             {/* Divider Line */}
             <div className="w-full h-[0.05vw] bg-[#4444] mt-[4vh]"></div>
 
-        </div>
+        </motion.div>
     )
 }
