@@ -77,6 +77,21 @@ const BURGERS = [
       "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20image%20more%20cheese%20one.webp",
     boost: 1.3,
   },
+  {
+    name: "TRUFFLE DELIGHT",
+    image: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20lit%20yellow.webp",
+    boost: 1.85,
+  },
+  {
+    name: "THE LEAN MACHINE",
+    image: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Image%201.webp",
+    boost: 0.9,
+  },
+  {
+    name: "SPICY GHOST",
+    image: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20REd-Picsart-AiImageEnhancer.webp",
+    boost: 1.45,
+  }
 ];
 
 const TOTAL = BURGERS.length;
@@ -101,13 +116,25 @@ const createInitialCards = (center) => [
   makeCard((center + 3) % TOTAL, 3),
 ];
 
-const POS = {
-  [0]: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
-  [1]: { x: 30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
-  [2]: { x: 18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
-  [3]: { x: -18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
-  [4]: { x: -30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
+const POS_MAPPING = {
+  0: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
+  1: { x: 30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
+  [-1]: { x: -30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
+  2: { x: 18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
+  [-2]: { x: -18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
 };
+
+function getSlotPos(slot) {
+  if (POS_MAPPING[slot]) return POS_MAPPING[slot];
+  // Hide cards beyond distance 2 elegantly
+  return {
+    x: 0,
+    y: -120,
+    scale: 0,
+    opacity: 0,
+    z: -1
+  };
+}
 
 function getModIndex(idx) {
   return ((idx % TOTAL) + TOTAL) % TOTAL;
@@ -116,7 +143,12 @@ function getModIndex(idx) {
 export default function BurgerCarouselFinal() {
   const [carousel, setCarousel] = useState(() => ({
     center: 0,
-    cards: BURGERS.map((_, i) => ({ id: i, index: i, slot: i })),
+    cards: BURGERS.map((_, i) => {
+      let diff = i;
+      if (diff > TOTAL / 2) diff -= TOTAL;
+      if (diff < -TOTAL / 2) diff += TOTAL;
+      return { id: i, index: i, slot: diff };
+    }),
   }));
 
   // animatingRef is used ONLY as a guard inside moveBy to avoid stale closures.
@@ -134,9 +166,14 @@ export default function BurgerCarouselFinal() {
     setCarousel((prev) => {
       const nextCenter = getModIndex(prev.center + steps);
       const nextCards = prev.cards.map((card) => {
-        // Calculate the new slot relative to the new center
-        const nextSlot = getModIndex(card.index - nextCenter);
-        return { ...card, slot: nextSlot };
+        // Calculate the raw difference
+        let diff = card.index - nextCenter;
+
+        // Normalize to the shortest path around the circle [-TOTAL/2 to TOTAL/2]
+        if (diff > TOTAL / 2) diff -= TOTAL;
+        if (diff < -TOTAL / 2) diff += TOTAL;
+
+        return { ...card, slot: diff };
       });
 
       return { center: nextCenter, cards: nextCards };
@@ -154,11 +191,7 @@ export default function BurgerCarouselFinal() {
 
   const handleCardClick = useCallback(
     (clickedSlot) => {
-      // For circular logic, we might want to slide the shortest distance
-      let steps = clickedSlot;
-      if (steps > TOTAL / 2) steps -= TOTAL;
-      if (steps < -TOTAL / 2) steps += TOTAL;
-      moveBy(steps);
+      moveBy(clickedSlot);
     },
     [moveBy]
   );
@@ -263,7 +296,7 @@ export default function BurgerCarouselFinal() {
           </div>
 
           {carousel.cards.map((card) => {
-            const cfg = POS[card.slot] || POS[2];
+            const cfg = getSlotPos(card.slot);
             const burger = BURGERS[card.index];
             const isCenter = card.slot === 0;
 
@@ -276,7 +309,7 @@ export default function BurgerCarouselFinal() {
               <div
                 key={card.id}
                 onClick={() =>
-                  !isCenter && !isAnimating && handleCardClick(card.slot)
+                  !isCenter && !isAnimating && Math.abs(card.slot) <= 3 && handleCardClick(card.slot)
                 }
                 style={{
                   position: "absolute",

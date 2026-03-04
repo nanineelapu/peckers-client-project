@@ -1,16 +1,21 @@
 "use client";
 
-/**
- * CoopHeading section (no animation, plain version)
- * Displays title and subtitle only.
- */
+import { motion } from "framer-motion";
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-60px" },
+  transition: { duration: 0.6, ease: "easeOut", delay },
+});
+
 export default function CoopHeading() {
   const title = "YOUR CLOSEST COOP";
   const words = title.split(" ");
 
   return (
     <div
-      className="w-full px-[5vw] md:px-[3vw] xl:px-[1.5vw] py-[10vw] md:py-[8vw] xl:py-[5vw] pt-[20vw] md:pt-[15vw] xl:pt-[12vw] pb-[10vw] md:pb-[6vw] xl:pb-[3vw] grid h-auto md:h-[12vh] xl:h-[15vh]"
+      className="w-full px-[5vw] md:px-[3vw] xl:px-[1.5vw] py-[10vw] md:py-[8vw] xl:py-[5vw] pt-[15vw] md:pt-[15vw] xl:pt-[12vw] pb-[10vw] md:pb-[7vw] xl:pb-[4vw] grid h-auto md:h-auto xl:h-auto"
       style={{ lineHeight: "1.4" }}
     >
       {/* Title */}
@@ -19,21 +24,23 @@ export default function CoopHeading() {
         style={{ fontFamily: "var(--font-peakers)", color: "white" }}
       >
         {words.map((word, index) => (
-          <span
+          <motion.span
             key={index}
             className="inline-block mr-[2vw] md:mr-[1.2vw] xl:mr-[0.6vw]"
+            {...fadeUp(index * 0.08)}
           >
             {word}
-          </span>
+          </motion.span>
         ))}
       </span>
 
       {/* Subtitle */}
-      <span
+      <motion.span
         className="font-sans text-[4vw] sm:text-[3vw] md:text-[2vw] xl:text-[1.2vw] text-white mt-[2vw] md:mt-0"
+        {...fadeUp(words.length * 0.08 + 0.1)}
       >
         More spots. Same seriously good chicken.
-      </span>
+      </motion.span>
     </div>
   );
 }

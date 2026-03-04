@@ -112,31 +112,37 @@ export default function BurgerPageText({
         </button>
       </div>
 
-      <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-[6vw] md:gap-8 lg:gap-12 xl:gap-[11vw] mt-[8vw] md:mt-7 ml-0 md:ml-12 text-white/90 font-mono pt-0 burger-stats px-[5vw] md:px-0">
-        {/* Energy */}
-        <div className="min-w-[90px] border-l-2 border-[#616132] pl-[3vw] md:pl-6 pt-0">
-          <div className="text-[#c4b40a] text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
-            CALORIES
+      <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-[6vw] md:gap-8 lg:gap-12 xl:gap-[10vw] mt-[8vw] md:mt-7 ml-0 md:ml-6 text-white/90 font-mono pt-0 burger-stats px-[5vw] md:px-0">
+
+        {/* Basic Info (Protein, Carbs, Fats) */}
+        <div className="min-w-[150px] border-l-2 border-[#616132] pl-[3vw] md:pl-4 pt-0">
+          <div className="text-[#c4b40a] text-[2.5vw] md:text-[11px] lg:text-[12px] xl:text-[.7vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
+            Per 100g
           </div>
-          <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
-            760 KCAL
-          </div>
-        </div>
-        {/* Sodium */}
-        <div className="min-w-[105px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
-          <div className="text-[#575750] font-mono text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] uppercase mb-1 tracking-wide font-bold pt-0.5">
-            Protein and Energy
-          </div>
-          <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
-            25g Protein | 760 Kcal
+          <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0 leading-snug">
+            18g Protein<br />
+            22g Carbs (3g sugars)<br />
+            12g Fats (4g sat)
           </div>
         </div>
+
+        {/* Energy & Calories */}
+        <div className="min-w-[120px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
+          <div className="text-[#575750] font-mono text-[2.5vw] md:text-[11px] lg:text-[12px] xl:text-[.7vw] uppercase mb-1 tracking-wide font-bold pt-0.5">
+            Energy & Calories
+          </div>
+          <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0 leading-snug">
+            760 Kcal<br />
+            3180 KJ
+          </div>
+        </div>
+
         {/* Allergens */}
         <div className="min-w-[105px] pt-0 border-l-2 md:border-none border-[#616132] pl-[3vw] md:pl-0">
-          <div className="text-[#575750] text-[2.5vw] md:text-[12px] lg:text-[14px] xl:text-[.8vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
+          <div className="text-[#575750] text-[2.5vw] md:text-[11px] lg:text-[12px] xl:text-[.7vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
             Allergens
           </div>
-          <div className="font-sans font-semibold text-[4.5vw] md:text-[1.1rem] tracking-tight pt-0">
+          <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0">
             GLUTEN, DAIRY
           </div>
         </div>

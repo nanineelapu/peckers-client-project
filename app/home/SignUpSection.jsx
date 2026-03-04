@@ -1,21 +1,17 @@
+"use client";
+
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { motion } from "framer-motion";
 
-/**
- * - No scroll/fade entrance animations.
- * - Only retains the glossy border effect on button (animation).
- */
 export default function SignUpSection() {
   const glossRef = useRef(null);
 
-  // Looping glossy border for button (animation remains)
+  // Looping glossy border for button (kept as-is)
   useEffect(() => {
     const gloss = glossRef.current;
     if (!gloss) return;
-    gsap.set(gloss, {
-      left: "-60%",
-      opacity: 0.34,
-    });
+    gsap.set(gloss, { left: "-60%", opacity: 0.34 });
     const loop = gsap.to(gloss, {
       left: "120%",
       opacity: 0.54,
@@ -29,7 +25,6 @@ export default function SignUpSection() {
         gsap.set(gloss, { left: "-60%", opacity: 0.34 });
       },
     });
-
     return () => loop && loop.kill();
   }, []);
 
@@ -38,7 +33,7 @@ export default function SignUpSection() {
       className="w-full flex justify-center items-center pt-[8vw] pb-[6vw] md:pt-[3vw] md:pb-[2.5vw] px-[5vw] md:px-[2vw] border-b border-[#262626]"
       style={{ overflow: "visible" }}
     >
-      <div
+      <motion.div
         className="w-[101%] mx-auto rounded-[2.5vw] md:rounded-[0.9vw] shadow-lg flex flex-col items-center justify-center p-[5vw] md:p-[2.2vw_1.5vw] min-h-[40vw] md:min-h-[20vw]"
         style={{
           backgroundImage:
@@ -51,34 +46,46 @@ export default function SignUpSection() {
           position: "relative",
           overflow: "visible",
         }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <h2
+        <motion.h2
           className="text-white px-[2vw] font-bold text-[6.5vw] md:text-[5vw] xl:text-[3.8vw] mb-[1.5vw] md:mb-[1vw] xl:mb-[0.5vw] leading-tight font-['Share_Tech'] text-center"
-          style={{
-            letterSpacing: "0.04em",
-            fontFamily: "var(--font-peakers)",
-          }}
+          style={{ letterSpacing: "0.04em", fontFamily: "var(--font-peakers)" }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
           JOIN OUR MAILING LIST
-        </h2>
-        <p
+        </motion.h2>
+
+        <motion.p
           className="text-[#e7e7e7e0] text-[3.5vw] sm:text-[3vw] md:text-[2.2vw] xl:text-[1.35vw] font-sans mb-[5vw] md:mb-[3vw] xl:mb-[2vw] mt-[0.5vw] md:mt-0 text-center max-w-[90vw] md:max-w-[70vw] xl:max-w-max"
-          style={{
-            fontWeight: 300,
-            letterSpacing: "0.01em",
-            lineHeight: "1.4",
-          }}
+          style={{ fontWeight: 300, letterSpacing: "0.01em", lineHeight: "1.4" }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
         >
           Sign up for all the latest news and events from the world of Peckers.
-        </p>
-        <div style={{ position: "relative", width: "fit-content" }}>
+        </motion.p>
+
+        <motion.div
+          style={{ position: "relative", width: "fit-content" }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.45, ease: "backOut", delay: 0.42 }}
+        >
           <button
             className="bg-black text-white px-[6vw] md:px-[4vw] xl:px-[2vw] py-[3vw] md:py-[2vw] xl:py-[1.2vw] rounded-[2.5vw] md:rounded-[1.5vw] xl:rounded-[0.8vw] font-mono text-[3.2vw] md:text-[2vw] xl:text-[1.15vw] tracking-[0.07em] transition-all duration-150 hover:bg-[#232323] hover:scale-[1.04] focus:outline-none mx-auto relative overflow-hidden border-0 border-white"
             style={{
               letterSpacing: "0.11em",
               fontWeight: 500,
               boxShadow: "0 2px 10px #0004",
-              borderImage: undefined,
               display: "block",
               backgroundClip: "padding-box",
             }}
@@ -103,7 +110,6 @@ export default function SignUpSection() {
               }}
             ></span>
             <span style={{ position: "relative", zIndex: 3 }}>SIGN ME UP</span>
-            {/* Fallback border for browsers without border-image */}
             <span
               aria-hidden
               style={{
@@ -119,8 +125,8 @@ export default function SignUpSection() {
               className="hidden"
             />
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

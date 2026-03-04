@@ -1,5 +1,7 @@
 "use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function RatingSectionCards() {
   const cards = [
@@ -36,7 +38,13 @@ export default function RatingSectionCards() {
   ];
 
   return (
-    <div className="w-full mt-[6vw] md:mt-[3vw] mb-[2vw] md:mb-[2vw] relative">
+    <motion.div
+      className="w-full mt-[6vw] md:mt-[3vw] mb-[2vw] md:mb-[2vw] relative"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.65, ease: "easeOut" }}
+    >
       <style>{`
         .rating-marquee {
           display: flex;
@@ -52,7 +60,7 @@ export default function RatingSectionCards() {
         }
       `}</style>
 
-      {/* Infinite horizontal scroll for all viewports */}
+      {/* Infinite horizontal scroll */}
       <div className="w-full px-[2vw] overflow-hidden">
         <div className="rating-marquee gap-[3vw] lg:gap-[1vw] items-stretch">
           {[...cards, ...cards].map((card, index) => (
@@ -74,10 +82,7 @@ export default function RatingSectionCards() {
                     </span>
                     <span
                       className="text-[#A1A1AA] font-mono text-[3vw] md:text-[1.5vw] lg:text-[1vw] leading-tight mt-0"
-                      style={{
-                        fontWeight: 400,
-                        letterSpacing: "0.01em",
-                      }}
+                      style={{ fontWeight: 400, letterSpacing: "0.01em" }}
                     >
                       {card.role}
                     </span>
@@ -102,6 +107,6 @@ export default function RatingSectionCards() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
