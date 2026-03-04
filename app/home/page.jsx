@@ -44,7 +44,7 @@ const page = () => {
         >
           <a href="menu" className="whitespace-nowrap">MENU</a>
           <div className="relative group">
-            <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
+            <span className="whitespace-nowrap cursor-default">FIND US</span>
             <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
                 <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
@@ -52,8 +52,8 @@ const page = () => {
               </div>
             </div>
           </div>
-          <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
-          <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
+          <a href="ourstory" className="whitespace-nowrap">OUR SECRET</a>
+          <a href="uniqueness" className="whitespace-nowrap">THE JOURNEY</a>
           <a href="#">CAREERS</a>
         </div>
 

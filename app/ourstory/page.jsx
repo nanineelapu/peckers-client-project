@@ -121,12 +121,12 @@ const OurStoryPage = () => {
         <StoryCircle />
         <ActualCircle />
         <br />
-        <div className="w-full relative flex justify-center mt-[0vw] md:mt-[0vw] pt-[0vw] min-h-[50vw] md:min-h-[30vw]">
+        <div className="w-full relative flex justify-center mt-[0vw] md:mt-[0vw] pt-[0vw] min-h-[50vw] md:min-h-[16vw]">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
-            <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-auto">
+            <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]">
               <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="" className="w-full h-auto" />
             </div>
-            <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-auto h-auto">
+            <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-[60vw] h-auto">
               <g opacity="0.6" filter="url(#filter0_d_297_13)">
                 <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="white" fillOpacity="0.01" shapeRendering="crispEdges" />
                 <path d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges" />
