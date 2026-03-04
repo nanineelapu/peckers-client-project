@@ -262,12 +262,11 @@ const page = () => {
 
       <div className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
         <div className="mb-1 md:mb-0 text-center md:text-left">
-          © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.
+          2023–2026 Peckers Chicken Ltd. All rights reserved.
         </div>
 
 
-        <div className="text-[10px] md:text-[0.8vw] flex flex-row flex-wrap justify-center items-center space-x-2 px-4">
-          <span>Designed and Developed By Webcros</span>
+        {/* <div className="text-[10px] md:text-[0.8vw] flex flex-row flex-wrap justify-center items-center space-x-2 px-4">
           <svg
             width="10"
             height="12"
@@ -282,7 +281,7 @@ const page = () => {
               fill="#CCFF00"
             />
           </svg>
-        </div>
+        </div> */}
       </div>
 
       {/* Final bottom logo 

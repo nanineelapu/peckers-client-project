@@ -10,7 +10,7 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function CoopHeading() {
-  const title = "YOUR CLOSEST COOP";
+  const title = "OUR LOCATIONS";
   const words = title.split(" ");
 
   return (
@@ -39,7 +39,7 @@ export default function CoopHeading() {
         className="font-sans text-[4vw] sm:text-[3vw] md:text-[2vw] xl:text-[1.2vw] text-white mt-[2vw] md:mt-0"
         {...fadeUp(words.length * 0.08 + 0.1)}
       >
-        More spots. Same seriously good chicken.
+        Experience our local vibe and flavour in person. Find your nearest Peckers below.
       </motion.span>
     </div>
   );

@@ -59,18 +59,29 @@ export default function SignUpSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
-          JOIN OUR MAILING LIST
+          JOIN THE FAMILY
         </motion.h2>
 
         <motion.p
-          className="text-[#e7e7e7e0] text-[3.5vw] sm:text-[3vw] md:text-[2.2vw] xl:text-[1.35vw] font-sans mb-[5vw] md:mb-[3vw] xl:mb-[2vw] mt-[0.5vw] md:mt-0 text-center max-w-[90vw] md:max-w-[70vw] xl:max-w-max"
+          className="text-[#e7e7e7e0] text-[3.5vw] sm:text-[3vw] md:text-[2.2vw] xl:text-[1.35vw] font-sans mb-[2vw] md:mb-[1vw] xl:mb-[0.5vw] mt-[0.5vw] md:mt-0 text-center max-w-[90vw] md:max-w-[70vw] xl:max-w-max"
           style={{ fontWeight: 300, letterSpacing: "0.01em", lineHeight: "1.4" }}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
         >
-          Sign up for all the latest news and events from the world of Peckers.
+          Sign up for the Peckers loyalty scheme and get a free milkshake on us today.
+        </motion.p>
+
+        <motion.p
+          className="text-[#888888] italic text-[2.8vw] sm:text-[2.4vw] md:text-[1.6vw] xl:text-[1vw] font-sans mb-[5vw] md:mb-[3vw] xl:mb-[2vw] mt-0 text-center max-w-[90vw] md:max-w-[70vw] xl:max-w-max"
+          style={{ fontWeight: 300, letterSpacing: "0.01em", lineHeight: "1.4" }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.35 }}
+        >
+          Collect chicken heads as you go. Earn rewards at 3 and 6, then reach 10 for a free meal
         </motion.p>
 
         <motion.div
@@ -109,7 +120,7 @@ export default function SignUpSection() {
                 transform: "rotate(-14deg)",
               }}
             ></span>
-            <span style={{ position: "relative", zIndex: 3 }}>SIGN ME UP</span>
+            <span style={{ position: "relative", zIndex: 3 }}>CLAIM MY SHAKE</span>
             <span
               aria-hidden
               style={{

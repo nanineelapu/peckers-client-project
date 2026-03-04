@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function CaptionBelowNews() {
   return (
     <div className="w-full flex justify-center">
-      <div className="w-[90vw] md:w-[80vw] flex flex-col items-center pt-[5vw] md:pt-0">
+      <div className="w-[90vw] md:w-[80vw] flex flex-col items-center pt-[5vw] md:pt-5">
         {/* Divider line animates in from center */}
         <motion.div
           className="relative flex items-center justify-center my-[4vw] md:my-[0.6vw]"

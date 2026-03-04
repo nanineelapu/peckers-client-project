@@ -10,7 +10,7 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function LatestNewsHeading() {
-  const title = "LATEST NEWS";
+  const title = "THE PECKERS JOURNAL";
   const words = title.split(" ");
 
   return (
@@ -39,7 +39,7 @@ export default function LatestNewsHeading() {
         className="font-sans mt-[3vw] md:mt-.9 font-extralight text-[4vw] sm:text-[3vw] md:text-[1.3vw] text-white"
         {...fadeUp(words.length * 0.1 + 0.1)}
       >
-        All the latest news from Peckers
+        Latest stories from the heart of Peckers.
       </motion.span>
     </div>
   );

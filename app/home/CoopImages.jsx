@@ -72,17 +72,17 @@ export default function CoopImages() {
             className="text-white text-[7vw] md:text-[3.5vw] xl:text-[2.5vw] mb-[4vw] xl:mb-[1.5vw] text-center tracking-wide"
             style={{ fontFamily: "var(--font-peakers)" }}
           >
-            WHERE NEXT ?
+            WE’RE EXPANDING
           </span>
 
           <input
             type="text"
-            placeholder="Suggest a city..."
+            placeholder="Suggest our next town… "
             className="w-[85%] xl:w-[70%] bg-transparent border border-[#383838] rounded-md text-center text-white font-mono py-[3vw] px-[4vw] md:py-[1vw] md:px-[1.5vw] xl:py-[0.7vw] xl:px-[1vw] mb-[4vw] md:mb-[2vw] xl:mb-[1.6vw] placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white transition-all text-[4vw] md:text-[1.5vw] xl:text-[1vw]"
           />
 
           <button className="w-[60%] py-[3vw] md:py-[0.5vw] xl:py-[0.2vw] border-2 border-[#383838] rounded-[4vw] md:rounded-[1.5vw] xl:rounded-[1vw] text-white font-mono text-[4vw] md:text-[1.6vw] xl:text-[1.2vw] tracking-widest transition-all bg-[#1111] hover:shadow-[0.4vw_0.4vw_0px_white]">
-            SUBMIT
+            SEND
           </button>
         </div>
       </div>

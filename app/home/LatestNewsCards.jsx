@@ -153,7 +153,7 @@ export default function LatestNewsCards() {
                 }
                 : undefined
             }
-            className={`latest-card card-slot-${card.slot < 0 ? 'm' + Math.abs(card.slot) : card.slot} absolute left-1/2 top-1/2 overflow-hidden`}
+            className={`group latest-card card-slot-${card.slot < 0 ? 'm' + Math.abs(card.slot) : card.slot} absolute left-1/2 top-1/2 overflow-hidden`}
             style={{
               transition:
                 "transform .75s cubic-bezier(.22,1,.36,1), opacity .5s ease, filter .5s ease",
@@ -164,7 +164,7 @@ export default function LatestNewsCards() {
               alt="slide"
               fill
               sizes="(max-width:768px)100vw,33vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
           </div>
         ))}

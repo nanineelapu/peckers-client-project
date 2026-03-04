@@ -43,7 +43,7 @@ export default function RatingSection() {
     </svg>
   );
 
-  const heading = "STREET CRED";
+  const heading = "COMMUNITY VOICES";
   const headingWords = heading.split(" ");
 
   return (
@@ -105,7 +105,7 @@ export default function RatingSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.7 }}
         >
-          ( 4.8/5 on Google )
+          ( 4.8/5 Rating from 1,000+ Familiar Faces )
         </motion.span>
       </motion.div>
     </div>

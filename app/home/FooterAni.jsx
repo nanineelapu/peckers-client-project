@@ -47,9 +47,9 @@ const FooterAni = () => {
             className="text-[#E3E3E3] px-[2vw] md:px-[1vw] font-mono mb-[6vw] md:mb-[3vw] xl:mb-[1.3vw] leading-snug text-[3.5vw] sm:text-[3vw] md:text-[1.8vw] xl:text-[1vw] text-center md:text-left w-full"
             style={{ letterSpacing: "0.09em", fontWeight: "300" }}
           >
-            Respect the wing. Fear the
+            Seriously good
             <br />
-            sauce.
+            chicken.
             <br />
             Est. 2023.
           </p>
@@ -97,7 +97,7 @@ const FooterAni = () => {
                 className="hover:underline inline-block"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >
-                Our Story
+                Find Us
               </a>
             </li>
             <li>
@@ -106,7 +106,7 @@ const FooterAni = () => {
                 className="hover:underline inline-block"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >
-                Careers (Join the Cult)
+                Our Secret
               </a>
             </li>
             <li>
@@ -115,7 +115,7 @@ const FooterAni = () => {
                 className="hover:underline inline-block"
                 style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
               >
-                Contact Us
+                Careers
               </a>
             </li>
           </ul>
@@ -127,7 +127,7 @@ const FooterAni = () => {
             className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
-            FIND US
+            Locations
           </h3>
           <div
             className="bg-[#333] mt-0 mb-[4vw] md:mb-[2.5vw] xl:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
@@ -136,9 +136,9 @@ const FooterAni = () => {
             className="space-y-[3vw] md:space-y-[1.5vw] xl:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1.6vw] xl:text-[1vw] text-[#a9adb8] leading-snug font-normal w-full"
             style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
           >
-            <div>Hitchin - North Hertfordshire</div>
-            <div>Stevenage - North Hertfordshire</div>
-            <div>Coming Soon!</div>
+            <div>Hitchin</div>
+            <div>Stevenage</div>
+
             <div>
               <a
                 href="#"
@@ -157,7 +157,7 @@ const FooterAni = () => {
             className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
-            BORING STUFF
+            Information
           </h3>
           <div
             className="bg-[#333] mt-0 mb-[4vw] md:mb-[2.5vw] xl:mb-[1.8vw] w-[40vw] md:w-[41%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"

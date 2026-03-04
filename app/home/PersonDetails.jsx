@@ -46,10 +46,16 @@ export default function PersonDetails() {
           <div
             className="text-white text-center lg:text-start font-light text-[4.5vw] sm:text-[3.5vw] md:text-[2vw] xl:text-[1.3vw] tracking-[1.2] font-sans mb-[4vw] xl:mb-[1vw] leading-[6vw] md:leading-[3.5vw] xl:leading-[2vw] w-full"
           >
-            Peckers started with a dream: to make wings that didn't suck. We were tired of dry, sad chicken.
-            <br className="hidden md:block" />
+            We aren’t a faceless chain; we are two
+            brothers who turned a lifelong passion for business into
+            a new kind of neighbourhood landmark. By combining
+            our family’s heritage with a focus on high-quality
+            {/* Peckers started with a dream: to make wings that didn't suck. We were tired of dry, sad chicken. */}
             <span className="md:hidden"> </span>
-            So we locked ourselves in a garage with 51lbs of peppers and didn't come out until we made magic.
+            our family’s heritage with a focus on high-quality
+            service, we’ve created a brand that treats every
+            customer like a neighbour, from our first site to our
+            future horizons.
           </div>
           <div
             className="w-[100px] md:w-[120px] xl:max-w-[150px] min-w-[80px] h-[2px] rounded-lg mx-auto lg:mx-0 mt-[2vw] md:mt-[1vw] xl:mt-[.6vw] mb-0 absolute bottom-[-5vw] md:bottom-[-2.8vw] xl:bottom-[-1.8vw] transform translate-y-full box-border overflow-hidden"
@@ -58,13 +64,13 @@ export default function PersonDetails() {
 
         <div className="h-[6vw] md:h-[4vw] xl:h-[2.2vw]" />
 
-        <div
+        {/* <div
           className="italic font-mono font-light text-[#ffff] text-[4vw] sm:text-[3vw] md:text-[1.8vw] xl:text-[1.2vw] mb-[6vw] xl:mb-[1.6vw] pl-[4vw] md:pl-[2vw] xl:pl-[1.3vw] border-l-[3px] xl:border-l-2 text-center lg:text-left"
           style={{ borderColor: "#ffe066", letterSpacing: "0.025em" }}
         >
           "We're not chefs. We're flavor engineers with
           a disregard for sodium limits."
-        </div>
+        </div> */}
 
         <div className="flex justify-center lg:justify-start w-full">
           <a
@@ -74,7 +80,7 @@ export default function PersonDetails() {
           >
             <span className="flex items-center gap-[1.5vw] md:gap-[1vw] xl:gap-[.4vw]">
               <span className="border-b-2 border-white mt-[2vw] md:mt-[1.5vw] xl:mt-[1vw] pb-[2vw] md:pb-[10px] xl:pb-[7px] pr-[.5vw] xl:pr-[.1vw] tracking-[0.09em]">
-                READ MORE
+                OUR HERITAGE
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
