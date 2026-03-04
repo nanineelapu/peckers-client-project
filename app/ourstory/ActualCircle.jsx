@@ -46,16 +46,26 @@ export default function PeckersTimeline() {
                         const offset = index === 1 ? "mt-0 md:-mt-[2vw]" : "";
 
 
+                        const getInitial = (i) => {
+                            if (i === 0) return { opacity: 0, x: -60, y: 20, scale: 0.95, filter: "blur(6px)" };
+                            if (i === 1) return { opacity: 0, y: 50, scale: 0.88, filter: "blur(8px)" };
+                            return { opacity: 0, x: 60, y: 20, scale: 0.95, filter: "blur(6px)" };
+                        };
+
                         return (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
-                                whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                                initial={getInitial(index)}
+                                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-10%" }}
-                                transition={{ duration: 0.8, delay: index * 0.3, ease: "easeOut" }}
+                                transition={{
+                                    duration: 0.75,
+                                    delay: index * 0.18,
+                                    ease: [0.77, 0, 0.175, 1],
+                                }}
                                 style={
                                     item.highlight
-                                        ? { boxShadow: "0 0 15px rgba(234,179,8,0.6)" }
+                                        ? { boxShadow: "0 0 24px rgba(234,179,8,0.5), 0 0 60px rgba(234,179,8,0.15)" }
                                         : {}
                                 }
                                 className={`relative px-[6vw] md:px-[1vw] py-[6vw] md:py-[1vw] rounded-[4vw] md:rounded-[1vw] flex flex-col ${alignment} ${offset} w-[80vw] md:w-[15vw] h-auto md:h-[9vw]

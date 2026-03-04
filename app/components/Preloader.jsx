@@ -56,12 +56,13 @@ export default function Preloader({ onComplete = () => { } }) {
         transformOrigin: "50% 60vh",
       });
     }
-    // Remove text rise animation - jump directly to positioned state
+
+    // Set initial text styles BEFORE displaying to avoid flash
     gsap.set(textRef.current, {
       letterSpacing: "0.4em",
+      opacity: 1 // ensure opacity starts visible but styled
     });
 
-    // Optionally: Retain subtle scale/spacing or just skip to preloader slide
     tl.to(
       textRef.current,
       {
@@ -114,7 +115,7 @@ export default function Preloader({ onComplete = () => { } }) {
     >
       <h1
         ref={textRef}
-        className="flex font-peakers font-black text-black text-[16vw] md:text-[clamp(3.5rem,11vw,16rem)]"
+        className="flex font-peakers font-black text-black text-[16vw] md:text-[clamp(3.5rem,11vw,16rem)] opacity-0"
         style={{
           letterSpacing: "0.4em",
           lineHeight: 1,

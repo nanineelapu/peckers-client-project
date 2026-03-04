@@ -58,8 +58,12 @@ export default function ClientWrapper({ children }) {
         <Preloader onComplete={handlePreloaderComplete} />
       )}
 
+      {/* Wrap children and hide them temporarily while loading to avoid the unstyled flash on slow connections */}
       <SmoothScroll lenisRef={lenisRef}>
-        <div id="main-content" className="w-full overflow-x-clip pb-[18vw] md:pb-0">
+        <div
+          id="main-content"
+          className={`w-full overflow-x-clip pb-[18vw] md:pb-0 ${(!loadingDone && (pathname === '/' || pathname === '/home')) ? 'opacity-0 invisible h-screen overflow-hidden' : 'opacity-100 visible h-auto overflow-visible transition-opacity duration-1000 delay-300'}`}
+        >
           {children}
         </div>
       </SmoothScroll>
