@@ -33,19 +33,19 @@ const socialButtons = [
 
 const LocationFooter = () => {
   return (
-    <footer className="w-full bg-black pt-[10vw] md:pt-[3vw] lg:pt-10 pb-[6vw] md:pb-[1vw] lg:pb-4 mt-[5vw] md:mt-[3vw] lg:mt-8 overflow-clip">
-      <div className="w-full mx-auto px-[5vw] md:px-[.5vw] gap-[8vw] md:gap-[2vw] lg:gap-8 flex flex-col md:flex-row justify-between items-start text-white border-b border-[#262626] pb-[10vw] md:pb-[5vw] lg:pb-10">
+    <footer className="w-full bg-black pt-[10vw] md:pt-[3vw] pb-[6vw] md:pb-[1vw] mt-[5vw] md:mt-[3vw] overflow-clip">
+      <div className="w-full mx-auto px-[5vw] md:px-[.5vw] gap-[8vw] md:gap-[2vw] flex flex-col md:flex-row justify-between items-start text-white border-b border-[#262626] pb-[10vw] md:pb-[5vw]">
         {/* Left Section */}
         <div className="flex flex-col items-center md:items-start w-full md:w-1/4 mb-[6vw] md:mb-0">
           <div className="flex items-center mb-[4vw] md:mb-0">
             <img
               src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201%20%282%29.webp"
               alt="Peckers Logo"
-              className="w-[50vw] md:w-[16vw] lg:w-44 h-auto object-contain mr-0 md:mr-3"
+              className="w-[50vw] md:w-[16vw] h-auto object-contain mr-0 md:mr-3"
             />
           </div>
           <p
-            className="text-[#E3E3E3] px-[2vw] md:px-[1vw] font-mono mb-[6vw] md:mb-[1.3vw] leading-snug text-[3.5vw] sm:text-[3vw] md:text-[1vw] lg:text-sm text-center md:text-left w-full"
+            className="text-[#E3E3E3] px-[2vw] md:px-[1vw] font-mono mb-[6vw] md:mb-[1.3vw] leading-snug text-[3.5vw] sm:text-[3vw] md:text-[1vw] text-center md:text-left w-full"
             style={{ letterSpacing: "0.09em", fontWeight: "300" }}
           >
             Respect the wing. Fear the
@@ -74,7 +74,7 @@ const LocationFooter = () => {
         {/* Quick Links */}
         <div className="flex flex-col w-full md:w-1/4 mt-[4vw] md:mt-[1.6vw] mb-[6vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
-            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] lg:text-sm uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
+            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
             <span>Quick Links</span>
@@ -82,7 +82,7 @@ const LocationFooter = () => {
           <div
             className="bg-[#333] mt-[0vw] mb-[4vw] md:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
           />
-          <ul className="space-y-[3vw] md:space-y-[1vw] lg:space-y-3 text-[4vw] sm:text-[3vw] md:text-[1vw] lg:text-sm font-[400] text-[#a9adb8] w-full">
+          <ul className="space-y-[3vw] md:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-[400] text-[#a9adb8] w-full">
             <li>
               <a
                 href="/menu"
@@ -125,7 +125,7 @@ const LocationFooter = () => {
         {/* Find Us */}
         <div className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
-            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] lg:text-sm uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
+            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
             FIND US
@@ -134,7 +134,7 @@ const LocationFooter = () => {
             className="bg-[#333] mt-[0vw] mb-[4vw] md:mb-[1.8vw] w-[40vw] md:w-[35%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
           />
           <div
-            className="space-y-[3vw] md:space-y-[1vw] lg:space-y-3 text-[4vw] sm:text-[3vw] md:text-[1vw] lg:text-sm font-[400] text-[#a9adb8] leading-snug font-normal w-full"
+            className="space-y-[3vw] md:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-[400] text-[#a9adb8] leading-snug font-normal w-full"
             style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
           >
             <div>Hitchin - North Hertfordshire</div>
@@ -155,7 +155,7 @@ const LocationFooter = () => {
         {/* Boring Stuff Column */}
         <div className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
-            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] lg:text-sm uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
+            className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[1.2vw] uppercase tracking-wide mb-[3vw] md:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
           >
             BORING STUFF
@@ -163,7 +163,7 @@ const LocationFooter = () => {
           <div
             className="bg-[#333] mt-[0vw] mb-[4vw] md:mb-[1.8vw] w-[40vw] md:w-[41%] max-w-[200px] md:max-w-[140px] h-[2px] md:h-px border-none rounded-lg"
           />
-          <ul className="space-y-[4vw] md:space-y-[1.2vw] lg:space-y-3 text-[4vw] sm:text-[3vw] md:text-[1vw] lg:text-sm font-mono text-[#B7BAC8] w-full">
+          <ul className="space-y-[4vw] md:space-y-[1.2vw] text-[4vw] sm:text-[3vw] md:text-[1vw] font-mono text-[#B7BAC8] w-full">
             <li>
               <a href="#" className="hover:underline inline-block">
                 Privacy Policy

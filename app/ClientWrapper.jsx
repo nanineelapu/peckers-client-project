@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Preloader from "./components/Preloader";
 import SmoothScroll from "./SmoothScroll";
 import MobileBottomBar from "./components/MobileBottomBar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ClientWrapper({ children }) {
+  const pathname = usePathname();
   const [loadingDone, setLoadingDone] = useState(false);
   const lenisRef = useRef(null);
 
@@ -63,7 +65,7 @@ export default function ClientWrapper({ children }) {
       </SmoothScroll>
 
       {/* Global Fixed Mobile Bottom Bar */}
-      <MobileBottomBar />
+      {pathname !== '/menu' && <MobileBottomBar />}
     </>
   );
 }
