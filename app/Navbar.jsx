@@ -51,7 +51,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        <a href="/uniqueness" onClick={() => setOpen(false)} className="whitespace-nowrap">THE JOURNEY</a>
+        <a href="/ourstory" onClick={() => setOpen(false)} className="whitespace-nowrap">THE JOURNEY</a>
         <a href="careers" onClick={() => setOpen(false)} className="whitespace-nowrap">CAREERS</a>
       </div>
 
@@ -112,7 +112,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <a href="/uniqueness" onClick={() => setOpen(false)}>THE JOURNEY</a>
+          <a href="/ourstory" onClick={() => setOpen(false)}>THE JOURNEY</a>
           <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
 
           <div className="flex flex-col gap-4 mt-2 w-3/4">

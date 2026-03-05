@@ -6,10 +6,10 @@ import OurStorySection from "./OurStorySection";
 import StoryCircle from "./StoryCircle";
 import ActualCircle from "./ActualCircle";
 import JourneyIntroSection from "./JourneyHeader";
-import OurStoryFooter from "./OurStoryFooter";
 import ActualCircle2 from "./ActualCircle2";
 import MobileRoadmap from "./MobileRoadmap";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const OurStoryPage = () => {
   const [open, setOpen] = useState(false);
@@ -148,7 +148,7 @@ const OurStoryPage = () => {
 
 
 
-      <OurStoryFooter />
+      <Footer />
       <div className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">
         <div className="mb-1 md:mb-0 text-center md:text-left">
           © 2024 Peckers Chicken Ltd. All rights reserved. Do not steal our  sauce recipe.

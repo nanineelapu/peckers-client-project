@@ -126,12 +126,12 @@ const POS_MAPPING_TABLET = {
 
 const POS_MAPPING_LAPTOP = {
   0: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
-  1: { x: 28, y: -40, scale: 0.45, opacity: 0.9, z: 8 },
-  [-1]: { x: -28, y: -40, scale: 0.45, opacity: 0.9, z: 8 },
-  2: { x: 38, y: -80, scale: 0.25, opacity: 0.6, z: 6 },
-  [-2]: { x: -38, y: -80, scale: 0.25, opacity: 0.6, z: 6 },
-  3: { x: 22, y: -120, scale: 0.15, opacity: 0.3, z: 4 },
-  [-3]: { x: -22, y: -120, scale: 0.15, opacity: 0.3, z: 4 },
+  1: { x: 25, y: -40, scale: 0.45, opacity: 0.8, z: 8 },
+  [-1]: { x: -25, y: -40, scale: 0.45, opacity: 0.8, z: 8 },
+  2: { x: 36, y: -80, scale: 0.25, opacity: 0.6, z: 6 },
+  [-2]: { x: -36, y: -80, scale: 0.25, opacity: 0.6, z: 6 },
+  3: { x: 21, y: -120, scale: 0.15, opacity: 0.3, z: 4 },
+  [-3]: { x: -21, y: -120, scale: 0.15, opacity: 0.3, z: 4 },
 };
 
 function getSlotPos(slot, isLaptop = false) {
@@ -310,7 +310,7 @@ export default function BurgerCarouselFinal() {
               pointerEvents: "none",
               width: "clamp(280px, 50vw, 760px)",
               height: "clamp(280px, 50vw, 760px)",
-              opacity: glowVisible ? 1 : 0,
+              opacity: glowVisible ? 0.5 : 0,
               transition: glowVisible ? "opacity 0.4s ease" : "opacity 0.1s ease",
             }}
             aria-hidden="true"

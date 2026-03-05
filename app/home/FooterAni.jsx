@@ -1,10 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
-};
 const socialButtons = [
   {
     label: "Instagram",
@@ -38,18 +33,11 @@ const socialButtons = [
 const FooterAni = () => {
   return (
     <footer className="w-full bg-black pt-[10vw] md:pt-[3vw] pb-[6vw] md:pb-[1vw] mt-[5vw] md:mt-[3vw] overflow-clip">
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-10%" }}
-        variants={{
-          hidden: { opacity: 0 },
-          show: { opacity: 1, transition: { staggerChildren: 0.15 } }
-        }}
+      <div
         className="w-full mx-auto px-[5vw] md:px-[.5vw] gap-[8vw] md:gap-[2vw] flex flex-col md:flex-row justify-between items-start text-white border-b border-[#262626] pb-[10vw] md:pb-[5vw]"
       >
         {/* Left Section */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center md:items-start w-full md:w-1/4 mb-[6vw] md:mb-0">
+        <div className="flex flex-col items-center md:items-start w-full md:w-1/4 mb-[6vw] md:mb-0">
           <div className="flex items-center mb-[4vw] xl:mb-0">
             <img
               src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/We%20Help%20Small%20Businesses%20%281%29%201%20%282%29.webp"
@@ -82,10 +70,10 @@ const FooterAni = () => {
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Quick Links */}
-        <motion.div variants={itemVariants} className="flex flex-col w-full md:w-1/4 mt-[4vw] xl:mt-[1.6vw] mb-[6vw] md:mb-0 items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col w-full md:w-1/4 mt-[4vw] xl:mt-[1.6vw] mb-[6vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
             className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
@@ -133,10 +121,10 @@ const FooterAni = () => {
               </a>
             </li>
           </ul>
-        </motion.div>
+        </div>
 
         {/* Find Us */}
-        <motion.div variants={itemVariants} className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
             className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
@@ -163,10 +151,10 @@ const FooterAni = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Boring Stuff Column */}
-        <motion.div variants={itemVariants} className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col w-full md:w-1/4 mb-[6vw] mt-[4vw] md:mt-[1.3vw] md:mb-0 items-center md:items-start text-center md:text-left">
           <h3
             className="font-bold text-white text-[5vw] sm:text-[4vw] md:text-[2.2vw] xl:text-[1.2vw] uppercase tracking-wide mb-[3vw] xl:mb-[1vw] leading-none"
             style={{ letterSpacing: "0.06em" }}
@@ -193,8 +181,8 @@ const FooterAni = () => {
               </a>
             </li>
           </ul>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </footer>
   );
 };
