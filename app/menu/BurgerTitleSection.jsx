@@ -293,6 +293,7 @@ export default function BurgerCarouselFinal() {
 
           {/* SVG Drop Shadow */}
           <div
+            className="hidden md:block"
             style={{
               position: "absolute",
               left: "50%",
@@ -342,9 +343,9 @@ export default function BurgerCarouselFinal() {
                   alt={burger.name}
                   draggable={false}
                   style={{
-                    width: "clamp(220px, 72vw, 400px)",
+                    width: "clamp(240px, 85vw, 400px)",
                     display: "block",
-                    filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))",
+                    filter: "none",
                     userSelect: "none",
                   }}
                 />

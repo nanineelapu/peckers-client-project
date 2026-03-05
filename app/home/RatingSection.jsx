@@ -47,14 +47,14 @@ export default function RatingSection() {
   const headingWords = heading.split(" ");
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-between bg-black font-bold tracking-tight px-[5vw] md:px-[2vw] pt-[20vw] md:pt-[12.5vw] pb-[6vw] md:pb-[2vw] gap-[4vw] md:gap-0">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-between bg-black font-bold tracking-tight px-[5vw] md:px-[6vw] lg:px-[2.5vw] xl:px-[2vw] pt-[20vw] md:pt-[15vw] lg:pt-[8vw] xl:pt-[12.5vw] pb-[6vw] md:pb-[8vw] lg:pb-[3vw] xl:pb-[2vw] gap-[4vw] md:gap-[5vw] lg:gap-0">
       {/* Heading */}
       <span
-        className="text-[10vw] sm:text-[8vw] md:text-[6vw] xl:text-[4vw] text-white tracking-[1.6]"
+        className="text-[10vw] sm:text-[8vw] md:text-[8vw] lg:text-[5vw] xl:text-[4vw] text-white tracking-[1.6]"
         style={{ fontFamily: "var(--font-peakers)" }}
       >
         {headingWords.map((word, i) => (
-          <span key={i} className="inline-block mr-[2vw] md:mr-[1vw]">
+          <span key={i} className="inline-block mr-[2vw] md:mr-[2vw] lg:mr-[1vw]">
             {word}
           </span>
         ))}
@@ -62,27 +62,27 @@ export default function RatingSection() {
 
       {/* Stars + rating */}
       <div
-        className="flex flex-col sm:flex-row items-center gap-[2vw] md:gap-[1vw] xl:gap-[0.6vw]"
+        className="flex flex-col sm:flex-row items-center gap-[2vw] md:gap-[3vw] lg:gap-[1.5vw] xl:gap-[0.6vw]"
       >
-        <span className="flex gap-[1vw] xl:gap-[0.5vw]">
+        <span className="flex gap-[1vw] md:gap-[1.5vw] lg:gap-[0.8vw] xl:gap-[0.5vw]">
           {[0, 1, 2, 3].map((i) => (
             <span
               key={i}
-              className="inline-block w-[6vw] sm:w-[5vw] md:w-auto h-[6vw] sm:h-[5vw] md:h-auto"
+              className="flex items-center justify-center w-[6vw] sm:w-[5vw] md:w-[6vw] lg:w-[2.5vw] xl:w-auto h-[6vw] sm:h-[5vw] md:h-[6vw] lg:h-[2.5vw] xl:h-auto"
             >
               {starSVG()}
             </span>
           ))}
           {/* Half star */}
           <span
-            className="inline-block w-[6vw] sm:w-[5vw] md:w-auto h-[6vw] sm:h-[5vw] md:h-auto"
+            className="flex items-center justify-center w-[6vw] sm:w-[5vw] md:w-[6vw] lg:w-[2.5vw] xl:w-auto h-[6vw] sm:h-[5vw] md:h-[6vw] lg:h-[2.5vw] xl:h-auto"
           >
             {halfStarSVG}
           </span>
         </span>
 
         <span
-          className="text-white text-[3.5vw] sm:text-[3vw] md:text-[1.8vw] xl:text-[1vw] font-sans font-light mt-[1vw] sm:mt-0 ml-0 md:ml-[1vw] xl:ml-[0.4vw]"
+          className="text-white text-[3.5vw] sm:text-[3vw] md:text-[3vw] lg:text-[1.8vw] xl:text-[1vw] font-sans font-light mt-[1vw] sm:mt-0 ml-0 md:ml-[1vw] xl:ml-[0.4vw]"
           style={{ letterSpacing: "0.04em" }}
         >
           ( 4.8/5 Rating from 1,000+ Familiar Faces )
