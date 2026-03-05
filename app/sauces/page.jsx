@@ -5,15 +5,16 @@ import SaucePageOne from "./saucepageone";
 const page = () => {
     const [open, setOpen] = useState(false);
     const [locationsOpen, setLocationsOpen] = useState(false);
+  const [journeyOpen, setJourneyOpen] = useState(false);
 
     return (
         <div>
-            <nav className="relative flex items-center px-4 py-4 md:px-6 md:py-2 lg:px-10 lg:py-3 xl:px-[1.8vw] xl:py-[.4vw] bg-black text-white font-['Share_Tech']">
+            <nav className="relative flex items-center px-4 py-4 md:px-[2.5vw] md:py-[1.5vw] xl:px-[1.8vw] xl:py-[.4vw] bg-black text-white font-['Share_Tech']">
 
                 {/* Logo Section */}
                 <div className="flex-1 flex items-center z-50">
                     <a href="home">
-                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[180px] lg:w-[200px] xl:w-[240px] h-auto xl:h-[82px] transition-all duration-300">
+                        <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[180px] xl:w-[240px] h-auto xl:h-[82px] transition-all duration-300">
                             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
                             <defs>
                                 <pattern id="pattern0_1_243" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -28,34 +29,42 @@ const page = () => {
 
                 {/* Desktop Center Links */}
                 <div
-                    className="hidden md:flex flex-1 text-[14px] lg:text-[16px] xl:text-[1.5vw] justify-center tracking-[.2vw] font-semibold gap-4 lg:gap-6 xl:gap-[2.7vw]"
+                    className="hidden md:flex flex-1 text-[2vw] xl:text-[1.5vw] justify-center tracking-[.2vw] font-semibold gap-[3vw] xl:gap-[2.7vw]"
                     style={{ fontFamily: "var(--font-peakers)" }}
                 >
                     <a href="menu" className="whitespace-nowrap">MENU</a>
                     <div className="relative group">
-                        <span className="whitespace-nowrap cursor-default">LOCATIONS</span>
+                        <span className="whitespace-nowrap cursor-default">FIND US</span>
                         <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                             <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[200px]">
-                                <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[14px] lg:text-[16px] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
-                                <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[14px] lg:text-[16px] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+                                <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+                                <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
                             </div>
                         </div>
                     </div>
-                    <a href="ourstory" className="whitespace-nowrap">OUR STORY</a>
-                    <a href="uniqueness" className="whitespace-nowrap">UNIQUENESS</a>
+                    <a href="ourstory" className="whitespace-nowrap">OUR SECRET</a>
+                    <div className="relative group">
+            <span className="whitespace-nowrap cursor-default">THE JOURNEY</span>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[250px]">
+                <a href="/sauces" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">House-Made Sauces</a>
+                <a href="/uniqueness" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">The Peckers Standard</a>
+              </div>
+            </div>
+          </div>
                     <a href="#">CAREERS</a>
                 </div>
 
                 {/* Desktop Buttons */}
                 <div
-                    className="hidden md:flex flex-1 justify-end gap-2 lg:gap-4 xl:gap-[1.2vw]"
+                    className="hidden md:flex flex-1 justify-end gap-[1.5vw] xl:gap-[1.2vw]"
                     style={{ fontFamily: "monospace" }}
                 >
-                    <button className="border-2 xl:border-[0.15vw] border-white px-4 py-1.5 lg:px-5 lg:py-2 xl:px-[2.3vw] xl:py-[.5vw] rounded-lg xl:rounded-[0.95vw] text-xs lg:text-sm xl:text-[1vw] transition-all duration-300 hover:shadow-[4px_4px_0px_white] xl:hover:shadow-[0.4vw_0.4vw_0px_white]">
+                    <button className="border-[0.15vw] border-white px-[2.5vw] xl:px-[2.3vw] py-[.8vw] xl:py-[.5vw] rounded-[1.2vw] xl:rounded-[0.95vw] text-[1.3vw] xl:text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
                         CLICK & COLLECT
                     </button>
 
-                    <button className="flex items-center gap-2 border-2 xl:border-[0.15vw] border-white px-4 py-1.5 lg:px-5 lg:py-2 xl:px-[2.3vw] xl:py-[.5vw] rounded-lg xl:rounded-[0.95vw] text-xs lg:text-sm xl:text-[1vw] transition-all duration-300 hover:shadow-[4px_4px_0px_white] xl:hover:shadow-[0.4vw_0.4vw_0px_white]">
+                    <button className="flex items-center gap-2 border-[0.15vw] border-white px-[2.5vw] xl:px-[2.3vw] py-[.8vw] xl:py-[.5vw] rounded-[1.2vw] xl:rounded-[0.95vw] text-[1.3vw] xl:text-[1vw] transition-all duration-300 hover:shadow-[0.4vw_0.4vw_0px_white]">
                         DELIVERY
                     </button>
                 </div>
@@ -93,7 +102,17 @@ const page = () => {
                             )}
                         </div>
                         <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
-                        <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
+                        <div className="flex flex-col items-center w-full">
+              <button type="button" onClick={() => setJourneyOpen(!journeyOpen)} className="w-full text-center py-1">
+                THE JOURNEY {journeyOpen ? "−" : "+"}
+              </button>
+              {(journeyOpen) && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                  <a href="/sauces" onClick={() => { setOpen(false); setJourneyOpen(false); }} className="w-full text-center py-3 text-xl">House-Made Sauces</a>
+                  <a href="/uniqueness" onClick={() => { setOpen(false); setJourneyOpen(false); }} className="w-full text-center py-3 text-xl">The Peckers Standard</a>
+                </div>
+              )}
+            </div>
                         <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
 
                         <div className="flex flex-col gap-4 mt-2 w-3/4">

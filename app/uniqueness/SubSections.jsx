@@ -44,7 +44,7 @@ const SubSections = () => {
         return (
           <section
             key={num}
-            className={`w-full h-auto ${index === 1 ? 'md:h-[150vh]' : 'md:h-[116vh]'} flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
+            className={`w-full h-[100vh] flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
               } bg-black`}
           >
             {/* IMAGE SECTION */}
@@ -94,7 +94,7 @@ const SubSections = () => {
                   viewBox={svgSizes[index].viewBox}
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`w-[88vw] ${index === 7 ? 'md:w-[40vw] lg:w-[38vw] xl:w-[35vw] ml-[-.5vw]' : 'md:w-[32vw] lg:w-[30vw] xl:w-[27vw]'} h-auto ${index === 1 ? 'mb-[4vw] md:mb-[2vw] ml-[-.7vw] mt-[2vw]' : index === 3 ? 'mb-[2vw] md:mb-0 mt-[2vw]' : index === 4 ? 'mb-[4vw] md:mb-[1vw]' : index === 7 ? 'mb-0 md:mb-[-1.5vw]' : 'mb-[2vw] md:mb-[0.5vw]'} ${index === 1 ? 'md:h-[45vh]' : index === 3 ? 'md:h-[50vh]' : index === 7 ? 'md:h-[48vh]' : index === 4 || index === 5 ? 'md:h-[36vh]' : 'md:h-[31vh]'} ${index === 4 || index === 5 ? 'mt-[6vw] md:mt-[4vw]' : index === 6 ? 'mt-[3vw] md:mt-[2vw]' : index === 7 ? 'mt-[3vw] md:mt-[2vw]' : index === 8 ? 'mt-[3vw] md:mt-[2vw]' : ''} ${index === 5 ? 'md:ml-[-3.4vw]' : index === 7 ? 'md:ml-[-4vw]' : index === 8 ? 'md:ml-[-2vw]' : index > 5 ? 'md:mr-[1.2vw]' : ''}`}
+                  className={`w-[88vw] ${index === 7 ? 'md:w-[40vw] lg:w-[38vw] xl:w-[35vw] ml-[-.5vw]' : 'md:w-[32vw] lg:w-[30vw] xl:w-[27vw]'} h-auto ${index === 1 ? 'mb-[4vw] md:mb-[2vw] ml-[-.7vw] mt-[2vw]' : index === 3 ? 'mb-[2vw] md:mb-0 mt-[2vw]' : index === 4 ? 'mb-[4vw] md:mb-[1vw]' : index === 7 ? 'mb-0 md:mb-[-1.5vw]' : 'mb-[2vw] md:mb-[0.5vw]'} ${index === 1 ? 'md:h-[30vh]' : index === 3 ? 'md:h-[35vh]' : index === 7 ? 'md:h-[32vh]' : index === 4 || index === 5 ? 'md:h-[24vh]' : 'md:h-[20vh]'} ${index === 4 || index === 5 ? 'mt-[6vw] md:mt-[4vw]' : index === 6 ? 'mt-[3vw] md:mt-[2vw]' : index === 7 ? 'mt-[3vw] md:mt-[2vw]' : index === 8 ? 'mt-[3vw] md:mt-[2vw]' : ''} ${index === 5 ? 'md:ml-[-3.4vw]' : index === 7 ? 'md:ml-[-4vw]' : index === 8 ? 'md:ml-[-2vw]' : index > 5 ? 'md:mr-[1.2vw]' : ''}`}
                   aria-label={index === 1 ? "FLAVOR STARTS HERE" : index === 4 ? "COVENT GARDEN SOURCED." : "THE CRUNCH MATTERS"}
                 >
                   <path

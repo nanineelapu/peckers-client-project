@@ -13,7 +13,7 @@ export default function OurStorySection() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          className="opacity-100" // Adjust opacity if it's too intense
+          className="opacity-100" // Adjut opacity if it's too intense
         >
           <rect
             x="0.603188"

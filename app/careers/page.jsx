@@ -8,6 +8,7 @@ import ApplyDetailsPage from "./ApplyDetailsPage";
 const page = () => {
     const [open, setOpen] = useState(false);
     const [locationsOpen, setLocationsOpen] = useState(false);
+  const [journeyOpen, setJourneyOpen] = useState(false);
 
     return (
 
@@ -106,7 +107,17 @@ const page = () => {
                             )}
                         </div>
                         <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
-                        <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
+                        <div className="flex flex-col items-center w-full">
+              <button type="button" onClick={() => setJourneyOpen(!journeyOpen)} className="w-full text-center py-1">
+                THE JOURNEY {journeyOpen ? "−" : "+"}
+              </button>
+              {(journeyOpen) && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                  <a href="/sauces" onClick={() => { setOpen(false); setJourneyOpen(false); }} className="w-full text-center py-3 text-xl">House-Made Sauces</a>
+                  <a href="/uniqueness" onClick={() => { setOpen(false); setJourneyOpen(false); }} className="w-full text-center py-3 text-xl">The Peckers Standard</a>
+                </div>
+              )}
+            </div>
                         <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
 
                         <div className="flex flex-col gap-4 mt-2 w-3/4">

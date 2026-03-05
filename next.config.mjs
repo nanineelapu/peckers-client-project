@@ -6,6 +6,7 @@ const nextConfig = {
     optimizePackageImports: ["gsap", "react-icons", "lucide-react"],
   },
   images: {
+    unoptimized: process.env.NODE_ENV === "development",
     remotePatterns: [
       {
         protocol: "https",

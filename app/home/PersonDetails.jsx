@@ -10,7 +10,7 @@ export default function PersonDetails() {
     >
       {/* Left: Person Image — slides in from left */}
       <motion.div
-        className="shrink-0 w-full lg:w-auto"
+        className="shrink-0 w-full lg:w-[43vw] xl:w-[44vw]"
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-60px" }}
@@ -19,7 +19,7 @@ export default function PersonDetails() {
         <Image
           src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Person%20image.webp"
           alt="Profile"
-          className="w-full h-[100vw] md:h-full object-cover object-center rounded-2xl"
+          className="w-full h-[70vw] md:h-[52vw] lg:h-[38vw] xl:h-[36vw] object-cover object-center rounded-2xl"
           sizes="(max-width: 768px) 90vw, 41.5vw"
           priority={true}
           width={670}

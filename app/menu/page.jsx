@@ -8,6 +8,7 @@ import Link from 'next/link'
 const page = () => {
   const [open, setOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
+  const [journeyOpen, setJourneyOpen] = useState(false);
   return (
     <div id="main-content">
 
@@ -46,7 +47,15 @@ const page = () => {
             </div>
           </div>
           <a href="ourstory" className="whitespace-nowrap">OUR SECRET</a>
-          <a href="uniqueness" className="whitespace-nowrap">THE JOURNEY</a>
+          <div className="relative group">
+            <span className="whitespace-nowrap cursor-default">THE JOURNEY</span>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl min-w-[250px]">
+                <a href="/sauces" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">House-Made Sauces</a>
+                <a href="/uniqueness" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap text-[2vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">The Peckers Standard</a>
+              </div>
+            </div>
+          </div>
           <a href="#">CAREERS</a>
         </div>
 
@@ -97,7 +106,17 @@ const page = () => {
               )}
             </div>
             <a href="ourstory" onClick={() => setOpen(false)}>OUR STORY</a>
-            <a href="uniqueness" onClick={() => setOpen(false)}>UNIQUENESS</a>
+            <div className="flex flex-col items-center w-full">
+              <button type="button" onClick={() => setJourneyOpen(!journeyOpen)} className="w-full text-center py-1">
+                THE JOURNEY {journeyOpen ? "−" : "+"}
+              </button>
+              {(journeyOpen) && (
+                <div className="flex flex-col items-center gap-2 mt-2 w-full">
+                  <a href="/sauces" onClick={() => { setOpen(false); setJourneyOpen(false); }} className="w-full text-center py-3 text-xl">House-Made Sauces</a>
+                  <a href="/uniqueness" onClick={() => { setOpen(false); setJourneyOpen(false); }} className="w-full text-center py-3 text-xl">The Peckers Standard</a>
+                </div>
+              )}
+            </div>
             <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
 
             <div className="flex flex-col gap-4 mt-2 w-3/4">
