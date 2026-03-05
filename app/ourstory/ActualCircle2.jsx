@@ -48,21 +48,28 @@ export default function PeckersTimeline2() {
 
 
                         const getInitial = (i) => {
-                            if (i === 0) return { opacity: 0, x: -60, y: 20, scale: 0.95, filter: "blur(6px)" };
-                            if (i === 1) return { opacity: 0, y: 50, scale: 0.88, filter: "blur(8px)" };
-                            return { opacity: 0, x: 60, y: 20, scale: 0.95, filter: "blur(6px)" };
+                            // Cards sweep in with a circular motion along the circle path
+                            if (i === 0) return { opacity: 0, x: 60, y: -60, scale: 0.8, rotate: 15, filter: "blur(15px)" }; // Left Bottom
+                            if (i === 1) return { opacity: 0, y: -80, scale: 0.8, rotate: 0, filter: "blur(15px)" }; // Mid Bottom
+                            return { opacity: 0, x: -60, y: -60, scale: 0.8, rotate: -15, filter: "blur(15px)" }; // Right Bottom
+                        };
+
+                        const getDelay = (i) => {
+                            if (i === 0) return 1.55; // Synced with Left Bottom dot (1.4s) + offset
+                            if (i === 1) return 1.25; // Synced with Mid Bottom dot (1.1s) + offset
+                            return 0.95; // Synced with Right Bottom dot (0.8s) + offset
                         };
 
                         return (
                             <motion.div
                                 key={index}
                                 initial={getInitial(index)}
-                                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
+                                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0, filter: "blur(0px)" }}
                                 viewport={{ once: true, margin: "-10%" }}
                                 transition={{
-                                    duration: 0.75,
-                                    delay: index * 0.18,
-                                    ease: [0.77, 0, 0.175, 1],
+                                    duration: 1.2,
+                                    delay: getDelay(index),
+                                    ease: [0.16, 1, 0.3, 1],
                                 }}
                                 style={
                                     item.highlight
