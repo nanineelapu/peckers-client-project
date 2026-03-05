@@ -22,7 +22,7 @@ const OurStoryPage = () => {
 
       <OurStorySection />
       <MobileRoadmap />
-      <div className="hidden md:block">
+      <div className="hidden 2xl:block">
         <StoryCircle />
         <ActualCircle />
         <br />

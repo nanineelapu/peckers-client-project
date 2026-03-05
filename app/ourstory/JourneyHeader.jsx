@@ -5,7 +5,7 @@ export default function JourneyIntroSection() {
         <section className="w-full bg-black pt-[9vw] flex flex-col items-center text-center relative">
 
             {/* ================= DESKTOP (UNCHANGED) ================= */}
-            <div className="hidden md:block w-full">
+            <div className="hidden 2xl:block w-full">
 
                 {/* Main Heading */}
                 <motion.h2
@@ -65,7 +65,7 @@ export default function JourneyIntroSection() {
             </div>
 
             {/* ================= MOBILE VERSION ================= */}
-            <div className="md:hidden w-full px-6 pt-10">
+            <div className="2xl:hidden w-full px-6 pt-10">
 
                 {/* Mobile Heading */}
                 <motion.h2
@@ -73,7 +73,7 @@ export default function JourneyIntroSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-[8vw] font-peakers text-white font-bold mb-4"
+                    className="text-[8vw] md:text-[5vw] xl:text-[4vw] font-peakers text-white font-bold mb-4 text-center"
                 >
                     THE PECKERS JOURNEY
                 </motion.h2>
@@ -83,7 +83,7 @@ export default function JourneyIntroSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-[3vw] text-[#FFD700] font-peakers tracking-[0.3em] leading-[1.4] mb-10"
+                    className="text-[3vw] md:text-[2vw] xl:text-[1.5vw] text-[#FFD700] font-peakers tracking-[0.3em] leading-[1.4] mb-10 text-center"
                 >
                     FROM ONE STORE TO GROWING COMMUNITY BRAND
                     <br />
@@ -107,8 +107,8 @@ export default function JourneyIntroSection() {
                         <div className="absolute left-2 top-2 w-5 h-5 bg-[#FFD700] rounded-full shadow-[0_0_12px_#FFD700]"></div>
 
                         <div className="ml-12 bg-[#121212] border border-[#333] rounded-xl p-5">
-                            <div className="text-white text-[4vw] font-bold opacity-80 mb-1">2022</div>
-                            <div className="text-[#FFD700] text-[9vw] font-bold font-peakers uppercase">
+                            <div className="text-white text-[4vw] md:text-[2.5vw] xl:text-[1.8vw] font-bold opacity-80 mb-1">2022</div>
+                            <div className="text-[#FFD700] text-[9vw] md:text-[6vw] xl:text-[4.5vw] font-bold font-peakers uppercase">
                                 Hitchin
                             </div>
                         </div>
@@ -125,8 +125,8 @@ export default function JourneyIntroSection() {
                         <div className="absolute left-2 top-2 w-5 h-5 bg-[#FFD700] rounded-full shadow-[0_0_12px_#FFD700]"></div>
 
                         <div className="ml-12 bg-[#121212] border border-[#333] rounded-xl p-5">
-                            <div className="text-white text-[4vw] font-bold opacity-80 mb-1">2024</div>
-                            <div className="text-[#FFD700] text-[9vw] font-bold font-peakers uppercase">
+                            <div className="text-white text-[4vw] md:text-[2.5vw] xl:text-[1.8vw] font-bold opacity-80 mb-1">2024</div>
+                            <div className="text-[#FFD700] text-[9vw] md:text-[6vw] xl:text-[4.5vw] font-bold font-peakers uppercase">
                                 Stevenage
                             </div>
                         </div>

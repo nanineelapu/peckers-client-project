@@ -229,14 +229,6 @@ export default function BurgerCarouselFinal() {
           >
             <style>{`
               .no-scrollbar::-webkit-scrollbar { display: none; }
-              @keyframes mobile-slide-in-right {
-                from { opacity: 0; transform: translate(calc(-50% + 80px), -50%) scale(0.82); }
-                to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-              }
-              @keyframes mobile-slide-in-left {
-                from { opacity: 0; transform: translate(calc(-50% - 80px), -50%) scale(0.82); }
-                to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-              }
             `}</style>
             <div
               className="flex font-['Share_Tech'] gap-[6vw] md:gap-6 lg:gap-8 xl:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] sm:px-[5vw] md:px-0 pt-[4vw] sm:pt-[4vw] md:pt-4 lg:pt-6 xl:pt-[1.5vw]"
@@ -318,33 +310,47 @@ export default function BurgerCarouselFinal() {
             <DropShadowSVG />
           </div>
 
-          {/* Mobile-only: single animated burger, re-mounts on center change */}
-          <div
-            key={`mob-${carousel.center}`}
-            className="block md:hidden"
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              animation: `mobile-slide-in-${mobileDirection > 0 ? 'right' : 'left'} 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
-              zIndex: 10,
-              pointerEvents: "none",
-              userSelect: "none",
-            }}
-          >
-            <img
-              src={BURGERS[carousel.center].image}
-              alt={BURGERS[carousel.center].name}
-              draggable={false}
-              style={{
-                width: "clamp(220px, 72vw, 400px)",
-                display: "block",
-                transform: `scale(${BURGERS[carousel.center].boost || 1})`,
-                filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))",
-                userSelect: "none",
-              }}
-            />
-          </div>
+          {/* Mobile-only: simple carousel */}
+          {carousel.cards.map((card) => {
+            const burger = BURGERS[card.index];
+            const isCenter = card.slot === 0;
+
+            return (
+              <div
+                key={`mob-${card.id}`}
+                className="block md:hidden"
+                onClick={() =>
+                  !isCenter && !isAnimating && Math.abs(card.slot) <= 1 && handleCardClick(card.slot)
+                }
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: `
+                    translate(calc(-50% + ${card.slot * 110}vw), -50%)
+                    scale(${burger.boost || 1})
+                  `,
+                  opacity: Math.abs(card.slot) <= 1 ? 1 : 0,
+                  zIndex: isCenter ? 10 : 5,
+                  transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease",
+                  pointerEvents: isCenter ? "none" : isAnimating ? "none" : "auto",
+                  userSelect: "none",
+                }}
+              >
+                <img
+                  src={burger.image}
+                  alt={burger.name}
+                  draggable={false}
+                  style={{
+                    width: "clamp(220px, 72vw, 400px)",
+                    display: "block",
+                    filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))",
+                    userSelect: "none",
+                  }}
+                />
+              </div>
+            );
+          })}
 
           {/* Tablet-only: full multi-card stacked carousel */}
           {carousel.cards.map((card) => {

@@ -9,8 +9,8 @@ import PersonDetails from "./PersonDetails";
 import RatingSection from "./RatingSection";
 import RatingSectionCards from "./RatingSectionCards";
 import SignUpSection from "./SignUpSection";
-import FooterAni from "./FooterAni";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const page = () => {
 
@@ -157,7 +157,7 @@ const page = () => {
 
       {/* Footer of home page  */}
 
-      <FooterAni />
+      <Footer />
       {/* Boring Stuff */}
 
       <div className="w-full bg-black text-[#586676] text-[10px] md:text-[0.8vw] tracking-tight font-mono px-6 py-6 md:px-[1vw] md:py-[2.5vw] flex flex-col md:flex-row justify-between items-center border-t border-[#151515] gap-3 md:gap-0">

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+
 
 export default function RatingSectionCards() {
   const cards = [
@@ -38,12 +38,8 @@ export default function RatingSectionCards() {
   ];
 
   return (
-    <motion.div
+    <div
       className="w-full mt-[6vw] md:mt-[3vw] mb-[2vw] md:mb-[2vw] relative"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, ease: "easeOut" }}
     >
       <style>{`
         .rating-marquee {
@@ -107,6 +103,6 @@ export default function RatingSectionCards() {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
