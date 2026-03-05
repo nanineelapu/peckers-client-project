@@ -36,8 +36,6 @@ export default function Preloader({ onComplete = () => { } }) {
   useEffect(() => {
     if (!shouldRender || !isHomePage) return; // Do nothing if we shouldn't render
 
-    const main = document.querySelector("#main-content");
-
     const tl = gsap.timeline({
       defaults: { ease: "power3.out" },
       onComplete: () => {
@@ -47,8 +45,9 @@ export default function Preloader({ onComplete = () => { } }) {
       }
     });
 
-    // Immediately hide main content to prevent gap
+    const main = document.querySelector("#main-content");
     if (main) {
+      // Set initial state for zoom out
       gsap.set(main, {
         scale: 1.8,
         y: -100,
@@ -67,24 +66,24 @@ export default function Preloader({ onComplete = () => { } }) {
       textRef.current,
       {
         letterSpacing: "0.02em",
-        duration: 0.5, // Speed up text contracting
+        duration: 1.0, // Slowed down from 0.5
       }
     );
 
     tl.to(textRef.current, {
       scale: 1.06,
-      duration: 0.6, // Speed up final scale bounce
+      duration: 1.0, // Slowed down from 0.6
       ease: "power2.inOut",
     });
 
     // Slide preloader down
     tl.to(containerRef.current, {
       yPercent: 100,
-      duration: 1.3, // Speed up exit slide
+      duration: 1.2, // Slowed down from 0.3
       ease: "power4.inOut",
     });
 
-    // Main page zoom settles - start opacity at 0 and fade in
+    // Animate main content zoom and opacity in parallel with preloader sliding out
     if (main) {
       tl.to(
         main,
@@ -92,7 +91,7 @@ export default function Preloader({ onComplete = () => { } }) {
           scale: 1,
           y: 0,
           opacity: 1,
-          duration: 1, // Speed up main content reveal
+          duration: 1.2, // Slowed down from 0.6
           ease: "power3.out",
         },
         "<"

@@ -116,7 +116,7 @@ const createInitialCards = (center) => [
   makeCard((center + 3) % TOTAL, 3),
 ];
 
-const POS_MAPPING = {
+const POS_MAPPING_TABLET = {
   0: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
   1: { x: 30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
   [-1]: { x: -30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
@@ -124,9 +124,20 @@ const POS_MAPPING = {
   [-2]: { x: -18, y: -100, scale: 0.2, opacity: 0.4, z: 1 },
 };
 
-function getSlotPos(slot) {
-  if (POS_MAPPING[slot]) return POS_MAPPING[slot];
-  // Hide cards beyond distance 2 elegantly
+const POS_MAPPING_LAPTOP = {
+  0: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
+  1: { x: 28, y: -40, scale: 0.45, opacity: 0.9, z: 8 },
+  [-1]: { x: -28, y: -40, scale: 0.45, opacity: 0.9, z: 8 },
+  2: { x: 38, y: -80, scale: 0.25, opacity: 0.6, z: 6 },
+  [-2]: { x: -38, y: -80, scale: 0.25, opacity: 0.6, z: 6 },
+  3: { x: 22, y: -120, scale: 0.15, opacity: 0.3, z: 4 },
+  [-3]: { x: -22, y: -120, scale: 0.15, opacity: 0.3, z: 4 },
+};
+
+function getSlotPos(slot, isLaptop = false) {
+  const mapping = isLaptop ? POS_MAPPING_LAPTOP : POS_MAPPING_TABLET;
+  if (mapping[slot]) return mapping[slot];
+  // Hide cards beyond distance elegantly
   return {
     x: 0,
     y: -120,
@@ -155,10 +166,12 @@ export default function BurgerCarouselFinal() {
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [glowVisible, setGlowVisible] = useState(true);
+  const [mobileDirection, setMobileDirection] = useState(1); // 1 = next (right→left), -1 = prev (left→right)
 
   const moveBy = useCallback((steps) => {
     if (steps === 0 || animatingRef.current) return;
 
+    setMobileDirection(steps > 0 ? 1 : -1);
     animatingRef.current = true;
     setIsAnimating(true);
     setGlowVisible(false);
@@ -214,7 +227,17 @@ export default function BurgerCarouselFinal() {
             className="subnavbar"
             style={{ color: "white" }}
           >
-            <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
+            <style>{`
+              .no-scrollbar::-webkit-scrollbar { display: none; }
+              @keyframes mobile-slide-in-right {
+                from { opacity: 0; transform: translate(calc(-50% + 80px), -50%) scale(0.82); }
+                to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+              }
+              @keyframes mobile-slide-in-left {
+                from { opacity: 0; transform: translate(calc(-50% - 80px), -50%) scale(0.82); }
+                to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+              }
+            `}</style>
             <div
               className="flex font-['Share_Tech'] gap-[6vw] md:gap-6 lg:gap-8 xl:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] sm:px-[5vw] md:px-0 pt-[4vw] sm:pt-[4vw] md:pt-4 lg:pt-6 xl:pt-[1.5vw]"
               style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -295,19 +318,95 @@ export default function BurgerCarouselFinal() {
             <DropShadowSVG />
           </div>
 
+          {/* Mobile-only: single animated burger, re-mounts on center change */}
+          <div
+            key={`mob-${carousel.center}`}
+            className="block md:hidden"
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              animation: `mobile-slide-in-${mobileDirection > 0 ? 'right' : 'left'} 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+              zIndex: 10,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          >
+            <img
+              src={BURGERS[carousel.center].image}
+              alt={BURGERS[carousel.center].name}
+              draggable={false}
+              style={{
+                width: "clamp(220px, 72vw, 400px)",
+                display: "block",
+                transform: `scale(${BURGERS[carousel.center].boost || 1})`,
+                filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))",
+                userSelect: "none",
+              }}
+            />
+          </div>
+
+          {/* Tablet-only: full multi-card stacked carousel */}
           {carousel.cards.map((card) => {
-            const cfg = getSlotPos(card.slot);
+            const cfg = getSlotPos(card.slot, false);
             const burger = BURGERS[card.index];
             const isCenter = card.slot === 0;
 
-            // Simple logic to detect if a card is crossing the "back" of the circle
-            // during a transition. If it moves from say 1 to 4 directly across the front,
-            // it looks bad. But with fixed circular slots, CSS transition will 
-            // naturally move it along the specified coordinates.
+            return (
+              <div
+                key={`tab-${card.id}`}
+                className="hidden md:block lg:hidden"
+                onClick={() =>
+                  !isCenter && !isAnimating && Math.abs(card.slot) <= 2 && handleCardClick(card.slot)
+                }
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: `
+                    translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
+                    scale(${cfg.scale * (burger.boost || 1)})
+                  `,
+                  opacity: cfg.opacity,
+                  zIndex: cfg.z,
+                  transition: "transform .5s ease, opacity .5s ease",
+                  pointerEvents: isCenter
+                    ? "none"
+                    : isAnimating
+                      ? "none"
+                      : "auto",
+                  cursor: isCenter ? "default" : isAnimating ? "wait" : "pointer",
+                  userSelect: "none",
+                }}
+              >
+                <img
+                  src={burger.image}
+                  alt={burger.name}
+                  draggable={false}
+                  style={{
+                    width: "clamp(220px, 45vw, 520px)",
+                    display: "block",
+                    filter: isCenter
+                      ? "drop-shadow(0 5px 15px rgba(0,0,0,0.3))"
+                      : "none",
+                    transition: "filter .4s ease",
+                    userSelect: "none",
+                  }}
+                />
+              </div>
+            );
+          })}
+
+          {/* Laptop-only: full multi-card stacked carousel (7 items) */}
+          {carousel.cards.map((card) => {
+            const cfg = getSlotPos(card.slot, true);
+            const burger = BURGERS[card.index];
+            const isCenter = card.slot === 0;
 
             return (
               <div
-                key={card.id}
+                key={`lap-${card.id}`}
+                className="hidden lg:block"
                 onClick={() =>
                   !isCenter && !isAnimating && Math.abs(card.slot) <= 3 && handleCardClick(card.slot)
                 }
@@ -321,8 +420,7 @@ export default function BurgerCarouselFinal() {
                   `,
                   opacity: cfg.opacity,
                   zIndex: cfg.z,
-                  transition:
-                    "transform .5s ease, opacity .5s ease",
+                  transition: "transform .5s ease, opacity .5s ease",
                   pointerEvents: isCenter
                     ? "none"
                     : isAnimating

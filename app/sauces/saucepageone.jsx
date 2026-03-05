@@ -5,123 +5,184 @@ const saucesData = [
     {
         id: 1,
         title: "Spicy Buffalo",
-        descLine1: "Tomato base slow-simmered with smoked spices and finished with",
+        descLine1:
+            "Tomato base slow-simmered with smoked spices and finished with",
         descLine2: "pure honey.",
-        descLine3: "Less preservatives and additives then the big boys",
-        bgUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Sauce1%20page%201.webp",
-        sauceUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%201.webp"
+        descLine3:
+            "Less preservatives and additives then the big boys",
+        bgUrl:
+            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Sauce1%20page%201.webp",
+        sauceUrl:
+            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%201.webp",
     },
     {
         id: 2,
         title: "HONEY GLAZE BBQ",
-        descLine1: "Tomato base slow-simmered with smoked spices and finished with ",
+        descLine1:
+            "Tomato base slow-simmered with smoked spices and finished with ",
         descLine2: "pure honey.",
-        bgUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/Sauce2.webp",
-        sauceUrl: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%202.webp"
-    }
+        bgUrl:
+            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/Sauce2.webp",
+        sauceUrl:
+            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%202.webp",
+    },
 ];
 
-const SaucePageOne = () => {
+export default function SaucePageOne() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [rotation, setRotation] = useState(0);
 
     const nextSlide = () => {
+        setRotation((prev) => prev + 360); // spin forward
         setCurrentIndex((prev) => (prev + 1) % saucesData.length);
     };
 
     const prevSlide = () => {
-        setCurrentIndex((prev) => (prev === 0 ? saucesData.length - 1 : prev - 1));
+        setRotation((prev) => prev - 360); // spin backward
+        setCurrentIndex((prev) =>
+            prev === 0 ? saucesData.length - 1 : prev - 1
+        );
     };
 
     return (
         <div className="relative w-full overflow-hidden bg-black flex flex-col items-center">
 
-            <div
-                className="flex w-full transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-                {saucesData.map((sauce, idx) => (
-                    <div key={sauce.id} className="w-full shrink-0 relative overflow-hidden flex flex-col items-center pb-[120vw] sm:pb-[100vw] md:pb-[50vw] lg:pb-[40vw] xl:pb-[20vw] bg-black">
-                        {/* Background Image */}
-                        <img
-                            src={sauce.bgUrl}
-                            alt={`${sauce.title} Background`}
-                            className="w-full h-auto block"
-                        />
+            <div className="relative w-full overflow-hidden min-h-[160vw] sm:min-h-[140vw] md:min-h-[60vw] lg:min-h-[55vw] xl:min-h-[50vw]">
 
-                        {/* Text Overlay */}
-                        <div className="absolute top-[8%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[4%] left-1/2 -translate-x-1/2 text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20">
-                            <h1
-                                className="text-3xl sm:text-4xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-2 md:mb-4 xl:mb-[1vw]"
-                                style={{ fontFamily: 'var(--font-peakers)' }}
-                            >
-                                {sauce.title}
-                            </h1>
+                {saucesData.map((sauce, idx) => {
+                    const isActive = idx === currentIndex;
 
-                            <div className="text-[10px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[1.3vw] leading-[1.4em] md:leading-[1.6em] xl:leading-[1.3vw] py-[1.5vw] font-light md:font-normal lg:font-normal xl:font-light font-['Inconsolata'] tracking-wider space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-[0.5vw]">
-                                <p>
-                                    {sauce.descLine1}<br />
-                                    {sauce.descLine2}
-                                </p>
-                                <p className="hidden sm:block">{sauce.descLine3}</p>
-                                <p className="font-bold pt-3 md:pt-4 xl:pt-[0.5vw]">MADE FRESHLY DAILY</p>
+                    return (
+                        <div
+                            key={sauce.id}
+                            className={`absolute top-0 left-0 w-full transition-opacity duration-700 ease-in-out ${isActive ? "opacity-100 z-20" : "opacity-0 z-10"
+                                }`}
+                        >
+                            <div className="relative w-full overflow-hidden flex flex-col items-center pb-[90vw] sm:pb-[120vw] md:pb-[20vw] lg:pb-[26vw] xl:pb-[26vw] bg-black">
+
+                                <img
+                                    src={sauce.bgUrl}
+                                    alt={`${sauce.title} Background`}
+                                    className="w-full h-auto block"
+                                />
+
+                                {/* YOUR EXISTING TEXT SECTION UNCHANGED */}
+
+                                <div className="absolute top-[8%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20">
+                                    <h1
+                                        className="text-2xl sm:text-3xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-2 md:mb-4 xl:mb-[-.5vw]"
+                                        style={{ fontFamily: 'var(--font-peakers)' }}
+                                    >
+                                        {sauce.title}
+                                    </h1>
+
+                                    <div className="text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px] xl:text-[1.1vw] leading-[1.4em] md:leading-[1.6em] xl:leading-[1.3vw] py-[1.5vw] font-light md:font-normal lg:font-normal xl:font-light font-['Inconsolata'] tracking-wider space-y-1 md:space-y-2 lg:space-y-3 xl:space-y-[0.5vw]">
+                                        <p>
+                                            {sauce.descLine1}<br />
+                                            {sauce.descLine2}
+                                        </p>
+                                        <p className="hidden sm:block">{sauce.descLine3}</p>
+                                        {idx === 0 ? (
+                                            <p className="font-bold pt-3 md:pt-4 xl:pt-[0.5vw]">MADE FRESHLY DAILY</p>
+                                        ) : (
+                                            <div className="flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 pt-3 md:pt-[1vw] xl:pt-[0.8vw] font-bold">
+                                                <div className="px-3 md:px-[1.2vw] py-1 md:py-[0.5vw] rounded-[100px] border border-white/20 flex items-center justify-center gap-1.5 md:gap-[0.5vw] bg-black/30 backdrop-blur-md">
+                                                    <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[8px] h-[10px] md:w-[1vw] md:h-[1.2vw]">
+                                                        <path d="M1.16667 6.41667C1.16667 6.92222 1.26875 7.40104 1.47292 7.85313C1.67708 8.30521 1.96875 8.70139 2.34792 9.04167C2.33819 8.99306 2.33333 8.94931 2.33333 8.91042C2.33333 8.87153 2.33333 8.82778 2.33333 8.77917C2.33333 8.46805 2.39167 8.17639 2.50833 7.90417C2.625 7.63194 2.79514 7.38403 3.01875 7.16042L4.66667 5.54167L6.31458 7.16042C6.53819 7.38403 6.70833 7.63194 6.825 7.90417C6.94167 8.17639 7 8.46805 7 8.77917C7 8.82778 7 8.87153 7 8.91042C7 8.94931 6.99514 8.99306 6.98542 9.04167C7.36458 8.70139 7.65625 8.30521 7.86042 7.85313C8.06458 7.40104 8.16667 6.92222 8.16667 6.41667C8.16667 5.93056 8.07674 5.47118 7.89687 5.03854C7.71701 4.6059 7.45694 4.21944 7.11667 3.87917C6.92222 4.00556 6.71806 4.10035 6.50417 4.16354C6.29028 4.22674 6.07153 4.25833 5.84792 4.25833C5.24514 4.25833 4.72257 4.05903 4.28021 3.66042C3.83785 3.26181 3.58264 2.77083 3.51458 2.1875C3.13542 2.50833 2.8 2.84132 2.50833 3.18646C2.21667 3.5316 1.97118 3.8816 1.77188 4.23646C1.57257 4.59132 1.42188 4.95347 1.31979 5.32292C1.21771 5.69236 1.16667 6.05694 1.16667 6.41667ZM4.66667 7.175L3.83542 7.99167C3.72847 8.09861 3.64583 8.22014 3.5875 8.35625C3.52917 8.49236 3.5 8.63333 3.5 8.77917C3.5 9.09028 3.61424 9.35764 3.84271 9.58125C4.07118 9.80486 4.34583 9.91667 4.66667 9.91667C4.9875 9.91667 5.26215 9.80486 5.49062 9.58125C5.7191 9.35764 5.83333 9.09028 5.83333 8.77917C5.83333 8.62361 5.80417 8.48021 5.74583 8.34896C5.6875 8.21771 5.60486 8.09861 5.49792 7.99167L4.66667 7.175ZM4.66667 0V1.925C4.66667 2.25556 4.7809 2.53264 5.00938 2.75625C5.23785 2.97986 5.51736 3.09167 5.84792 3.09167C6.02292 3.09167 6.18576 3.05521 6.33646 2.98229C6.48715 2.90937 6.62083 2.8 6.7375 2.65417L7 2.33333C7.71944 2.74167 8.28819 3.31042 8.70625 4.03958C9.12431 4.76875 9.33333 5.56111 9.33333 6.41667C9.33333 7.71944 8.88125 8.82292 7.97708 9.72708C7.07292 10.6312 5.96944 11.0833 4.66667 11.0833C3.36389 11.0833 2.26042 10.6312 1.35625 9.72708C0.452083 8.82292 0 7.71944 0 6.41667C0 5.1625 0.420486 3.97153 1.26146 2.84375C2.10243 1.71597 3.2375 0.768056 4.66667 0Z" fill="#F2DF0D" />
+                                                    </svg>
+                                                    <span style={{ fontFamily: 'var(--font-peakers)' }} className="text-[12px] sm:text-[14px] md:text-[1.3vw] xl:text-[0.9vw] font-normal tracking-[0.05em] uppercase translate-y-[1px]">NO PRESERVATIVES</span>
+                                                </div>
+                                                <div className="px-3 md:px-[1.2vw] py-1 md:py-[0.5vw] rounded-[100px] border border-white/20 flex items-center justify-center gap-1.5 md:gap-[0.5vw] bg-black/30 backdrop-blur-md">
+                                                    <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[8px] h-[10px] md:w-[1vw] md:h-[1.2vw]">
+                                                        <path d="M1.16667 6.41667C1.16667 6.92222 1.26875 7.40104 1.47292 7.85313C1.67708 8.30521 1.96875 8.70139 2.34792 9.04167C2.33819 8.99306 2.33333 8.94931 2.33333 8.91042C2.33333 8.87153 2.33333 8.82778 2.33333 8.77917C2.33333 8.46805 2.39167 8.17639 2.50833 7.90417C2.625 7.63194 2.79514 7.38403 3.01875 7.16042L4.66667 5.54167L6.31458 7.16042C6.53819 7.38403 6.70833 7.63194 6.825 7.90417C6.94167 8.17639 7 8.46805 7 8.77917C7 8.82778 7 8.87153 7 8.91042C7 8.94931 6.99514 8.99306 6.98542 9.04167C7.36458 8.70139 7.65625 8.30521 7.86042 7.85313C8.06458 7.40104 8.16667 6.92222 8.16667 6.41667C8.16667 5.93056 8.07674 5.47118 7.89687 5.03854C7.71701 4.6059 7.45694 4.21944 7.11667 3.87917C6.92222 4.00556 6.71806 4.10035 6.50417 4.16354C6.29028 4.22674 6.07153 4.25833 5.84792 4.25833C5.24514 4.25833 4.72257 4.05903 4.28021 3.66042C3.83785 3.26181 3.58264 2.77083 3.51458 2.1875C3.13542 2.50833 2.8 2.84132 2.50833 3.18646C2.21667 3.5316 1.97118 3.8816 1.77188 4.23646C1.57257 4.59132 1.42188 4.95347 1.31979 5.32292C1.21771 5.69236 1.16667 6.05694 1.16667 6.41667ZM4.66667 7.175L3.83542 7.99167C3.72847 8.09861 3.64583 8.22014 3.5875 8.35625C3.52917 8.49236 3.5 8.63333 3.5 8.77917C3.5 9.09028 3.61424 9.35764 3.84271 9.58125C4.07118 9.80486 4.34583 9.91667 4.66667 9.91667C4.9875 9.91667 5.26215 9.80486 5.49062 9.58125C5.7191 9.35764 5.83333 9.09028 5.83333 8.77917C5.83333 8.62361 5.80417 8.48021 5.74583 8.34896C5.6875 8.21771 5.60486 8.09861 5.49792 7.99167L4.66667 7.175ZM4.66667 0V1.925C4.66667 2.25556 4.7809 2.53264 5.00938 2.75625C5.23785 2.97986 5.51736 3.09167 5.84792 3.09167C6.02292 3.09167 6.18576 3.05521 6.33646 2.98229C6.48715 2.90937 6.62083 2.8 6.7375 2.65417L7 2.33333C7.71944 2.74167 8.28819 3.31042 8.70625 4.03958C9.12431 4.76875 9.33333 5.56111 9.33333 6.41667C9.33333 7.71944 8.88125 8.82292 7.97708 9.72708C7.07292 10.6312 5.96944 11.0833 4.66667 11.0833C3.36389 11.0833 2.26042 10.6312 1.35625 9.72708C0.452083 8.82292 0 7.71944 0 6.41667C0 5.1625 0.420486 3.97153 1.26146 2.84375C2.10243 1.71597 3.2375 0.768056 4.66667 0Z" fill="#F2DF0D" />
+                                                    </svg>
+                                                    <span style={{ fontFamily: 'var(--font-peakers)' }} className="text-[12px] sm:text-[14px] md:text-[1.3vw] xl:text-[0.9vw] font-normal tracking-[0.05em] uppercase translate-y-[1px]">MADE FRESHLY</span>
+                                                </div>
+                                                <div className="px-3 md:px-[1.2vw] py-1 md:py-[0.5vw] rounded-[100px] border border-white/20 flex items-center justify-center gap-1.5 md:gap-[0.5vw] bg-black/30 backdrop-blur-md">
+                                                    <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[8px] h-[10px] md:w-[1vw] md:h-[1.2vw]">
+                                                        <path d="M1.16667 6.41667C1.16667 6.92222 1.26875 7.40104 1.47292 7.85313C1.67708 8.30521 1.96875 8.70139 2.34792 9.04167C2.33819 8.99306 2.33333 8.94931 2.33333 8.91042C2.33333 8.87153 2.33333 8.82778 2.33333 8.77917C2.33333 8.46805 2.39167 8.17639 2.50833 7.90417C2.625 7.63194 2.79514 7.38403 3.01875 7.16042L4.66667 5.54167L6.31458 7.16042C6.53819 7.38403 6.70833 7.63194 6.825 7.90417C6.94167 8.17639 7 8.46805 7 8.77917C7 8.82778 7 8.87153 7 8.91042C7 8.94931 6.99514 8.99306 6.98542 9.04167C7.36458 8.70139 7.65625 8.30521 7.86042 7.85313C8.06458 7.40104 8.16667 6.92222 8.16667 6.41667C8.16667 5.93056 8.07674 5.47118 7.89687 5.03854C7.71701 4.6059 7.45694 4.21944 7.11667 3.87917C6.92222 4.00556 6.71806 4.10035 6.50417 4.16354C6.29028 4.22674 6.07153 4.25833 5.84792 4.25833C5.24514 4.25833 4.72257 4.05903 4.28021 3.66042C3.83785 3.26181 3.58264 2.77083 3.51458 2.1875C3.13542 2.50833 2.8 2.84132 2.50833 3.18646C2.21667 3.5316 1.97118 3.8816 1.77188 4.23646C1.57257 4.59132 1.42188 4.95347 1.31979 5.32292C1.21771 5.69236 1.16667 6.05694 1.16667 6.41667ZM4.66667 7.175L3.83542 7.99167C3.72847 8.09861 3.64583 8.22014 3.5875 8.35625C3.52917 8.49236 3.5 8.63333 3.5 8.77917C3.5 9.09028 3.61424 9.35764 3.84271 9.58125C4.07118 9.80486 4.34583 9.91667 4.66667 9.91667C4.9875 9.91667 5.26215 9.80486 5.49062 9.58125C5.7191 9.35764 5.83333 9.09028 5.83333 8.77917C5.83333 8.62361 5.80417 8.48021 5.74583 8.34896C5.6875 8.21771 5.60486 8.09861 5.49792 7.99167L4.66667 7.175ZM4.66667 0V1.925C4.66667 2.25556 4.7809 2.53264 5.00938 2.75625C5.23785 2.97986 5.51736 3.09167 5.84792 3.09167C6.02292 3.09167 6.18576 3.05521 6.33646 2.98229C6.48715 2.90937 6.62083 2.8 6.7375 2.65417L7 2.33333C7.71944 2.74167 8.28819 3.31042 8.70625 4.03958C9.12431 4.76875 9.33333 5.56111 9.33333 6.41667C9.33333 7.71944 8.88125 8.82292 7.97708 9.72708C7.07292 10.6312 5.96944 11.0833 4.66667 11.0833C3.36389 11.0833 2.26042 10.6312 1.35625 9.72708C0.452083 8.82292 0 7.71944 0 6.41667C0 5.1625 0.420486 3.97153 1.26146 2.84375C2.10243 1.71597 3.2375 0.768056 4.66667 0Z" fill="#F2DF0D" />
+                                                    </svg>
+                                                    <span style={{ fontFamily: 'var(--font-peakers)' }} className="text-[12px] sm:text-[14px] md:text-[1.3vw] xl:text-[0.9vw] font-normal tracking-[0.05em] uppercase translate-y-[1px]">PURE HONEY</span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="absolute left-1/2 -translate-x-1/2 bottom-[5vw] sm:bottom-[5vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[95vw] h-[95vw] sm:w-[85vw] sm:h-[85vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none">
+
+                                    {/* ROTATING TEXT (CONTROLLED) */}
+                                    <div
+                                        className="absolute inset-0 w-full h-full transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]"
+                                        style={{ transform: `rotate(${rotation}deg)` }}
+                                    >
+                                        <svg viewBox="0 0 1000 1000" className="w-full h-full overflow-visible">
+                                            <path
+                                                id={`sauce-text-path-${idx}`}
+                                                d="M 500, 500 m -450, 0 a 450,450 0 1,1 900,0 a 450,450 0 1,1 -900,0"
+                                                fill="transparent"
+                                            />
+                                            <text
+                                                className="fill-white font-bold text-[24px] font-peakers uppercase tracking-wider"
+                                                style={{ fontFamily: "var(--font-peakers)" }}
+                                            >
+                                                <textPath
+                                                    href={`#sauce-text-path-${idx}`}
+                                                    startOffset="0%"
+                                                    textLength="2810"
+                                                    lengthAdjust="spacingAndGlyphs"
+
+
+                                                >
+                                                    HONEY GLAZE BBQ SAUCE • HOT HONEY SAUCE •
+                                                    KATSU CURRY SAUCE • KOREAN GOCHUJANG SAUCE •
+                                                    PEANUT SWEET CHILLI SAUCE • SUPER CHARGE OG SAUCE •
+                                                    BUFFALO SAUCE • GARLIC MAYONNAISE •
+                                                </textPath>
+                                            </text>
+                                        </svg>
+                                    </div>
+
+                                    {/* STATIC CIRCLE */}
+                                    <svg viewBox="0 0 1000 1000" className="absolute inset-0 w-full h-full pointer-events-none z-10">
+                                        <circle cx="500" cy="500" r="410" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
+                                        <circle cx="500" cy="90" r="8" fill="white" />
+                                    </svg>
+
+                                    {/* PRODUCT IMAGE */}
+                                    <img
+                                        src={sauce.sauceUrl}
+                                        alt={sauce.title}
+                                        className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto"
+                                        style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
+                                    />
+                                </div>
+
                             </div>
                         </div>
-
-                        {/* Circular Carousel Element placed absolutely at the bottom */}
-                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[20vw] sm:bottom-[15vw] md:bottom-[10vw] lg:bottom-[8vw] xl:bottom-[7vw] w-[85vw] h-[85vw] sm:w-[75vw] sm:h-[75vw] md:w-[60vw] md:h-[60vw] lg:w-[50vw] lg:h-[50vw] xl:w-[65vw] xl:h-[65vw] flex items-center justify-center z-10 pointer-events-none">
-
-                            {/* Rotating Circular Text SVG */}
-                            <div
-                                className="absolute inset-0 w-full h-full animate-spin"
-                                style={{ animationDuration: "60s" }}
-                            >
-                                <svg viewBox="0 0 1000 1000" className="w-full h-full overflow-visible">
-                                    {/* Define a circular path for the text to follow. R=450 */}
-                                    <path id={`sauce-text-path-${idx}`} d="M 500, 500 m -450, 0 a 450,450 0 1,1 900,0 a 450,450 0 1,1 -900,0" fill="transparent" />
-
-                                    <text className="fill-white font-bold text-[24px] uppercase tracking-wider" style={{ fontFamily: 'var(--font-peakers)' }}>
-                                        <textPath href={`#sauce-text-path-${idx}`} startOffset="0%" textLength="2810" lengthAdjust="spacingAndGlyphs">
-                                            HONEY GLAZE BBQ SAUCE • HOT HONEY SAUCE • KATSU CURRY SAUCE • KOREAN GOCHUJANG SAUCE • PEANUT SWEET CHILLI SAUCE • SUPER CHARGE OG SAUCE • BUFFALO SAUCE • GARLIC MAYONNAISE (FAMILY RECIPE) • BUTTER ME UP SAUCE •
-                                        </textPath>
-                                    </text>
-                                </svg>
-                            </div>
-
-                            {/* Inner Static White Circle and Dot */}
-                            <svg viewBox="0 0 1000 1000" className="absolute inset-0 w-full h-full pointer-events-none z-10">
-                                <circle cx="500" cy="500" r="410" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
-                                <circle cx="500" cy="90" r="8" fill="white" />
-                            </svg>
-
-                            {/* Center Product Image */}
-                            <img
-                                src={sauce.sauceUrl}
-                                alt={sauce.title}
-                                className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto"
-                                style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
-                            />
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
-            {/* Carousel Arrows */}
+            {/* ARROWS */}
             <div className="absolute bottom-[15%] sm:bottom-[12%] md:bottom-[45%] lg:bottom-[40%] xl:bottom-[50%] w-[90%] sm:w-[85%] md:w-[90%] lg:w-[85%] xl:w-[80%] left-1/2 -translate-x-1/2 flex justify-between items-center z-20 pointer-events-none">
                 <button
                     onClick={prevSlide}
-                    className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all pointer-events-auto backdrop-blur-sm group"
+                    className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white/10 transition pointer-events-auto"
                 >
-                    <svg width="20" height="20" className="md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-[1.2vw] xl:h-[1.2vw] group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5" /><path d="M12 19l-7-7 7-7" /></svg>
+                    ←
                 </button>
+
                 <button
                     onClick={nextSlide}
-                    className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex flex-col items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all pointer-events-auto backdrop-blur-sm group"
+                    className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white/10 transition pointer-events-auto"
                 >
-                    <svg width="20" height="20" className="md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-[1.2vw] xl:h-[1.2vw] group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
+                    →
                 </button>
             </div>
         </div>
     );
-};
+}
 
-export default SaucePageOne;
+
+

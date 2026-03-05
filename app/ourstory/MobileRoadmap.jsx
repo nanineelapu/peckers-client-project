@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useId } from "react";
+import { motion } from 'framer-motion';
 
 const timelineData = [
     {
@@ -41,25 +42,59 @@ const timelineData = [
     }
 ];
 
-const ArrowLeftToRight = () => (
-    <div className="w-full h-[60px] flex justify-center -my-2 opacity-60 z-0">
-        <svg width="100%" height="100%" viewBox="0 0 300 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 80 0 C 80 40, 220 40, 220 70" stroke="#71717a" strokeWidth="2" strokeDasharray="4 4" fill="none" vectorEffect="non-scaling-stroke" />
-            <path d="M 214 62 L 220 74 L 226 62" fill="none" stroke="#71717a" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-        </svg>
-    </div>
-);
+const ArrowLeftToRight = () => {
+    const id = useId();
+    return (
+        <div className="w-full h-[60px] flex justify-center -my-2 opacity-60 z-0">
+            <svg width="100%" height="100%" viewBox="0 0 300 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <mask id={`maskLeftRight-${id}`}>
+                        <motion.path
+                            initial={{ pathLength: 0 }}
+                            whileInView={{ pathLength: 1 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 1.2, ease: "easeInOut" }}
+                            d="M 80 0 C 80 40, 220 40, 220 70" stroke="white" strokeWidth="4" fill="none" vectorEffect="non-scaling-stroke" />
+                    </mask>
+                </defs>
+                <path mask={`url(#maskLeftRight-${id})`} d="M 80 0 C 80 40, 220 40, 220 70" stroke="#71717a" strokeWidth="2" strokeDasharray="4 4" fill="none" vectorEffect="non-scaling-stroke" />
+                <motion.path
+                    initial={{ opacity: 0, scale: 0.5, transformOrigin: 'center' }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-10%" }}
+                    transition={{ duration: 0.3, delay: 1 }}
+                    d="M 214 62 L 220 74 L 226 62" fill="none" stroke="#71717a" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+            </svg>
+        </div>
+    );
+};
 
-const ArrowRightToLeft = () => (
-    <div className="w-full h-[60px] flex justify-center -my-2 opacity-60 z-0">
-        <svg width="100%" height="100%" viewBox="0 0 300 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 220 0 C 220 40, 80 40, 80 70" stroke="#71717a" strokeWidth="2" strokeDasharray="4 4" fill="none" vectorEffect="non-scaling-stroke" />
-            <path d="M 74 62 L 80 74 L 86 62" fill="none" stroke="#71717a" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-        </svg>
-    </div>
-);
-
-import { motion } from 'framer-motion';
+const ArrowRightToLeft = () => {
+    const id = useId();
+    return (
+        <div className="w-full h-[60px] flex justify-center -my-2 opacity-60 z-0">
+            <svg width="100%" height="100%" viewBox="0 0 300 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <mask id={`maskRightLeft-${id}`}>
+                        <motion.path
+                            initial={{ pathLength: 0 }}
+                            whileInView={{ pathLength: 1 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 1.2, ease: "easeInOut" }}
+                            d="M 220 0 C 220 40, 80 40, 80 70" stroke="white" strokeWidth="4" fill="none" vectorEffect="non-scaling-stroke" />
+                    </mask>
+                </defs>
+                <path mask={`url(#maskRightLeft-${id})`} d="M 220 0 C 220 40, 80 40, 80 70" stroke="#71717a" strokeWidth="2" strokeDasharray="4 4" fill="none" vectorEffect="non-scaling-stroke" />
+                <motion.path
+                    initial={{ opacity: 0, scale: 0.5, transformOrigin: 'center' }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-10%" }}
+                    transition={{ duration: 0.3, delay: 1 }}
+                    d="M 74 62 L 80 74 L 86 62" fill="none" stroke="#71717a" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+            </svg>
+        </div>
+    );
+};
 
 export default function MobileRoadmap() {
     return (
@@ -79,7 +114,7 @@ export default function MobileRoadmap() {
                 <span className="text-white/60 tracking-widest font-sans text-[4vw]">
                     EST. 1978
                 </span>
-                <div className="w-full h-[1px] bg-[#1F2937] mt-[6vw]"></div>
+                <div className="w-full h-px bg-[#1F2937] mt-[6vw]"></div>
             </motion.div>
 
             {/* Timeline container */}
@@ -129,7 +164,7 @@ export default function MobileRoadmap() {
 
             {/* Bottom Divider */}
             <div className="w-full flex justify-center mt-[10vw]">
-                <div className="w-full h-[1px] bg-[#1F2937]"></div>
+                <div className="w-full h-px bg-[#1F2937]"></div>
             </div>
 
         </section>
