@@ -124,7 +124,6 @@ const page = () => {
       </nav>
       <BurgerTitleSection />
       <BurgerPageText />
-
     </div>
   )
 }
