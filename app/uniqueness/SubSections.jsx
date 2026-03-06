@@ -33,15 +33,13 @@ const SubSections = () => {
   const svgSizes = [
     { width: "382", height: "152", viewBox: "0 0 382 152" },
     { width: "410", height: "395", viewBox: "0 0 410 395" },
-    { width: "384", height: "324", viewBox: "0 0 384 152" },
+    { width: "384", height: "245", viewBox: "0 0 384 245" },
+    { width: "384", height: "245", viewBox: "0 0 384 245" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 245" },
+    { width: "384", height: "410", viewBox: "0 0 384 410" },
+    { width: "384", height: "245", viewBox: "0 0 384 245" },
+    { width: "384", height: "245", viewBox: "0 0 384 245" },
     { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 170" },
-    { width: "384", height: "324", viewBox: "0 0 384 324" },
-    { width: "384", height: "324", viewBox: "0 0 384 245" },
-
-
   ]
 
   return (
@@ -103,12 +101,22 @@ const SubSections = () => {
                         {num.toString().padStart(2, "0")}
                       </p>
 
-                      <div className={`w-full flex justify-start items-end ${[3, 5, 7].includes(index) ? "min-h-[32vw] md:min-h-[16vw]" : [1, 4, 8].includes(index) ? "min-h-[24vw] md:min-h-[12vw]" : "min-h-[16vw] md:min-h-[8vw]"}`}>
+                      <div
+                        className={`w-full flex justify-start items-end ${index === 1 ? "min-h-[40vw] md:min-h-[20vw]"
+                          : [2, 3, 5, 6, 7, 8].includes(index) ? "min-h-[32vw] md:min-h-[16vw]"
+                            : index === 4 ? "min-h-[24vw] md:min-h-[12vw]"
+                              : "min-h-[16vw] md:min-h-[8vw]"
+                          }`}
+                      >
                         <svg
                           viewBox={svgSizes[index].viewBox}
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className={`w-auto h-auto ${[3, 5, 7].includes(index) ? "max-w-[90vw] md:max-w-[32vw] lg:max-w-[30vw] xl:max-w-[28vw] max-h-[32vw] md:max-h-[16vw]" : [1, 4, 8].includes(index) ? "max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[24vw] md:max-h-[12vw]" : "max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[16vw] md:max-h-[8vw]"}`}
+                          className={`w-auto h-auto ${index === 1 ? "max-w-[90vw] md:max-w-[38vw] lg:max-w-[36vw] xl:max-w-[34vw] max-h-[40vw] md:max-h-[20vw]"
+                            : [2, 3, 5, 6, 7, 8].includes(index) ? "max-w-[90vw] md:max-w-[34vw] lg:max-w-[32vw] xl:max-w-[30vw] max-h-[32vw] md:max-h-[16vw]"
+                              : index === 4 ? "max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[24vw] md:max-h-[12vw]"
+                                : "max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[16vw] md:max-h-[8vw]"
+                            }`}
                         >
                           <path d={svgPaths[index]} fill="white" />
                         </svg>

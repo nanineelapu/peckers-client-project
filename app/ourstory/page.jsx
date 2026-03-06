@@ -28,20 +28,26 @@ const OurStoryPage = () => {
         <br />
         <div className="w-full relative flex justify-center mt-0 md:mt-0 pt-0 min-h-[50vw] md:min-h-[16vw]">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
-            <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]">
-              <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="" className="w-full h-auto" />
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]"
+            >
+              <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="Peckers Logo" className="w-full h-auto drop-shadow-2xl" />
+            </motion.div>
             <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-[60vw] h-auto">
-              <g opacity="0.6" filter="url(#filter0_d_297_13)">
-                <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="white" fillOpacity="0.01" shapeRendering="crispEdges" />
+              <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 0.6 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.8 }} filter="url(#filter0_d_297_13)">
+                <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="transparent" shapeRendering="crispEdges" />
                 <motion.path
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 1 }}
                   viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
+                  transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
                   d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges"
                 />
-              </g>
+              </motion.g>
               <motion.g filter="url(#filter1_d_297_13)" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.2 }}>
                 <rect x="514" y="12" width="16" height="16" rx="8" fill="black" />
                 <rect x="515" y="13" width="14" height="14" rx="7" stroke="white" strokeWidth="2" />
@@ -191,7 +197,7 @@ const OurStoryPage = () => {
 
 
 
-    </div>
+    </div >
   )
 }
 
