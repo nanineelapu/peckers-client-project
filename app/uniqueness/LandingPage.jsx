@@ -40,18 +40,15 @@ const UniquenessLandingPage = () => {
           <span
             className="block font-peakers text-[14vw] md:text-[7.7vw]"
           >
-            WHAT
+            THE
           </span>
           <span
             className="block font-peakers text-[14vw] md:text-[7.7vw]"
           >
-            MAKES
+            PECKERS
           </span>
           <span className="block text-[#f7e229] font-peakers text-[15vw] md:text-[7.7vw] font-bold mt-[1.5vw] md:mt-[0.2vw] mb-[1.5vw] md:mb-[0.2vw]">
-            OUR PECKERS
-          </span>
-          <span className="block text-[#f7e229] font-peakers text-[15vw] md:text-[7.7vw] font-bold">
-            SPECIAL
+            STANDARD
           </span>
         </motion.h1>
         <motion.div
@@ -61,9 +58,11 @@ const UniquenessLandingPage = () => {
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         >
           <span
-            className="uppercase tracking-[0.5em] font-semibold text-[3.2vw] md:text-[1.1vw] text-[#d3d3d3] font-peakers md:mt-[1.7vw] text-center pointer-events-auto leading-relaxed"
+            className="uppercase tracking-[0.15em] font-semibold text-[3vw] md:text-[1vw] text-[#d3d3d3] font-peakers md:mt-[1.7vw] text-center pointer-events-auto leading-[1.7]"
           >
-            IT&apos;S NOT ONE THING. IT&apos;S EVERYTHING.
+            IT&apos;S NOT ONE THING.From our custom-milled breading to our hand-picked Covent Garden produce,
+            <br />
+            we believe in seriously good chicken, sourced locally, prepared daily, and served with pride.
           </span>
         </motion.div>
       </div>
