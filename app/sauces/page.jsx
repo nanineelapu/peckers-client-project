@@ -9,7 +9,6 @@ const page = () => {
 
     return (
         <div id="main-content">
-            <Navbar />
             <SaucePageOne />
         </div>
     );

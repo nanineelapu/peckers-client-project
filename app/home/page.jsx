@@ -18,7 +18,6 @@ const page = () => {
 
     <div id="main-content" >
       {/* Navbar */}
-      <Navbar />
       <section>
         <div className="w-full min-h-[8vh] md:h-[10vh] md:min-h-0 flex items-center justify-center bg-white border-y-[2px] md:border-y-[3px] border-black overflow-hidden px-4 py-3 md:px-0 md:py-0">
           <div

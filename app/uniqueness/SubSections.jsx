@@ -45,12 +45,12 @@ const SubSections = () => {
   return (
     <div className="w-full flex flex-col">
       {sections.map((num, index) => {
-        const isAlternate = index % 2 === 0;
+        const isAlternate = index % 2 !== 0;
         const isExpanded = expandedSections[index] || false;
         return (
           <section
             key={num}
-            className={`w-full min-h-screen h-auto md:h-screen flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
+            className={`w-full h-auto md:h-screen flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
               } bg-black`}
           >
             {/* IMAGE SECTION */}
@@ -77,181 +77,176 @@ const SubSections = () => {
 
             {/* CONTENT SECTION */}
             <div
-              className={`w-full md:w-[35%] h-auto md:h-full text-white flex items-center py-[12vw] sm:py-[10vw] md:py-0`}
+              className={`w-full md:w-[35%] h-[max-content] md:h-full text-white flex flex-col`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
               <motion.div
-                className={`w-full flex flex-col px-[6vw] md:px-[7vw] leading-normal md:leading-[0vw] py-[6vw] sm:py-[8vw] md:py-[3vw]`}
+                className={`w-full h-full flex flex-col px-[6vw] md:px-[7vw] leading-normal py-[6vw] sm:py-[8vw] md:py-[3vw]`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
-                <AnimatePresence initial={false}>
-                  {!isExpanded && (
-                    <motion.div
-                      key="header-content"
-                      initial={{ opacity: 0, y: -12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="flex flex-col justify-end mb-[4vw] md:mb-[2vw]"
-                    >
-                      <p className="text-[#FFD700] font-semibold text-[3.5vw] md:text-[0.95vw] font-mono tracking-[0.8vw] md:tracking-[0.2vw] mb-[2vw] md:mb-[1vw]" style={{ fontFamily: "space mono" }}>
-                        {num.toString().padStart(2, "0")}
-                      </p>
-
-                      <div
-                        className={`w-full flex justify-start items-end ${index === 1 ? "min-h-[40vw] md:min-h-[20vw]"
-                          : [2, 3, 5, 6, 7, 8].includes(index) ? "min-h-[32vw] md:min-h-[16vw]"
-                            : index === 4 ? "min-h-[24vw] md:min-h-[12vw]"
-                              : "min-h-[16vw] md:min-h-[8vw]"
-                          }`}
-                      >
-                        <svg
-                          viewBox={svgSizes[index].viewBox}
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={`w-auto h-auto ${index === 1 ? "max-w-[90vw] md:max-w-[38vw] lg:max-w-[36vw] xl:max-w-[34vw] max-h-[40vw] md:max-h-[20vw]"
-                            : [2, 3, 5, 6, 7, 8].includes(index) ? "max-w-[90vw] md:max-w-[34vw] lg:max-w-[32vw] xl:max-w-[30vw] max-h-[32vw] md:max-h-[16vw]"
-                              : index === 4 ? "max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[24vw] md:max-h-[12vw]"
-                                : "max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[16vw] md:max-h-[8vw]"
-                            }`}
-                        >
-                          <path d={svgPaths[index]} fill="white" />
-                        </svg>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <div className={`w-full max-w-[90vw] md:max-w-[32vw]`}>
-                  {/* Preview text — always visible, clamped when collapsed */}
-                  <p className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? 'line-clamp-4' : ''}`}>
-                    {index === 0 ? <>While most chicken shops across the UK rely on the same off the shelf breading, we chose a different path. We believe that a special ratio isn&apos;t enough when the ingredients are available to anyone. At Peckers, we spent 13 months in development, testing our recipe across the country to ensure we perfected a taste that truly resonates with everyone.</>
-                      : index === 1 ? <>When we perfected our signature breading, it was an instant hit with adults, but we noticed something was missing. For the younger members of the Peckers family, the spice and pepper were just a step too far. We believe every guest deserves a meal they can finish with a smile, so we went back to the drawing board specifically for the kids.</>
-                        : index === 2 ? <>When we first started Peckers, we used an off the shelf marinade like everyone else. But we weren&apos;t happy. It didn&apos;t have the soul of Peckers, and we knew it needed to be built from the ground up.</>
-                          : index === 3 ? <>At Peckers, we have mastered the art of speed. We believe you should never have to choose between a fast meal and a warm welcome. Even during our busiest hours, our kitchen is optimised to serve fresh, hot orders in under three minutes without ever compromising on quality.</>
-                            : index === 4 ? <>We believe that seriously good chicken starts with the best ingredients. That&apos;s why we exclusively source 100% British chicken, ensuring every piece meets the highest standards of quality and freshness. For us, provenance matters.</>
-                              : index === 5 ? <>The secret to a great meal lies in the balance of heat, crunch, and freshness. That&apos;s why our vegetables don&apos;t come from a tin or a packet; they are freshly sourced from London&apos;s iconic Covent Garden.</>
-                                : index === 6 ? <>At Peckers, we don&apos;t use heat lamps or hold food for hours. To ensure our chicken never goes dry, we cook in small, fresh batches every 2 hours.</>
-                                  : index === 7 ? <>The difference between a good meal and a legendary one is the sauce. That&apos;s why there are no shortcuts and no industrial tubs. Every single sauce — from the ones we drizzle over our rice bowls to the spreads inside our wraps — is made in-house from scratch, every single morning.</>
-                                    : <>Everyone does milkshakes. We do them as well, but completely different. We don&apos;t use a standard milkshake machine; instead, we use an ice cream machine to find the perfect sweet spot for the viscosity of the shake base itself.</>}
+                {/* PERSISTENT HEADER */}
+                <div className="flex flex-col justify-end mb-[4vw] md:mb-[2vw] pt-[6vw] md:pt-[2vw]">
+                  <p className="text-[#FFD700] font-semibold text-[3.5vw] md:text-[0.95vw] font-mono tracking-[0.8vw] md:tracking-[0.2vw] mb-[2vw] md:mb-[1vw]" style={{ fontFamily: "space mono" }}>
+                    {num.toString().padStart(2, "0")}
                   </p>
 
-                  {/* Expanded text — clipPath wipe animation on reveal */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        key={`expanded-${index}`}
-                        initial={{ clipPath: "inset(100% 0 0 0)" }}
-                        animate={{ clipPath: "inset(0% 0 0 0)" }}
-                        exit={{ clipPath: "inset(100% 0 0 0)" }}
-                        transition={{ duration: 0.65, ease: [0.77, 0, 0.175, 1] }}
-                        className="overflow-hidden mt-[3vw] md:mt-[1.2vw] pb-[2vw] md:pb-[1vw]"
-                      >
-                        <p className="text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw]">
-                          {index === 0 ? <>Our signature breading is a closely guarded secret, comprising 20 unique herbs and spices sourced from around the globe, some so rare they are brought in from afar specifically for our kitchen. This is more than just a coating, it is our own flour, our own spices, and our own dedicated manufacturer. Because we own the process from start to finish, our flavour profile cannot be duplicated. When you choose Peckers, you are experiencing a proprietary secret that defines seriously good chicken!</>
-                            : index === 1 ? <>After an additional 6 months of dedicated testing and tasting with children across Hertfordshire, Little Peckers was born. It is a custom crafted breading designed to be gentle on the palate while keeping that signature crunch. It&apos;s not just a smaller portion; it&apos;s a recipe made just for them, ensuring that every kid in the UK finally has a breading they&apos;ll want to finish every single time.</>
-                              : index === 2 ? <>We went back to the drawing board and spent six months in development, crafting our own custom marinades from scratch. We didn&apos;t stop until we had something unique, followed by weeks of testing with the people of Hitchin and Stevenage. We refined every note until it hit the mark for every tastebud in our community. The result is a secret range of marinades manufactured exclusively for our Grilled Chicken. It&apos;s why our grill is becoming so popular, with customers asking for that specific flavour by name. You won&apos;t find this taste anywhere else; it&apos;s six months of passion and local testing, served fresh every day to ensure every bite is at its peak.</>
-                                : index === 3 ? <>But we are more than just a fast kitchen. We treat every customer like a friend and every guest like a neighbour. Whether it&apos;s your first visit or your fiftieth, our managers ensure you&apos;re treated with genuine care, making sure the experience is always as good as the food. We aren&apos;t satisfied until you leave with a full stomach and a happy mind. That is the Peckers promise: seriously good chicken served at the pace of your life.</>
-                                  : index === 4 ? <>We are proud to serve a menu that is fully Halal-certified, prepared with the same care and respect we show our guests. By choosing the finest British poultry and maintaining strict Halal standards, we ensure that every member of our community can enjoy Peckers with complete peace of mind. It&apos;s local, it&apos;s ethical, and it&apos;s prepared to perfection, every single time.</>
-                                    : index === 5 ? <>Whether it&apos;s the crisp bite in our salad bowls or the vibrant toppings on our signature dishes, we ensure that every vegetable we use is market-fresh and hand-selected. By bringing the best of Covent Garden to your local Peckers, we guarantee a level of quality and flavour you won&apos;t find anywhere else. It&apos;s fresh, it&apos;s local, and it&apos;s what makes our chicken seriously good chicken!</>
-                                      : index === 6 ? <>Whether you walk through our doors at lunch or late at night, you are promised food that is fresh, succulent, and cooked to order. By using industry-leading Henny Penny pressure fryers, we lock in the moisture of every tender and fillet, delivering a perfect crunch and juicy finish every single time.</>
-                                        : index === 7 ? <>Our house-made mayonnaise is a key differentiator. While others rely on commercial shelf-stable tubs, we craft ours using the finest ingredients, including premium pasteurised eggs, to ensure it is as fresh as mayo can ever get. And then there&apos;s Butter Me Up — an exclusive family recipe, a blend of secret ingredients tried, tested, and perfected to get the flavour just right. Every sauce we serve has undergone months of development and is prepared fresh daily with genuine love. Whether it&apos;s on our tenders or inside our burgers, our proprietary sauces are the final touch that makes our food seriously good chicken.</>
-                                          : <>It&apos;s not just ice cream, but it&apos;s definitely not one of those loose shakes that you drink and wonder why it was over in two sips. We make proper milkshakes that are thick, indulgent, and actually fill you up. We cater to a whole range of flavours and have our own signatures, which you&apos;ll only find at Peckers.</>}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  <button
-                    onClick={() => toggleSection(index)}
-                    className="text-[#FFD700] font-mono mt-[3vw] md:mt-[1.5vw] text-[3vw] md:text-[0.85vw] tracking-wider text-left underline pb-[4vw] md:pb-[1vw] hover:text-white transition-colors duration-300"
+                  <div
+                    className={`w-full flex justify-start items-end ${index === 1 ? "min-h-[40vw] md:min-h-[20vw]"
+                      : [2, 3, 5, 6, 7, 8].includes(index) ? "min-h-[32vw] md:min-h-[16vw]"
+                        : index === 4 ? "min-h-[24vw] md:min-h-[12vw]"
+                          : "min-h-[16vw] md:min-h-[8vw]"
+                      }`}
                   >
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={isExpanded ? "less" : "more"}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {isExpanded ? "↑ Read Less" : "Read More ↓"}
-                      </motion.span>
-                    </AnimatePresence>
-                  </button>
+                    <svg
+                      viewBox={svgSizes[index].viewBox}
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`w-auto h-auto ${index === 1 ? "max-w-[90vw] md:max-w-[21vw] max-h-[40vw] md:max-h-[20vw]"
+                        : [2, 3, 5, 6, 7, 8].includes(index) ? "max-w-[90vw] md:max-w-[21vw] max-h-[32vw] md:max-h-[16vw]"
+                          : index === 4 ? "max-w-[70vw] md:max-w-[18vw] max-h-[24vw] md:max-h-[12vw]"
+                            : "max-w-[70vw] md:max-w-[18vw] max-h-[16vw] md:max-h-[8vw]"
+                        }`}
+                    >
+                      <path d={svgPaths[index]} fill="white" />
+                    </svg>
+                  </div>
                 </div>
 
-                {!isExpanded && (
-                  <>
-                    <div className="w-full md:w-[26.8vw] h-[1px] md:h-[0.04vw] relative bg-gray-600 mt-[4vw] md:mt-[2.5vw] mb-[8vw] md:mb-[3vw]" />
-
-                    <p className="flex text-[2.8vw] md:text-[0.8vw] items-center gap-[2vw] md:gap-[.9vw] tracking-[0.4vw] md:tracking-[0.09vw] font-mono relative text-gray-500" style={{ fontFamily: "space mono" }}>
-
-                      {
-                        index === 0 ? (
-                          <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.85 15.75C5.5 15.75 5.17188 15.675 4.86562 15.525C4.55937 15.375 4.3 15.1625 4.0875 14.8875L0 9.69375L0.35625 9.31875C0.60625 9.05625 0.90625 8.9 1.25625 8.85C1.60625 8.8 1.93125 8.86875 2.23125 9.05625L3.61875 9.9V3.75C3.61875 3.5375 3.69062 3.35938 3.83437 3.21563C3.97812 3.07188 4.15625 3 4.36875 3C4.58125 3 4.7625 3.07188 4.9125 3.21563C5.0625 3.35938 5.1375 3.5375 5.1375 3.75V12.6L3.31875 11.475L5.26875 13.9688C5.34375 14.0562 5.43125 14.125 5.53125 14.175C5.63125 14.225 5.7375 14.25 5.85 14.25H9.99375C10.4062 14.25 10.7594 14.1031 11.0531 13.8094C11.3469 13.5156 11.4937 13.1625 11.4937 12.75V9.75C11.4937 9.5375 11.4219 9.35938 11.2781 9.21562C11.1344 9.07187 10.9562 9 10.7437 9H6.6375V7.5H10.7437C11.3687 7.5 11.9 7.71875 12.3375 8.15625C12.775 8.59375 12.9937 9.125 12.9937 9.75V12.75C12.9937 13.575 12.7 14.2812 12.1125 14.8687C11.525 15.4562 10.8187 15.75 9.99375 15.75H5.85ZM1.125 5.625C0.9625 5.35 0.8375 5.05312 0.75 4.73438C0.6625 4.41563 0.61875 4.0875 0.61875 3.75C0.61875 2.7125 0.984375 1.82812 1.71563 1.09687C2.44688 0.365625 3.33125 0 4.36875 0C5.40625 0 6.29063 0.365625 7.02187 1.09687C7.75312 1.82812 8.11875 2.7125 8.11875 3.75C8.11875 4.0875 8.075 4.41563 7.9875 4.73438C7.9 5.05312 7.775 5.35 7.6125 5.625L6.31875 4.875C6.41875 4.7 6.49375 4.52187 6.54375 4.34062C6.59375 4.15937 6.61875 3.9625 6.61875 3.75C6.61875 3.125 6.4 2.59375 5.9625 2.15625C5.525 1.71875 4.99375 1.5 4.36875 1.5C3.74375 1.5 3.2125 1.71875 2.775 2.15625C2.3375 2.59375 2.11875 3.125 2.11875 3.75C2.11875 3.9625 2.14375 4.15937 2.19375 4.34062C2.24375 4.52187 2.31875 4.7 2.41875 4.875L1.125 5.625Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 1 ? (
-                          <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.5 1.5V0H9V1.5H4.5ZM6 9.75H7.5V5.25H6V9.75ZM6.75 15.75C5.825 15.75 4.95312 15.5719 4.13438 15.2156C3.31563 14.8594 2.6 14.375 1.9875 13.7625C1.375 13.15 0.890625 12.4344 0.534375 11.6156C0.178125 10.7969 0 9.925 0 9C0 8.075 0.178125 7.20312 0.534375 6.38438C0.890625 5.56563 1.375 4.85 1.9875 4.2375C2.6 3.625 3.31563 3.14062 4.13438 2.78437C4.95312 2.42812 5.825 2.25 6.75 2.25C7.525 2.25 8.26875 2.375 8.98125 2.625C9.69375 2.875 10.3625 3.2375 10.9875 3.7125L12.0375 2.6625L13.0875 3.7125L12.0375 4.7625C12.5125 5.3875 12.875 6.05625 13.125 6.76875C13.375 7.48125 13.5 8.225 13.5 9C13.5 9.925 13.3219 10.7969 12.9656 11.6156C12.6094 12.4344 12.125 13.15 11.5125 13.7625C10.9 14.375 10.1844 14.8594 9.36563 15.2156C8.54688 15.5719 7.675 15.75 6.75 15.75ZM6.75 14.25C8.2 14.25 9.4375 13.7375 10.4625 12.7125C11.4875 11.6875 12 10.45 12 9C12 7.55 11.4875 6.3125 10.4625 5.2875C9.4375 4.2625 8.2 3.75 6.75 3.75C5.3 3.75 4.0625 4.2625 3.0375 5.2875C2.0125 6.3125 1.5 7.55 1.5 9C1.5 10.45 2.0125 11.6875 3.0375 12.7125C4.0625 13.7375 5.3 14.25 6.75 14.25Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 2 ? (
-                          <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.81875 5.25C1.99375 4.8 2.02188 4.4 1.90313 4.05C1.78438 3.7 1.58125 3.35 1.29375 3C0.88125 2.5 0.609375 2.02813 0.478125 1.58438C0.346875 1.14063 0.325 0.6125 0.4125 0H1.875C1.775 0.475 1.75937 0.8625 1.82812 1.1625C1.89688 1.4625 2.075 1.7875 2.3625 2.1375C2.8375 2.7125 3.14062 3.22188 3.27187 3.66563C3.40312 4.10938 3.40625 4.6375 3.28125 5.25H1.81875ZM4.81875 5.25C4.99375 4.8 5.025 4.4 4.9125 4.05C4.8 3.7 4.6 3.35 4.3125 3C3.9 2.5 3.625 2.02813 3.4875 1.58438C3.35 1.14063 3.325 0.6125 3.4125 0H4.875C4.775 0.475 4.75937 0.8625 4.82812 1.1625C4.89688 1.4625 5.075 1.7875 5.3625 2.1375C5.8375 2.7125 6.14062 3.22188 6.27187 3.66563C6.40312 4.10938 6.40625 4.6375 6.28125 5.25H4.81875ZM7.81875 5.25C7.99375 4.8 8.025 4.4 7.9125 4.05C7.8 3.7 7.6 3.35 7.3125 3C6.9 2.5 6.625 2.02813 6.4875 1.58438C6.35 1.14063 6.325 0.6125 6.4125 0H7.875C7.775 0.475 7.75937 0.8625 7.82812 1.1625C7.89688 1.4625 8.075 1.7875 8.3625 2.1375C8.8375 2.7125 9.14063 3.22188 9.27188 3.66563C9.40313 4.10938 9.40625 4.6375 9.28125 5.25H7.81875ZM2.25 12.75C1.625 12.75 1.09375 12.5312 0.65625 12.0938C0.21875 11.6562 0 11.125 0 10.5V6.75H10.5188C10.5813 6.325 10.75 5.95313 11.025 5.63438C11.3 5.31563 11.6375 5.0875 12.0375 4.95L15.5063 3.7875L15.975 5.2125L12.5063 6.375C12.3563 6.425 12.2344 6.51562 12.1406 6.64687C12.0469 6.77812 12 6.925 12 7.0875V10.5C12 11.125 11.7812 11.6562 11.3438 12.0938C10.9062 12.5312 10.375 12.75 9.75 12.75H2.25ZM2.25 11.25H9.75C9.9625 11.25 10.1406 11.1781 10.2844 11.0344C10.4281 10.8906 10.5 10.7125 10.5 10.5V8.25H1.5V10.5C1.5 10.7125 1.57188 10.8906 1.71563 11.0344C1.85938 11.1781 2.0375 11.25 2.25 11.25Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 3 ? (
-                          <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.5 15C1.0875 15 0.734375 14.8531 0.440625 14.5594C0.146875 14.2656 0 13.9125 0 13.5V3C0 2.5875 0.146875 2.23438 0.440625 1.94062C0.734375 1.64687 1.0875 1.5 1.5 1.5H2.25V0H3.75V1.5H9.75V0H11.25V1.5H12C12.4125 1.5 12.7656 1.64687 13.0594 1.94062C13.3531 2.23438 13.5 2.5875 13.5 3V13.5C13.5 13.9125 13.3531 14.2656 13.0594 14.5594C12.7656 14.8531 12.4125 15 12 15H1.5ZM1.5 13.5H12V6H1.5V13.5ZM1.5 4.5H12V3H1.5V4.5ZM1.5 4.5V3V4.5ZM6.75 9C6.5375 9 6.35938 8.92813 6.21562 8.78438C6.07187 8.64062 6 8.4625 6 8.25C6 8.0375 6.07187 7.85938 6.21562 7.71562C6.35938 7.57187 6.5375 7.5 6.75 7.5C6.9625 7.5 7.14062 7.57187 7.28438 7.71562C7.42813 7.85938 7.5 8.0375 7.5 8.25C7.5 8.4625 7.42813 8.64062 7.28438 8.78438C7.14062 8.92813 6.9625 9 6.75 9ZM3.75 9C3.5375 9 3.35938 8.92813 3.21563 8.78438C3.07188 8.64062 3 8.4625 3 8.25C3 8.0375 3.07188 7.85938 3.21563 7.71562C3.35938 7.57187 3.5375 7.5 3.75 7.5C3.9625 7.5 4.14062 7.57187 4.28438 7.71562C4.42813 7.85938 4.5 8.0375 4.5 8.25C4.5 8.4625 4.42813 8.64062 4.28438 8.78438C4.14062 8.92813 3.9625 9 3.75 9ZM9.75 9C9.5375 9 9.35938 8.92813 9.21562 8.78438C9.07187 8.64062 9 8.4625 9 8.25C9 8.0375 9.07187 7.85938 9.21562 7.71562C9.35938 7.57187 9.5375 7.5 9.75 7.5C9.9625 7.5 10.1406 7.57187 10.2844 7.71562C10.4281 7.85938 10.5 8.0375 10.5 8.25C10.5 8.4625 10.4281 8.64062 10.2844 8.78438C10.1406 8.92813 9.9625 9 9.75 9ZM6.75 12C6.5375 12 6.35938 11.9281 6.21562 11.7844C6.07187 11.6406 6 11.4625 6 11.25C6 11.0375 6.07187 10.8594 6.21562 10.7156C6.35938 10.5719 6.5375 10.5 6.75 10.5C6.9625 10.5 7.14062 10.5719 7.28438 10.7156C7.42813 10.8594 7.5 11.0375 7.5 11.25C7.5 11.4625 7.42813 11.6406 7.28438 11.7844C7.14062 11.9281 6.9625 12 6.75 12ZM3.75 12C3.5375 12 3.35938 11.9281 3.21563 11.7844C3.07188 11.6406 3 11.4625 3 11.25C3 11.0375 3.07188 10.8594 3.21563 10.7156C3.35938 10.5719 3.5375 10.5 3.75 10.5C3.9625 10.5 4.14062 10.5719 4.28438 10.7156C4.42813 10.8594 4.5 11.0375 4.5 11.25C4.5 11.4625 4.42813 11.6406 4.28438 11.7844C4.14062 11.9281 3.9625 12 3.75 12ZM9.75 12C9.5375 12 9.35938 11.9281 9.21562 11.7844C9.07187 11.6406 9 11.4625 9 11.25C9 11.0375 9.07187 10.8594 9.21562 10.7156C9.35938 10.5719 9.5375 10.5 9.75 10.5C9.9625 10.5 10.1406 10.5719 10.2844 10.7156C10.4281 10.8594 10.5 11.0375 10.5 11.25C10.5 11.4625 10.4281 11.6406 10.2844 11.7844C10.1406 11.9281 9.9625 12 9.75 12Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 4 ? (
-                          <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.75 12C3.125 12 2.59375 11.7812 2.15625 11.3438C1.71875 10.9062 1.5 10.375 1.5 9.75H0V1.5C0 1.0875 0.146875 0.734375 0.440625 0.440625C0.734375 0.146875 1.0875 0 1.5 0H12V3H14.25L16.5 6V9.75H15C15 10.375 14.7812 10.9062 14.3438 11.3438C13.9062 11.7812 13.375 12 12.75 12C12.125 12 11.5938 11.7812 11.1562 11.3438C10.7188 10.9062 10.5 10.375 10.5 9.75H6C6 10.375 5.78125 10.9062 5.34375 11.3438C4.90625 11.7812 4.375 12 3.75 12ZM3.75 10.5C3.9625 10.5 4.14062 10.4281 4.28438 10.2844C4.42813 10.1406 4.5 9.9625 4.5 9.75C4.5 9.5375 4.42813 9.35938 4.28438 9.21562C4.14062 9.07187 3.9625 9 3.75 9C3.5375 9 3.35938 9.07187 3.21563 9.21562C3.07188 9.35938 3 9.5375 3 9.75C3 9.9625 3.07188 10.1406 3.21563 10.2844C3.35938 10.4281 3.5375 10.5 3.75 10.5ZM1.5 8.25H2.1C2.3125 8.025 2.55625 7.84375 2.83125 7.70625C3.10625 7.56875 3.4125 7.5 3.75 7.5C4.0875 7.5 4.39375 7.56875 4.66875 7.70625C4.94375 7.84375 5.1875 8.025 5.4 8.25H10.5V1.5H1.5V8.25ZM12.75 10.5C12.9625 10.5 13.1406 10.4281 13.2844 10.2844C13.4281 10.1406 13.5 9.9625 13.5 9.75C13.5 9.5375 13.4281 9.35938 13.2844 9.21562C13.1406 9.07187 12.9625 9 12.75 9C12.5375 9 12.3594 9.07187 12.2156 9.21562C12.0719 9.35938 12 9.5375 12 9.75C12 9.9625 12.0719 10.1406 12.2156 10.2844C12.3594 10.4281 12.5375 10.5 12.75 10.5ZM12 6.75H15.1875L13.5 4.5H12V6.75Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 5 ? (
-                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.1375 11.1187L7.5 9.69375L9.8625 11.1375L9.24375 8.4375L11.325 6.6375L8.5875 6.39375L7.5 3.84375L6.4125 6.375L3.675 6.61875L5.75625 8.4375L5.1375 11.1187ZM2.86875 14.25L4.0875 8.98125L0 5.4375L5.4 4.96875L7.5 0L9.6 4.96875L15 5.4375L10.9125 8.98125L12.1313 14.25L7.5 11.4563L2.86875 14.25Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 6 ? (
-                          <svg width="18" height="9" viewBox="0 0 18 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 9V7.81875C0 7.28125 0.275 6.84375 0.825 6.50625C1.375 6.16875 2.1 6 3 6C3.1625 6 3.31875 6.00313 3.46875 6.00938C3.61875 6.01562 3.7625 6.03125 3.9 6.05625C3.725 6.31875 3.59375 6.59375 3.50625 6.88125C3.41875 7.16875 3.375 7.46875 3.375 7.78125V9H0ZM4.5 9V7.78125C4.5 7.38125 4.60938 7.01562 4.82812 6.68437C5.04688 6.35312 5.35625 6.0625 5.75625 5.8125C6.15625 5.5625 6.63438 5.375 7.19063 5.25C7.74688 5.125 8.35 5.0625 9 5.0625C9.6625 5.0625 10.2719 5.125 10.8281 5.25C11.3844 5.375 11.8625 5.5625 12.2625 5.8125C12.6625 6.0625 12.9688 6.35312 13.1812 6.68437C13.3937 7.01562 13.5 7.38125 13.5 7.78125V9H4.5ZM14.625 9V7.78125C14.625 7.45625 14.5844 7.15 14.5031 6.8625C14.4219 6.575 14.3 6.30625 14.1375 6.05625C14.275 6.03125 14.4156 6.01562 14.5594 6.00938C14.7031 6.00313 14.85 6 15 6C15.9 6 16.625 6.16562 17.175 6.49687C17.725 6.82812 18 7.26875 18 7.81875V9H14.625ZM6.09375 7.5H11.925C11.8 7.25 11.4531 7.03125 10.8844 6.84375C10.3156 6.65625 9.6875 6.5625 9 6.5625C8.3125 6.5625 7.68437 6.65625 7.11562 6.84375C6.54688 7.03125 6.20625 7.25 6.09375 7.5ZM3 5.25C2.5875 5.25 2.23438 5.10312 1.94062 4.80937C1.64687 4.51562 1.5 4.1625 1.5 3.75C1.5 3.325 1.64687 2.96875 1.94062 2.68125C2.23438 2.39375 2.5875 2.25 3 2.25C3.425 2.25 3.78125 2.39375 4.06875 2.68125C4.35625 2.96875 4.5 3.325 4.5 3.75C4.5 4.1625 4.35625 4.51562 4.06875 4.80937C3.78125 5.10312 3.425 5.25 3 5.25ZM15 5.25C14.5875 5.25 14.2344 5.10312 13.9406 4.80937C13.6469 4.51562 13.5 4.1625 13.5 3.75C13.5 3.325 13.6469 2.96875 13.9406 2.68125C14.2344 2.39375 14.5875 2.25 15 2.25C15.425 2.25 15.7812 2.39375 16.0688 2.68125C16.3563 2.96875 16.5 3.325 16.5 3.75C16.5 4.1625 16.3563 4.51562 16.0688 4.80937C15.7812 5.10312 15.425 5.25 15 5.25ZM9 4.5C8.375 4.5 7.84375 4.28125 7.40625 3.84375C6.96875 3.40625 6.75 2.875 6.75 2.25C6.75 1.6125 6.96875 1.07812 7.40625 0.646875C7.84375 0.215625 8.375 0 9 0C9.6375 0 10.1719 0.215625 10.6031 0.646875C11.0344 1.07812 11.25 1.6125 11.25 2.25C11.25 2.875 11.0344 3.40625 10.6031 3.84375C10.1719 4.28125 9.6375 4.5 9 4.5ZM9 3C9.2125 3 9.39062 2.92812 9.53438 2.78437C9.67813 2.64062 9.75 2.4625 9.75 2.25C9.75 2.0375 9.67813 1.85938 9.53438 1.71563C9.39062 1.57188 9.2125 1.5 9 1.5C8.7875 1.5 8.60938 1.57188 8.46562 1.71563C8.32187 1.85938 8.25 2.0375 8.25 2.25C8.25 2.4625 8.32187 2.64062 8.46562 2.78437C8.60938 2.92812 8.7875 3 9 3Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : index === 7 ? (
-                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.75 13.8794V11.6294H3.075L1.1625 5.36691C0.825 5.17941 0.546875 4.90441 0.328125 4.54191C0.109375 4.17941 0 3.79191 0 3.37941C0 2.75441 0.21875 2.22316 0.65625 1.78566C1.09375 1.34816 1.625 1.12941 2.25 1.12941C2.7375 1.12941 3.17187 1.27004 3.55312 1.55129C3.93437 1.83254 4.2 2.19191 4.35 2.62941H6.75V1.87941C6.75 1.66691 6.82187 1.48879 6.96562 1.34504C7.10937 1.20129 7.2875 1.12941 7.5 1.12941C7.6125 1.12941 7.72187 1.15441 7.82812 1.20441C7.93438 1.25441 8.025 1.32941 8.1 1.42941L9.375 0.229412C9.4875 0.116912 9.62187 0.0450368 9.77812 0.0137868C9.93437 -0.0174632 10.0875 0.00441176 10.2375 0.0794118L13.1625 1.42941C13.3125 1.50441 13.4156 1.61379 13.4719 1.75754C13.5281 1.90129 13.525 2.04191 13.4625 2.17941C13.3875 2.32941 13.2781 2.42629 13.1344 2.47004C12.9906 2.51379 12.85 2.50441 12.7125 2.44191L10.0125 1.20441L8.25 2.85441V3.90441L10.0125 5.51691L12.7125 4.27941C12.85 4.21691 12.9938 4.21066 13.1438 4.26066C13.2938 4.31066 13.4 4.40441 13.4625 4.54191C13.5375 4.69191 13.5437 4.83566 13.4812 4.97316C13.4187 5.11066 13.3125 5.21691 13.1625 5.29191L10.2375 6.67941C10.0875 6.75441 9.93437 6.77629 9.77812 6.74504C9.62187 6.71379 9.4875 6.64191 9.375 6.52941L8.1 5.32941C8.025 5.40441 7.93438 5.47316 7.82812 5.53566C7.72187 5.59816 7.6125 5.62941 7.5 5.62941C7.2875 5.62941 7.10937 5.55754 6.96562 5.41379C6.82187 5.27004 6.75 5.09191 6.75 4.87941V4.12941H4.35C4.3125 4.22941 4.27188 4.32316 4.22813 4.41066C4.18438 4.49816 4.125 4.59191 4.05 4.69191L7.8 11.6294H10.5V13.8794H0.75ZM2.25 4.12941C2.4625 4.12941 2.64062 4.05754 2.78437 3.91379C2.92812 3.77004 3 3.59191 3 3.37941C3 3.16691 2.92812 2.98879 2.78437 2.84504C2.64062 2.70129 2.4625 2.62941 2.25 2.62941C2.0375 2.62941 1.85938 2.70129 1.71563 2.84504C1.57188 2.98879 1.5 3.16691 1.5 3.37941C1.5 3.59191 1.57188 3.77004 1.71563 3.91379C1.85938 4.05754 2.0375 4.12941 2.25 4.12941ZM4.6125 11.6294H6.075L2.85 5.62941C2.85 5.62941 2.8375 5.62941 2.8125 5.62941C2.7875 5.62941 2.775 5.62941 2.775 5.62941L4.6125 11.6294Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-
-                        ) : (
-                          <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.2125 10.1625L9.45 5.925L8.38125 4.85625L5.2125 8.025L3.6375 6.45L2.56875 7.51875L5.2125 10.1625ZM6 15C4.2625 14.5625 2.82812 13.5656 1.69687 12.0094C0.565625 10.4531 0 8.725 0 6.825V2.25L6 0L12 2.25V6.825C12 8.725 11.4344 10.4531 10.3031 12.0094C9.17188 13.5656 7.7375 14.5625 6 15ZM6 13.425C7.3 13.0125 8.375 12.1875 9.225 10.95C10.075 9.7125 10.5 8.3375 10.5 6.825V3.28125L6 1.59375L1.5 3.28125V6.825C1.5 8.3375 1.925 9.7125 2.775 10.95C3.625 12.1875 4.7 13.0125 6 13.425Z" fill="white" fillOpacity="0.3" />
-                          </svg>
-                        )
-                      }
-
-                      {
-                        index === 0 ? 'PROPRIETARY BREADING SECRET' :
-                          index === 1 ? 'LITTLE PECKERS RECIPE' :
-                            index === 2 ? 'CUSTOM MARINADE RECIPE' :
-                              index === 3 ? 'THE PECKERS PROMISE' :
-                                index === 4 ? 'BRITISH & HALAL CERTIFIED' :
-                                  index === 5 ? 'COVENT GARDEN FRESH' :
-                                    index === 6 ? 'HENNY PENNY PRESSURE FRY' :
-                                      index === 7 ? 'NOTHING FROM A BOTTLE' :
-                                        'PROPER PECKERS MILKSHAKES'
-
-                      }
+                {/* SCROLLABLE TEXT CONTENT */}
+                <div
+                  className={`w-full flex-1 overflow-y-auto custom-scrollbar`}
+                  data-lenis-prevent
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                >
+                  <div className="max-w-[90vw] md:max-w-[100%] pb-[2vw]">
+                    {/* Preview text — always visible, clamped when collapsed */}
+                    <p className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? 'line-clamp-4' : ''}`}>
+                      {index === 0 ? <>While most chicken shops across the UK rely on the same off the shelf breading, we chose a different path. We believe that a special ratio isn&apos;t enough when the ingredients are available to anyone. At Peckers, we spent 13 months in development, testing our recipe across the country to ensure we perfected a taste that truly resonates with everyone.</>
+                        : index === 1 ? <>When we perfected our signature breading, it was an instant hit with adults, but we noticed something was missing. For the younger members of the Peckers family, the spice and pepper were just a step too far. We believe every guest deserves a meal they can finish with a smile, so we went back to the drawing board specifically for the kids.</>
+                          : index === 2 ? <>When we first started Peckers, we used an off the shelf marinade like everyone else. But we weren&apos;t happy. It didn&apos;t have the soul of Peckers, and we knew it needed to be built from the ground up.</>
+                            : index === 3 ? <>At Peckers, we have mastered the art of speed. We believe you should never have to choose between a fast meal and a warm welcome. Even during our busiest hours, our kitchen is optimised to serve fresh, hot orders in under three minutes without ever compromising on quality.</>
+                              : index === 4 ? <>We believe that seriously good chicken starts with the best ingredients. That&apos;s why we exclusively source 100% British chicken, ensuring every piece meets the highest standards of quality and freshness. For us, provenance matters.</>
+                                : index === 5 ? <>The secret to a great meal lies in the balance of heat, crunch, and freshness. That&apos;s why our vegetables don&apos;t come from a tin or a packet; they are freshly sourced from London&apos;s iconic Covent Garden.</>
+                                  : index === 6 ? <>At Peckers, we don&apos;t use heat lamps or hold food for hours. To ensure our chicken never goes dry, we cook in small, fresh batches every 2 hours.</>
+                                    : index === 7 ? <>The difference between a good meal and a legendary one is the sauce. That&apos;s why there are no shortcuts and no industrial tubs. Every single sauce — from the ones we drizzle over our rice bowls to the spreads inside our wraps — is made in-house from scratch, every single morning.</>
+                                      : <>Everyone does milkshakes. We do them as well, but completely different. We don&apos;t use a standard milkshake machine; instead, we use an ice cream machine to find the perfect sweet spot for the viscosity of the shake base itself.</>}
                     </p>
-                  </>
-                )}
+
+                    {/* Expanded text — clipPath wipe animation on reveal */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          key={`expanded-${index}`}
+                          initial={{ clipPath: "inset(100% 0 0 0)" }}
+                          animate={{ clipPath: "inset(0% 0 0 0)" }}
+                          exit={{ clipPath: "inset(100% 0 0 0)" }}
+                          transition={{ duration: 0.65, ease: [0.77, 0, 0.175, 1] }}
+                          className="overflow-hidden mt-[3vw] md:mt-[1.2vw] pb-[2vw] md:pb-[1vw]"
+                        >
+                          <p className="text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw]">
+                            {index === 0 ? <>Our signature breading is a closely guarded secret, comprising 20 unique herbs and spices sourced from around the globe, some so rare they are brought in from afar specifically for our kitchen. This is more than just a coating, it is our own flour, our own spices, and our own dedicated manufacturer. Because we own the process from start to finish, our flavour profile cannot be duplicated. When you choose Peckers, you are experiencing a proprietary secret that defines seriously good chicken!</>
+                              : index === 1 ? <>After an additional 6 months of dedicated testing and tasting with children across Hertfordshire, Little Peckers was born. It is a custom crafted breading designed to be gentle on the palate while keeping that signature crunch. It&apos;s not just a smaller portion; it&apos;s a recipe made just for them, ensuring that every kid in the UK finally has a breading they&apos;ll want to finish every single time.</>
+                                : index === 2 ? <>We went back to the drawing board and spent six months in development, crafting our own custom marinades from scratch. We didn&apos;t stop until we had something unique, followed by weeks of testing with the people of Hitchin and Stevenage. We refined every note until it hit the mark for every tastebud in our community. The result is a secret range of marinades manufactured exclusively for our Grilled Chicken. It&apos;s why our grill is becoming so popular, with customers asking for that specific flavour by name. You won&apos;t find this taste anywhere else; it&apos;s six months of passion and local testing, served fresh every day to ensure every bite is at its peak.</>
+                                  : index === 3 ? <>But we are more than just a fast kitchen. We treat every customer like a friend and every guest like a neighbour. Whether it&apos;s your first visit or your fiftieth, our managers ensure you&apos;re treated with genuine care, making sure the experience is always as good as the food. We aren&apos;t satisfied until you leave with a full stomach and a happy mind. That is the Peckers promise: seriously good chicken served at the pace of your life.</>
+                                    : index === 4 ? <>We are proud to serve a menu that is fully Halal-certified, prepared with the same care and respect we show our guests. By choosing the finest British poultry and maintaining strict Halal standards, we ensure that every member of our community can enjoy Peckers with complete peace of mind. It&apos;s local, it&apos;s ethical, and it&apos;s prepared to perfection, every single time.</>
+                                      : index === 5 ? <>Whether it&apos;s the crisp bite in our salad bowls or the vibrant toppings on our signature dishes, we ensure that every vegetable we use is market-fresh and hand-selected. By bringing the best of Covent Garden to your local Peckers, we guarantee a level of quality and flavour you won&apos;t find anywhere else. It&apos;s fresh, it&apos;s local, and it&apos;s what makes our chicken seriously good chicken!</>
+                                        : index === 6 ? <>Whether you walk through our doors at lunch or late at night, you are promised food that is fresh, succulent, and cooked to order. By using industry-leading Henny Penny pressure fryers, we lock in the moisture of every tender and fillet, delivering a perfect crunch and juicy finish every single time.</>
+                                          : index === 7 ? <>Our house-made mayonnaise is a key differentiator. While others rely on commercial shelf-stable tubs, we craft ours using the finest ingredients, including premium pasteurised eggs, to ensure it is as fresh as mayo can ever get. And then there&apos;s Butter Me Up — an exclusive family recipe, a blend of secret ingredients tried, tested, and perfected to get the flavour just right. Every sauce we serve has undergone months of development and is prepared fresh daily with genuine love. Whether it&apos;s on our tenders or inside our burgers, our proprietary sauces are the final touch that makes our food seriously good chicken.</>
+                                            : <>It&apos;s not just ice cream, but it&apos;s definitely not one of those loose shakes that you drink and wonder why it was over in two sips. We make proper milkshakes that are thick, indulgent, and actually fill you up. We cater to a whole range of flavours and have our own signatures, which you&apos;ll only find at Peckers.</>}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <button
+                      onClick={() => toggleSection(index)}
+                      className="text-[#FFD700] font-mono mt-[3vw] md:mt-[1.5vw] text-[3vw] md:text-[0.85vw] tracking-wider text-left underline pb-[4vw] md:pb-[1vw] hover:text-white transition-colors duration-300"
+                    >
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={isExpanded ? "less" : "more"}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {isExpanded ? "↑ Read Less" : "Read More ↓"}
+                        </motion.span>
+                      </AnimatePresence>
+                    </button>
+                  </div>
+                </div>
+
+                {/* PERSISTENT FOOTER */}
+                <div className="mt-auto">
+                  <div className="w-full md:w-[20.8vw] h-[1px] md:h-[0.04vw] relative bg-gray-600 mt-[4vw] md:mt-[1.5vw] mb-[6vw] md:mb-[2vw]" />
+
+                  <p className="flex text-[2.8vw] md:text-[0.8vw] items-center gap-[2vw] md:gap-[.9vw] tracking-[0.4vw] md:tracking-[0.09vw] font-mono relative text-gray-500 pb-[4vw] md:pb-[2vw]" style={{ fontFamily: "space mono" }}>
+
+                    {
+                      index === 0 ? (
+                        <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.85 15.75C5.5 15.75 5.17188 15.675 4.86562 15.525C4.55937 15.375 4.3 15.1625 4.0875 14.8875L0 9.69375L0.35625 9.31875C0.60625 9.05625 0.90625 8.9 1.25625 8.85C1.60625 8.8 1.93125 8.86875 2.23125 9.05625L3.61875 9.9V3.75C3.61875 3.5375 3.69062 3.35938 3.83437 3.21563C3.97812 3.07188 4.15625 3 4.36875 3C4.58125 3 4.7625 3.07188 4.9125 3.21563C5.0625 3.35938 5.1375 3.5375 5.1375 3.75V12.6L3.31875 11.475L5.26875 13.9688C5.34375 14.0562 5.43125 14.125 5.53125 14.175C5.63125 14.225 5.7375 14.25 5.85 14.25H9.99375C10.4062 14.25 10.7594 14.1031 11.0531 13.8094C11.3469 13.5156 11.4937 13.1625 11.4937 12.75V9.75C11.4937 9.5375 11.4219 9.35938 11.2781 9.21562C11.1344 9.07187 10.9562 9 10.7437 9H6.6375V7.5H10.7437C11.3687 7.5 11.9 7.71875 12.3375 8.15625C12.775 8.59375 12.9937 9.125 12.9937 9.75V12.75C12.9937 13.575 12.7 14.2812 12.1125 14.8687C11.525 15.4562 10.8187 15.75 9.99375 15.75H5.85ZM1.125 5.625C0.9625 5.35 0.8375 5.05312 0.75 4.73438C0.6625 4.41563 0.61875 4.0875 0.61875 3.75C0.61875 2.7125 0.984375 1.82812 1.71563 1.09687C2.44688 0.365625 3.33125 0 4.36875 0C5.40625 0 6.29063 0.365625 7.02187 1.09687C7.75312 1.82812 8.11875 2.7125 8.11875 3.75C8.11875 4.0875 8.075 4.41563 7.9875 4.73438C7.9 5.05312 7.775 5.35 7.6125 5.625L6.31875 4.875C6.41875 4.7 6.49375 4.52187 6.54375 4.34062C6.59375 4.15937 6.61875 3.9625 6.61875 3.75C6.61875 3.125 6.4 2.59375 5.9625 2.15625C5.525 1.71875 4.99375 1.5 4.36875 1.5C3.74375 1.5 3.2125 1.71875 2.775 2.15625C2.3375 2.59375 2.11875 3.125 2.11875 3.75C2.11875 3.9625 2.14375 4.15937 2.19375 4.34062C2.24375 4.52187 2.31875 4.7 2.41875 4.875L1.125 5.625Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 1 ? (
+                        <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M4.5 1.5V0H9V1.5H4.5ZM6 9.75H7.5V5.25H6V9.75ZM6.75 15.75C5.825 15.75 4.95312 15.5719 4.13438 15.2156C3.31563 14.8594 2.6 14.375 1.9875 13.7625C1.375 13.15 0.890625 12.4344 0.534375 11.6156C0.178125 10.7969 0 9.925 0 9C0 8.075 0.178125 7.20312 0.534375 6.38438C0.890625 5.56563 1.375 4.85 1.9875 4.2375C2.6 3.625 3.31563 3.14062 4.13438 2.78437C4.95312 2.42812 5.825 2.25 6.75 2.25C7.525 2.25 8.26875 2.375 8.98125 2.625C9.69375 2.875 10.3625 3.2375 10.9875 3.7125L12.0375 2.6625L13.0875 3.7125L12.0375 4.7625C12.5125 5.3875 12.875 6.05625 13.125 6.76875C13.375 7.48125 13.5 8.225 13.5 9C13.5 9.925 13.3219 10.7969 12.9656 11.6156C12.6094 12.4344 12.125 13.15 11.5125 13.7625C10.9 14.375 10.1844 14.8594 9.36563 15.2156C8.54688 15.5719 7.675 15.75 6.75 15.75ZM6.75 14.25C8.2 14.25 9.4375 13.7375 10.4625 12.7125C11.4875 11.6875 12 10.45 12 9C12 7.55 11.4875 6.3125 10.4625 5.2875C9.4375 4.2625 8.2 3.75 6.75 3.75C5.3 3.75 4.0625 4.2625 3.0375 5.2875C2.0125 6.3125 1.5 7.55 1.5 9C1.5 10.45 2.0125 11.6875 3.0375 12.7125C4.0625 13.7375 5.3 14.25 6.75 14.25Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 2 ? (
+                        <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.81875 5.25C1.99375 4.8 2.02188 4.4 1.90313 4.05C1.78438 3.7 1.58125 3.35 1.29375 3C0.88125 2.5 0.609375 2.02813 0.478125 1.58438C0.346875 1.14063 0.325 0.6125 0.4125 0H1.875C1.775 0.475 1.75937 0.8625 1.82812 1.1625C1.89688 1.4625 2.075 1.7875 2.3625 2.1375C2.8375 2.7125 3.14062 3.22188 3.27187 3.66563C3.40312 4.10938 3.40625 4.6375 3.28125 5.25H1.81875ZM4.81875 5.25C4.99375 4.8 5.025 4.4 4.9125 4.05C4.8 3.7 4.6 3.35 4.3125 3C3.9 2.5 3.625 2.02813 3.4875 1.58438C3.35 1.14063 3.325 0.6125 3.4125 0H4.875C4.775 0.475 4.75937 0.8625 4.82812 1.1625C4.89688 1.4625 5.075 1.7875 5.3625 2.1375C5.8375 2.7125 6.14062 3.22188 6.27187 3.66563C6.40312 4.10938 6.40625 4.6375 6.28125 5.25H4.81875ZM7.81875 5.25C7.99375 4.8 8.025 4.4 7.9125 4.05C7.8 3.7 7.6 3.35 7.3125 3C6.9 2.5 6.625 2.02813 6.4875 1.58438C6.35 1.14063 6.325 0.6125 6.4125 0H7.875C7.775 0.475 7.75937 0.8625 7.82812 1.1625C7.89688 1.4625 8.075 1.7875 8.3625 2.1375C8.8375 2.7125 9.14063 3.22188 9.27188 3.66563C9.40313 4.10938 9.40625 4.6375 9.28125 5.25H7.81875ZM2.25 12.75C1.625 12.75 1.09375 12.5312 0.65625 12.0938C0.21875 11.6562 0 11.125 0 10.5V6.75H10.5188C10.5813 6.325 10.75 5.95313 11.025 5.63438C11.3 5.31563 11.6375 5.0875 12.0375 4.95L15.5063 3.7875L15.975 5.2125L12.5063 6.375C12.3563 6.425 12.2344 6.51562 12.1406 6.64687C12.0469 6.77812 12 6.925 12 7.0875V10.5C12 11.125 11.7812 11.6562 11.3438 12.0938C10.9062 12.5312 10.375 12.75 9.75 12.75H2.25ZM2.25 11.25H9.75C9.9625 11.25 10.1406 11.1781 10.2844 11.0344C10.4281 10.8906 10.5 10.7125 10.5 10.5V8.25H1.5V10.5C1.5 10.7125 1.57188 10.8906 1.71563 11.0344C1.85938 11.1781 2.0375 11.25 2.25 11.25Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 3 ? (
+                        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.5 15C1.0875 15 0.734375 14.8531 0.440625 14.5594C0.146875 14.2656 0 13.9125 0 13.5V3C0 2.5875 0.146875 2.23438 0.440625 1.94062C0.734375 1.64687 1.0875 1.5 1.5 1.5H2.25V0H3.75V1.5H9.75V0H11.25V1.5H12C12.4125 1.5 12.7656 1.64687 13.0594 1.94062C13.3531 2.23438 13.5 2.5875 13.5 3V13.5C13.5 13.9125 13.3531 14.2656 13.0594 14.5594C12.7656 14.8531 12.4125 15 12 15H1.5ZM1.5 13.5H12V6H1.5V13.5ZM1.5 4.5H12V3H1.5V4.5ZM1.5 4.5V3V4.5ZM6.75 9C6.5375 9 6.35938 8.92813 6.21562 8.78438C6.07187 8.64062 6 8.4625 6 8.25C6 8.0375 6.07187 7.85938 6.21562 7.71562C6.35938 7.57187 6.5375 7.5 6.75 7.5C6.9625 7.5 7.14062 7.57187 7.28438 7.71562C7.42813 7.85938 7.5 8.0375 7.5 8.25C7.5 8.4625 7.42813 8.64062 7.28438 8.78438C7.14062 8.92813 6.9625 9 6.75 9ZM3.75 9C3.5375 9 3.35938 8.92813 3.21563 8.78438C3.07188 8.64062 3 8.4625 3 8.25C3 8.0375 3.07188 7.85938 3.21563 7.71562C3.35938 7.57187 3.5375 7.5 3.75 7.5C3.9625 7.5 4.14062 7.57187 4.28438 7.71562C4.42813 7.85938 4.5 8.0375 4.5 8.25C4.5 8.4625 4.42813 8.64062 4.28438 8.78438C4.14062 8.92813 3.9625 9 3.75 9ZM9.75 9C9.5375 9 9.35938 8.92813 9.21562 8.78438C9.07187 8.64062 9 8.4625 9 8.25C9 8.0375 9.07187 7.85938 9.21562 7.71562C9.35938 7.57187 9.5375 7.5 9.75 7.5C9.9625 7.5 10.1406 7.57187 10.2844 7.71562C10.4281 7.85938 10.5 8.0375 10.5 8.25C10.5 8.4625 10.4281 8.64062 10.2844 8.78438C10.1406 8.92813 9.9625 9 9.75 9ZM6.75 12C6.5375 12 6.35938 11.9281 6.21562 11.7844C6.07187 11.6406 6 11.4625 6 11.25C6 11.0375 6.07187 10.8594 6.21562 10.7156C6.35938 10.5719 6.5375 10.5 6.75 10.5C6.9625 10.5 7.14062 10.5719 7.28438 10.7156C7.42813 10.8594 7.5 11.0375 7.5 11.25C7.5 11.4625 7.42813 11.6406 7.28438 11.7844C7.14062 11.9281 6.9625 12 6.75 12ZM3.75 12C3.5375 12 3.35938 11.9281 3.21563 11.7844C3.07188 11.6406 3 11.4625 3 11.25C3 11.0375 3.07188 10.8594 3.21563 10.7156C3.35938 10.5719 3.5375 10.5 3.75 10.5C3.9625 10.5 4.14062 10.5719 4.28438 10.7156C4.42813 10.8594 4.5 11.0375 4.5 11.25C4.5 11.4625 4.42813 11.6406 4.28438 11.7844C4.14062 11.9281 3.9625 12 3.75 12ZM9.75 12C9.5375 12 9.35938 11.9281 9.21562 11.7844C9.07187 11.6406 9 11.4625 9 11.25C9 11.0375 9.07187 10.8594 9.21562 10.7156C9.35938 10.5719 9.5375 10.5 9.75 10.5C9.9625 10.5 10.1406 10.5719 10.2844 10.7156C10.4281 10.8594 10.5 11.0375 10.5 11.25C10.5 11.4625 10.4281 11.6406 10.2844 11.7844C10.1406 11.9281 9.9625 12 9.75 12Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 4 ? (
+                        <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.75 12C3.125 12 2.59375 11.7812 2.15625 11.3438C1.71875 10.9062 1.5 10.375 1.5 9.75H0V1.5C0 1.0875 0.146875 0.734375 0.440625 0.440625C0.734375 0.146875 1.0875 0 1.5 0H12V3H14.25L16.5 6V9.75H15C15 10.375 14.7812 10.9062 14.3438 11.3438C13.9062 11.7812 13.375 12 12.75 12C12.125 12 11.5938 11.7812 11.1562 11.3438C10.7188 10.9062 10.5 10.375 10.5 9.75H6C6 10.375 5.78125 10.9062 5.34375 11.3438C4.90625 11.7812 4.375 12 3.75 12ZM3.75 10.5C3.9625 10.5 4.14062 10.4281 4.28438 10.2844C4.42813 10.1406 4.5 9.9625 4.5 9.75C4.5 9.5375 4.42813 9.35938 4.28438 9.21562C4.14062 9.07187 3.9625 9 3.75 9C3.5375 9 3.35938 9.07187 3.21563 9.21562C3.07188 9.35938 3 9.5375 3 9.75C3 9.9625 3.07188 10.1406 3.21563 10.2844C3.35938 10.4281 3.5375 10.5 3.75 10.5ZM1.5 8.25H2.1C2.3125 8.025 2.55625 7.84375 2.83125 7.70625C3.10625 7.56875 3.4125 7.5 3.75 7.5C4.0875 7.5 4.39375 7.56875 4.66875 7.70625C4.94375 7.84375 5.1875 8.025 5.4 8.25H10.5V1.5H1.5V8.25ZM12.75 10.5C12.9625 10.5 13.1406 10.4281 13.2844 10.2844C13.4281 10.1406 13.5 9.9625 13.5 9.75C13.5 9.5375 13.4281 9.35938 13.2844 9.21562C13.1406 9.07187 12.9625 9 12.75 9C12.5375 9 12.3594 9.07187 12.2156 9.21562C12.0719 9.35938 12 9.5375 12 9.75C12 9.9625 12.0719 10.1406 12.2156 10.2844C12.3594 10.4281 12.5375 10.5 12.75 10.5ZM12 6.75H15.1875L13.5 4.5H12V6.75Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 5 ? (
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.1375 11.1187L7.5 9.69375L9.8625 11.1375L9.24375 8.4375L11.325 6.6375L8.5875 6.39375L7.5 3.84375L6.4125 6.375L3.675 6.61875L5.75625 8.4375L5.1375 11.1187ZM2.86875 14.25L4.0875 8.98125L0 5.4375L5.4 4.96875L7.5 0L9.6 4.96875L15 5.4375L10.9125 8.98125L12.1313 14.25L7.5 11.4563L2.86875 14.25Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 6 ? (
+                        <svg width="18" height="9" viewBox="0 0 18 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 9V7.81875C0 7.28125 0.275 6.84375 0.825 6.50625C1.375 6.16875 2.1 6 3 6C3.1625 6 3.31875 6.00313 3.46875 6.00938C3.61875 6.01562 3.7625 6.03125 3.9 6.05625C3.725 6.31875 3.59375 6.59375 3.50625 6.88125C3.41875 7.16875 3.375 7.46875 3.375 7.78125V9H0ZM4.5 9V7.78125C4.5 7.38125 4.60938 7.01562 4.82812 6.68437C5.04688 6.35312 5.35625 6.0625 5.75625 5.8125C6.15625 5.5625 6.63438 5.375 7.19063 5.25C7.74688 5.125 8.35 5.0625 9 5.0625C9.6625 5.0625 10.2719 5.125 10.8281 5.25C11.3844 5.375 11.8625 5.5625 12.2625 5.8125C12.6625 6.0625 12.9688 6.35312 13.1812 6.68437C13.3937 7.01562 13.5 7.38125 13.5 7.78125V9H4.5ZM14.625 9V7.78125C14.625 7.45625 14.5844 7.15 14.5031 6.8625C14.4219 6.575 14.3 6.30625 14.1375 6.05625C14.275 6.03125 14.4156 6.01562 14.5594 6.00938C14.7031 6.00313 14.85 6 15 6C15.9 6 16.625 6.16562 17.175 6.49687C17.725 6.82812 18 7.26875 18 7.81875V9H14.625ZM6.09375 7.5H11.925C11.8 7.25 11.4531 7.03125 10.8844 6.84375C10.3156 6.65625 9.6875 6.5625 9 6.5625C8.3125 6.5625 7.68437 6.65625 7.11562 6.84375C6.54688 7.03125 6.20625 7.25 6.09375 7.5ZM3 5.25C2.5875 5.25 2.23438 5.10312 1.94062 4.80937C1.64687 4.51562 1.5 4.1625 1.5 3.75C1.5 3.325 1.64687 2.96875 1.94062 2.68125C2.23438 2.39375 2.5875 2.25 3 2.25C3.425 2.25 3.78125 2.39375 4.06875 2.68125C4.35625 2.96875 4.5 3.325 4.5 3.75C4.5 4.1625 4.35625 4.51562 4.06875 4.80937C3.78125 5.10312 3.425 5.25 3 5.25ZM15 5.25C14.5875 5.25 14.2344 5.10312 13.9406 4.80937C13.6469 4.51562 13.5 4.1625 13.5 3.75C13.5 3.325 13.6469 2.96875 13.9406 2.68125C14.2344 2.39375 14.5875 2.25 15 2.25C15.425 2.25 15.7812 2.39375 16.0688 2.68125C16.3563 2.96875 16.5 3.325 16.5 3.75C16.5 4.1625 16.3563 4.51562 16.0688 4.80937C15.7812 5.10312 15.425 5.25 15 5.25ZM9 4.5C8.375 4.5 7.84375 4.28125 7.40625 3.84375C6.96875 3.40625 6.75 2.875 6.75 2.25C6.75 1.6125 6.96875 1.07812 7.40625 0.646875C7.84375 0.215625 8.375 0 9 0C9.6375 0 10.1719 0.215625 10.6031 0.646875C11.0344 1.07812 11.25 1.6125 11.25 2.25C11.25 2.875 11.0344 3.40625 10.6031 3.84375C10.1719 4.28125 9.6375 4.5 9 4.5ZM9 3C9.2125 3 9.39062 2.92812 9.53438 2.78437C9.67813 2.64062 9.75 2.4625 9.75 2.25C9.75 2.0375 9.67813 1.85938 9.53438 1.71563C9.39062 1.57188 9.2125 1.5 9 1.5C8.7875 1.5 8.60938 1.57188 8.46562 1.71563C8.32187 1.85938 8.25 2.0375 8.25 2.25C8.25 2.4625 8.32187 2.64062 8.46562 2.78437C8.60938 2.92812 8.7875 3 9 3Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : index === 7 ? (
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.75 13.8794V11.6294H3.075L1.1625 5.36691C0.825 5.17941 0.546875 4.90441 0.328125 4.54191C0.109375 4.17941 0 3.79191 0 3.37941C0 2.75441 0.21875 2.22316 0.65625 1.78566C1.09375 1.34816 1.625 1.12941 2.25 1.12941C2.7375 1.12941 3.17187 1.27004 3.55312 1.55129C3.93437 1.83254 4.2 2.19191 4.35 2.62941H6.75V1.87941C6.75 1.66691 6.82187 1.48879 6.96562 1.34504C7.10937 1.20129 7.2875 1.12941 7.5 1.12941C7.6125 1.12941 7.72187 1.15441 7.82812 1.20441C7.93438 1.25441 8.025 1.32941 8.1 1.42941L9.375 0.229412C9.4875 0.116912 9.62187 0.0450368 9.77812 0.0137868C9.93437 -0.0174632 10.0875 0.00441176 10.2375 0.0794118L13.1625 1.42941C13.3125 1.50441 13.4156 1.61379 13.4719 1.75754C13.5281 1.90129 13.525 2.04191 13.4625 2.17941C13.3875 2.32941 13.2781 2.42629 13.1344 2.47004C12.9906 2.51379 12.85 2.50441 12.7125 2.44191L10.0125 1.20441L8.25 2.85441V3.90441L10.0125 5.51691L12.7125 4.27941C12.85 4.21691 12.9938 4.21066 13.1438 4.26066C13.2938 4.31066 13.4 4.40441 13.4625 4.54191C13.5375 4.69191 13.5437 4.83566 13.4812 4.97316C13.4187 5.11066 13.3125 5.21691 13.1625 5.29191L10.2375 6.67941C10.0875 6.75441 9.93437 6.77629 9.77812 6.74504C9.62187 6.71379 9.4875 6.64191 9.375 6.52941L8.1 5.32941C8.025 5.40441 7.93438 5.47316 7.82812 5.53566C7.72187 5.59816 7.6125 5.62941 7.5 5.62941C7.2875 5.62941 7.10937 5.55754 6.96562 5.41379C6.82187 5.27004 6.75 5.09191 6.75 4.87941V4.12941H4.35C4.3125 4.22941 4.27188 4.32316 4.22813 4.41066C4.18438 4.49816 4.125 4.59191 4.05 4.69191L7.8 11.6294H10.5V13.8794H0.75ZM2.25 4.12941C2.4625 4.12941 2.64062 4.05754 2.78437 3.91379C2.92812 3.77004 3 3.59191 3 3.37941C3 3.16691 2.92812 2.98879 2.78437 2.84504C2.64062 2.70129 2.4625 2.62941 2.25 2.62941C2.0375 2.62941 1.85938 2.70129 1.71563 2.84504C1.57188 2.98879 1.5 3.16691 1.5 3.37941C1.5 3.59191 1.57188 3.77004 1.71563 3.91379C1.85938 4.05754 2.0375 4.12941 2.25 4.12941ZM4.6125 11.6294H6.075L2.85 5.62941C2.85 5.62941 2.8375 5.62941 2.8125 5.62941C2.7875 5.62941 2.775 5.62941 2.775 5.62941L4.6125 11.6294Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+
+                      ) : (
+                        <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.2125 10.1625L9.45 5.925L8.38125 4.85625L5.2125 8.025L3.6375 6.45L2.56875 7.51875L5.2125 10.1625ZM6 15C4.2625 14.5625 2.82812 13.5656 1.69687 12.0094C0.565625 10.4531 0 8.725 0 6.825V2.25L6 0L12 2.25V6.825C12 8.725 11.4344 10.4531 10.3031 12.0094C9.17188 13.5656 7.7375 14.5625 6 15ZM6 13.425C7.3 13.0125 8.375 12.1875 9.225 10.95C10.075 9.7125 10.5 8.3375 10.5 6.825V3.28125L6 1.59375L1.5 3.28125V6.825C1.5 8.3375 1.925 9.7125 2.775 10.95C3.625 12.1875 4.7 13.0125 6 13.425Z" fill="white" fillOpacity="0.3" />
+                        </svg>
+                      )
+                    }
+
+                    {
+                      index === 0 ? 'PROPRIETARY BREADING SECRET' :
+                        index === 1 ? 'LITTLE PECKERS RECIPE' :
+                          index === 2 ? 'CUSTOM MARINADE RECIPE' :
+                            index === 3 ? 'THE PECKERS PROMISE' :
+                              index === 4 ? 'BRITISH & HALAL CERTIFIED' :
+                                index === 5 ? 'COVENT GARDEN FRESH' :
+                                  index === 6 ? 'HENNY PENNY PRESSURE FRY' :
+                                    index === 7 ? 'NOTHING FROM A BOTTLE' :
+                                      'PROPER PECKERS MILKSHAKES'
+                    }
+                  </p>
+                </div>
               </motion.div>
             </div>
           </section>

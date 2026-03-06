@@ -14,7 +14,6 @@ const page = () => {
     return (
 
         <div id="main-content">
-            <Navbar />
             <CareersLandingPage />
             <CrewPage />
             <RolesWithPeckers />

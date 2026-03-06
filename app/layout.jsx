@@ -4,6 +4,7 @@ import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
 import ClientWrapper from "./ClientWrapper";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const peakersFont = localFont({
   src: "./fonts/Supernett-Cn-Regular.woff2",
@@ -55,7 +56,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} ${inconsolata.variable} antialiased`}
       >
         <ClientWrapper>
+          <Navbar />
           {children}
+          <Footer />
         </ClientWrapper>
       </body>
     </html>
