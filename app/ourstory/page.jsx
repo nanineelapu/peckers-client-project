@@ -22,11 +22,11 @@ const OurStoryPage = () => {
 
       <OurStorySection />
       <MobileRoadmap />
-      <div className="hidden 2xl:block">
+      <div className="hidden lg:block">
         <StoryCircle />
         <ActualCircle />
         <br />
-        <div className="w-full relative flex justify-center mt-[0vw] md:mt-[0vw] pt-[0vw] min-h-[50vw] md:min-h-[16vw]">
+        <div className="w-full relative flex justify-center mt-0 md:mt-0 pt-0 min-h-[50vw] md:min-h-[16vw]">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
             <div className="absolute px-[] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]">
               <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="" className="w-full h-auto" />
@@ -178,7 +178,7 @@ const OurStoryPage = () => {
      */}
       <div className="flex-1 flex items-center">
 
-        <div className="w-full flex justify-center items-center py-8 bg-[#000]">
+        <div className="w-full flex justify-center items-center py-8 bg-black">
           <img
             src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png"
             alt="Peckers Logo"

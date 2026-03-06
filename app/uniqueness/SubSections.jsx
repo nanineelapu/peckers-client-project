@@ -36,14 +36,12 @@ const SubSections = () => {
     { width: "382", height: "152", viewBox: "0 0 382 152" },
     { width: "410", height: "395", viewBox: "0 0 410 395" },
     { width: "384", height: "324", viewBox: "0 0 384 152" },
-    { width: "384", height: "324", viewBox: "0 0 384 324" },
     { width: "384", height: "324", viewBox: "0 0 384 245" },
-    { width: "384", height: "324", viewBox: "0 0 384 324" },
+    { width: "384", height: "324", viewBox: "0 0 384 245" },
     { width: "384", height: "324", viewBox: "0 0 384 170" },
-    { width: "384", height: "324", viewBox: "0 0 384 324" },
     { width: "384", height: "324", viewBox: "0 0 384 245" },
-
-
+    { width: "384", height: "324", viewBox: "0 0 384 170" },
+    { width: "384", height: "324", viewBox: "0 0 384 245" },
   ]
 
   return (
@@ -54,16 +52,12 @@ const SubSections = () => {
         return (
           <section
             key={num}
-            className={`w-full h-[100vh] flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
+            className={`w-full min-h-screen h-auto md:h-screen flex flex-col ${isAlternate ? "md:flex-row-reverse" : "md:flex-row"
               } bg-black`}
           >
             {/* IMAGE SECTION */}
-            <motion.div
-              className="w-full md:w-[60%] h-[110vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+            <div
+              className="w-full md:w-[65%] h-[90vw] sm:h-[70vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black"
             >
               <Image
                 src={
@@ -81,40 +75,40 @@ const SubSections = () => {
                 className={`object-cover ${index === 1 ? 'object-top' : 'object-center'}`}
                 priority={index === 0}
               />
-            </motion.div>
+            </div>
 
             {/* CONTENT SECTION */}
             <div
-              className={`w-full md:w-[40%] h-auto md:h-full text-white flex items-center py-[12vw] md:py-0`}
+              className={`w-full md:w-[35%] h-auto md:h-full text-white flex items-center py-[12vw] sm:py-[10vw] md:py-0`}
               style={{ backgroundColor: index % 2 === 0 ? "#111111" : "#000000" }}
             >
               <motion.div
-                className={`w-full flex flex-col px-[6vw] md:px-[7vw] mb-[6vw] leading-normal md:leading-[0vw]`}
+                className={`w-full flex flex-col px-[6vw] md:px-[7vw] leading-normal md:leading-[0vw] py-[6vw] sm:py-[8vw] md:py-[3vw]`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
-                <AnimatePresence mode="popLayout" initial={false}>
+                <AnimatePresence initial={false}>
                   {!isExpanded && (
                     <motion.div
                       key="header-content"
-                      initial={{ opacity: 0, height: 0, y: -20 }}
-                      animate={{ opacity: 1, height: "auto", y: 0 }}
-                      exit={{ opacity: 0, height: 0, y: -20 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="overflow-hidden flex flex-col justify-end"
+                      initial={{ opacity: 0, y: -12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="flex flex-col justify-end mb-[4vw] md:mb-[2vw]"
                     >
                       <p className="text-[#FFD700] font-semibold text-[3.5vw] md:text-[0.95vw] font-mono tracking-[0.8vw] md:tracking-[0.2vw] mb-[2vw] md:mb-[1vw]" style={{ fontFamily: "space mono" }}>
                         {num.toString().padStart(2, "0")}
                       </p>
 
-                      <div className="mb-[4vw] md:mb-[1.5vw] w-full flex justify-start items-end min-h-[16vw] md:min-h-[8vw]">
+                      <div className={`w-full flex justify-start items-end ${[1, 3, 4, 6, 8].includes(index) ? "min-h-[24vw] md:min-h-[12vw]" : "min-h-[16vw] md:min-h-[8vw]"}`}>
                         <svg
                           viewBox={svgSizes[index].viewBox}
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className="w-auto h-auto max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] max-h-[16vw] md:max-h-[8vw]"
+                          className={`w-auto h-auto max-w-[70vw] md:max-w-[26vw] lg:max-w-[24vw] xl:max-w-[22vw] ${[1, 3, 4, 6, 8].includes(index) ? "max-h-[24vw] md:max-h-[12vw]" : "max-h-[16vw] md:max-h-[8vw]"}`}
                         >
                           <path d={svgPaths[index]} fill="white" />
                         </svg>
@@ -123,35 +117,61 @@ const SubSections = () => {
                   )}
                 </AnimatePresence>
 
-                <div className={`w-full max-w-[90vw] md:max-w-[38vw]`}>
-                  <p className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? 'line-clamp-4' : 'pb-[2vw] md:pb-[1vw]'}`}>
-
-                    {index === 0 ? (
-                      <>While most chicken shops across the UK rely on the same off the shelf breading, we chose a different path. We believe that a special ratio isn&apos;t enough when the ingredients are available to anyone. At Peckers, we spent 13 months in development, testing our recipe across the country to ensure we perfected a taste that truly resonates with everyone.<br /><br />Our signature breading is a closely guarded secret, comprising 20 unique herbs and spices sourced from around the globe, some so rare they are brought in from afar specifically for our kitchen. This is more than just a coating, it is our own flour, our own spices, and our own dedicated manufacturer. Because we own the process from start to finish, our flavour profile cannot be duplicated. When you choose Peckers, you are experiencing a proprietary secret that defines seriously good chicken!</>
-                    ) : index === 1 ? (
-                      <>When we perfected our signature breading, it was an instant hit with adults, but we noticed something was missing. For the younger members of the Peckers family, the spice and pepper were just a step too far. We believe every guest deserves a meal they can finish with a smile, so we went back to the drawing board specifically for the kids.<br /><br />After an additional 6 months of dedicated testing and tasting with children across Hertfordshire, Little Peckers was born. It is a custom crafted breading designed to be gentle on the palate while keeping that signature crunch. It&apos;s not just a smaller portion; it&apos;s a recipe made just for them, ensuring that every kid in the UK finally has a breading they&apos;ll want to finish every single time.</>
-                    ) : index === 2 ? (
-                      <>When we first started Peckers, we used an off the shelf marinade like everyone else. But we weren&apos;t happy. It didn&apos;t have the soul of Peckers, and we knew it needed to be built from the ground up.<br /><br />We went back to the drawing board and spent six months in development, crafting our own custom marinades from scratch. We didn&apos;t stop until we had something unique, followed by weeks of testing with the people of Hitchin and Stevenage. We refined every note until it hit the mark for every tastebud in our community. The result is a secret range of marinades manufactured exclusively for our Grilled Chicken. It&apos;s why our grill is becoming so popular, with customers asking for that specific flavour by name. You won&apos;t find this taste anywhere else; it&apos;s six months of passion and local testing, served fresh every day to ensure every bite is at its peak.</>
-                    ) : index === 3 ? (
-                      <>At Peckers, we have mastered the art of speed. We believe you should never have to choose between a fast meal and a warm welcome. Even during our busiest hours, our kitchen is optimised to serve fresh, hot orders in under three minutes without ever compromising on quality.<br /><br />But we are more than just a fast kitchen. We treat every customer like a friend and every guest like a neighbour. Whether it&apos;s your first visit or your fiftieth, our managers ensure you&apos;re treated with genuine care, making sure the experience is always as good as the food. We aren&apos;t satisfied until you leave with a full stomach and a happy mind. That is the Peckers promise: seriously good chicken served at the pace of your life.</>
-                    ) : index === 4 ? (
-                      <>We believe that seriously good chicken starts with the best ingredients. That&apos;s why we exclusively source 100% British chicken, ensuring every piece meets the highest standards of quality and freshness. For us, provenance matters.<br /><br />We are proud to serve a menu that is fully Halal-certified, prepared with the same care and respect we show our guests. By choosing the finest British poultry and maintaining strict Halal standards, we ensure that every member of our community can enjoy Peckers with complete peace of mind. It&apos;s local, it&apos;s ethical, and it&apos;s prepared to perfection, every single time.</>
-                    ) : index === 5 ? (
-                      <>The secret to a great meal lies in the balance of heat, crunch, and freshness. That&apos;s why our vegetables don&apos;t come from a tin or a packet; they are freshly sourced from London&apos;s iconic Covent Garden.<br /><br />Whether it&apos;s the crisp bite in our salad bowls or the vibrant toppings on our signature dishes, we ensure that every vegetable we use is market-fresh and hand-selected. By bringing the best of Covent Garden to your local Peckers, we guarantee a level of quality and flavour you won&apos;t find anywhere else. It&apos;s fresh, it&apos;s local, and it&apos;s what makes our chicken seriously good chicken!</>
-                    ) : index === 6 ? (
-                      <>At Peckers, we don&apos;t use heat lamps or hold food for hours. To ensure our chicken never goes dry, we cook in small, fresh batches every 2 hours.<br /><br />Whether you walk through our doors at lunch or late at night, you are promised food that is fresh, succulent, and cooked to order. By using industry-leading Henny Penny pressure fryers, we lock in the moisture of every tender and fillet, delivering a perfect crunch and juicy finish every single time.</>
-                    ) : index === 7 ? (
-                      <>The difference between a good meal and a legendary one is the sauce. That&apos;s why there are no shortcuts and no industrial tubs. Every single sauce — from the ones we drizzle over our rice bowls to the spreads inside our wraps — is made in-house from scratch, every single morning.<br /><br />Our house-made mayonnaise is a key differentiator. While others rely on commercial shelf-stable tubs, we craft ours using the finest ingredients, including premium pasteurised eggs, to ensure it is as fresh as mayo can ever get. And then there&apos;s Butter Me Up — an exclusive family recipe, a blend of secret ingredients tried, tested, and perfected to get the flavour just right. Every sauce we serve has undergone months of development and is prepared fresh daily with genuine love. Whether it&apos;s on our tenders or inside our burgers, our proprietary sauces are the final touch that makes our food seriously good chicken.</>
-                    ) : (
-                      <>Everyone does milkshakes. We do them as well, but completely different. We don&apos;t use a standard milkshake machine; instead, we use an ice cream machine to find the perfect sweet spot for the viscosity of the shake base itself.<br /><br />It&apos;s not just ice cream, but it&apos;s definitely not one of those loose shakes that you drink and wonder why it was over in two sips. We make proper milkshakes that are thick, indulgent, and actually fill you up. We cater to a whole range of flavours and have our own signatures, which you&apos;ll only find at Peckers.</>
-                    )}
-
+                <div className={`w-full max-w-[90vw] md:max-w-[32vw]`}>
+                  {/* Preview text — always visible, clamped when collapsed */}
+                  <p className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? 'line-clamp-4' : ''}`}>
+                    {index === 0 ? <>While most chicken shops across the UK rely on the same off the shelf breading, we chose a different path. We believe that a special ratio isn&apos;t enough when the ingredients are available to anyone. At Peckers, we spent 13 months in development, testing our recipe across the country to ensure we perfected a taste that truly resonates with everyone.</>
+                      : index === 1 ? <>When we perfected our signature breading, it was an instant hit with adults, but we noticed something was missing. For the younger members of the Peckers family, the spice and pepper were just a step too far. We believe every guest deserves a meal they can finish with a smile, so we went back to the drawing board specifically for the kids.</>
+                        : index === 2 ? <>When we first started Peckers, we used an off the shelf marinade like everyone else. But we weren&apos;t happy. It didn&apos;t have the soul of Peckers, and we knew it needed to be built from the ground up.</>
+                          : index === 3 ? <>At Peckers, we have mastered the art of speed. We believe you should never have to choose between a fast meal and a warm welcome. Even during our busiest hours, our kitchen is optimised to serve fresh, hot orders in under three minutes without ever compromising on quality.</>
+                            : index === 4 ? <>We believe that seriously good chicken starts with the best ingredients. That&apos;s why we exclusively source 100% British chicken, ensuring every piece meets the highest standards of quality and freshness. For us, provenance matters.</>
+                              : index === 5 ? <>The secret to a great meal lies in the balance of heat, crunch, and freshness. That&apos;s why our vegetables don&apos;t come from a tin or a packet; they are freshly sourced from London&apos;s iconic Covent Garden.</>
+                                : index === 6 ? <>At Peckers, we don&apos;t use heat lamps or hold food for hours. To ensure our chicken never goes dry, we cook in small, fresh batches every 2 hours.</>
+                                  : index === 7 ? <>The difference between a good meal and a legendary one is the sauce. That&apos;s why there are no shortcuts and no industrial tubs. Every single sauce — from the ones we drizzle over our rice bowls to the spreads inside our wraps — is made in-house from scratch, every single morning.</>
+                                    : <>Everyone does milkshakes. We do them as well, but completely different. We don&apos;t use a standard milkshake machine; instead, we use an ice cream machine to find the perfect sweet spot for the viscosity of the shake base itself.</>}
                   </p>
+
+                  {/* Expanded text — clipPath wipe animation on reveal */}
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        key={`expanded-${index}`}
+                        initial={{ clipPath: "inset(100% 0 0 0)" }}
+                        animate={{ clipPath: "inset(0% 0 0 0)" }}
+                        exit={{ clipPath: "inset(100% 0 0 0)" }}
+                        transition={{ duration: 0.65, ease: [0.77, 0, 0.175, 1] }}
+                        className="overflow-hidden mt-[3vw] md:mt-[1.2vw] pb-[2vw] md:pb-[1vw]"
+                      >
+                        <p className="text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw]">
+                          {index === 0 ? <>Our signature breading is a closely guarded secret, comprising 20 unique herbs and spices sourced from around the globe, some so rare they are brought in from afar specifically for our kitchen. This is more than just a coating, it is our own flour, our own spices, and our own dedicated manufacturer. Because we own the process from start to finish, our flavour profile cannot be duplicated. When you choose Peckers, you are experiencing a proprietary secret that defines seriously good chicken!</>
+                            : index === 1 ? <>After an additional 6 months of dedicated testing and tasting with children across Hertfordshire, Little Peckers was born. It is a custom crafted breading designed to be gentle on the palate while keeping that signature crunch. It&apos;s not just a smaller portion; it&apos;s a recipe made just for them, ensuring that every kid in the UK finally has a breading they&apos;ll want to finish every single time.</>
+                              : index === 2 ? <>We went back to the drawing board and spent six months in development, crafting our own custom marinades from scratch. We didn&apos;t stop until we had something unique, followed by weeks of testing with the people of Hitchin and Stevenage. We refined every note until it hit the mark for every tastebud in our community. The result is a secret range of marinades manufactured exclusively for our Grilled Chicken. It&apos;s why our grill is becoming so popular, with customers asking for that specific flavour by name. You won&apos;t find this taste anywhere else; it&apos;s six months of passion and local testing, served fresh every day to ensure every bite is at its peak.</>
+                                : index === 3 ? <>But we are more than just a fast kitchen. We treat every customer like a friend and every guest like a neighbour. Whether it&apos;s your first visit or your fiftieth, our managers ensure you&apos;re treated with genuine care, making sure the experience is always as good as the food. We aren&apos;t satisfied until you leave with a full stomach and a happy mind. That is the Peckers promise: seriously good chicken served at the pace of your life.</>
+                                  : index === 4 ? <>We are proud to serve a menu that is fully Halal-certified, prepared with the same care and respect we show our guests. By choosing the finest British poultry and maintaining strict Halal standards, we ensure that every member of our community can enjoy Peckers with complete peace of mind. It&apos;s local, it&apos;s ethical, and it&apos;s prepared to perfection, every single time.</>
+                                    : index === 5 ? <>Whether it&apos;s the crisp bite in our salad bowls or the vibrant toppings on our signature dishes, we ensure that every vegetable we use is market-fresh and hand-selected. By bringing the best of Covent Garden to your local Peckers, we guarantee a level of quality and flavour you won&apos;t find anywhere else. It&apos;s fresh, it&apos;s local, and it&apos;s what makes our chicken seriously good chicken!</>
+                                      : index === 6 ? <>Whether you walk through our doors at lunch or late at night, you are promised food that is fresh, succulent, and cooked to order. By using industry-leading Henny Penny pressure fryers, we lock in the moisture of every tender and fillet, delivering a perfect crunch and juicy finish every single time.</>
+                                        : index === 7 ? <>Our house-made mayonnaise is a key differentiator. While others rely on commercial shelf-stable tubs, we craft ours using the finest ingredients, including premium pasteurised eggs, to ensure it is as fresh as mayo can ever get. And then there&apos;s Butter Me Up — an exclusive family recipe, a blend of secret ingredients tried, tested, and perfected to get the flavour just right. Every sauce we serve has undergone months of development and is prepared fresh daily with genuine love. Whether it&apos;s on our tenders or inside our burgers, our proprietary sauces are the final touch that makes our food seriously good chicken.</>
+                                          : <>It&apos;s not just ice cream, but it&apos;s definitely not one of those loose shakes that you drink and wonder why it was over in two sips. We make proper milkshakes that are thick, indulgent, and actually fill you up. We cater to a whole range of flavours and have our own signatures, which you&apos;ll only find at Peckers.</>}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   <button
                     onClick={() => toggleSection(index)}
-                    className="text-[#FFD700] hover:text-white transition-colors duration-300 font-mono mt-[3vw] md:mt-[1.5vw] text-[3vw] md:text-[0.85vw] tracking-wider text-left underline pb-[4vw] md:pb-[1vw]"
+                    className="text-[#FFD700] font-mono mt-[3vw] md:mt-[1.5vw] text-[3vw] md:text-[0.85vw] tracking-wider text-left underline pb-[4vw] md:pb-[1vw] hover:text-white transition-colors duration-300"
                   >
-                    {isExpanded ? "Read Less" : "Read More"}
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={isExpanded ? "less" : "more"}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {isExpanded ? "↑ Read Less" : "Read More ↓"}
+                      </motion.span>
+                    </AnimatePresence>
                   </button>
                 </div>
 

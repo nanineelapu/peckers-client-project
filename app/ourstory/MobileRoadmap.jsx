@@ -98,7 +98,7 @@ const ArrowRightToLeft = () => {
 
 export default function MobileRoadmap() {
     return (
-        <section className="block 2xl:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] xl:px-[8vw] pt-[10vw] md:pt-[6vw] pb-[20vw] md:pb-[10vw] overflow-hidden">
+        <section className="block lg:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] pt-[10vw] md:pt-[6vw] pb-[20vw] md:pb-[10vw] overflow-hidden">
 
             {/* Heading */}
             <motion.div
