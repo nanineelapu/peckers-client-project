@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import EnquiriesSection from './EnquireSection'
 import LocationAddress from './LocationAddress'
@@ -8,9 +7,6 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 
 export function LocationsPageContent({ location = 'hitchin' }) {
-    const [open, setOpen] = useState(false);
-    const [locationsOpen, setLocationsOpen] = useState(false);
-    const [journeyOpen, setJourneyOpen] = useState(false);
     const locationTitle = location === 'stevenage' ? 'STEVENAGE' : 'HITCHIN';
 
     return (

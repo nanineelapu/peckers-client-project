@@ -13,7 +13,7 @@ export default function Navbar() {
 
       {/* Logo Section */}
       <div className="flex-1 flex items-center z-50">
-        <a href="home">
+        <a href="/home">
           <svg viewBox="0 0 211 74" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[140px] md:w-[130px] lg:w-[160px] xl:w-[240px] h-auto xl:h-[82px] transition-all duration-300">
             <rect width="210.375" height="73.125" fill="url(#pattern0_1_243)" />
             <defs>
@@ -32,13 +32,13 @@ export default function Navbar() {
         className="hidden md:flex flex-1 md:text-[1.3vw] lg:text-[1.5vw] xl:text-[1.5vw] justify-center md:tracking-[.1vw] lg:tracking-[.15vw] xl:tracking-[.2vw] font-semibold md:gap-[1.8vw] lg:gap-[2.5vw] xl:gap-[2.7vw]"
         style={{ fontFamily: "var(--font-peakers)" }}
       >
-        <a href="menu" className="whitespace-nowrap">MENU</a>
+        <a href="/menu" className="whitespace-nowrap">MENU</a>
         <div className="relative group">
           <span className="whitespace-nowrap cursor-default">FIND US</span>
           <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="bg-[#1a1a1a] border border-[#333] rounded-lg py-2 shadow-xl md:min-w-[150px] lg:min-w-[180px] xl:min-w-[200px]">
-              <a href="locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap md:text-[1.3vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
-              <a href="locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap md:text-[1.3vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
+              <a href="/locations" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap md:text-[1.3vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Hitchin</a>
+              <a href="/locations/stevenage" className="block px-5 py-3 hover:bg-[#262626] whitespace-nowrap md:text-[1.3vw] lg:text-[1.5vw] xl:text-[1.5vw] font-semibold tracking-[.2vw]">Stevenage</a>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function Navbar() {
           </div>
         </div>
         <a href="/ourstory" onClick={() => setOpen(false)} className="whitespace-nowrap">THE JOURNEY</a>
-        <a href="careers" onClick={() => setOpen(false)} className="whitespace-nowrap">CAREERS</a>
+        <a href="/careers" onClick={() => setOpen(false)} className="whitespace-nowrap">CAREERS</a>
       </div>
 
       {/* Desktop Buttons */}
@@ -89,15 +89,15 @@ export default function Navbar() {
         }}
       >
         <div className="flex flex-col items-center gap-8 w-full">
-          <a href="menu" onClick={() => setOpen(false)}>MENU</a>
+          <a href="/menu" onClick={() => setOpen(false)}>MENU</a>
           <div className="flex flex-col items-center w-full">
             <button type="button" onClick={() => setLocationsOpen(!locationsOpen)} className="w-full text-center py-1">
               LOCATIONS {locationsOpen ? "−" : "+"}
             </button>
             {(locationsOpen) && (
               <div className="flex flex-col items-center gap-2 mt-2 w-full">
-                <a href="locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
-                <a href="locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
+                <a href="/locations" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Hitchin</a>
+                <a href="/locations/stevenage" onClick={() => { setOpen(false); setLocationsOpen(false); }} className="w-full text-center py-3 text-xl">Stevenage</a>
               </div>
             )}
           </div>
@@ -113,7 +113,7 @@ export default function Navbar() {
             )}
           </div>
           <a href="/ourstory" onClick={() => setOpen(false)}>THE JOURNEY</a>
-          <a href="careers" onClick={() => setOpen(false)}>CAREERS</a>
+          <a href="/careers" onClick={() => setOpen(false)}>CAREERS</a>
 
           <div className="flex flex-col gap-4 mt-2 w-3/4">
             <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
