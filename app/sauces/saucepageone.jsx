@@ -164,7 +164,7 @@ export default function SaucePageOne() {
                                         <img
                                             src={sauce.sauceUrl}
                                             alt={sauce.title}
-                                            className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto mt-[21vw] top-[30%] -translate-y-1/2 mb-[5vw] md:mb-0 md:top-1/2 md:-translate-y-1/2 md:bottom-auto"
+                                            className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto top-[30%] -translate-y-1/2 mt-[21.5vw] md:mt-0 mb-[5vw] md:mb-0 md:top-1/2 md:-translate-y-1/2 md:bottom-auto"
                                             style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
                                         />
                                     )}
