@@ -68,7 +68,7 @@ export default function SaucePageOne() {
 
                                 {/* YOUR EXISTING TEXT SECTION UNCHANGED */}
 
-                                <div className="absolute mt-[1vw] sm:mt-6 md:mt-0 top-[12%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20">
+                                <div className="absolute mt-[1vw] sm:mt-6 md:mt-0 top-[9%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20">
                                     <h1
                                         className="text-5xl sm:text-5xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-1 sm:mb-2 md:mb-4 xl:mb-[-.5vw]"
                                         style={{ fontFamily: 'var(--font-peakers)' }}
@@ -109,7 +109,7 @@ export default function SaucePageOne() {
                                     </div>
                                 </div>
 
-                                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[105vw] h-[105vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-end md:items-center justify-center z-10 pointer-events-none">
+                                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[105vw] h-[105vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none">
 
                                     {/* ROTATING TEXT (CONTROLLED) */}
                                     <div
@@ -149,13 +149,25 @@ export default function SaucePageOne() {
                                         <circle cx="500" cy="90" r="8" fill="white" />
                                     </svg>
 
-                                    {/* PRODUCT IMAGE */}
-                                    <img
-                                        src={sauce.sauceUrl}
-                                        alt={sauce.title}
-                                        className={`absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto bottom-0 md:bottom-auto md:mt-0 ${idx === 0 ? "scale-[1.2] md:scale-[1.3] mt-0 sm:mt-[14vw] lg:mt-[3vw] xl:mt-[13vw]" : ""}`}
-                                        style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
-                                    />
+                                    {/* PRODUCT IMAGE (SLIDE 1) */}
+                                    {idx === 0 && (
+                                        <img
+                                            src={sauce.sauceUrl}
+                                            alt={sauce.title}
+                                            className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto scale-[1.2] md:scale-[1.3] mt-[15vw] sm:mt-[14vw] lg:mt-[3vw] xl:mt-[13vw]"
+                                            style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
+                                        />
+                                    )}
+
+                                    {/* PRODUCT IMAGE (SLIDE 2) */}
+                                    {idx === 1 && (
+                                        <img
+                                            src={sauce.sauceUrl}
+                                            alt={sauce.title}
+                                            className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto mt-[21vw] top-[30%] -translate-y-1/2 mb-[5vw] md:mb-0 md:top-1/2 md:-translate-y-1/2 md:bottom-auto"
+                                            style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
+                                        />
+                                    )}
                                 </div>
 
                             </div>
