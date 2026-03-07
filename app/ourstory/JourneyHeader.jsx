@@ -5,7 +5,7 @@ export default function JourneyIntroSection() {
         <section className="w-full bg-black pt-[9vw] flex flex-col items-center text-center relative">
 
             {/* ================= DESKTOP (UNCHANGED) ================= */}
-            <div className="hidden 2xl:block w-full">
+            <div className="hidden xl:block w-full">
 
                 {/* Main Heading */}
                 <motion.h2
@@ -65,7 +65,7 @@ export default function JourneyIntroSection() {
             </div>
 
             {/* ================= MOBILE VERSION ================= */}
-            <div className="2xl:hidden w-full px-6 pt-10">
+            <div className="xl:hidden w-full px-6 pt-10">
 
                 {/* Mobile Heading */}
                 <motion.h2
