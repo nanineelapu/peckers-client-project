@@ -117,8 +117,8 @@ const SubSections = () => {
 
                 {/* SCROLLABLE TEXT CONTENT */}
                 <div
-                  className={`w-full md:flex-1 md:overflow-y-auto custom-scrollbar`}
-                  data-lenis-prevent
+                  className={`w-full flex-1 ${isExpanded ? "overflow-y-auto custom-scrollbar" : "overflow-hidden"}`}
+                  {...(isExpanded ? { "data-lenis-prevent": true } : {})}
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                   <div className="max-w-[90vw] md:max-w-[100%] pb-[2vw]">
