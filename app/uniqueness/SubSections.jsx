@@ -94,7 +94,7 @@ const SubSections = () => {
                   </p>
 
                   <div
-                    className={`w-full flex justify-start items-end ${index === 1 ? "min-h-[40vw] md:min-h-[20vw]"
+                    className={`w-full flex justify-start items-end ${index === 1 ? "min-h-[40vw] md:min-h-[14vw]"
                       : [2, 3, 5, 6, 7, 8].includes(index) ? "min-h-[32vw] md:min-h-[16vw]"
                         : index === 4 ? "min-h-[24vw] md:min-h-[12vw]"
                           : "min-h-[16vw] md:min-h-[8vw]"
@@ -104,7 +104,7 @@ const SubSections = () => {
                       viewBox={svgSizes[index].viewBox}
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`w-auto h-auto ${index === 1 ? "max-w-[90vw] md:max-w-[21vw] max-h-[40vw] md:max-h-[20vw]"
+                      className={`w-auto h-auto ${index === 1 ? "max-w-[90vw] md:max-w-[15vw] max-h-[40vw] md:max-h-[14vw]"
                         : [2, 3, 5, 6, 7, 8].includes(index) ? "max-w-[90vw] md:max-w-[21vw] max-h-[32vw] md:max-h-[16vw]"
                           : index === 4 ? "max-w-[70vw] md:max-w-[18vw] max-h-[24vw] md:max-h-[12vw]"
                             : "max-w-[70vw] md:max-w-[18vw] max-h-[16vw] md:max-h-[8vw]"
