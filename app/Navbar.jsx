@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const hideOrderButtons = pathname === "/menu" || pathname === "/sauces";
   const [open, setOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [journeyOpen, setJourneyOpen] = useState(false);
@@ -115,6 +118,7 @@ export default function Navbar() {
           <a href="/ourstory" onClick={() => setOpen(false)}>THE JOURNEY</a>
           <a href="/careers" onClick={() => setOpen(false)}>CAREERS</a>
 
+          {!hideOrderButtons && (
           <div className="flex flex-col gap-4 mt-2 w-3/4">
             <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
               CLICK & COLLECT
@@ -123,6 +127,7 @@ export default function Navbar() {
               DELIVERY
             </button>
           </div>
+          )}
         </div>
       </div>
     </nav>

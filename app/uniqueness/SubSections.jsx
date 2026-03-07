@@ -117,13 +117,13 @@ const SubSections = () => {
 
                 {/* SCROLLABLE TEXT CONTENT */}
                 <div
-                  className={`w-full flex-1 overflow-y-auto custom-scrollbar`}
+                  className={`w-full md:flex-1 md:overflow-y-auto custom-scrollbar`}
                   data-lenis-prevent
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                   <div className="max-w-[90vw] md:max-w-[100%] pb-[2vw]">
                     {/* Preview text — always visible, clamped when collapsed */}
-                    <p className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? 'line-clamp-4' : ''}`}>
+                    <p className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? 'line-clamp-3' : ''}`}>
                       {index === 0 ? <>While most chicken shops across the UK rely on the same off the shelf breading, we chose a different path. We believe that a special ratio isn&apos;t enough when the ingredients are available to anyone. At Peckers, we spent 13 months in development, testing our recipe across the country to ensure we perfected a taste that truly resonates with everyone.</>
                         : index === 1 ? <>When we perfected our signature breading, it was an instant hit with adults, but we noticed something was missing. For the younger members of the Peckers family, the spice and pepper were just a step too far. We believe every guest deserves a meal they can finish with a smile, so we went back to the drawing board specifically for the kids.</>
                           : index === 2 ? <>When we first started Peckers, we used an off the shelf marinade like everyone else. But we weren&apos;t happy. It didn&apos;t have the soul of Peckers, and we knew it needed to be built from the ground up.</>

@@ -4,7 +4,7 @@ import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
 import ClientWrapper from "./ClientWrapper";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import ConditionalFooter from "./ConditionalFooter";
 
 const peakersFont = localFont({
   src: "./fonts/Supernett-Cn-Regular.woff2",
@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
         <ClientWrapper>
           <Navbar />
           {children}
-          <Footer />
+          <ConditionalFooter />
         </ClientWrapper>
       </body>
     </html>
