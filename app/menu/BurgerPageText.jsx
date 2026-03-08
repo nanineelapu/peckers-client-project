@@ -1,17 +1,48 @@
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { client } from "../../sanity/lib/client";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BurgerPageText({
-  subtitle = "HOT SAUCE BLAZE / BLUE CHEESE / CELERY SLAW",
-}) {
+export default function BurgerPageText() {
   const containerRef = useRef(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuDetails = async () => {
+      try {
+        const menuDetails = await client.fetch(`*[_type == "menuPage"][0] {
+          subtitle,
+          protein,
+          carbs,
+          fats,
+          calories,
+          energy,
+          allergens,
+          spiceLevel,
+          availabilityText
+        }`);
+        console.log("Menu details fetched:", menuDetails);
+        if (menuDetails) {
+          setData(menuDetails);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching menu details:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchMenuDetails();
+  }, []);
 
   useLayoutEffect(() => {
+    if (loading || !data) return;
+
     const ctx = gsap.context(() => {
       const texts = gsap.utils.toArray([
         ".burger-subtitle",
@@ -39,7 +70,43 @@ export default function BurgerPageText({
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [loading, data]);
+
+  if (loading) {
+    return (
+      <div className="w-full h-[15vw] flex items-center justify-center bg-black">
+        <div className="text-white/10 font-mono animate-pulse tracking-[.3vw]">LOADING NUTRITION...</div>
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
+  const renderSpiceLevel = () => {
+    const bars = [];
+    const level = data.spiceLevel || 0;
+    for (let i = 0; i < 4; i++) {
+      bars.push(
+        <svg
+          key={i}
+          width="17"
+          height="10"
+          viewBox="0 0 17 9"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            width="17"
+            height="9"
+            rx="2.5"
+            fill={i < level ? "#F2DF0D" : "white"}
+            fillOpacity={i < level ? "1" : "0.2"}
+          />
+        </svg>
+      );
+    }
+    return bars;
+  };
 
   return (
     <div
@@ -66,7 +133,7 @@ export default function BurgerPageText({
             display: "inline-block",
           }}
         >
-          {subtitle}
+          {data.subtitle || "HOT SAUCE BLAZE / BLUE CHEESE / CELERY SLAW"}
         </span>
       </div>
       <div className="flex gap-[3vw] md:gap-3 mt-[4vw] md:mt-5.5">
@@ -120,9 +187,9 @@ export default function BurgerPageText({
             Per 100g
           </div>
           <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0 leading-snug">
-            18g Protein<br />
-            22g Carbs (3g sugars)<br />
-            12g Fats (4g sat)
+            {data.protein || "18g Protein"}<br />
+            {data.carbs || "22g Carbs (3g sugars)"}<br />
+            {data.fats || "12g Fats (4g sat)"}
           </div>
         </div>
 
@@ -132,8 +199,8 @@ export default function BurgerPageText({
             Energy & Calories
           </div>
           <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0 leading-snug">
-            760 Kcal<br />
-            3180 KJ
+            {data.calories || "760 Kcal"}<br />
+            {data.energy || "3180 KJ"}
           </div>
         </div>
 
@@ -143,7 +210,7 @@ export default function BurgerPageText({
             Allergens
           </div>
           <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0">
-            GLUTEN, DAIRY
+            {data.allergens || "GLUTEN, DAIRY"}
           </div>
         </div>
         {/* Spice Level */}
@@ -152,56 +219,14 @@ export default function BurgerPageText({
             Spice Level
           </div>
           <div className="flex items-center gap-1.5 mt-1 h-[1.1em] pt-0">
-            {/* 3/4 bars filled */}
-            <svg
-              width="17"
-              height="10"
-              viewBox="0 0 17 9"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="17" height="9" rx="2.5" fill="#F2DF0D" />
-            </svg>
-            <svg
-              width="17"
-              height="10"
-              viewBox="0 0 17 9"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="17" height="9" rx="2.5" fill="#F2DF0D" />
-            </svg>
-            <svg
-              width="17"
-              height="10"
-              viewBox="0 0 17 9"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="17" height="9" rx="2.5" fill="#F2DF0D" />
-            </svg>
-            <svg
-              width="17"
-              height="10"
-              viewBox="0 0 17 9"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                width="17"
-                height="9"
-                rx="2.5"
-                fill="white"
-                fillOpacity="0.2"
-              />
-            </svg>
+            {renderSpiceLevel()}
           </div>
         </div>
       </div>
 
       <div className="w-full flex justify-center pt-[8vw] md:pt-5 pb-[15vw] md:pb-[5vw] burger-available text-center px-[5vw]">
         <span className="text-white font-peakers text-[4vw] md:text-[20px] lg:text-[24px] xl:text-[2.2vw] tracking-3 font-normal">
-          Also available as a wrap, rice bowl, or salad bowl.
+          {data.availabilityText || "Also available as a wrap, rice bowl, or salad bowl."}
         </span>
       </div>
     </div>

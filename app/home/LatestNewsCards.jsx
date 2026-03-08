@@ -1,15 +1,9 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
-
-const IMAGES = [
-  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/homepage%20slide%20card%20image.webp",
-  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/img%20slide%201.webp",
-  "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/img%20slide%202.webp"
-];
-
-const N = IMAGES.length;
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
 
 let globalId = 0;
 const makeCard = (imageIndex, slot) => ({
@@ -18,21 +12,58 @@ const makeCard = (imageIndex, slot) => ({
   slot,
 });
 
-const createInitialCards = (centerIdx) => [
-  makeCard((centerIdx - 2 + N * 100) % N, -2),
-  makeCard((centerIdx - 1 + N * 100) % N, -1),
-  makeCard(centerIdx % N, 0),
-  makeCard((centerIdx + 1) % N, 1),
-  makeCard((centerIdx + 2) % N, 2),
-];
+const createInitialCards = (centerIdx, totalImages) => {
+  if (totalImages === 0) return [];
+  const N = totalImages;
+  return [
+    makeCard((centerIdx - 2 + N * 100) % N, -2),
+    makeCard((centerIdx - 1 + N * 100) % N, -1),
+    makeCard(centerIdx % N, 0),
+    makeCard((centerIdx + 1) % N, 1),
+    makeCard((centerIdx + 2) % N, 2),
+  ];
+};
 
 export default function LatestNewsCards() {
-  const [cards, setCards] = useState(() => createInitialCards(0));
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [cards, setCards] = useState([]);
   const [centerIdx, setCenterIdx] = useState(0);
   const animatingRef = useRef(false);
 
+  const N = images.length;
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const data = await client.fetch(`*[_type == "sliderCard"] | order(order asc) {
+          _id,
+          title,
+          image {
+            asset->{
+              _id,
+              url
+            }
+          }
+        }`);
+        console.log("Slider images fetched:", data);
+        const imageUrls = data.map(item => item.image?.asset?.url || "");
+        setImages(imageUrls);
+        if (imageUrls.length > 0) {
+          setCards(createInitialCards(0, imageUrls.length));
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching slider cards:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   const goNext = useCallback(() => {
-    if (animatingRef.current) return;
+    if (animatingRef.current || N === 0) return;
     animatingRef.current = true;
 
     const newCenter = (centerIdx + 1) % N;
@@ -49,10 +80,10 @@ export default function LatestNewsCards() {
     setTimeout(() => {
       animatingRef.current = false;
     }, 750);
-  }, [centerIdx]);
+  }, [centerIdx, N]);
 
   const goPrev = useCallback(() => {
-    if (animatingRef.current) return;
+    if (animatingRef.current || N === 0) return;
     animatingRef.current = true;
 
     const newCenter = (centerIdx - 1 + N) % N;
@@ -69,7 +100,7 @@ export default function LatestNewsCards() {
     setTimeout(() => {
       animatingRef.current = false;
     }, 750);
-  }, [centerIdx]);
+  }, [centerIdx, N]);
 
   // Handler for clicking on side images
   const handleCardClick = (slot) => {
@@ -81,6 +112,16 @@ export default function LatestNewsCards() {
     }
     // No action for center (slot 0) or hidden slots
   };
+
+  if (loading) {
+    return (
+      <div className="relative w-full py-[10vw] md:py-[3vw] bg-black overflow-hidden flex items-center justify-center min-h-[40vw]">
+        <div className="text-white font-mono animate-pulse">LOADING JOURNAL...</div>
+      </div>
+    );
+  }
+
+  if (N === 0) return null;
 
   return (
     <div className="relative w-full py-[10vw] md:py-[3vw] bg-black overflow-hidden">
@@ -160,7 +201,7 @@ export default function LatestNewsCards() {
             }}
           >
             <Image
-              src={IMAGES[card.imageIndex]}
+              src={images[card.imageIndex]}
               alt="slide"
               fill
               sizes="(max-width:768px)100vw,33vw"

@@ -1,14 +1,48 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
 
 export default function SignUpSection() {
   const glossRef = useRef(null);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSignUpData = async () => {
+      try {
+        const signUpData = await client.fetch(`*[_type == "homepage"][0].signupSection {
+          heading,
+          description,
+          subText,
+          buttonText,
+          backgroundImage {
+            asset -> {
+              _id,
+              url
+            }
+          }
+        }`);
+        console.log("Sign Up data fetched:", signUpData);
+        if (signUpData) {
+          setData(signUpData);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching Sign Up data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchSignUpData();
+  }, []);
 
   // Looping glossy border for button (kept as-is)
   useEffect(() => {
+    if (loading || !data) return;
     const gloss = glossRef.current;
     if (!gloss) return;
     gsap.set(gloss, { left: "-60%", opacity: 0.34 });
@@ -26,7 +60,19 @@ export default function SignUpSection() {
       },
     });
     return () => loop && loop.kill();
-  }, []);
+  }, [loading, data]);
+
+  if (loading) {
+    return (
+      <div className="w-full h-[30vw] flex items-center justify-center bg-black">
+        <div className="text-white/20 font-mono animate-pulse tracking-[.5vw]">LOADING SECTION...</div>
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
+  const bgImageUrl = data.backgroundImage?.asset?.url || "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Sign%20Up%20Section.webp";
 
   return (
     <div
@@ -36,8 +82,7 @@ export default function SignUpSection() {
       <motion.div
         className="w-[101%] mx-auto rounded-[2.5vw] md:rounded-[3vw] lg:rounded-[1.5vw] xl:rounded-[0.9vw] shadow-lg flex flex-col items-center justify-center p-[5vw] md:p-[8vw_4vw] lg:p-[4vw_2vw] xl:p-[2.2vw_1.5vw] min-h-[40vw] md:min-h-[45vw] lg:min-h-[25vw] xl:min-h-[20vw]"
         style={{
-          backgroundImage:
-            "url('https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/HomePage/Sign%20Up%20Section.webp')",
+          backgroundImage: `url('${bgImageUrl}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -59,7 +104,7 @@ export default function SignUpSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
-          JOIN THE FAMILY
+          {data.heading || "JOIN THE FAMILY"}
         </motion.h2>
 
         <motion.p
@@ -70,7 +115,7 @@ export default function SignUpSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
         >
-          Sign up for the Peckers loyalty scheme and get a free milkshake on us today.
+          {data.description || "Sign up for the Peckers loyalty scheme and get a free milkshake on us today."}
         </motion.p>
 
         <motion.p
@@ -81,7 +126,7 @@ export default function SignUpSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.35 }}
         >
-          Collect chicken heads as you go. Earn rewards at 3 and 6, then reach 10 for a free meal
+          {data.subText || "Collect chicken heads as you go. Earn rewards at 3 and 6, then reach 10 for a free meal"}
         </motion.p>
 
         <motion.div
@@ -120,7 +165,7 @@ export default function SignUpSection() {
                 transform: "rotate(-14deg)",
               }}
             ></span>
-            <span style={{ position: "relative", zIndex: 3 }}>CLAIM MY SHAKE</span>
+            <span style={{ position: "relative", zIndex: 3 }}>{data.buttonText || "CLAIM MY SHAKE"}</span>
             <span
               aria-hidden
               style={{

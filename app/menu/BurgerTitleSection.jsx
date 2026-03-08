@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
 
 // SVG as a React Component - only the blurred radial shadow
 const DropShadowSVG = () => (
@@ -46,76 +48,6 @@ const DropShadowSVG = () => (
   </svg>
 );
 
-const BURGERS = [
-  {
-    name: "OG BURGER",
-    image:
-      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Image%201.webp",
-    boost: 0.9,
-  },
-  {
-    name: "BBQ CLASSIC",
-    image:
-      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Imaeg%202%20BBQ.webp",
-    boost: 0.95,
-  },
-  {
-    name: "HOT BURGER",
-    image:
-      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20REd-Picsart-AiImageEnhancer.webp",
-    boost: 1.45,
-  },
-  {
-    name: "NORMAL CHEESE",
-    image:
-      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20lit%20yellow.webp",
-    boost: 1.85,
-  },
-  {
-    name: "MORE CHEESE",
-    image:
-      "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20image%20more%20cheese%20one.webp",
-    boost: 1.3,
-  },
-  {
-    name: "TRUFFLE DELIGHT",
-    image: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20lit%20yellow.webp",
-    boost: 1.85,
-  },
-  {
-    name: "THE LEAN MACHINE",
-    image: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20Image%201.webp",
-    boost: 0.9,
-  },
-  {
-    name: "SPICY GHOST",
-    image: "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Burger%20REd-Picsart-AiImageEnhancer.webp",
-    boost: 1.45,
-  }
-];
-
-const TOTAL = BURGERS.length;
-
-// Ensure card ids are unique across new renders
-const makeCard = (() => {
-  let globalId = 0;
-  return (index, slot) => ({
-    id: globalId++,
-    index,
-    slot,
-  });
-})();
-
-const createInitialCards = (center) => [
-  makeCard((center - 3 + TOTAL) % TOTAL, -3),
-  makeCard((center - 2 + TOTAL) % TOTAL, -2),
-  makeCard((center - 1 + TOTAL) % TOTAL, -1),
-  makeCard(center % TOTAL, 0),
-  makeCard((center + 1) % TOTAL, 1),
-  makeCard((center + 2) % TOTAL, 2),
-  makeCard((center + 3) % TOTAL, 3),
-];
-
 const POS_MAPPING_TABLET = {
   0: { x: 0, y: 0, scale: 1, opacity: 1, z: 10 },
   1: { x: 30, y: -50, scale: 0.45, opacity: 0.85, z: 5 },
@@ -147,31 +79,52 @@ function getSlotPos(slot, isLaptop = false) {
   };
 }
 
-function getModIndex(idx) {
-  return ((idx % TOTAL) + TOTAL) % TOTAL;
-}
-
 export default function BurgerCarouselFinal() {
-  const [carousel, setCarousel] = useState(() => ({
-    center: 0,
-    cards: BURGERS.map((_, i) => {
-      let diff = i;
-      if (diff > TOTAL / 2) diff -= TOTAL;
-      if (diff < -TOTAL / 2) diff += TOTAL;
-      return { id: i, index: i, slot: diff };
-    }),
-  }));
-
-  // animatingRef is used ONLY as a guard inside moveBy to avoid stale closures.
+  const [burgers, setBurgers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [carousel, setCarousel] = useState({ center: 0, cards: [] });
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [glowVisible, setGlowVisible] = useState(true);
-  const [mobileDirection, setMobileDirection] = useState(1); // 1 = next (right→left), -1 = prev (left→right)
+
+  const TOTAL = burgers.length;
+
+  useEffect(() => {
+    const fetchBurgers = async () => {
+      try {
+        const data = await client.fetch(`*[_type == "menuPage"][0].burgerCarousel`);
+        if (data && data.length > 0) {
+          const transformed = data.map((item, i) => ({
+            name: item.name,
+            image: urlFor(item.image).url(),
+            boost: item.boost || 1,
+          }));
+          setBurgers(transformed);
+
+          const initialCards = transformed.map((_, i) => {
+            let diff = i;
+            if (diff > data.length / 2) diff -= data.length;
+            if (diff < -data.length / 2) diff += data.length;
+            return { id: i, index: i, slot: diff };
+          });
+          setCarousel({ center: 0, cards: initialCards });
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching burger data:", error);
+        setLoading(false);
+      }
+    };
+    fetchBurgers();
+  }, []);
+
+  const getModIndex = useCallback((idx) => {
+    return ((idx % TOTAL) + TOTAL) % TOTAL;
+  }, [TOTAL]);
 
   const moveBy = useCallback((steps) => {
-    if (steps === 0 || animatingRef.current) return;
+    if (steps === 0 || animatingRef.current || TOTAL === 0) return;
 
-    setMobileDirection(steps > 0 ? 1 : -1);
     animatingRef.current = true;
     setIsAnimating(true);
     setGlowVisible(false);
@@ -179,16 +132,11 @@ export default function BurgerCarouselFinal() {
     setCarousel((prev) => {
       const nextCenter = getModIndex(prev.center + steps);
       const nextCards = prev.cards.map((card) => {
-        // Calculate the raw difference
         let diff = card.index - nextCenter;
-
-        // Normalize to the shortest path around the circle [-TOTAL/2 to TOTAL/2]
         if (diff > TOTAL / 2) diff -= TOTAL;
         if (diff < -TOTAL / 2) diff += TOTAL;
-
         return { ...card, slot: diff };
       });
-
       return { center: nextCenter, cards: nextCards };
     });
 
@@ -200,7 +148,7 @@ export default function BurgerCarouselFinal() {
       animatingRef.current = false;
       setIsAnimating(false);
     }, 650);
-  }, []);
+  }, [getModIndex, TOTAL]);
 
   const handleCardClick = useCallback(
     (clickedSlot) => {
@@ -211,6 +159,19 @@ export default function BurgerCarouselFinal() {
 
   const goNext = useCallback(() => moveBy(1), [moveBy]);
   const goPrev = useCallback(() => moveBy(-1), [moveBy]);
+
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white/20 font-['Share_Tech'] animate-pulse tracking-[.5vw] text-2xl"
+          style={{ fontFamily: "var(--font-peakers)" }}>
+          LOADING MENU...
+        </div>
+      </div>
+    );
+  }
+
+  if (TOTAL === 0) return null;
 
   return (
     <>
@@ -313,7 +274,7 @@ export default function BurgerCarouselFinal() {
 
           {/* Mobile-only: simple carousel */}
           {carousel.cards.map((card) => {
-            const burger = BURGERS[card.index];
+            const burger = burgers[card.index];
             const isCenter = card.slot === 0;
 
             return (
@@ -356,7 +317,7 @@ export default function BurgerCarouselFinal() {
           {/* Tablet-only: full multi-card stacked carousel */}
           {carousel.cards.map((card) => {
             const cfg = getSlotPos(card.slot, false);
-            const burger = BURGERS[card.index];
+            const burger = burgers[card.index];
             const isCenter = card.slot === 0;
 
             return (
@@ -407,7 +368,7 @@ export default function BurgerCarouselFinal() {
           {/* Laptop-only: full multi-card stacked carousel (7 items) */}
           {carousel.cards.map((card) => {
             const cfg = getSlotPos(card.slot, true);
-            const burger = BURGERS[card.index];
+            const burger = burgers[card.index];
             const isCenter = card.slot === 0;
 
             return (
@@ -470,7 +431,7 @@ export default function BurgerCarouselFinal() {
               textShadow: "0px 2px 6px rgba(0,0,0,0.4)",
             }}
           >
-            {BURGERS[carousel.center].name}
+            {burgers[carousel.center]?.name}
           </h1>
         </div>
       </div>
