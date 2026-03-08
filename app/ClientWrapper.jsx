@@ -6,6 +6,8 @@ import Preloader from "./components/Preloader";
 import SmoothScroll from "./SmoothScroll";
 import MobileBottomBar from "./components/MobileBottomBar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navbar from "./Navbar";
+import ConditionalFooter from "./ConditionalFooter";
 
 export default function ClientWrapper({ children }) {
   const pathname = usePathname();
@@ -52,6 +54,12 @@ export default function ClientWrapper({ children }) {
     setLoadingDone(true);
   }, []);
 
+  const isStudio = pathname?.startsWith("/studio");
+
+  if (isStudio) {
+    return <>{children}</>;
+  }
+
   return (
     <>
       {!loadingDone && (
@@ -59,6 +67,7 @@ export default function ClientWrapper({ children }) {
       )}
 
       {/* Wrap children and hide them temporarily while loading to avoid the unstyled flash on slow connections */}
+      <Navbar />
       <SmoothScroll lenisRef={lenisRef}>
         <div
           id="main-content"
@@ -67,6 +76,7 @@ export default function ClientWrapper({ children }) {
           {children}
         </div>
       </SmoothScroll>
+      <ConditionalFooter />
 
       {/* Global Fixed Mobile Bottom Bar */}
       {pathname !== '/menu' && <MobileBottomBar />}

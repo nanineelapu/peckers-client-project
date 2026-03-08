@@ -1,34 +1,30 @@
 
 
-import React from "react";
-
-const timelineData = [
-    {
-        year: "2025",
-        title: "PECKERS IS BORN",
-        description:
-            "Back where it started. Peckers opens in the same spot as Grandad's original store.",
-        borderStyle: "border-dashed border-zinc-700",
-    },
-    {
-        year: "1978",
-        title: "GRANDAD'S OFF-LICENSE STORE",
-        description:
-            "Where the passion for quality produce began. The original inspiration.",
-        highlight: true,
-    },
-    {
-        year: "2002",
-        title: "WALKERN BUDGENS",
-        description:
-            "Taking the next step. A new chapter serving the local community.",
-        borderStyle: "border-solid border-zinc-800",
-    },
-];
-
+import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
+import { client } from "../../sanity/lib/client";
 
 export default function PeckersTimeline() {
+    const [timelineData, setTimelineData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTimeline = async () => {
+            try {
+                const data = await client.fetch(`*[_type == "ourStoryPage"][0]{timeline}`);
+                if (data?.timeline) {
+                    setTimelineData(data.timeline);
+                }
+            } catch (error) {
+                console.error("Error fetching timeline data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchTimeline();
+    }, []);
+
+    if (loading) return null; // Or a subtle loader if needed
 
     return (
         <div className="bg-black z-10 text-white flex justify-center py-[1vw] md:py-[1vw] font-peckers">

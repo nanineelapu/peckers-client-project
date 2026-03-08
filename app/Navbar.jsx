@@ -1,15 +1,31 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { client } from "../sanity/lib/client";
 
 export default function Navbar() {
+  const [settings, setSettings] = useState(null);
   const pathname = usePathname();
   const hideOrderButtons = pathname === "/menu" || pathname === "/sauces";
   const [open, setOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [journeyOpen, setJourneyOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const data = await client.fetch(`*[_type == "siteSettings"][0]`);
+        if (data) {
+          setSettings(data);
+        }
+      } catch (error) {
+        console.error("Error fetching site settings:", error);
+      }
+    };
+    fetchSettings();
+  }, []);
 
   return (
     <nav className="relative flex items-center px-4 py-4 md:px-[2vw] md:py-[1.2vw] lg:px-[2.5vw] lg:py-[1.5vw] xl:px-[1.8vw] xl:py-[.4vw] bg-black text-white font-['Share_Tech']">
@@ -119,14 +135,24 @@ export default function Navbar() {
           <a href="/careers" onClick={() => setOpen(false)}>CAREERS</a>
 
           {!hideOrderButtons && (
-          <div className="flex flex-col gap-4 mt-2 w-3/4">
-            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
-              CLICK & COLLECT
-            </button>
-            <button className="border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black">
-              DELIVERY
-            </button>
-          </div>
+            <div className="flex flex-col gap-4 mt-2 w-3/4">
+              <a
+                href={settings?.clickCollectUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black"
+              >
+                CLICK & COLLECT
+              </a>
+              <a
+                href={settings?.deliveryUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black"
+              >
+                DELIVERY
+              </a>
+            </div>
           )}
         </div>
       </div>

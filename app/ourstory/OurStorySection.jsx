@@ -1,7 +1,41 @@
 
+import { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
 
 export default function OurStorySection() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStory = async () => {
+      try {
+        const storyData = await client.fetch(`*[_type == "ourStoryPage"][0]`);
+        if (storyData) {
+          setData(storyData);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching story data:", error);
+        setLoading(false);
+      }
+    };
+    fetchStory();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white/20 font-['Share_Tech'] animate-pulse tracking-[.5vw] text-2xl">
+          THE STORY REVEALING...
+        </div>
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
   return (
     <section className="relative w-full min-h-[60vh] md:min-h-screen pt-[5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center overflow-hidden">
       {/* BACKGROUND SVG LAYER */}
@@ -53,7 +87,7 @@ export default function OurStorySection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
-            A FAMILY LEGACY, <br className="hidden md:block" /> REIMAGINED
+            {data.heading || "A FAMILY LEGACY, REIMAGINED"}
           </motion.h2>
 
 
@@ -64,21 +98,20 @@ export default function OurStorySection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           >
-            <p>
-              I didn’t grow up dreaming about building a brand. I grew up behind a counter.
-            </p>
-
-            <p>
-              My granddad opened his supermarket in Westmill in 1978. I watched what it meant to serve people properly — remembering names, staying late, looking after the community when it mattered.
-            </p>
-
-            <p>
-              Years later, I walked into Budgens. Then came the renovation. Then came Peckers.
-            </p>
+            {data.content ? (
+              data.content.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))
+            ) : (
+              <>
+                <p>I didn’t grow up dreaming about building a brand. I grew up behind a counter.</p>
+                <p>My granddad opened his supermarket in Westmill in 1978. I watched what it meant to serve people properly — remembering names, staying late, looking after the community when it mattered.</p>
+                <p>Years later, I walked into Budgens. Then came the renovation. Then came Peckers.</p>
+              </>
+            )}
 
             <p className="border-l-2 font-sans font-extralight border-white/30 pl-6 text-[#9CA3AF]">
-              This wasn’t built in a boardroom. It was built by
-              <br />showing up, every day.
+              {data.quote || "This wasn’t built in a boardroom. It was built by showing up, every day."}
             </p>
           </motion.div>
 
@@ -88,11 +121,13 @@ export default function OurStorySection() {
         <div className="w-[52%] md:w-1/2 h-[55vw] md:h-screen px-[2vw] flex flex-col items-center justify-center bg-black pt-0 md:pt-0">
           {/* Image with 3-panel staggered reveal */}
           <div className="relative w-full h-[90%] overflow-hidden">
-            <img
-              src={"https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/OurStory/Founder%20Portrait%20black%20and%20white%20high%20contrast%20%281%29.webp"}
-              alt="Founder"
-              className="w-full h-full object-contain"
-            />
+            {data.founderImage && (
+              <img
+                src={urlFor(data.founderImage).url()}
+                alt="Founder"
+                className="w-full h-full object-contain"
+              />
+            )}
             {/* Panel 1 — top third */}
             <motion.div
               initial={{ y: "0%" }}

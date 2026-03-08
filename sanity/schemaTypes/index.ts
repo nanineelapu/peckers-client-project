@@ -7,8 +7,13 @@ import sliderCard from './sliderCard'
 import homepagePersonDetails from './homepagePersonDetails'
 import footer from './footer'
 import menupage from './menupage'
+import ourstorypage from './ourstorypage'
+import ourstorybottompage from './ourstorybottompage'
+import mobileBottomButtons from './mobileBottomButtons'
+import locationPage from './locationPage'
+import mapSection from './mapSection'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [category, product, homepage, location, sliderCard, homepagePersonDetails, footer, menupage],
+  types: [category, product, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, ourstorybottompage, mobileBottomButtons, locationPage, mapSection],
 }
 

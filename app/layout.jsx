@@ -56,9 +56,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${peakersFont.variable} ${spaceMono.variable} ${inconsolata.variable} antialiased`}
       >
         <ClientWrapper>
-          <Navbar />
           {children}
-          <ConditionalFooter />
         </ClientWrapper>
       </body>
     </html>

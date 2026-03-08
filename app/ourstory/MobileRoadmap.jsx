@@ -1,46 +1,8 @@
 "use client";
 
-import React, { useId } from "react";
+import React, { useId, useState, useEffect } from "react";
 import { motion } from 'framer-motion';
-
-const timelineData = [
-    {
-        year: "1978",
-        title: "GRANDAD'S OFF-LICENSE STORE",
-        description: "Where the passion for quality produce began. The original inspiration.",
-        highlight: true,
-    },
-    {
-        year: "2002",
-        title: "WALKERN BUDGENS",
-        description: "Taking the next step. A new chapter serving the local community.",
-        borderStyle: "border-solid border-zinc-800",
-    },
-    {
-        year: "OCT 2019",
-        title: "STORE RENOVATION",
-        description: "A fresh new look for Walkern Budgens. Modern space, same community heart.",
-        borderStyle: "border-solid border-zinc-800",
-    },
-    {
-        year: "MARCH 2020",
-        title: "COMMUNITY FIRST",
-        description: "During COVID-19, we stepped up — supporting locals when it mattered most.",
-        highlight: true,
-    },
-    {
-        year: "APR 2022 & OCT 2022",
-        title: "HITCHIN & STEWALTON & MEPPERSHALL ENAGE",
-        description: "Two new locations. Small footprint, big impact.",
-        borderStyle: "border-solid border-zinc-800",
-    },
-    {
-        year: "2025",
-        title: "PECKERS IS BORN",
-        description: "Back where it started. Peckers opens in the same spot as Grandad's original store.",
-        borderStyle: "border-dashed border-zinc-700",
-    }
-];
+import { client } from "../../sanity/lib/client";
 
 const ArrowLeftToRight = () => {
     const id = useId();
@@ -97,6 +59,27 @@ const ArrowRightToLeft = () => {
 };
 
 export default function MobileRoadmap() {
+    const [roadmapData, setRoadmapData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchRoadmap = async () => {
+            try {
+                const data = await client.fetch(`*[_type == "ourStoryBottomPage"][0].mobileRoadmap`);
+                if (data) {
+                    setRoadmapData(data);
+                }
+            } catch (error) {
+                console.error("Error fetching mobile roadmap:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchRoadmap();
+    }, []);
+
+    if (loading || !roadmapData) return null;
+
     return (
         <section className="block lg:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] pt-[10vw] md:pt-[6vw] pb-[20vw] md:pb-[10vw] overflow-hidden">
 
@@ -109,17 +92,17 @@ export default function MobileRoadmap() {
                 className="flex flex-col items-center w-full mb-[8vw] md:mb-[5vw]"
             >
                 <h2 className="text-[7.5vw] md:text-[5vw] xl:text-[4vw] text-center font-bold leading-none font-peakers px-[1vw] tracking-wide mb-[2vw]">
-                    A LEGACY THAT CAME FULL CIRCLE
+                    {roadmapData.heading || "A LEGACY THAT CAME FULL CIRCLE"}
                 </h2>
                 <span className="text-white/60 tracking-widest font-sans text-[4vw] md:text-[2.5vw] xl:text-[1.5vw]">
-                    EST. 1978
+                    {roadmapData.estYear || "EST. 1978"}
                 </span>
                 <div className="w-full h-px bg-[#1F2937] mt-[6vw]"></div>
             </motion.div>
 
             {/* Timeline container */}
             <div className="flex flex-col w-full relative">
-                {timelineData.map((item, index) => {
+                {roadmapData.timeline?.map((item, index) => {
                     const isRight = index % 2 === 1; // 0=Left, 1=Right, 2=Left, 3=Right...
                     return (
                         <React.Fragment key={index}>
@@ -154,7 +137,7 @@ export default function MobileRoadmap() {
                             </motion.div>
 
                             {/* Insert appropriate arrow */}
-                            {index < timelineData.length - 1 && (
+                            {index < roadmapData.timeline.length - 1 && (
                                 isRight ? <ArrowRightToLeft /> : <ArrowLeftToRight />
                             )}
                         </React.Fragment>

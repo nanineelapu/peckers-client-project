@@ -1,8 +1,32 @@
-
+"use client";
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { client } from "../../sanity/lib/client";
 
 export default function StoryCircle() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCircleData = async () => {
+            try {
+                const result = await client.fetch(`*[_type == "ourStoryPage"][0]{
+                    circleSectionHeading,
+                    establishedYear
+                }`);
+                if (result) setData(result);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching circle section data:", error);
+                setLoading(false);
+            }
+        };
+        fetchCircleData();
+    }, []);
+
+    if (loading) return null;
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -16,8 +40,8 @@ export default function StoryCircle() {
             <div className="flex flex-col md:flex-row items-center w-full gap-[3vw] md:gap-4">
 
                 {/* Heading */}
-                <h2 className="text-[7.5vw] md:text-[3.4vw] text-center md:text-left font-bold leading-none font-peakers px-[1vw] tracking-wide md:whitespace-nowrap">
-                    A LEGACY THAT CAME FULL CIRCLE
+                <h2 className="text-[7.5vw] md:text-[3.4vw] text-center md:text-left font-bold leading-none font-peakers px-[1vw] tracking-wide md:whitespace-nowrap uppercase">
+                    {data?.circleSectionHeading || "A LEGACY THAT CAME FULL CIRCLE"}
                 </h2>
 
                 {/* Line - hidden on mobile since text wraps and centers */}
@@ -31,7 +55,7 @@ export default function StoryCircle() {
 
                 {/* Year */}
                 <span className="text-white/60 tracking-widest font-sans md:mr-[1.5vw] text-[4vw] md:text-sm whitespace-nowrap">
-                    EST. 1978
+                    {data?.establishedYear ? `EST. ${data.establishedYear}` : "EST. 1978"}
                 </span>
 
             </div>
