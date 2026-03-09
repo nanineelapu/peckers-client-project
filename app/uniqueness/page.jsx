@@ -17,7 +17,6 @@ const page = () => {
       <UniquenessLandingPage />
       <SubSections />
 
-      <SubFooter />
 
     </div>
   )
