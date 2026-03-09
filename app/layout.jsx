@@ -46,7 +46,13 @@ export const metadata = {
   title: "Peakers",
   description:
     "Peakers - Your Ultimate Destination for Premium Automotive Accessories",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }) {

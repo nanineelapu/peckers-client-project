@@ -14,4 +14,4 @@ const SaucesPage = () => {
     );
 };
 
-export default page;
+export default SaucesPage;
