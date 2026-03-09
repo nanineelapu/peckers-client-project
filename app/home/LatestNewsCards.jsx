@@ -39,18 +39,17 @@ export default function LatestNewsCards() {
         const data = await client.fetch(`*[_type == "sliderCard"] | order(order asc) {
           _id,
           title,
-          image {
-            asset->{
-              _id,
-              url
-            }
-          }
+          image,
+          order
         }`);
-        console.log("Slider images fetched:", data);
-        const imageUrls = data.map(item => item.image?.asset?.url || "");
-        setImages(imageUrls);
-        if (imageUrls.length > 0) {
-          setCards(createInitialCards(0, imageUrls.length));
+        console.log("Slider data fetched:", data);
+
+        // Filter out items without an image to avoid broken src
+        const validCards = data.filter(item => item.image?.asset);
+
+        if (validCards.length > 0) {
+          setImages(validCards);
+          setCards(createInitialCards(0, validCards.length));
         }
         setLoading(false);
       } catch (error) {
@@ -201,10 +200,10 @@ export default function LatestNewsCards() {
             }}
           >
             <Image
-              src={images[card.imageIndex]}
-              alt="slide"
+              src={urlFor(images[card.imageIndex].image).url()}
+              alt={images[card.imageIndex].title || "slide"}
               fill
-              sizes="(max-width:768px)100vw,33vw"
+              sizes="(max-width:768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
           </div>
