@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SaucePageOne from "./saucepageone";
 import Navbar from "../Navbar";
 
-const page = () => {
+const SaucesPage = () => {
     const [open, setOpen] = useState(false);
     const [locationsOpen, setLocationsOpen] = useState(false);
 

@@ -29,7 +29,9 @@ export default function Preloader({ onComplete = () => { } }) {
       }
 
       // If we are on homepage and haven't shown it yet, render the preloader
-      setShouldRender(true);
+      setTimeout(() => {
+        setShouldRender(true);
+      }, 0);
     }
   }, [isHomePage, onComplete]);
 
@@ -110,7 +112,7 @@ export default function Preloader({ onComplete = () => { } }) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-white"
     >
       <h1
         ref={textRef}
