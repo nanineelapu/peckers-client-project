@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState } from "react";
 import CareersLandingPage from "./CareersLandingPage";
 import CrewPage from "./CrewPage";
@@ -6,7 +6,7 @@ import RolesWithPeckers from "./RolesWithPeckers";
 import ApplyDetailsPage from "./ApplyDetailsPage";
 import Navbar from "../Navbar";
 
-const page = () => {
+const CareersPage = () => {
     const [open, setOpen] = useState(false);
     const [locationsOpen, setLocationsOpen] = useState(false);
     const [journeyOpen, setJourneyOpen] = useState(false);
@@ -22,4 +22,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default CareersPage;

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 import React from 'react'
 import BurgerPageText from './BurgerPageText'
 import BurgerTitleSection from './BurgerTitleSection'
 
-const page = () => {
+const MenuPage = () => {
   return (
     <div id="main-content">
 
@@ -13,4 +13,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default MenuPage;

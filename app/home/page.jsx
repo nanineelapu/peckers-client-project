@@ -12,7 +12,7 @@ import SignUpSection from "./SignUpSection";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-const page = () => {
+const HomePage = () => {
 
   return (
 
@@ -162,4 +162,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default HomePage;
