@@ -13,41 +13,6 @@
   {
     "fields": [
       {
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "name": "price",
-        "type": "number"
-      },
-      {
-        "name": "description",
-        "type": "text"
-      },
-      {
-        "name": "available",
-        "type": "boolean"
-      },
-      {
-        "to": [
-          {
-            "type": "category"
-          }
-        ],
-        "name": "category",
-        "type": "reference"
-      },
-      {
-        "name": "image",
-        "type": "image"
-      }
-    ],
-    "name": "product",
-    "type": "document"
-  },
-  {
-    "fields": [
-      {
         "name": "heroTitle",
         "type": "string"
       },
@@ -522,6 +487,33 @@
   {
     "fields": [
       {
+        "name": "year",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "highlight",
+        "type": "boolean"
+      },
+      {
+        "description": "The order in which the timeline point appears.",
+        "name": "order",
+        "type": "number"
+      }
+    ],
+    "name": "timeline",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
         "fields": [
           {
             "name": "heading",
@@ -873,6 +865,300 @@
       }
     ],
     "name": "mapSection",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "title": "Review Text"
+      },
+      {
+        "name": "gradient",
+        "type": "string"
+      }
+    ],
+    "name": "review",
+    "type": "document",
+    "title": "Rating Card"
+  },
+  {
+    "fields": [
+      {
+        "name": "locationName",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "locationName"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "events",
+        "type": "array",
+        "title": "Event Types"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "placeholder",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Number",
+                      "value": "number"
+                    },
+                    {
+                      "title": "Date",
+                      "value": "date"
+                    },
+                    {
+                      "title": "Time",
+                      "value": "time"
+                    },
+                    {
+                      "title": "Textarea",
+                      "value": "textarea"
+                    }
+                  ]
+                },
+                "name": "type",
+                "type": "string",
+                "title": "Input Type"
+              }
+            ],
+            "type": "object",
+            "name": "formField"
+          }
+        ],
+        "name": "formFields",
+        "type": "array"
+      },
+      {
+        "name": "buttonText",
+        "type": "string",
+        "title": "Submit Button Text"
+      }
+    ],
+    "name": "enquiriesSection",
+    "type": "document",
+    "title": "Location Page Enquiries Section"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "descLine1",
+        "type": "string",
+        "title": "Description Line 1"
+      },
+      {
+        "name": "descLine2",
+        "type": "string",
+        "title": "Description Line 2"
+      },
+      {
+        "name": "descLine3",
+        "type": "string",
+        "title": "Description Line 3"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "bgImage",
+        "type": "image",
+        "title": "Background Image"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "sauceImage",
+        "type": "image"
+      }
+    ],
+    "name": "sauce",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "backgroundImage",
+        "type": "image"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "gradientImage",
+        "type": "image",
+        "title": "Gradient Overlay"
+      },
+      {
+        "name": "titleLine1",
+        "type": "string"
+      },
+      {
+        "name": "titleLine2",
+        "type": "string"
+      },
+      {
+        "name": "titleHighlight",
+        "type": "string",
+        "title": "Highlighted Title"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "uniquenessLanding",
+    "type": "document",
+    "title": "Uniqueness Landing Section"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "previewText",
+                "type": "text"
+              },
+              {
+                "name": "expandedText",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "sections",
+        "type": "array"
+      }
+    ],
+    "name": "uniquenessSubSection",
+    "type": "document",
+    "title": "Uniqueness Sub Sections"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Stevenage",
+              "value": "stevenage"
+            },
+            {
+              "title": "Hitchin",
+              "value": "hitchin"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "stevenage",
+                  "hitchin"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "name": "established",
+        "type": "string"
+      },
+      {
+        "name": "historyText",
+        "type": "text"
+      }
+    ],
+    "name": "locationHistory",
     "type": "document"
   }
 ]

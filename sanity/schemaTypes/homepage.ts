@@ -9,6 +9,14 @@ export default defineType({
         defineField({ name: "heroSubtitle", type: "text" }),
         defineField({ name: "heroImage", type: "image" }),
         defineField({
+            name: "heroVideo",
+            title: "Hero Background Video",
+            type: "file",
+            options: {
+                accept: "video/*"
+            }
+        }),
+        defineField({
             name: "ratingSection",
             title: "Rating Section",
             type: "object",

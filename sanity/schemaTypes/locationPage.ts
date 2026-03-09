@@ -22,8 +22,16 @@ export default defineType({
             type: "string",
         }),
         defineField({
+            name: "heroVideo",
+            title: "Hero Background Video (Upload)",
+            type: "file",
+            options: {
+                accept: "video/*"
+            }
+        }),
+        defineField({
             name: "heroVideoUrl",
-            title: "Hero Video URL",
+            title: "Hero Video URL (External)",
             type: "url",
         }),
         defineField({

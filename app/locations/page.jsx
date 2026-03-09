@@ -16,7 +16,11 @@ export function LocationsPageContent({ location = 'hitchin' }) {
         const fetchPageData = async () => {
             try {
                 // Fetch location page data based on slug
-                const query = `*[_type == "locationpage" && slug.current == $location][0]`;
+                const query = `*[_type == "locationpage" && slug.current == $location][0]{
+                    ...,
+                    "videoUrl": heroVideo.asset->url,
+                    heroVideoUrl
+                }`;
                 const data = await client.fetch(query, { location });
                 setPageData(data);
             } catch (error) {
@@ -40,17 +44,28 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="w-full flex flex-col items-center justify-center" style={{ background: "#bbbbbb", minHeight: "70vh" }}>
-                <div className="text-white text-[10vw] font-bold leading-tight" style={{ fontFamily: "var(--font-peakers)", letterSpacing: '0.1em', }}>
+                className="w-full flex flex-col items-center justify-center relative overflow-hidden" style={{ minHeight: "70vh" }}>
+
+                {/* Background Video from Sanity */}
+                {(pageData?.videoUrl || pageData?.heroVideoUrl) && (
+                    <video
+                        src={pageData.videoUrl || pageData.heroVideoUrl}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover opacity-70"
+                    />
+                )}
+
+                {/* Gray fallback if no video */}
+                {!(pageData?.videoUrl || pageData?.heroVideoUrl) && (
+                    <div className="absolute inset-0 bg-[#bbbbbb]"></div>
+                )}
+
+                <div className="text-white text-[10vw] font-bold leading-tight relative z-10" style={{ fontFamily: "var(--font-peakers)", letterSpacing: '0.1em', textShadow: "0 4px 20px rgba(0,0,0,0.5)" }}>
                     {locationTitle}
                 </div>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mt-2 text-[#b2bac8] text-[3vw] italic" style={{ fontFamily: "var(--font-peakers)" }}>
-                    (HERO VIDEO)
-                </motion.div>
             </motion.div>
 
             <div>
