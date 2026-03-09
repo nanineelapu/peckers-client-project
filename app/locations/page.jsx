@@ -3,50 +3,36 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import EnquiriesSection from './EnquireSection'
 import LocationAddress from './LocationAddress'
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
 
 export function LocationsPageContent({ location = 'hitchin' }) {
-    const [data, setData] = useState(null);
+    const [pageData, setPageData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchPageData = async () => {
             try {
-                // High-performance consolidated query to fetch all sections at once
-                const query = `{
-                    "page": *[_type == "locationpage" && slug.current == $location][0],
-                    "map": *[_type == "mapSection" && slug.current == $location][0],
-                    "enquiry": *[_type == "enquiriesSection" && slug.current == $location][0]
-                }`;
-
-                const result = await client.fetch(query, { location });
-                setData(result);
+                // Fetch location page data based on slug
+                const query = `*[_type == "locationpage" && slug.current == $location][0]`;
+                const data = await client.fetch(query, { location });
+                setPageData(data);
             } catch (error) {
                 console.error("Error fetching location page data:", error);
             } finally {
                 setLoading(false);
             }
         };
-
-        fetchData();
+        fetchPageData();
     }, [location]);
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-black text-white">
-                <div className="animate-pulse font-mono tracking-widest text-[#555]">LOADING PECKERS {location.toUpperCase()}...</div>
-            </div>
-        );
-    }
-
-    if (!data?.page) return (
-        <div className="flex items-center justify-center min-h-screen bg-black text-white px-6 text-center">
-            <div className="font-mono opacity-50 uppercase text-xs">Location "{location}" not found in CMS.</div>
-        </div>
-    );
-
-    const { page, map, enquiry } = data;
+    const locationTitle = pageData?.name?.toUpperCase() || (location === 'stevenage' ? 'STEVENAGE' : 'HITCHIN');
+    const establishedText = pageData?.established || (location === 'stevenage' ? 'EST. 2024' : 'EST. 2023');
+    const historyTitle = pageData?.historyTitle || "HISTORY";
+    const historyDescription = pageData?.historyDescription;
+    const logoUrl = pageData?.logo ? urlFor(pageData.logo).url() : "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/MenuPage/Location%20logo%20png.webp";
 
     return (
         <div id="main-content" className='z-9999' style={{ color: 'white' }}>
@@ -54,85 +40,127 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="w-full flex flex-col items-center justify-center" style={{ background: "#1a1a1a", minHeight: "70vh" }}>
+                className="w-full flex flex-col items-center justify-center" style={{ background: "#bbbbbb", minHeight: "70vh" }}>
                 <div className="text-white text-[10vw] font-bold leading-tight" style={{ fontFamily: "var(--font-peakers)", letterSpacing: '0.1em', }}>
-                    {page.name?.toUpperCase()}
+                    {locationTitle}
                 </div>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mt-2 text-[#b2bac8] text-[3vw] md:text-[1.2vw] italic tracking-widest" style={{ fontFamily: "var(--font-peakers)" }}>
-                    {page.heroVideoUrl ? "(HERO VIDEO ACTIVE)" : "(ESTABLISHED " + page.established + ")"}
+                    className="mt-2 text-[#b2bac8] text-[3vw] italic" style={{ fontFamily: "var(--font-peakers)" }}>
+                    (HERO VIDEO)
                 </motion.div>
             </motion.div>
 
-            {/* Pass fetched data directly to sections */}
             <div>
-                <LocationAddress data={map} location={location} />
+                <LocationAddress location={location} />
             </div>
 
-            <section id='history'>
+            <section
+                id='history'
+            >
                 <div className="flex flex-col items-center mt-[12vw] md:mt-[6vw] justify-center w-full pt-[8vw] md:pt-[2vw] pb-[12vw] md:pb-[4vw] bg-[#0A0A0B]">
                     <div className="flex flex-col items-center w-[90vw] md:w-[80vw]">
-                        <div className="flex flex-col md:flex-row items-center mb-[6vw] md:mb-[1.6vw] relative w-full justify-center">
+                        {/* History Title, Logo, EST */}
+                        <div className="flex flex-col md:flex-row items-center mb-[6vw] md:mb-[1.6vw] mr-0 md:mr-[16vw] relative w-full justify-center">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.7, ease: "easeOut" }}
-                                className="relative w-[30vw] h-[30vw] md:w-[10vw] md:h-[10vw] flex items-center justify-center mb-[4vw] md:mb-[0.8vw]"
+                                className="relative w-[30vw] h-[30vw] md:w-[10vw] md:h-[10vw] flex items-center justify-center mb-[4vw] md:mb-[0.8vw] self-center md:self-start mr-0 md:mr-[44vw]"
                             >
-                                {page.logo && (
-                                    <img
-                                        src={urlFor(page.logo).url()}
-                                        alt={`${page.name} Logo`}
-                                        className="rounded-full shadow-2xl transition-transform hover:scale-105 duration-700"
-                                        style={{
-                                            width: '100%',
-                                            height: '100%',
-                                            objectFit: 'contain',
-                                            background: '#181818',
-                                            border: '2px solid #222'
-                                        }}
-                                    />
-                                )}
+                                <img
+                                    src={logoUrl}
+                                    alt={`Peckers ${locationTitle} Logo`}
+                                    className="rounded-full shadow-lg"
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'contain',
+                                        background: '#181818',
+                                        marginBottom: '2vw'
+                                    }}
+                                />
                             </motion.div>
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                                className="flex flex-col items-center ml-0 md:ml-[4vw] mt-4 md:mt-0">
-                                <div className="flex items-center mb-2">
-                                    <span className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#333] mr-4" aria-hidden="true"></span>
-                                    <span className="text-[#888] text-[3.5vw] md:text-[0.95vw] tracking-[0.22em] font-mono">
-                                        EST. {page.established}
+                                className="flex md:absolute flex-col items-center ml-0 md:ml-[25vw] mt-0 md:mt-[2vw]">
+                                <div className="flex items-center mb-[2vw] md:mb-[0.3vw]">
+                                    <span
+                                        className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 mr-[2vw] md:mr-[1vw]"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        className="text-[#888] text-[3.5vw] md:text-[0.95vw] tracking-[0.22em] font-mono"
+                                        style={{ fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'" }}
+                                    >
+                                        {establishedText}
                                     </span>
-                                    <span className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#333] ml-4" aria-hidden="true"></span>
+                                    <span
+                                        className="h-[1.2px] w-[8vw] md:w-[3vw] bg-[#555] opacity-70 ml-[2vw] md:ml-[1vw]"
+                                        aria-hidden="true"
+                                    ></span>
                                 </div>
-                                <h2 className="font-bold text-[12vw] md:text-[4.5vw] font-peakers text-[#fff] mt-2 tracking-[0.05em]">
-                                    {page.historyTitle?.toUpperCase()}
+                                <h2
+                                    className="font-bold text-[12vw] md:text-[4.5vw] font-peakers text-[#fff] mt-[1vw] md:mt-[0.2vw] tracking-[0.05em]"
+                                >
+                                    {historyTitle}
                                 </h2>
                             </motion.div>
                         </div>
+                        {/* History Details */}
                         <motion.div
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-                            className="w-full flex justify-center mt-8">
-                            <p className="text-[#e3e3e5]/60 text-center font-extralight leading-[1.8] text-[4vw] md:text-[1.1vw] max-w-[90vw] md:max-w-[60vw] font-mono whitespace-pre-wrap italic">
-                                {page.historyDescription}
-                            </p>
+                            className="w-full flex justify-center mt-[4vw] md:mt-0">
+                            {historyDescription ? (
+                                <p
+                                    className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono whitespace-pre-line"
+                                >
+                                    {historyDescription}
+                                </p>
+                            ) : (
+                                location === 'stevenage' ? (
+                                    <p
+                                        className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
+                                    >
+                                        Following the incredible response at our original site, Stevenage was established as our second location to bring
+                                        Peckers to a larger audience. This inviting store is designed for the community to gather, offering a high-energy
+                                        environment and a comfortable space to dine in.
+                                        Known for its fast-paced service and exceptional team, Stevenage is where our vision truly scaled up. Located
+                                        within proximity to our Budgens stores in Walkern and Watton, it stands as a testament to our journey providing a
+                                        welcoming, vibrant spot for everyone to enjoy seriously good chicken together.
+                                    </p>
+                                ) : (
+                                    <p
+                                        className="text-[#e3e3e5]/70 text-center font-extralight leading-[1.6] text-[4vw] md:text-[1vw] max-w-[90vw] md:max-w-[70vw] font-mono"
+                                    >
+                                        Peckers Hitchin is where the vision first took flight. Nestled in the heart of Westmill, this location stands on the
+                                        same ground where our family’s journey began over 50 years ago at our grandfather’s original shop.
+                                        It is the birthplace of our flavours and the community-driven spirit that defines us. As our original location, Hitchin
+                                        remains a dedicated staple for the neighbourhood, serving seriously good chicken to the community that first
+                                        supported our vision. While we continue to grow, this site stays true to its purpose: providing the local area with
+                                        the quality and craft that started the legacy.
+                                    </p>
+                                )
+                            )}
                         </motion.div>
                     </div>
                 </div>
             </section>
 
             <div>
-                <EnquiriesSection data={enquiry} location={location} />
+                <EnquiriesSection location={location} />
             </div>
+
+
         </div >
     );
 }

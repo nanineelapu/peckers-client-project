@@ -1,36 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
 
-const saucesData = [
-    {
-        id: 1,
-        title: "Spicy Buffalo",
-        descLine1:
-            "Tomato base slow-simmered with smoked spices and finished with",
-        descLine2: "pure honey.",
-        descLine3:
-            "Less preservatives and additives then the big boys",
-        bgUrl:
-            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Sauce1%20page%201.webp",
-        sauceUrl:
-            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%201.webp",
-    },
-    {
-        id: 2,
-        title: "HONEY GLAZE BBQ",
-        descLine1:
-            "Tomato base slow-simmered with smoked spices and finished with ",
-        descLine2: "pure honey.",
-        bgUrl:
-            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/Sauce2.webp",
-        sauceUrl:
-            "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/sauce/sac%202.webp",
-    },
-];
+
 
 export default function SaucePageOne() {
+    const [saucesData, setSaucesData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [rotation, setRotation] = useState(0);
+
+    useEffect(() => {
+        const fetchSauces = async () => {
+            try {
+                const data = await client.fetch(`*[_type == "sauce"] | order(_createdAt asc)`);
+                setSaucesData(data);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching sauces:", error);
+                setLoading(false);
+            }
+        };
+        fetchSauces();
+    }, []);
 
     const nextSlide = () => {
         setRotation((prev) => prev + 360); // spin forward
@@ -44,6 +37,17 @@ export default function SaucePageOne() {
         );
     };
 
+    if (loading) {
+        return (
+            <div className="w-full min-h-screen bg-black flex items-center justify-center">
+                <div className="text-white text-2xl font-bold animate-pulse">Loading Sauces...</div>
+            </div>
+        );
+    }
+
+    if (!saucesData || saucesData.length === 0) return null;
+
+
     return (
         <div className="relative w-full overflow-hidden bg-black flex flex-col items-center">
 
@@ -54,17 +58,20 @@ export default function SaucePageOne() {
 
                     return (
                         <div
-                            key={sauce.id}
+                            key={sauce._id}
                             className={`absolute top-0 left-0 w-full transition-opacity duration-700 ease-in-out ${isActive ? "opacity-100 z-20" : "opacity-0 z-10"
                                 }`}
                         >
                             <div className="relative w-full flex flex-col items-center pb-[25vw] min-h-[175vw] sm:min-h-0 sm:pb-[100vw] md:pb-[20vw] lg:pb-[26vw] xl:pb-[26vw] bg-black">
 
-                                <img
-                                    src={sauce.bgUrl}
-                                    alt={`${sauce.title} Background`}
-                                    className="w-full h-auto block"
-                                />
+                                {sauce.bgImage && (
+                                    <img
+                                        src={urlFor(sauce.bgImage).url()}
+                                        alt={`${sauce.title} Background`}
+                                        className="w-full h-auto block"
+                                    />
+                                )}
+
 
                                 {/* YOUR EXISTING TEXT SECTION UNCHANGED */}
 
@@ -131,8 +138,6 @@ export default function SaucePageOne() {
                                                     startOffset="0%"
                                                     textLength="2810"
                                                     lengthAdjust="spacingAndGlyphs"
-
-
                                                 >
                                                     HONEY GLAZE BBQ SAUCE • HOT HONEY SAUCE •
                                                     KATSU CURRY SAUCE • KOREAN GOCHUJANG SAUCE •
@@ -150,9 +155,9 @@ export default function SaucePageOne() {
                                     </svg>
 
                                     {/* PRODUCT IMAGE (SLIDE 1) */}
-                                    {idx === 0 && (
+                                    {idx === 0 && sauce.sauceImage && (
                                         <img
-                                            src={sauce.sauceUrl}
+                                            src={urlFor(sauce.sauceImage).url()}
                                             alt={sauce.title}
                                             className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto scale-[1.2] md:scale-[1.3] mt-[15vw] sm:mt-[14vw] lg:mt-[11vw] xl:mt-[13vw]"
                                             style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
@@ -160,14 +165,15 @@ export default function SaucePageOne() {
                                     )}
 
                                     {/* PRODUCT IMAGE (SLIDE 2) */}
-                                    {idx === 1 && (
+                                    {idx === 1 && sauce.sauceImage && (
                                         <img
-                                            src={sauce.sauceUrl}
+                                            src={urlFor(sauce.sauceImage).url()}
                                             alt={sauce.title}
                                             className="absolute w-[80%] h-[80%] object-cover object-center rounded-full z-10 select-none pointer-events-auto top-[30%] -translate-y-1/2 mt-[21.5vw] md:mt-0 mb-[5vw] md:mb-0 md:top-1/2 md:-translate-y-1/2 md:bottom-auto"
                                             style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
                                         />
                                     )}
+
                                 </div>
 
                             </div>

@@ -73,6 +73,7 @@ body::-webkit-scrollbar {
   --font-supernett: var(--font-supernett);
   --font-sharetech: var(--font-share-tech);
   --font-peakers: var(--font-peakers);
+  --font-anton: var(--font-anton);
 }
 
 @media (prefers-color-scheme: light) {
@@ -139,4 +140,10 @@ img {
 .uniqueness-page {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
+}
+
+.anton-regular {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

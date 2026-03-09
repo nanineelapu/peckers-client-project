@@ -1,6 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity'
 import category from './category'
-import product from './product'
 import homepage from './homepage'
 import location from './location'
 import sliderCard from './sliderCard'
@@ -14,8 +13,13 @@ import locationPage from './locationPage'
 import mapSection from './mapSection'
 import reviewsHomepage from './reviewsHomepage'
 import enquireSection from './enquireSection'
+import sauces from './sauces'
+import uniquenessLanding from './uniquenessLanding'
+import uniquenessSubsection from './uniquenessSubsection'
+import timeline from './timeline'
+import locationHistory from './locationHistory'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [category, product, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, ourstorybottompage, mobileBottomButtons, locationPage, mapSection, reviewsHomepage, enquireSection],
+  types: [category, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, timeline, ourstorybottompage, mobileBottomButtons, locationPage, mapSection, reviewsHomepage, enquireSection, sauces, uniquenessLanding, uniquenessSubsection, locationHistory],
 }
 

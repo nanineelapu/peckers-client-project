@@ -8,7 +8,7 @@ import { client } from "../sanity/lib/client";
 export default function Navbar() {
   const [settings, setSettings] = useState(null);
   const pathname = usePathname();
-  const hideOrderButtons = pathname === "/menu" || pathname === "/sauces";
+
   const [open, setOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [journeyOpen, setJourneyOpen] = useState(false);
@@ -134,26 +134,7 @@ export default function Navbar() {
           <a href="/ourstory" onClick={() => setOpen(false)}>THE JOURNEY</a>
           <a href="/careers" onClick={() => setOpen(false)}>CAREERS</a>
 
-          {!hideOrderButtons && (
-            <div className="flex flex-col gap-4 mt-2 w-3/4">
-              <a
-                href={settings?.clickCollectUrl || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black"
-              >
-                CLICK & COLLECT
-              </a>
-              <a
-                href={settings?.deliveryUrl || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center border border-white py-3 rounded-lg transition-colors hover:bg-white hover:text-black"
-              >
-                DELIVERY
-              </a>
-            </div>
-          )}
+
         </div>
       </div>
     </nav>

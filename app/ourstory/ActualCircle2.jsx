@@ -1,37 +1,34 @@
 "use client";
 
-import React from "react";
-
-const timelineData = [
-    {
-        year: "APR 2022 & OCT 2022",
-        title: "HITCHIN & STEWALTON & MEPPERSHALL ENAGE",
-        description:
-            "Two new locations. Small footprint, big impact.",
-        borderStyle: "border-solid border-zinc-800",
-    },
-    {
-        year: "MARCH 2020",
-        title: "COMMUNITY FIRST",
-        description:
-            "During COVID-19, we stepped up — supporting locals when it mattered most.",
-        highlight: true,
-    },
-    {
-        year: "OCT 2019",
-        title: "STORE RENOVATION",
-        description:
-            "A fresh new look for Walkern Budgens. Modern space, same community heart.",
-        borderStyle: "border-solid border-zinc-800",
-    },
-];
-
+import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
+import { client } from "../../sanity/lib/client";
 
 export default function PeckersTimeline2() {
+    const [timelineData, setTimelineData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTimeline = async () => {
+            try {
+                // Fetch documents of type "timeline", ordered by the 'order' field if available
+                const data = await client.fetch(`*[_type == "timeline"] | order(order asc)`);
+                if (data) {
+                    setTimelineData(data);
+                }
+            } catch (error) {
+                console.error("Error fetching timeline data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchTimeline();
+    }, []);
+
+    if (loading || timelineData.length === 0) return null;
 
     return (
-        <div className="bg-black text-white flex justify-center mt-[6vw] md:mt-[6vw] py-[5vw] md:py-[1vw] font-peckers">
+        <div className="bg-black text-white flex justify-center mt-[6vw] md:mt-[6vw] py-[5vw] md:py-[1vw] font-peakers">
             <div className="w-full max-w-[90vw] relative">
 
                 {/* Cards */}
@@ -103,11 +100,7 @@ export default function PeckersTimeline2() {
                         );
                     })}
                 </div>
-
-
-
             </div>
-
         </div>
     );
 }
