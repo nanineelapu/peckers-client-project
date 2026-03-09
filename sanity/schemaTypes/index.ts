@@ -12,8 +12,10 @@ import ourstorybottompage from './ourstorybottompage'
 import mobileBottomButtons from './mobileBottomButtons'
 import locationPage from './locationPage'
 import mapSection from './mapSection'
+import reviewsHomepage from './reviewsHomepage'
+import enquireSection from './enquireSection'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [category, product, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, ourstorybottompage, mobileBottomButtons, locationPage, mapSection],
+  types: [category, product, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, ourstorybottompage, mobileBottomButtons, locationPage, mapSection, reviewsHomepage, enquireSection],
 }
 

@@ -1,41 +1,35 @@
 "use client";
-
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { client } from "../../sanity/lib/client";
 
 export default function RatingSectionCards() {
-  const cards = [
-    {
-      name: "SARAH JENKINS",
-      role: "Local Guide",
-      text: '"I would sell my soul for another basket of the Lemon Pepper wings. Absolutely unruly flavor."',
-      gradient: "from-yellow-400 via-red-400 to-pink-500",
-    },
-    {
-      name: "Mike T.",
-      role: "Verified Buyer",
-      text: '"The music is loud, the decor is chaotic, and the chicken is god-tier. 10/10 would destroy my shirt with sauce again."',
-      gradient: "from-blue-400 to-indigo-600",
-    },
-    {
-      name: "jessica lau",
-      role: "Foodie",
-      text: '"Honestly, better than Wingstop. Yeah I said it. Come fight me about it."',
-      gradient: "from-green-400 to-emerald-600",
-    },
-    {
-      name: "DAVID CRAIG",
-      role: "Local Guide",
-      text: '"Simply the best chicken in town. The crunch on those tenders is out of this world."',
-      gradient: "from-purple-400 via-pink-500 to-red-500",
-    },
-    {
-      name: "ALEX R.",
-      role: "Food Blogger",
-      text: '"If you haven\'t tried their spicy chicken sandwich, you are missing out on life itself. Perfectly balanced heat."',
-      gradient: "from-orange-400 to-rose-600",
-    },
-  ];
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const data = await client.fetch(`*[_type == "review"]`);
+        setCards(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full mt-[6vw] md:mt-[3vw] mb-[2vw] md:mb-[2vw] flex justify-center items-center py-[10vw]">
+        <div className="text-white font-mono animate-pulse">LOADING REVIEWS...</div>
+      </div>
+    );
+  }
+
+  if (cards.length === 0) return null;
 
   return (
     <div
@@ -67,7 +61,7 @@ export default function RatingSectionCards() {
               <div className="flex flex-row items-center justify-between mb-[3vw] lg:mb-[0.8vw]">
                 <div className="flex flex-row items-center gap-[3vw] lg:gap-[0.8vw]">
                   <div
-                    className={`w-[12vw] h-[12vw] min-w-[12vw] min-h-[12vw] md:w-[6vw] md:h-[6vw] md:min-w-[6vw] md:min-h-[6vw] lg:w-[2.7vw] lg:h-[2.7vw] lg:min-w-[2.7vw] lg:min-h-[2.7vw] rounded-full bg-linear-to-br ${card.gradient} flex items-center justify-center text-white font-bold uppercase font-sans shadow-md`}
+                    className={`w-[12vw] h-[12vw] min-w-[12vw] min-h-[12vw] md:w-[6vw] md:h-[6vw] md:min-w-[6vw] md:min-h-[6vw] lg:w-[2.7vw] lg:h-[2.7vw] lg:min-w-[2.7vw] lg:min-h-[2.7vw] rounded-full bg-linear-to-br ${card.gradient || "from-gray-400 to-gray-600"} flex items-center justify-center text-white font-bold uppercase font-sans shadow-md`}
                   ></div>
                   <div className="flex flex-col">
                     <span
