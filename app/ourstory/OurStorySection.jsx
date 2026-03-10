@@ -1,12 +1,13 @@
-
 import { useState, useEffect } from "react";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
 
 export default function OurStorySection() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0); // 1 for next, -1 for prev
 
   useEffect(() => {
     const fetchStory = async () => {
@@ -24,6 +25,46 @@ export default function OurStorySection() {
     fetchStory();
   }, []);
 
+  // Mocking multiple slides by duplicating data for now
+  const slides = data ? [
+    { ...data, id: 1 },
+    { ...data, id: 2, heading: "A COMMITMENT TO QUALITY", quote: "Our commitment to quality is unwavering, from farm to table." },
+    { ...data, id: 3, heading: "SERVED WITH PRIDE SINCE 1978", quote: "Generations of trust, built on every meal." },
+  ] : [];
+
+  const nextSlide = () => {
+    setDirection(1);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setDirection(-1);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+      filter: "blur(20px)",
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+      filter: "blur(20px)",
+    }),
+  };
+
   if (loading) {
     return (
       <div className="w-full min-h-screen bg-black flex items-center justify-center">
@@ -34,10 +75,12 @@ export default function OurStorySection() {
     );
   }
 
-  if (!data) return null;
+  if (!data || slides.length === 0) return null;
+
+  const currentData = slides[currentSlide];
 
   return (
-    <section className="relative w-full min-h-[60vh] md:min-h-screen pt-[5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[70vh] md:min-h-screen pt-[5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center overflow-hidden">
       {/* BACKGROUND SVG LAYER */}
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
@@ -47,7 +90,7 @@ export default function OurStorySection() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          className="opacity-100" // Adjut opacity if it's too intense
+          className="opacity-100"
         >
           <rect
             x="0.603188"
@@ -62,102 +105,131 @@ export default function OurStorySection() {
       </div>
 
       {/* CONTENT LAYER */}
-      <div className="relative z-10 w-full h-full flex flex-row items-center justify-center">
-        {/* LEFT SIDE – TEXT */}
-        <div
-          className="w-[48%] md:w-1/2 px-[3vw] md:px-[6vw] flex flex-col justify-center mt-0 md:mt-0 overflow-hidden"
+      <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-center">
+
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={currentSlide}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.4 },
+              scale: { duration: 0.4 },
+              filter: { duration: 0.4 },
+            }}
+            className="w-full h-full flex flex-col lg:flex-row items-center justify-center"
+          >
+            {/* LEFT SIDE – TEXT */}
+            <div className="w-full lg:w-1/2 px-[5vw] lg:px-[6vw] flex flex-col justify-center mt-12 lg:mt-0 overflow-hidden text-center lg:text-left">
+
+              <motion.div
+                className="mb-1 flex items-center justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              >
+                <div className="w-10 h-px bg-white/40 hidden lg:block"></div>
+                <span className="lg:ml-4 text-gray-400 font-mono tracking-widest text-[4vw] lg:text-[1.2vw]">STORY {currentSlide + 1}</span>
+              </motion.div>
+
+              <motion.h2
+                className="font-bold font-peakers text-[10vw] lg:text-[68px] leading-[1.1] lg:leading-[1.3] uppercase mt-2 bg-linear-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+              >
+                {currentData.heading || "A FAMILY LEGACY, REIMAGINED"}
+              </motion.h2>
+
+              <motion.div
+                className="text-[#D1D5DB] font-peakers text-[4vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[6vw] lg:py-[2vw] space-y-4 lg:space-y-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+              >
+                {currentData.content ? (
+                  currentData.content.map((para, i) => <p key={i}>{para}</p>)
+                ) : (
+                  <p>Content reveal in progress...</p>
+                )}
+
+                <p className="border-l-2 font-sans font-extralight border-white/30 pl-4 lg:pl-6 text-[#9CA3AF] text-left">
+                  {currentData.quote || "This wasn’t built in a boardroom."}
+                </p>
+              </motion.div>
+
+              {/* SLIDER INDICATORS */}
+              <div className="flex items-center justify-center lg:justify-start gap-2 mt-4 lg:mt-auto pb-4">
+                {slides.map((_, i) => (
+                  <div key={i} className={`h-1 w-8 lg:w-12 transition-all duration-500 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/10"}`}></div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT SIDE – IMAGE */}
+            <div className="w-full lg:w-1/2 h-[60vw] lg:h-screen px-[5vw] lg:px-[2vw] flex flex-col items-center justify-center bg-black">
+              <div className="relative w-full h-[90%] overflow-hidden flex items-center justify-center">
+                {currentData.founderImage && (
+                  <motion.img
+                    src={urlFor(currentData.founderImage).url()}
+                    alt="Founders of Peckers"
+                    className="w-full h-full object-contain"
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                  />
+                )}
+
+                {/* Panel 1 — top third */}
+                <motion.div
+                  initial={{ y: "0%" }}
+                  animate={{ y: "-101%" }}
+                  key={`panel1-${currentSlide}`}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.1 }}
+                  className="absolute top-0 left-0 w-full h-1/3 bg-black z-20"
+                />
+                {/* Panel 2 — middle third */}
+                <motion.div
+                  initial={{ y: "0%" }}
+                  animate={{ y: "-201%" }}
+                  key={`panel2-${currentSlide}`}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.25 }}
+                  className="absolute top-1/3 left-0 w-full h-1/3 bg-black z-20"
+                />
+                {/* Panel 3 – bottom third */}
+                <motion.div
+                  initial={{ y: "0%" }}
+                  animate={{ y: "-301%" }}
+                  key={`panel3-${currentSlide}`}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.4 }}
+                  className="absolute top-2/3 left-0 w-full h-1/3 bg-black z-20"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* EDGE NAVIGATION ARROWS */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-1 md:left-4 top-[45%] lg:top-[50%] -translate-y-1/2 z-50 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 border border-white/10 rounded-full bg-black/40 backdrop-blur-lg hover:bg-white hover:text-black transition-all duration-300 active:scale-75"
         >
-
-          <motion.div
-            className="mb-1 flex items-center"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
-          >
-            <div className="w-10 h-px bg-white/40"></div>
-            <svg className="w-[12vw] md:w-[92px] h-auto md:h-[50px]" viewBox="0 0 79 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.4043 16.1094C14.4427 16.1094 13.7067 15.82 13.1963 15.2412C12.6904 14.6579 12.4375 13.8171 12.4375 12.7188V7.00391C12.4375 5.97396 12.6882 5.19238 13.1895 4.65918C13.6953 4.12598 14.4336 3.85938 15.4043 3.85938C16.375 3.85938 17.111 4.12598 17.6123 4.65918C18.1182 5.19238 18.3711 5.97396 18.3711 7.00391V12.7188C18.3711 13.8171 18.1159 14.6579 17.6055 15.2412C17.0996 15.82 16.3659 16.1094 15.4043 16.1094ZM15.4248 13.8945C15.7894 13.8945 15.9717 13.5413 15.9717 12.835V6.96289C15.9717 6.37044 15.7939 6.07422 15.4385 6.07422C15.0374 6.07422 14.8369 6.37728 14.8369 6.9834V12.8486C14.8369 13.2223 14.8825 13.4912 14.9736 13.6553C15.0648 13.8148 15.2152 13.8945 15.4248 13.8945ZM23.524 16.1094C22.5214 16.1094 21.7831 15.8291 21.3092 15.2686C20.8352 14.7035 20.5982 13.874 20.5982 12.7803V3.96875H22.9361V12.6846C22.9361 12.8851 22.9475 13.0788 22.9703 13.2656C22.9931 13.4479 23.0455 13.5983 23.1275 13.7168C23.2096 13.8353 23.3417 13.8945 23.524 13.8945C23.7109 13.8945 23.8453 13.8376 23.9273 13.7236C24.0094 13.6051 24.0595 13.4525 24.0777 13.2656C24.1005 13.0788 24.1119 12.8851 24.1119 12.6846V3.96875H26.4498V12.7803C26.4498 13.874 26.2128 14.7035 25.7389 15.2686C25.2649 15.8291 24.5266 16.1094 23.524 16.1094ZM28.7727 16V3.96875H32.4641C33.0793 3.96875 33.5441 4.11003 33.8586 4.39258C34.173 4.67057 34.3827 5.0625 34.4875 5.56836C34.5969 6.06966 34.6516 6.65983 34.6516 7.33887C34.6516 7.99512 34.5673 8.51921 34.3986 8.91113C34.2346 9.30306 33.9224 9.57422 33.4621 9.72461C33.8404 9.80208 34.1047 9.99121 34.2551 10.292C34.41 10.5882 34.4875 10.9733 34.4875 11.4473V16H32.1154V11.29C32.1154 10.9391 32.0425 10.7227 31.8967 10.6406C31.7554 10.554 31.5253 10.5107 31.2062 10.5107V16H28.7727ZM31.2199 8.42578H31.801C32.1337 8.42578 32.3 8.06348 32.3 7.33887C32.3 6.86947 32.2635 6.56185 32.1906 6.41602C32.1177 6.27018 31.981 6.19727 31.7805 6.19727H31.2199V8.42578ZM44.3832 16.1094C43.2849 16.1094 42.4919 15.8359 42.0043 15.2891C41.5212 14.7422 41.2797 13.8717 41.2797 12.6777V11.502H43.6586V13.0059C43.6586 13.2839 43.6996 13.5026 43.7816 13.6621C43.8682 13.8171 44.0163 13.8945 44.226 13.8945C44.4447 13.8945 44.5951 13.8307 44.6771 13.7031C44.7637 13.5755 44.807 13.3659 44.807 13.0742C44.807 12.7051 44.7706 12.3975 44.6977 12.1514C44.6247 11.9007 44.4971 11.6637 44.3148 11.4404C44.1371 11.2126 43.8887 10.9482 43.5697 10.6475L42.4896 9.62207C41.683 8.861 41.2797 7.99056 41.2797 7.01074C41.2797 5.98535 41.5167 5.20378 41.9906 4.66602C42.4691 4.12826 43.1596 3.85938 44.0619 3.85938C45.1648 3.85938 45.9464 4.15332 46.4066 4.74121C46.8715 5.3291 47.1039 6.22233 47.1039 7.4209H44.6566V6.59375C44.6566 6.42969 44.6088 6.30208 44.5131 6.21094C44.4219 6.11979 44.2966 6.07422 44.1371 6.07422C43.9457 6.07422 43.8044 6.12891 43.7133 6.23828C43.6267 6.3431 43.5834 6.47982 43.5834 6.64844C43.5834 6.81706 43.629 6.99935 43.7201 7.19531C43.8113 7.39128 43.9913 7.61686 44.2602 7.87207L45.6479 9.20508C45.9258 9.4694 46.1811 9.74967 46.4135 10.0459C46.6459 10.3376 46.8327 10.6794 46.974 11.0713C47.1153 11.4587 47.1859 11.9326 47.1859 12.4932C47.1859 13.6234 46.9763 14.5098 46.557 15.1523C46.1423 15.7904 45.4177 16.1094 44.3832 16.1094ZM50.4248 16V6.2793H48.9961V3.96875H54.2598V6.2793H52.8311V16H50.4248ZM59.2008 16.1094C58.2392 16.1094 57.5032 15.82 56.9928 15.2412C56.4869 14.6579 56.234 13.8171 56.234 12.7188V7.00391C56.234 5.97396 56.4846 5.19238 56.9859 4.65918C57.4918 4.12598 58.2301 3.85938 59.2008 3.85938C60.1715 3.85938 60.9075 4.12598 61.4088 4.65918C61.9146 5.19238 62.1676 5.97396 62.1676 7.00391V12.7188C62.1676 13.8171 61.9124 14.6579 61.402 15.2412C60.8961 15.82 60.1624 16.1094 59.2008 16.1094ZM59.2213 13.8945C59.5859 13.8945 59.7682 13.5413 59.7682 12.835V6.96289C59.7682 6.37044 59.5904 6.07422 59.235 6.07422C58.8339 6.07422 58.6334 6.37728 58.6334 6.9834V12.8486C58.6334 13.2223 58.679 13.4912 58.7701 13.6553C58.8613 13.8148 59.0117 13.8945 59.2213 13.8945ZM64.5383 16V3.96875H68.2297C68.8449 3.96875 69.3098 4.11003 69.6242 4.39258C69.9387 4.67057 70.1483 5.0625 70.2531 5.56836C70.3625 6.06966 70.4172 6.65983 70.4172 7.33887C70.4172 7.99512 70.3329 8.51921 70.1643 8.91113C70.0002 9.30306 69.688 9.57422 69.2277 9.72461C69.606 9.80208 69.8703 9.99121 70.0207 10.292C70.1757 10.5882 70.2531 10.9733 70.2531 11.4473V16H67.8811V11.29C67.8811 10.9391 67.8081 10.7227 67.6623 10.6406C67.521 10.554 67.2909 10.5107 66.9719 10.5107V16H64.5383ZM66.9855 8.42578H67.5666C67.8993 8.42578 68.0656 8.06348 68.0656 7.33887C68.0656 6.86947 68.0292 6.56185 67.9562 6.41602C67.8833 6.27018 67.7466 6.19727 67.5461 6.19727H66.9855V8.42578ZM74.0662 16V12.042L72.1453 3.96875H74.5311L75.201 8.04297L75.8709 3.96875H78.2498L76.3357 12.042V16H74.0662Z" fill="#9CA3AF" />
-            </svg>
-          </motion.div>
-          <motion.h2
-            className="font-bold font-peakers text-[9vw] md:text-[68px] leading-[1.3] uppercase mt-2 bg-linear-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-          >
-            {data.heading || "A FAMILY LEGACY, REIMAGINED"}
-          </motion.h2>
-
-
-          <motion.div
-            className="text-[#D1D5DB] font-peakers text-[2.5vw] md:text-[1.42vw] leading-[1.6] max-w-[88vw] md:max-w-[40vw] py-[4vw] md:py-[2vw] space-y-3 md:space-y-3"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          >
-            {data.content ? (
-              data.content.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))
-            ) : (
-              <>
-                <p>I didn’t grow up dreaming about building a brand. I grew up behind a counter.</p>
-                <p>My granddad opened his supermarket in Westmill in 1978. I watched what it meant to serve people properly — remembering names, staying late, looking after the community when it mattered.</p>
-                <p>Years later, I walked into Budgens. Then came the renovation. Then came Peckers.</p>
-              </>
-            )}
-
-            <p className="border-l-2 font-sans font-extralight border-white/30 pl-6 text-[#9CA3AF]">
-              {data.quote || "This wasn’t built in a boardroom. It was built by showing up, every day."}
-            </p>
-          </motion.div>
-
-        </div>
-
-        {/* RIGHT SIDE – IMAGE */}
-        <div className="w-[52%] md:w-1/2 h-[55vw] md:h-screen px-[2vw] flex flex-col items-center justify-center bg-black pt-0 md:pt-0">
-          {/* Image with 3-panel staggered reveal */}
-          <div className="relative w-full h-[90%] overflow-hidden">
-            {data.founderImage && (
-              <img
-                src={urlFor(data.founderImage).url()}
-                alt="Founders of Peckers - A Legacy of Best Halal Chicken and Community Service since 1978"
-                className="w-full h-full object-contain"
-              />
-            )}
-            {/* Panel 1 — top third */}
-            <motion.div
-              initial={{ y: "0%" }}
-              whileInView={{ y: "-101%" }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: [0.77, 0, 0.175, 1], delay: 0 }}
-              className="absolute top-0 left-0 w-full h-1/3 bg-black z-10"
-            />
-            {/* Panel 2 — middle third */}
-            <motion.div
-              initial={{ y: "0%" }}
-              whileInView={{ y: "-201%" }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: [0.77, 0, 0.175, 1], delay: 0.15 }}
-              className="absolute top-1/3 left-0 w-full h-1/3 bg-black z-10"
-            />
-            {/* Panel 3 — bottom third */}
-            <motion.div
-              initial={{ y: "0%" }}
-              whileInView={{ y: "-301%" }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: [0.77, 0, 0.175, 1], delay: 0.30 }}
-              className="absolute top-2/3 left-0 w-full h-1/3 bg-black z-10"
-            />
-          </div>
-          <svg className="w-[20vw] md:w-[119px] h-auto mt-[1vw]" viewBox="0 0 119 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.04102 17.3438V3.45703H0V0.15625H7.51953V3.45703H5.47852V17.3438H2.04102ZM9.47656 17.3438V0.15625H12.8945V6.29883H14.5156V0.15625H17.9336V17.3438H14.5156V9.55078H12.8945V17.3438H9.47656ZM20.457 17.3438V0.15625H27.332V3.47656H23.9531V6.82617H27.1953V10.0586H23.9531V13.9941H27.5566V17.3438H20.457ZM35.3867 17.3438V0.15625H40.0449C41.2949 0.15625 42.2031 0.46224 42.7695 1.07422C43.3424 1.67969 43.6289 2.68229 43.6289 4.08203V4.83398C43.6289 5.64128 43.4824 6.29557 43.1895 6.79688C42.903 7.29818 42.4635 7.62695 41.8711 7.7832C42.6458 7.97852 43.1634 8.4375 43.4238 9.16016C43.6908 9.8763 43.8242 10.752 43.8242 11.7871C43.8242 12.9004 43.7201 13.8737 43.5117 14.707C43.3034 15.5404 42.9258 16.1882 42.3789 16.6504C41.832 17.1126 41.054 17.3438 40.0449 17.3438H35.3867ZM38.7461 6.63086H39.4492C39.7682 6.63086 39.9733 6.50716 40.0645 6.25977C40.1556 6.01237 40.2012 5.71615 40.2012 5.37109V3.64258C40.2012 3.08919 39.957 2.8125 39.4688 2.8125H38.7461V6.63086ZM39.0879 14.3164C39.9798 14.3164 40.4258 13.8932 40.4258 13.0469V10.8984C40.4258 10.4102 40.3509 10.026 40.2012 9.74609C40.0579 9.45964 39.7845 9.31641 39.3809 9.31641H38.7461V14.2969C38.8893 14.3099 39.0033 14.3164 39.0879 14.3164ZM45.957 17.3438V0.15625H52.832V3.47656H49.4531V6.82617H52.6953V10.0586H49.4531V13.9941H53.0566V17.3438H45.957ZM58.7441 17.5C56.2897 17.5 55.0625 15.7422 55.0625 12.2266V4.81445C55.0625 1.60482 56.4688 0 59.2812 0C60.4401 0 61.3288 0.234375 61.9473 0.703125C62.5658 1.16536 62.9922 1.84245 63.2266 2.73438C63.4609 3.6263 63.5781 4.71354 63.5781 5.99609H60.2188V4.47266C60.2188 4.10156 60.1667 3.79232 60.0625 3.54492C59.9648 3.29102 59.7565 3.16406 59.4375 3.16406C59.0404 3.16406 58.7767 3.29753 58.6465 3.56445C58.5228 3.83138 58.4609 4.12435 58.4609 4.44336V12.7734C58.4609 13.2357 58.5195 13.6133 58.6367 13.9062C58.7604 14.1927 58.998 14.3359 59.3496 14.3359C59.7142 14.3359 59.9551 14.1927 60.0723 13.9062C60.196 13.6133 60.2578 13.2292 60.2578 12.7539V10.3027H59.3398V7.33398H63.5391V17.3438H62.1621L61.5762 15.8984C60.9772 16.9661 60.0332 17.5 58.7441 17.5ZM65.75 17.3438V0.15625H69.0703V17.3438H65.75ZM71.4375 17.3438V0.15625H74.9727L76.5547 8.38867V0.15625H79.875V17.3438H76.5156L74.7969 8.75V17.3438H71.4375ZM82.3984 17.3438V0.15625H85.9336L87.5156 8.38867V0.15625H90.8359V17.3438H87.4766L85.7578 8.75V17.3438H82.3984ZM93.2031 17.3438V0.15625H96.5234V17.3438H93.2031ZM98.8906 17.3438V0.15625H102.426L104.008 8.38867V0.15625H107.328V17.3438H103.969L102.25 8.75V17.3438H98.8906ZM113.396 17.5C110.942 17.5 109.715 15.7422 109.715 12.2266V4.81445C109.715 1.60482 111.121 0 113.934 0C115.092 0 115.981 0.234375 116.6 0.703125C117.218 1.16536 117.645 1.84245 117.879 2.73438C118.113 3.6263 118.23 4.71354 118.23 5.99609H114.871V4.47266C114.871 4.10156 114.819 3.79232 114.715 3.54492C114.617 3.29102 114.409 3.16406 114.09 3.16406C113.693 3.16406 113.429 3.29753 113.299 3.56445C113.175 3.83138 113.113 4.12435 113.113 4.44336V12.7734C113.113 13.2357 113.172 13.6133 113.289 13.9062C113.413 14.1927 113.65 14.3359 114.002 14.3359C114.367 14.3359 114.607 14.1927 114.725 13.9062C114.848 13.6133 114.91 13.2292 114.91 12.7539V10.3027H113.992V7.33398H118.191V17.3438H116.814L116.229 15.8984C115.63 16.9661 114.686 17.5 113.396 17.5Z" fill="white" />
+          <svg width="20" height="20" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-
-        </div>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-1 md:right-4 top-[45%] lg:top-[50%] -translate-y-1/2 z-50 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 border border-white/10 rounded-full bg-black/40 backdrop-blur-lg hover:bg-white hover:text-black transition-all duration-300 active:scale-75"
+        >
+          <svg width="20" height="20" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
 
     </section>

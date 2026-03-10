@@ -79,7 +79,7 @@ export default function PersonDetails() {
 
       {/* Right: Text block — slides in from right */}
       <motion.div
-        className="w-full lg:max-w-[50vw] xl:max-w-[40vw] flex flex-col justify-center bg-black px-[6vw] md:px-[6vw] lg:px-[4vw] xl:px-[3vw] py-[8vw] md:py-[6vw] lg:py-[2vw] xl:py-0 min-h-[50vw] md:min-h-[40vw] lg:min-h-[38vw] xl:min-h-[28vw] shadow-xl relative -mt-[10vw] md:-mt-[12vw] lg:-mt-[2vw] xl:-mt-[2.2vw] mr-0 xl:mr-[1vw] z-10 md:z-2 rounded-xl lg:rounded-none"
+        className="w-full lg:max-w-[50vw] xl:max-w-[40vw] flex flex-col justify-center bg-black px-[6vw] md:px-[6vw] lg:px-[4vw] xl:px-[3vw] py-[5vw] md:py-[6vw] lg:py-[2vw] xl:py-0 min-h-[50vw] md:min-h-[40vw] lg:min-h-[38vw] xl:min-h-[28vw] shadow-xl relative mt-[4vw] md:mt-[4vw] lg:-mt-[2vw] xl:-mt-[2.2vw] mr-0 xl:mr-[1vw] z-10 md:z-2 rounded-xl lg:rounded-none"
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-60px" }}

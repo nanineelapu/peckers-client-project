@@ -7,8 +7,13 @@ import { client } from "../../sanity/lib/client";
 export default function PeckersTimeline() {
     const [timelineData, setTimelineData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
+        const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
         const fetchTimeline = async () => {
             try {
                 const data = await client.fetch(`*[_type == "ourStoryPage"][0]{timeline}`);
@@ -22,6 +27,8 @@ export default function PeckersTimeline() {
             }
         };
         fetchTimeline();
+
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     if (loading) return null; // Or a subtle loader if needed
@@ -43,26 +50,51 @@ export default function PeckersTimeline() {
 
 
                         const getInitial = (i) => {
-                            // Cards sweep in with a circular motion along the circle path
-                            if (i === 0) return { opacity: 0, x: 60, y: 60, scale: 0.8, rotate: -15, filter: "blur(15px)" }; // Left Top
-                            if (i === 1) return { opacity: 0, y: 80, scale: 0.8, rotate: 0, filter: "blur(15px)" }; // Mid Top
-                            return { opacity: 0, x: -60, y: 60, scale: 0.8, rotate: 15, filter: "blur(15px)" }; // Right Top
+                            if (isDesktop) {
+                                // Premium Laptop Reveal: 3D Glide & Tilt
+                                if (i === 0) return { opacity: 0, x: -100, y: 80, scale: 0.9, rotateY: -25, rotate: -5, filter: "blur(20px)" };
+                                if (i === 1) return { opacity: 0, y: 120, scale: 0.85, rotateX: 20, filter: "blur(20px)" };
+                                return { opacity: 0, x: 100, y: 80, scale: 0.9, rotateY: 25, rotate: 5, filter: "blur(20px)" };
+                            }
+                            // Original Mobile Animation
+                            if (i === 0) return { opacity: 0, x: 60, y: 60, scale: 0.8, rotate: -15, filter: "blur(15px)" };
+                            if (i === 1) return { opacity: 0, y: 80, scale: 0.8, rotate: 0, filter: "blur(15px)" };
+                            return { opacity: 0, x: -60, y: 60, scale: 0.8, rotate: 15, filter: "blur(15px)" };
                         };
 
                         const getDelay = (i) => {
-                            if (i === 0) return 1.85; // Synced with Left Top dot (1.7s) + offset
-                            if (i === 1) return 0.35; // Synced with Mid Top dot (0.2s) + offset
-                            return 0.65; // Synced with Right Top dot (0.5s) + offset
+                            if (isDesktop) {
+                                if (i === 0) return 0.8;
+                                if (i === 1) return 0.4;
+                                return 0.6;
+                            }
+                            if (i === 0) return 1.85;
+                            if (i === 1) return 0.35;
+                            return 0.65;
                         };
 
                         return (
                             <motion.div
                                 key={index}
                                 initial={getInitial(index)}
-                                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0, filter: "blur(0px)" }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    y: 0,
+                                    scale: 1,
+                                    rotate: 0,
+                                    rotateX: 0,
+                                    rotateY: 0,
+                                    filter: "blur(0px)"
+                                }}
+                                whileHover={isDesktop ? {
+                                    y: -8,
+                                    scale: 1.02,
+                                    transition: { duration: 0.3, ease: "easeOut" }
+                                } : {}}
                                 viewport={{ once: true, margin: "-10%" }}
                                 transition={{
-                                    duration: 1.2,
+                                    duration: isDesktop ? 1.4 : 1.2,
                                     delay: getDelay(index),
                                     ease: [0.16, 1, 0.3, 1],
                                 }}

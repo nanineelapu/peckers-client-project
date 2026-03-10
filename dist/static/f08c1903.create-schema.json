@@ -25,6 +25,14 @@
         "type": "image"
       },
       {
+        "options": {
+          "accept": "video/*"
+        },
+        "name": "heroVideo",
+        "type": "file",
+        "title": "Hero Background Video"
+      },
+      {
         "fields": [
           {
             "name": "heading",
@@ -677,9 +685,10 @@
   {
     "fields": [
       {
+        "description": "Used to identify this document. Ensure the slug matches the URL.",
         "name": "name",
         "type": "string",
-        "title": "Location Name"
+        "title": "Location Name (e.g. Hitchin, Stevenage)"
       },
       {
         "options": {
@@ -695,13 +704,25 @@
             "level": "error"
           }
         ],
+        "description": "CRITICAL: Must be 'hitchin' or 'stevenage' to match the website pages.",
         "name": "slug",
-        "type": "slug"
+        "type": "slug",
+        "title": "Identifier Slug"
       },
       {
+        "initialValue": "EST. 2024",
         "name": "established",
         "type": "string",
-        "title": "Established Year"
+        "title": "Established Year Text"
+      },
+      {
+        "options": {
+          "accept": "video/*"
+        },
+        "description": "Upload a high-quality .mp4 loop here.",
+        "name": "heroVideo",
+        "type": "file",
+        "title": "Hero Background Video (Premium Upload)"
       },
       {
         "validation": [
@@ -725,23 +746,30 @@
             "level": "error"
           }
         ],
+        "description": "Only use if not uploading a file above.",
         "name": "heroVideoUrl",
         "type": "url",
-        "title": "Hero Video URL"
+        "title": "Alternative Video URL (External)"
       },
       {
+        "options": {
+          "hotspot": true
+        },
         "name": "logo",
         "type": "image",
-        "title": "Location Logo"
+        "title": "Location Specific Logo"
       },
       {
         "initialValue": "HISTORY",
         "name": "historyTitle",
-        "type": "string"
+        "type": "string",
+        "title": "History Section Title"
       },
       {
+        "description": "Overwrites the default fallback text in the code.",
         "name": "historyDescription",
-        "type": "text"
+        "type": "text",
+        "title": "Detailed History Text"
       }
     ],
     "name": "locationpage",
