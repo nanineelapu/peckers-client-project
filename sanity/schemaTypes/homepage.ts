@@ -17,6 +17,13 @@ export default defineType({
             }
         }),
         defineField({
+            name: "heroPoster",
+            title: "Hero Poster Image (Recommended)",
+            type: "image",
+            description: "Static image displayed while the video loads. Critical for performance and LCP.",
+            options: { hotspot: true },
+        }),
+        defineField({
             name: "ratingSection",
             title: "Rating Section",
             type: "object",

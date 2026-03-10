@@ -28,7 +28,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="relative flex items-center px-4 py-4 md:px-[2vw] md:py-[1.2vw] lg:px-[2.5vw] lg:py-[1.5vw] xl:px-[1.8vw] xl:py-[.4vw] bg-black text-white font-['Share_Tech']">
+    <nav id="main-navbar" className="relative flex items-center px-4 py-4 md:px-[2vw] md:py-[1.2vw] lg:px-[2.5vw] lg:py-[1.5vw] xl:px-[1.8vw] xl:py-[.4vw] bg-black text-white font-['Share_Tech']">
 
       {/* Logo Section */}
       <div className="flex-1 flex items-center z-50">

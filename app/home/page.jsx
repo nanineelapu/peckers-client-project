@@ -21,6 +21,7 @@ const HomePage = () => {
       try {
         const data = await client.fetch(`*[_type == "homepage"][0]{
           "videoUrl": heroVideo.asset->url,
+          "posterUrl": heroPoster.asset->url,
           heroTitle,
           heroSubtitle
         }`);
@@ -72,10 +73,12 @@ const HomePage = () => {
         {heroData?.videoUrl && (
           <video
             src={heroData.videoUrl}
+            poster={heroData.posterUrl}
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
         )}

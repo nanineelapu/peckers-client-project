@@ -48,12 +48,13 @@ export default function Preloader({ onComplete = () => { } }) {
     });
 
     const main = document.querySelector("#main-content");
-    if (main) {
+    const navbar = document.querySelector("#main-navbar");
+    if (main || navbar) {
+      const targets = [main, navbar].filter(Boolean);
       // Set initial state for zoom out
-      gsap.set(main, {
+      gsap.set(targets, {
         scale: 1.8,
         y: -100,
-        opacity: 0,
         transformOrigin: "50% 60vh",
       });
     }
@@ -86,13 +87,13 @@ export default function Preloader({ onComplete = () => { } }) {
     });
 
     // Animate main content zoom and opacity in parallel with preloader sliding out
-    if (main) {
+    if (main || navbar) {
+      const targets = [main, navbar].filter(Boolean);
       tl.to(
-        main,
+        targets,
         {
           scale: 1,
           y: 0,
-          opacity: 1,
           duration: 1.2, // Slowed down from 0.6
           ease: "power3.out",
         },

@@ -40,6 +40,13 @@ export default defineType({
             description: "Only use if not uploading a file above.",
         }),
         defineField({
+            name: "heroPoster",
+            title: "Hero Poster Image (Recommended)",
+            type: "image",
+            description: "Static image shown while the video is loading. Critical for performance and LCP.",
+            options: { hotspot: true },
+        }),
+        defineField({
             name: "logo",
             title: "Location Specific Logo",
             type: "image",

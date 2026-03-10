@@ -45,10 +45,10 @@ export default function ClientWrapper({ children }) {
     document.body.style.overflow = "";
 
     // Snap Lenis + native scroll to top so they stay in sync
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    }
-    window.scrollTo(0, 0);
+    // if (lenisRef.current) {
+    //   lenisRef.current.scrollTo(0, { immediate: true });
+    // }
+    // window.scrollTo(0, 0);
 
     // Remove the preloader — the useEffect above handles recalculation
     setLoadingDone(true);
@@ -67,15 +67,17 @@ export default function ClientWrapper({ children }) {
       )}
 
       {/* Wrap children and hide them temporarily while loading to avoid the unstyled flash on slow connections */}
-      <Navbar />
-      <SmoothScroll lenisRef={lenisRef}>
-        <div
-          id="main-content"
-          className={`w-full overflow-x-clip pb-[18vw] md:pb-0 ${(!loadingDone && (pathname === '/' || pathname === '/home')) ? 'opacity-0 h-screen overflow-hidden' : 'h-auto overflow-visible'}`}
-        >
-          {children}
-        </div>
-      </SmoothScroll>
+      <div>
+        <Navbar />
+        <SmoothScroll lenisRef={lenisRef}>
+          <div
+            id="main-content"
+            className="w-full overflow-x-clip pb-[18vw] md:pb-0 h-auto overflow-visible"
+          >
+            {children}
+          </div>
+        </SmoothScroll>
+      </div>
       <ConditionalFooter />
 
       {/* Global Fixed Mobile Bottom Bar */}

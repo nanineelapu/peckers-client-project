@@ -22,6 +22,7 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                 const query = `*[_type == "locationpage" && (slug.current == $location || lower(name) == lower($location))][0]{
                     ...,
                     "videoUrl": heroVideo.asset->url,
+                    "posterUrl": heroPoster.asset->url,
                     heroVideoUrl
                 }`;
                 const data = await client.fetch(query, { location }, { useCdn: false });
@@ -72,10 +73,12 @@ export function LocationsPageContent({ location = 'hitchin' }) {
                         key={pageData.videoUrl || pageData.heroVideoUrl}
                         ref={videoRef}
                         src={pageData.videoUrl || pageData.heroVideoUrl}
+                        poster={pageData?.posterUrl}
                         autoPlay
                         muted
                         loop
                         playsInline
+                        preload="auto"
                         className="absolute inset-0 w-full h-full object-cover opacity-70 transition-opacity duration-700"
                     />
                 )}
