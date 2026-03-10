@@ -42,14 +42,14 @@ export default function CoopImages() {
           </svg>
           <span className="text-white text-[6.5vw] md:text-[7.5vw] uppercase tracking-wide" style={{ fontFamily: "var(--font-peakers)" }}>{hitchin?.name || "Hitchin"}</span>
         </div>
-        <img src={HITCHIN_IMG} alt={hitchin?.name || "Hitchin"} className="w-[30vw] h-[25vw] md:w-[40vw] md:h-[30vw] object-cover rounded-[2vw] md:rounded-[1.5vw] shadow-md border border-[#333]" />
+        <img src={HITCHIN_IMG} alt={`Peckers Hitchin - Best Halal Peri Peri Grilled Chicken and Takeaway in Hitchin`} className="w-[30vw] h-[25vw] md:w-[40vw] md:h-[30vw] object-cover rounded-[2vw] md:rounded-[1.5vw] shadow-md border border-[#333]" />
       </div>
 
       {/* Hitchin Desktop & Laptop */}
       <div className="coop-card hidden lg:flex relative w-[31vw] xl:w-[37vw] h-[22vw] xl:h-[19vw] items-center justify-center rounded-[1.5vw] xl:rounded-lg overflow-hidden shadow-lg bg-black/40">
         <img
           src={HITCHIN_IMG}
-          alt={hitchin?.name || "Hitchin"}
+          alt={`Peckers Hitchin - Premium Halal Fried Chicken and Peri Peri Takeaway`}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/10" />
@@ -63,7 +63,7 @@ export default function CoopImages() {
 
       {/* Stevenage Mobile & Tablet */}
       <div className="flex lg:hidden w-full items-center justify-between bg-[#1a1a1a] rounded-[3vw] md:rounded-[2vw] p-[3vw] md:p-[2vw] shadow-lg border border-[#333]">
-        <img src={STEVENAGE_IMG} alt={stevenage?.name || "Stevenage"} className="w-[30vw] h-[25vw] md:w-[40vw] md:h-[30vw] object-cover rounded-[2vw] md:rounded-[1.5vw] shadow-md border border-[#333]" />
+        <img src={STEVENAGE_IMG} alt={`Peckers Stevenage - Best Halal Chicken Restaurant and Delivery in Stevenage`} className="w-[30vw] h-[25vw] md:w-[40vw] md:h-[30vw] object-cover rounded-[2vw] md:rounded-[1.5vw] shadow-md border border-[#333]" />
         <div className="flex items-center gap-[2vw] md:gap-[3vw] pr-[2vw] md:pr-[3vw]">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-red-600 w-[7vw] h-[7vw] md:w-[8vw] md:h-[8vw]">
             <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor" />
@@ -76,7 +76,7 @@ export default function CoopImages() {
       <div className="coop-card hidden lg:flex relative w-[31vw] xl:w-[37vw] h-[22vw] xl:h-[19vw] items-center justify-center rounded-[1.5vw] xl:rounded-lg overflow-hidden shadow-lg bg-black/40">
         <img
           src={STEVENAGE_IMG}
-          alt={stevenage?.name || "Stevenage"}
+          alt={`Peckers Stevenage - Top Rated Peri Peri Grilled Chicken and Halal Food Hertfordshire`}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/10" />

@@ -181,10 +181,16 @@ const HomePage = () => {
 
       <SignUpSection />
 
-
-
-
-
+      {/* Hidden SEO Keywords - Pro Tier Strategy */}
+      <div className="sr-only">
+        <h2>Best Halal Chicken in Hertfordshire - Stevenage & Hitchin</h2>
+        <p>
+          Peckers is the top choice for halal food in Stevenage and Hitchin. We serve the best peri peri grilled chicken,
+          crispy fried chicken wings, and gourmet burgers in Hertfordshire. Whether you are looking for a late night
+          takeaway in Stevenage or the best place to eat in Hitchin, Peckers offers a premium dining experience.
+          Our menu features halal peri peri, legendary wings, and local favorites. Visit the best chicken shop in Stevenage today.
+        </p>
+      </div>
 
     </div>
 

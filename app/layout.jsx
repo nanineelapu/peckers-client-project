@@ -51,9 +51,30 @@ const inconsolata = Inconsolata({
 });
 
 export const metadata = {
-  title: "Peakers",
+  title: "Peckers | Best Halal Peri Peri & Fried Chicken in Stevenage & Hitchin",
   description:
-    "Peakers - Your Ultimate Destination for Premium Automotive Accessories",
+    "Peckers is your premium destination for the best peri peri grilled chicken, wings, and halal takeaway in Stevenage and Hitchin. Offering family meals, late night food, and fast delivery across Hertfordshire.",
+  keywords: [
+    "peri peri grilled chicken near me",
+    "best halal chicken Stevenage",
+    "fried chicken Hitchin",
+    "late night takeaway Stevenage",
+    "chicken delivery Hertfordshire",
+    "halal food near me",
+    "peri peri chicken Stevenage",
+    "grilled chicken Hertfordshire",
+    "family meal takeaway Hertfordshire",
+    "chicken wings Hitchin",
+    "best fried chicken delivery UK",
+    "restaurants in Stevenage",
+    "places to eat Hitchin",
+    "lunch deals Stevenage",
+    "takeaway near me",
+    "Peckers chicken"
+  ],
+  alternates: {
+    canonical: "https://peckers.co.uk", // Update with actual domain if known
+  }
 };
 
 export const viewport = {
@@ -66,6 +87,28 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FoodEstablishment",
+              "name": "Peckers",
+              "image": "https://peckers.co.uk/logo.png", // Path to brand logo
+              "description": "Premium Halal Grilled and Fried Chicken Restaurant in Hertfordshire.",
+              "servesCuisine": ["Halal", "Peri Peri", "Grilled Chicken", "Fried Chicken"],
+              "areaServed": ["Stevenage", "Hitchin", "Hertfordshire"],
+              "hasMenu": "https://peckers.co.uk/menu",
+              "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "Hertfordshire",
+                "addressCountry": "UK"
+              }
+            })
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${anton.variable} ${peakersFont.variable} ${spaceMono.variable} ${inconsolata.variable} antialiased`}
       >
