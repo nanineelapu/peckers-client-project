@@ -75,6 +75,7 @@ export default function PeckersTimeline2() {
                             return 0.95;
                         };
 
+                        const isHighlighted = item.highlight || (!isDesktop && (item.year?.toString() === "2025" || item.year?.toString().includes("2025")));
                         return (
                             <motion.div
                                 key={index}
@@ -101,18 +102,21 @@ export default function PeckersTimeline2() {
                                     ease: [0.16, 1, 0.3, 1],
                                 }}
                                 style={
-                                    item.highlight
-                                        ? { boxShadow: "0 0 24px rgba(234,179,8,0.5), 0 0 60px rgba(234,179,8,0.15)" }
+                                    isHighlighted
+                                        ? {
+                                            boxShadow: "0 0 25px rgba(234,179,8,0.4), 0 0 50px rgba(234,179,8,0.15)",
+                                            borderColor: "rgba(234,179,8,0.8)"
+                                        }
                                         : {}
                                 }
-                                className={`relative px-[6vw] md:px-[1vw] py-[6vw] md:py-[1vw] rounded-[4vw] md:rounded-[1vw] flex flex-col ${alignment} ${offset} w-[80vw] md:w-[15vw] h-auto md:h-[9vw]
-  ${item.highlight
-                                        ? "bg-[#121212] border border-yellow-500/60"
-                                        : `bg-[#0a0a0a] border ${item.borderStyle || "border-zinc-800"}`
+                                className={`relative px-[6vw] md:px-[1vw] py-[6vw] md:py-[1vw] rounded-[4vw] md:rounded-[1vw] flex flex-col ${alignment} ${offset} w-[80vw] md:w-[15vw] h-auto md:h-[9vw] border
+  ${isHighlighted
+                                        ? "bg-[#121212] border-yellow-500/60"
+                                        : `bg-[#0a0a0a] ${item.borderStyle || "border-zinc-800"}`
                                     }`}
                             >
                                 <span
-                                    className={`text-[5vw] md:text-[1.2vw] text-white font-bold mb-[3vw] md:mb-[0.5vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"
+                                    className={`text-[5vw] md:text-[1.2vw] text-white font-bold mb-[3vw] md:mb-[0.5vw] tracking-tight ${isHighlighted ? "text-white" : "text-zinc-600"
                                         }`}
                                     style={{ fontFamily: "Space Mono", color: "white" }}
                                 >

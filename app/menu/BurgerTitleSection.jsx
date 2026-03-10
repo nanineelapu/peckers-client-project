@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Image from "next/image";
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
 
@@ -92,7 +92,11 @@ export default function BurgerCarouselFinal() {
   useEffect(() => {
     const fetchBurgers = async () => {
       try {
-        const data = await client.fetch(`*[_type == "menuPage"][0].burgerCarousel`);
+        const data = await client.fetch(`*[_type == "menuPage"][0].burgerCarousel[] {
+          name,
+          image,
+          boost
+        }`);
         if (data && data.length > 0) {
           const transformed = data.map((item, i) => ({
             name: item.name,
@@ -228,28 +232,56 @@ export default function BurgerCarouselFinal() {
           {/* NAVIGATION ARROWS IN IMAGE CONTAINER */}
           <button
             onClick={goPrev}
-            className="absolute left-[2vw] sm:left-[4vw] md:left-[6vw] top-1/2 -translate-y-1/2 z-30 p-[2vw] md:p-0"
+            className="absolute left-[2vw] sm:left-[4vw] md:left-[6vw] top-1/2 -translate-y-1/2 z-30 p-[2vw] md:p-0 group"
             disabled={isAnimating}
             style={{
               cursor: isAnimating ? "wait" : "pointer",
-              opacity: isAnimating ? 0.3 : 0.8,
-              transition: "opacity 0.2s",
+              opacity: isAnimating ? 0.4 : 1,
+              transition: "all 0.3s ease",
             }}
           >
-            <FiChevronLeft className="text-[35px] sm:text-[45px] md:text-[50px] w-[1.2em] h-[1.2em]" color="#ffffff" />
+            <div className="relative flex items-center justify-center w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] md:w-[56px] md:h-[56px]">
+              {/* Single Premium Circular Button */}
+              <div className="w-full h-full rounded-full bg-black border border-[#EAB308]/60 flex items-center justify-center transition-all duration-300 group-hover:border-[#EAB308] group-hover:shadow-[0_0_15px_rgba(234,179,8,0.4)] group-active:scale-90">
+                <svg
+                  viewBox="0 0 100 100"
+                  className="w-[45%] h-[45%] text-[#EAB308] rotate-180"
+                  fill="currentColor"
+                >
+                  {/* Primary Spearhead */}
+                  <path d="M45 20 L85 50 L45 80 L58 50 Z" />
+                  {/* Secondary Peak */}
+                  <path d="M15 25 L50 50 L15 75 L28 50 Z" className="opacity-40" />
+                </svg>
+              </div>
+            </div>
           </button>
 
           <button
             onClick={goNext}
-            className="absolute right-[2vw] sm:right-[4vw] md:right-[6vw] top-1/2 -translate-y-1/2 z-30 p-[2vw] md:p-0"
+            className="absolute right-[2vw] sm:right-[4vw] md:right-[6vw] top-1/2 -translate-y-1/2 z-30 p-[2vw] md:p-0 group"
             disabled={isAnimating}
             style={{
               cursor: isAnimating ? "wait" : "pointer",
-              opacity: isAnimating ? 0.3 : 0.8,
-              transition: "opacity 0.2s",
+              opacity: isAnimating ? 0.4 : 1,
+              transition: "all 0.3s ease",
             }}
           >
-            <FiChevronRight className="text-[35px] sm:text-[45px] md:text-[50px] w-[1.2em] h-[1.2em]" color="#ffffff" />
+            <div className="relative flex items-center justify-center w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] md:w-[56px] md:h-[56px]">
+              {/* Single Premium Circular Button */}
+              <div className="w-full h-full rounded-full bg-black border border-[#EAB308]/60 flex items-center justify-center transition-all duration-300 group-hover:border-[#EAB308] group-hover:shadow-[0_0_15px_rgba(234,179,8,0.4)] group-active:scale-90">
+                <svg
+                  viewBox="0 0 100 100"
+                  className="w-[45%] h-[45%] text-[#EAB308]"
+                  fill="currentColor"
+                >
+                  {/* Primary Spearhead */}
+                  <path d="M45 20 L85 50 L45 80 L58 50 Z" />
+                  {/* Secondary Peak */}
+                  <path d="M15 25 L50 50 L15 75 L28 50 Z" className="opacity-40" />
+                </svg>
+              </div>
+            </div>
           </button>
 
           {/* SVG Drop Shadow */}
@@ -299,17 +331,17 @@ export default function BurgerCarouselFinal() {
                   userSelect: "none",
                 }}
               >
-                <img
-                  src={burger.image}
-                  alt={burger.name}
-                  draggable={false}
-                  style={{
-                    width: "clamp(240px, 85vw, 400px)",
-                    display: "block",
-                    filter: "none",
-                    userSelect: "none",
-                  }}
-                />
+                <div className="relative" style={{ width: "clamp(240px, 85vw, 400px)", height: "auto", aspectRatio: "1/1" }}>
+                  <Image
+                    src={burger.image}
+                    alt={burger.name}
+                    fill
+                    priority={isCenter}
+                    className="object-contain"
+                    draggable={false}
+                    sizes="clamp(240px, 85vw, 400px)"
+                  />
+                </div>
               </div>
             );
           })}
@@ -347,20 +379,17 @@ export default function BurgerCarouselFinal() {
                   userSelect: "none",
                 }}
               >
-                <img
-                  src={burger.image}
-                  alt={burger.name}
-                  draggable={false}
-                  style={{
-                    width: "clamp(220px, 45vw, 520px)",
-                    display: "block",
-                    filter: isCenter
-                      ? "drop-shadow(0 5px 15px rgba(0,0,0,0.3))"
-                      : "none",
-                    transition: "filter .4s ease",
-                    userSelect: "none",
-                  }}
-                />
+                <div className="relative" style={{ width: "clamp(220px, 45vw, 520px)", height: "auto", aspectRatio: "1/1" }}>
+                  <Image
+                    src={burger.image}
+                    alt={burger.name}
+                    fill
+                    priority={isCenter}
+                    className={`object-contain ${isCenter ? 'drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]' : ''}`}
+                    draggable={false}
+                    sizes="clamp(220px, 45vw, 520px)"
+                  />
+                </div>
               </div>
             );
           })}

@@ -104,6 +104,8 @@ export default function MobileRoadmap() {
             <div className="flex flex-col w-full relative">
                 {roadmapData.timeline?.map((item, index) => {
                     const isRight = index % 2 === 1; // 0=Left, 1=Right, 2=Left, 3=Right...
+                    const isHighlighted = item.highlight || item.year?.toString().includes("1978") || item.year?.toString().includes("2025");
+
                     return (
                         <React.Fragment key={index}>
                             <motion.div
@@ -114,16 +116,19 @@ export default function MobileRoadmap() {
                                 className={`w-full flex ${isRight ? 'justify-end' : 'justify-start'} z-10`}
                             >
                                 <div
-                                    style={item.highlight ? { boxShadow: "0 0 15px rgba(234,179,8,0.6)" } : {}}
-                                    className={`relative px-[5vw] md:px-[4vw] xl:px-[3vw] py-[6vw] md:py-[4vw] xl:py-[3vw] rounded-[4vw] md:rounded-[2vw] xl:rounded-[1.5vw] flex flex-col items-center text-center w-[65vw] md:w-[45vw] xl:w-[35vw]
-                                        ${item.highlight
-                                            ? "bg-[#121212] border border-yellow-500/60"
-                                            : `bg-[#0a0a0a] border ${item.borderStyle || "border-zinc-800"}`
+                                    style={isHighlighted ? {
+                                        boxShadow: "0 0 25px rgba(234,179,8,0.4), 0 0 50px rgba(234,179,8,0.15)",
+                                        borderColor: "rgba(234,179,8,0.8)"
+                                    } : {}}
+                                    className={`relative px-[5vw] md:px-[4vw] xl:px-[3vw] py-[6vw] md:py-[4vw] xl:py-[3vw] rounded-[4vw] md:rounded-[2vw] xl:rounded-[1.5vw] flex flex-col items-center text-center w-[65vw] md:w-[45vw] xl:w-[35vw] border
+                                        ${isHighlighted
+                                            ? "bg-[#121212] border-yellow-500/60"
+                                            : `bg-[#0a0a0a] ${item.borderStyle || "border-zinc-800"}`
                                         }`}
                                 >
                                     <span
-                                        className={`text-[4.5vw] md:text-[3vw] xl:text-[2vw] font-bold mb-[2vw] md:mb-[1vw] tracking-tight ${item.highlight ? "text-white" : "text-zinc-600"}`}
-                                        style={{ fontFamily: "Space Mono", color: "white" }}
+                                        className={`text-[4.5vw] md:text-[3vw] xl:text-[2vw] font-bold mb-[2vw] md:mb-[1vw] tracking-tight ${isHighlighted ? "text-white" : "text-zinc-600"}`}
+                                        style={{ fontFamily: "Space Mono" }}
                                     >
                                         {item.year}
                                     </span>

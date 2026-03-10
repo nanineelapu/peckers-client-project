@@ -8,8 +8,13 @@ export default function OurStorySection() {
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0); // 1 for next, -1 for prev
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const fetchStory = async () => {
       try {
         const storyData = await client.fetch(`*[_type == "ourStoryPage"][0]`);
@@ -23,6 +28,8 @@ export default function OurStorySection() {
       }
     };
     fetchStory();
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Mocking multiple slides by duplicating data for now
@@ -46,8 +53,8 @@ export default function OurStorySection() {
     enter: (direction) => ({
       x: direction > 0 ? 300 : -300,
       opacity: 0,
-      scale: 0.9,
-      filter: "blur(20px)",
+      scale: 0.95,
+      filter: isMobile ? "none" : "blur(20px)",
     }),
     center: {
       zIndex: 1,
@@ -60,8 +67,8 @@ export default function OurStorySection() {
       zIndex: 0,
       x: direction < 0 ? 300 : -300,
       opacity: 0,
-      scale: 0.9,
-      filter: "blur(20px)",
+      scale: 0.95,
+      filter: isMobile ? "none" : "blur(20px)",
     }),
   };
 
@@ -78,6 +85,11 @@ export default function OurStorySection() {
   if (!data || slides.length === 0) return null;
 
   const currentData = slides[currentSlide];
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+  };
 
   return (
     <section className="relative w-full min-h-[70vh] md:min-h-screen pt-[5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center overflow-hidden">
@@ -115,41 +127,53 @@ export default function OurStorySection() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.4 },
-              scale: { duration: 0.4 },
-              filter: { duration: 0.4 },
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
+
+              if (swipe < -swipeConfidenceThreshold) {
+                nextSlide();
+              } else if (swipe > swipeConfidenceThreshold) {
+                prevSlide();
+              }
             }}
-            className="w-full h-full flex flex-col lg:flex-row items-center justify-center"
+            transition={{
+              x: { type: "spring", stiffness: 180, damping: 28 },
+              opacity: { duration: 0.5 },
+              scale: { duration: 0.5 },
+              filter: { duration: 0.5 },
+            }}
+            className="w-full h-full flex flex-row items-center justify-center cursor-grab active:cursor-grabbing"
           >
             {/* LEFT SIDE – TEXT */}
-            <div className="w-full lg:w-1/2 px-[5vw] lg:px-[6vw] flex flex-col justify-center mt-12 lg:mt-0 overflow-hidden text-center lg:text-left">
+            <div className="w-1/2 lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-center mt-0 overflow-hidden text-left">
 
               <motion.div
-                className="mb-1 flex items-center justify-center lg:justify-start"
-                initial={{ opacity: 0, y: 20 }}
+                className="mb-1 flex items-center justify-start"
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.1 }}
               >
-                <div className="w-10 h-px bg-white/40 hidden lg:block"></div>
-                <span className="lg:ml-4 text-gray-400 font-mono tracking-widest text-[4vw] lg:text-[1.2vw]">STORY {currentSlide + 1}</span>
+                <div className="w-6 lg:w-10 h-px bg-white/40"></div>
+                <span className="ml-2 lg:ml-4 text-gray-400 font-mono tracking-widest text-[2.5vw] lg:text-[1.2vw]">STORY {currentSlide + 1}</span>
               </motion.div>
 
               <motion.h2
-                className="font-bold font-peakers text-[10vw] lg:text-[68px] leading-[1.1] lg:leading-[1.3] uppercase mt-2 bg-linear-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
-                initial={{ opacity: 0, y: 20 }}
+                className="font-bold font-peakers text-[5vw] lg:text-[68px] leading-[1.1] lg:leading-[1.3] uppercase mt-2 bg-linear-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.2 }}
               >
                 {currentData.heading || "A FAMILY LEGACY, REIMAGINED"}
               </motion.h2>
 
               <motion.div
-                className="text-[#D1D5DB] font-peakers text-[4vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[6vw] lg:py-[2vw] space-y-4 lg:space-y-3"
-                initial={{ opacity: 0, y: 20 }}
+                className="text-[#D1D5DB] font-peakers text-[2.8vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-2 lg:space-y-3"
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.3 }}
               >
                 {currentData.content ? (
                   currentData.content.map((para, i) => <p key={i}>{para}</p>)
@@ -157,55 +181,53 @@ export default function OurStorySection() {
                   <p>Content reveal in progress...</p>
                 )}
 
-                <p className="border-l-2 font-sans font-extralight border-white/30 pl-4 lg:pl-6 text-[#9CA3AF] text-left">
+                <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[1.1vw] lg:text-inherit">
                   {currentData.quote || "This wasn’t built in a boardroom."}
                 </p>
               </motion.div>
 
               {/* SLIDER INDICATORS */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 mt-4 lg:mt-auto pb-4">
+              <div className="flex items-center justify-start gap-1 lg:gap-2 mt-2 lg:mt-auto pb-4">
                 {slides.map((_, i) => (
-                  <div key={i} className={`h-1 w-8 lg:w-12 transition-all duration-500 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/10"}`}></div>
+                  <div key={i} className={`h-0.5 lg:h-1 w-4 lg:w-12 transition-all duration-500 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/10"}`}></div>
                 ))}
               </div>
             </div>
 
             {/* RIGHT SIDE – IMAGE */}
-            <div className="w-full lg:w-1/2 h-[60vw] lg:h-screen px-[5vw] lg:px-[2vw] flex flex-col items-center justify-center bg-black">
+            <div className="w-1/2 lg:w-1/2 h-[50vw] lg:h-screen px-[2vw] flex flex-col items-center justify-center bg-black">
               <div className="relative w-full h-[90%] overflow-hidden flex items-center justify-center">
                 {currentData.founderImage && (
                   <motion.img
                     src={urlFor(currentData.founderImage).url()}
                     alt="Founders of Peckers"
                     className="w-full h-full object-contain"
-                    initial={{ scale: 1.1, opacity: 0 }}
+                    initial={{ scale: 1.05, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                   />
                 )}
 
-                {/* Panel 1 — top third */}
+                {/* Panels for entrance effect */}
                 <motion.div
                   initial={{ y: "0%" }}
                   animate={{ y: "-101%" }}
                   key={`panel1-${currentSlide}`}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.1 }}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.05 }}
                   className="absolute top-0 left-0 w-full h-1/3 bg-black z-20"
                 />
-                {/* Panel 2 — middle third */}
                 <motion.div
                   initial={{ y: "0%" }}
                   animate={{ y: "-201%" }}
                   key={`panel2-${currentSlide}`}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.25 }}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.15 }}
                   className="absolute top-1/3 left-0 w-full h-1/3 bg-black z-20"
                 />
-                {/* Panel 3 – bottom third */}
                 <motion.div
                   initial={{ y: "0%" }}
                   animate={{ y: "-301%" }}
                   key={`panel3-${currentSlide}`}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.4 }}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.25 }}
                   className="absolute top-2/3 left-0 w-full h-1/3 bg-black z-20"
                 />
               </div>
@@ -213,23 +235,45 @@ export default function OurStorySection() {
           </motion.div>
         </AnimatePresence>
 
-        {/* EDGE NAVIGATION ARROWS */}
+        {/* EDGE NAVIGATION ARROWS (Hidden on Mobile) */}
         <button
           onClick={prevSlide}
-          className="absolute left-1 md:left-4 top-[45%] lg:top-[50%] -translate-y-1/2 z-50 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 border border-white/10 rounded-full bg-black/40 backdrop-blur-lg hover:bg-white hover:text-black transition-all duration-300 active:scale-75"
+          className="hidden lg:flex absolute left-1 md:left-4 top-[50%] -translate-y-1/2 z-50 items-center justify-center w-8 h-8 md:w-14 md:h-14 border border-white/10 rounded-full bg-black/40 backdrop-blur-lg hover:bg-white hover:text-black transition-all duration-300 active:scale-75"
         >
-          <svg width="20" height="20" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-1 md:right-4 top-[45%] lg:top-[50%] -translate-y-1/2 z-50 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 border border-white/10 rounded-full bg-black/40 backdrop-blur-lg hover:bg-white hover:text-black transition-all duration-300 active:scale-75"
+          className="hidden lg:flex absolute right-1 md:right-4 top-[50%] -translate-y-1/2 z-50 items-center justify-center w-8 h-8 md:w-14 md:h-14 border border-white/10 rounded-full bg-black/40 backdrop-blur-lg hover:bg-white hover:text-black transition-all duration-300 active:scale-75"
         >
-          <svg width="20" height="20" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" className="md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </button>
+
+        {/* MOBILE SLIDING INDICATION (Premium Redesign) */}
+        {isMobile && (
+          <div className="absolute bottom-[10vw] right-[8vw] flex flex-col items-end gap-2 lg:hidden pointer-events-none z-50">
+            <div className="flex flex-col items-end gap-1">
+              <motion.span
+                className="text-[2vw] font-mono tracking-[0.5em] text-white/30 uppercase mr-[-0.5em]"
+                animate={{ opacity: [0.3, 0.7, 0.3] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                SWIPE STORY
+              </motion.span>
+              <div className="relative w-16 h-px bg-white/5 overflow-hidden">
+                <motion.div
+                  className="absolute top-0 left-0 h-full w-1/2 bg-linear-to-r from-transparent via-white/40 to-transparent"
+                  animate={{ x: ["-100%", "200%"] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "circIn" }}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
     </section>

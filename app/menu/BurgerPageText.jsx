@@ -16,15 +16,7 @@ export default function BurgerPageText() {
     const fetchMenuDetails = async () => {
       try {
         const menuDetails = await client.fetch(`*[_type == "menuPage"][0] {
-          subtitle,
-          protein,
-          carbs,
-          fats,
-          calories,
-          energy,
-          allergens,
-          spiceLevel,
-          availabilityText
+          subtitle, protein, carbs, fats, calories, energy, allergens, spiceLevel, availabilityText
         }`);
         console.log("Menu details fetched:", menuDetails);
         if (menuDetails) {

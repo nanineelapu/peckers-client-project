@@ -10,6 +10,13 @@ export default function SaucePageOne() {
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [rotation, setRotation] = useState(0);
+    const [isScaling, setIsScaling] = useState(false);
+
+    useEffect(() => {
+        setIsScaling(true);
+        const timer = setTimeout(() => setIsScaling(false), 1000);
+        return () => clearTimeout(timer);
+    }, [currentIndex]);
 
     useEffect(() => {
         const fetchSauces = async () => {
@@ -59,7 +66,7 @@ export default function SaucePageOne() {
                     return (
                         <div
                             key={sauce._id}
-                            className={`absolute top-0 left-0 w-full transition-opacity duration-700 ease-in-out ${isActive ? "opacity-100 z-20" : "opacity-0 z-10"
+                            className={`absolute top-0 left-0 w-full transition-opacity duration-1200 ease-in-out ${isActive ? "opacity-100 z-20" : "opacity-0 z-10"
                                 }`}
                         >
                             <div className="relative w-full flex flex-col items-center pb-[25vw] min-h-[175vw] sm:min-h-0 sm:pb-[100vw] md:pb-[20vw] lg:pb-[26vw] xl:pb-[26vw] bg-black">
@@ -73,9 +80,10 @@ export default function SaucePageOne() {
                                 )}
 
 
-                                {/* YOUR EXISTING TEXT SECTION UNCHANGED */}
-
-                                <div className="absolute mt-[1vw] sm:mt-6 md:mt-0 top-[9%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20">
+                                {/* TEXT SECTION WITH PREMIUM SCALING */}
+                                <div
+                                    className={`absolute mt-[1vw] sm:mt-6 md:mt-0 top-[9%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20 transition-transform duration-1000 ease-out ${isScaling ? 'scale-[1.02]' : 'scale-100'}`}
+                                >
                                     <h1
                                         className="text-5xl sm:text-5xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-1 sm:mb-2 md:mb-4 xl:mb-[-.5vw]"
                                         style={{ fontFamily: 'var(--font-peakers)' }}
@@ -116,11 +124,13 @@ export default function SaucePageOne() {
                                     </div>
                                 </div>
 
-                                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[105vw] h-[105vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none">
+                                <div
+                                    className="absolute left-1/2 -translate-x-1/2 bottom-0 sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[105vw] h-[105vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none"
+                                >
 
-                                    {/* ROTATING TEXT (CONTROLLED) */}
+                                    {/* ROTATING TEXT (WITH INDEPENDENT SCALING) */}
                                     <div
-                                        className="absolute inset-0 w-full h-full transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]"
+                                        className={`absolute inset-0 w-full h-full transition-all duration-1800 ease-[cubic-bezier(0.77,0,0.175,1)] ${isScaling ? 'scale-[1.02]' : 'scale-100'}`}
                                         style={{ transform: `rotate(${rotation}deg)` }}
                                     >
                                         <svg viewBox="0 0 1000 1000" className="w-full h-full overflow-visible">
@@ -182,20 +192,42 @@ export default function SaucePageOne() {
                 })}
             </div>
 
-            {/* ARROWS */}
-            <div className="absolute top-[48%] sm:top-[50%] md:top-auto bottom-auto md:bottom-[45%] lg:bottom-[40%] xl:bottom-[50%] w-[90%] sm:w-[90%] md:w-[90%] lg:w-[85%] xl:w-[80%] left-1/2 -translate-x-1/2 flex justify-between items-center z-20 pointer-events-none">
+            {/* PREMIUM ARROWS */}
+            <div className="absolute top-[48%] sm:top-[50%] md:top-auto bottom-auto md:bottom-[45%] lg:bottom-[40%] xl:bottom-[50%] w-[90%] sm:w-[92%] md:w-[95%] lg:w-[90%] xl:w-[85%] left-1/2 -translate-x-1/2 flex justify-between items-center z-20 pointer-events-none">
                 <button
                     onClick={prevSlide}
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white/10 transition pointer-events-auto"
+                    className="group pointer-events-auto transition-all duration-300 active:scale-95"
                 >
-                    ←
+                    <div className="relative flex items-center justify-center w-[36px] h-9 sm:w-[44px] sm:h-11 md:w-[52px] md:h-13 lg:w-[60px] lg:h-15">
+                        <div className="w-full h-full rounded-full bg-white/10 border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:border-white group-hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                            <svg
+                                viewBox="0 0 100 100"
+                                className="w-[45%] h-[45%] text-white rotate-180"
+                                fill="currentColor"
+                            >
+                                <path d="M45 20 L85 50 L45 80 L58 50 Z" />
+                                <path d="M15 25 L50 50 L15 75 L28 50 Z" className="opacity-40" />
+                            </svg>
+                        </div>
+                    </div>
                 </button>
 
                 <button
                     onClick={nextSlide}
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[3vw] xl:h-[3vw] rounded-full border border-white/50 flex items-center justify-center text-white hover:bg-white/10 transition pointer-events-auto"
+                    className="group pointer-events-auto transition-all duration-300 active:scale-95"
                 >
-                    →
+                    <div className="relative flex items-center justify-center w-[36px] h-9 sm:w-[44px] sm:h-11 md:w-[52px] md:h-13 lg:w-[60px] lg:h-15">
+                        <div className="w-full h-full rounded-full bg-white/10 border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:border-white group-hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                            <svg
+                                viewBox="0 0 100 100"
+                                className="w-[45%] h-[45%] text-white"
+                                fill="currentColor"
+                            >
+                                <path d="M45 20 L85 50 L45 80 L58 50 Z" />
+                                <path d="M15 25 L50 50 L15 75 L28 50 Z" className="opacity-40" />
+                            </svg>
+                        </div>
+                    </div>
                 </button>
             </div>
         </div>
