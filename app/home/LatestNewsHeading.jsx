@@ -3,22 +3,23 @@
 import { motion } from "framer-motion";
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, ease: "easeOut", delay },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.8, ease: "easeOut", delay },
 });
 
 export default function LatestNewsHeading({ heading = "THE PECKERS JOURNAL", subtitle = "Latest stories from the heart of Peckers." }) {
   const words = (heading || "THE PECKERS JOURNAL").split(" ");
+  const subtitleText = subtitle || "Latest stories from the heart of Peckers.";
 
   return (
     <div
-      className="w-full px-[5vw] md:px-[1.4vw] py-[10vw] md:py-0 pt-[15vw] md:pt-0 pb-[10vw] md:pb-[2vw] xl:pb-0 grid h-auto md:h-auto xl:h-auto"
+      className="w-full px-[5vw] md:px-[1.4vw] py-[10vw] md:py-[5vw] pt-[15vw] md:pt-[8vw] pb-[10vw] md:pb-[2vw] xl:pb-0 flex flex-col items-center md:items-start text-center md:text-left"
       style={{ lineHeight: "1.2" }}
     >
       {/* Title */}
-      <span
+      <h2
         className="text-[10vw] sm:text-[8vw] md:text-[4.8vw] font-bold text-white tracking-[.2vw] uppercase"
         style={{ fontFamily: "var(--font-peakers)" }}
       >
@@ -31,14 +32,15 @@ export default function LatestNewsHeading({ heading = "THE PECKERS JOURNAL", sub
             {word}
           </motion.span>
         ))}
-      </span>
+      </h2>
 
       {/* Subtitle */}
-      <span
-        className="font-sans mt-[3vw] md:mt-.9 font-extralight text-[4vw] sm:text-[3vw] md:text-[1.3vw] text-white"
+      <motion.p
+        className="font-sans mt-[4vw] md:mt-[1vw] font-extralight text-[4vw] sm:text-[3vw] md:text-[1.3vw] text-white opacity-90 max-w-[90vw] md:max-w-[45vw]"
+        {...fadeUp(0.4)}
       >
-        {subtitle}
-      </span>
+        {subtitleText}
+      </motion.p>
     </div>
   );
 }
