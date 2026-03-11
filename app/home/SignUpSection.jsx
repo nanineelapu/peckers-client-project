@@ -3,46 +3,13 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
-import { client } from "../../sanity/lib/client";
-import { urlFor } from "../../sanity/lib/image";
 
-export default function SignUpSection() {
+export default function SignUpSection({ initialData = null }) {
   const glossRef = useRef(null);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const data = initialData;
 
   useEffect(() => {
-    const fetchSignUpData = async () => {
-      try {
-        const signUpData = await client.fetch(`*[_type == "homepage"][0].signupSection {
-          heading,
-          description,
-          subText,
-          buttonText,
-          backgroundImage {
-            asset -> {
-              _id,
-              url
-            }
-          }
-        }`);
-        console.log("Sign Up data fetched:", signUpData);
-        if (signUpData) {
-          setData(signUpData);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching Sign Up data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchSignUpData();
-  }, []);
-
-  // Looping glossy border for button (kept as-is)
-  useEffect(() => {
-    if (loading || !data) return;
+    if (!data) return;
     const gloss = glossRef.current;
     if (!gloss) return;
     gsap.set(gloss, { left: "-60%", opacity: 0.34 });
@@ -60,15 +27,7 @@ export default function SignUpSection() {
       },
     });
     return () => loop && loop.kill();
-  }, [loading, data]);
-
-  if (loading) {
-    return (
-      <div className="w-full h-[30vw] flex items-center justify-center bg-black">
-        <div className="text-white/20 font-mono animate-pulse tracking-[.5vw]">LOADING SECTION...</div>
-      </div>
-    );
-  }
+  }, [data]);
 
   if (!data) return null;
 
@@ -146,7 +105,6 @@ export default function SignUpSection() {
               backgroundClip: "padding-box",
             }}
           >
-            {/* Glossy border effect overlay */}
             <span
               ref={glossRef}
               style={{
@@ -166,20 +124,6 @@ export default function SignUpSection() {
               }}
             ></span>
             <span style={{ position: "relative", zIndex: 3 }}>{data.buttonText || "CLAIM MY SHAKE"}</span>
-            <span
-              aria-hidden
-              style={{
-                pointerEvents: "none",
-                content: "''",
-                position: "absolute",
-                inset: 0,
-                zIndex: 1,
-                border: "2px solid white",
-                borderRadius: "inherit",
-                background: "none",
-              }}
-              className="hidden"
-            />
           </button>
         </motion.div>
       </motion.div>

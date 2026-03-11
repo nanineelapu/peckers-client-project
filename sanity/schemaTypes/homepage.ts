@@ -23,6 +23,11 @@ export default defineType({
             description: "Static image displayed while the video loads. Critical for performance and LCP.",
             options: { hotspot: true },
         }),
+        defineField({ name: "locationsHeading", type: "string", title: "Locations Section Heading" }),
+        defineField({ name: "locationsSubtitle", type: "text", title: "Locations Section Subtitle" }),
+        defineField({ name: "journalHeading", type: "string", title: "Journal Section Heading" }),
+        defineField({ name: "journalSubtitle", type: "text", title: "Journal Section Subtitle" }),
+        defineField({ name: "journalCaption", type: "text", title: "Journal Section Caption (Below Cards)" }),
         defineField({
             name: "ratingSection",
             title: "Rating Section",

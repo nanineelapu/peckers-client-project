@@ -8,7 +8,7 @@ import footer from './footer'
 import menupage from './menupage'
 import ourstorypage from './ourstorypage'
 import ourstorybottompage from './ourstorybottompage'
-import mobileBottomButtons from './mobileBottomButtons'
+import siteSettings from './siteSettings'
 import locationPage from './locationPage'
 import mapSection from './mapSection'
 import reviewsHomepage from './reviewsHomepage'
@@ -18,8 +18,9 @@ import uniquenessLanding from './uniquenessLanding'
 import uniquenessSubsection from './uniquenessSubsection'
 import timeline from './timeline'
 import locationHistory from './locationHistory'
+import menuNavbar from './menuNavbar'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [category, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, timeline, ourstorybottompage, mobileBottomButtons, locationPage, mapSection, reviewsHomepage, enquireSection, sauces, uniquenessLanding, uniquenessSubsection, locationHistory],
+  types: [category, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, timeline, ourstorybottompage, siteSettings, locationPage, mapSection, reviewsHomepage, enquireSection, sauces, uniquenessLanding, uniquenessSubsection, locationHistory, menuNavbar],
 }
 

@@ -24,42 +24,15 @@ const createInitialCards = (centerIdx, totalImages) => {
   ];
 };
 
-export default function LatestNewsCards() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState([]);
+export default function LatestNewsCards({ news = [] }) {
+  const images = news.filter(item => item.image?.asset);
+  const [cards, setCards] = useState(images.length > 0 ? createInitialCards(0, images.length) : []);
   const [centerIdx, setCenterIdx] = useState(0);
   const animatingRef = useRef(false);
 
   const N = images.length;
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const data = await client.fetch(`*[_type == "sliderCard"] | order(order asc) {
-          _id,
-          title,
-          image,
-          order
-        }`);
-        console.log("Slider data fetched:", data);
-
-        // Filter out items without an image to avoid broken src
-        const validCards = data.filter(item => item.image?.asset);
-
-        if (validCards.length > 0) {
-          setImages(validCards);
-          setCards(createInitialCards(0, validCards.length));
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching slider cards:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, []);
+  if (N === 0) return null;
 
   const goNext = useCallback(() => {
     if (animatingRef.current || N === 0) return;
@@ -112,15 +85,6 @@ export default function LatestNewsCards() {
     // No action for center (slot 0) or hidden slots
   };
 
-  if (loading) {
-    return (
-      <div className="relative w-full py-[10vw] md:py-[3vw] bg-black overflow-hidden flex items-center justify-center min-h-[40vw]">
-        <div className="text-white font-mono animate-pulse">LOADING JOURNAL...</div>
-      </div>
-    );
-  }
-
-  if (N === 0) return null;
 
   return (
     <div className="relative w-full py-[10vw] md:py-[3vw] bg-black overflow-hidden">

@@ -7,21 +7,24 @@ import { client } from "../../sanity/lib/client";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BurgerPageText() {
+export default function BurgerPageText({ initialData = null }) {
   const containerRef = useRef(null);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(initialData);
+  const [loading, setLoading] = useState(!initialData);
+  const [settings, setSettings] = useState(null);
 
   useEffect(() => {
-    const fetchMenuDetails = async () => {
+    const fetchData = async () => {
       try {
-        const menuDetails = await client.fetch(`*[_type == "menuPage"][0] {
-          subtitle, protein, carbs, fats, calories, energy, allergens, spiceLevel, availabilityText
-        }`);
-        console.log("Menu details fetched:", menuDetails);
-        if (menuDetails) {
-          setData(menuDetails);
-        }
+        const [menuDetails, siteSettings] = await Promise.all([
+          !initialData ? client.fetch(`*[_type == "menuPage"][0] {
+            subtitle, protein, carbs, fats, calories, energy, allergens, spiceLevel, availabilityText
+          }`) : Promise.resolve(initialData),
+          client.fetch(`*[_type == "siteSettings"][0] { clickCollectUrl, deliveryUrl }`)
+        ]);
+
+        if (menuDetails) setData(menuDetails);
+        if (siteSettings) setSettings(siteSettings);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching menu details:", error);
@@ -29,8 +32,8 @@ export default function BurgerPageText() {
       }
     };
 
-    fetchMenuDetails();
-  }, []);
+    fetchData();
+  }, [initialData]);
 
   useLayoutEffect(() => {
     if (loading || !data) return;
@@ -129,8 +132,11 @@ export default function BurgerPageText() {
         </span>
       </div>
       <div className="flex gap-[3vw] md:gap-3 mt-[4vw] md:mt-5.5">
-        <button
-          className="flex items-center justify-center px-[4vw] py-[2vw] md:px-6 md:py-2 rounded-[.4vw] border-[1.5px] md:border-2 xl:border-[0.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[14px] lg:text-[16px] xl:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-cc"
+        <a
+          href={settings?.clickCollectUrl || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center px-[4vw] py-[2vw] md:px-6 md:py-2 rounded-[.4vw] border-[1.5px] md:border-2 xl:border-[0.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[14px] lg:text-[16px] xl:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-cc no-underline"
           style={{
             minWidth: 115,
             letterSpacing: "0.04em",
@@ -139,9 +145,12 @@ export default function BurgerPageText() {
           }}
         >
           Click & Collect
-        </button>
-        <button
-          className="flex items-center justify-center px-[5vw] py-[2vw] md:px-7 md:py-2 rounded border-[1.5px] md:border-2 xl:border-[0.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[14px] lg:text-[16px] xl:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-delivery"
+        </a>
+        <a
+          href={settings?.deliveryUrl || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center px-[5vw] py-[2vw] md:px-7 md:py-2 rounded border-[1.5px] md:border-2 xl:border-[0.11vw] border-[#f2df0d] text-[#ffff] font-mono uppercase tracking-wide text-[2.8vw] md:text-[14px] lg:text-[16px] xl:text-[1vw] cursor-pointer hover:bg-[#f2df0d]/10 transition-colors duration-150 burger-btn-delivery no-underline"
           style={{
             minWidth: 115,
             letterSpacing: "0.04em",
@@ -168,7 +177,7 @@ export default function BurgerPageText() {
               />
             </g>
           </svg>
-        </button>
+        </a>
       </div>
 
       <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-[6vw] md:gap-8 lg:gap-12 xl:gap-[10vw] mt-[8vw] md:mt-7 ml-0 md:ml-6 text-white/90 font-mono pt-0 burger-stats px-[5vw] md:px-0">

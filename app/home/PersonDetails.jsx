@@ -1,54 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { client } from "../../sanity/lib/client";
-import { urlFor } from "../../sanity/lib/image";
 
-export default function PersonDetails() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedData = await client.fetch(`*[_type == "homepagePersonDetails"][0] {
-          heading,
-          description,
-          buttonText,
-          image {
-            asset->{
-              _id,
-              url
-            }
-          }
-        }`);
-        console.log("Person details fetched:", fetchedData);
-        setData(fetchedData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching person details:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="relative w-full py-[15vw] md:py-[8vw] bg-black flex items-center justify-center min-h-[30vw]">
-        <div className="text-white font-mono animate-pulse">LOADING DETAILS...</div>
-      </div>
-    );
-  }
-
+export default function PersonDetails({ data = null }) {
   if (!data) return null;
 
-  // Split heading to find "CHICKEN" or last word to apply different color if needed
-  // But for now, let's just use the heading as is or with simple split
-  const headingParts = data.heading?.split(" ") || [];
+  const headingText = data.heading || "THE HEART OF PECKERS";
+  const headingParts = headingText.split(" ");
   const lastWord = headingParts.pop();
   const resHeading = headingParts.join(" ");
 
@@ -56,7 +15,6 @@ export default function PersonDetails() {
     <div
       className="relative w-full max-w-full overflow-x-hidden flex flex-col lg:flex-row items-stretch justify-center mt-[15vw] md:mt-[15vw] lg:mt-[8vw] gap-[8vw] md:gap-[8vw] lg:gap-[2vw] box-border px-[5vw] md:px-[6vw] lg:px-[2vw]"
     >
-      {/* Left: Person Image — slides in from left */}
       <motion.div
         className="shrink-0 w-full lg:w-[43vw] xl:w-[44vw]"
         initial={{ opacity: 0, x: -40 }}
@@ -64,20 +22,18 @@ export default function PersonDetails() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        {data.image?.asset?.url && (
+        {data.imageUrl && (
           <Image
-            src={data.image.asset.url}
+            src={data.imageUrl}
             alt="Profile"
             className="w-full h-[70vw] md:h-[80vw] lg:h-[38vw] xl:h-[36vw] object-cover object-center rounded-2xl"
             sizes="(max-width: 768px) 90vw, 41.5vw"
-            priority={true}
             width={670}
             height={840}
           />
         )}
       </motion.div>
 
-      {/* Right: Text block — slides in from right */}
       <motion.div
         className="w-full lg:max-w-[50vw] xl:max-w-[40vw] flex flex-col justify-center bg-black px-[6vw] md:px-[6vw] lg:px-[4vw] xl:px-[3vw] py-[5vw] md:py-[6vw] lg:py-[2vw] xl:py-0 min-h-[50vw] md:min-h-[40vw] lg:min-h-[38vw] xl:min-h-[28vw] shadow-xl relative mt-[4vw] md:mt-[4vw] lg:-mt-[2vw] xl:-mt-[2.2vw] mr-0 xl:mr-[1vw] z-10 md:z-2 rounded-xl lg:rounded-none"
         initial={{ opacity: 0, x: 40 }}
@@ -89,7 +45,7 @@ export default function PersonDetails() {
           className="grid text-white font-bold text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[4.5vw] xl:text-[4.9vw] tracking-[.4vw] xl:tracking-[.2vw] leading-tight mb-[4vw] md:mb-[4vw] lg:mb-[1.5vw] xl:mb-[1vw] text-center lg:text-left"
           style={{ letterSpacing: "0.01em", fontFamily: "var(--font-peakers)" }}
         >
-          {resHeading} <span className="text-[#ffff]">{lastWord}</span>
+          {resHeading} <span className="text-white">{lastWord}</span>
         </h2>
 
         <div className="relative flex flex-col items-center lg:items-start w-full">
@@ -98,9 +54,6 @@ export default function PersonDetails() {
           >
             {data.description}
           </div>
-          <div
-            className="w-[100px] md:w-[150px] lg:w-[120px] xl:max-w-[150px] min-w-[80px] h-[2px] rounded-lg mx-auto lg:mx-0 mt-[2vw] md:mt-[3vw] lg:mt-[1vw] xl:mt-[.6vw] mb-0 absolute bottom-[-5vw] md:bottom-[-6vw] lg:bottom-[-2.8vw] xl:bottom-[-1.8vw] transform translate-y-full box-border overflow-hidden"
-          />
         </div>
 
         <div className="h-[6vw] md:h-[6vw] lg:h-[3vw] xl:h-[2.2vw]" />
@@ -116,7 +69,6 @@ export default function PersonDetails() {
                 {data.buttonText || "OUR HERITAGE"}
               </span>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="white"

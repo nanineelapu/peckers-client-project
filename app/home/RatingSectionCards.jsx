@@ -2,34 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { client } from "../../sanity/lib/client";
 
-export default function RatingSectionCards() {
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const data = await client.fetch(`*[_type == "review"]`);
-        setCards(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchReviews();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="w-full mt-[6vw] md:mt-[3vw] mb-[2vw] md:mb-[2vw] flex justify-center items-center py-[10vw]">
-        <div className="text-white font-mono animate-pulse">LOADING REVIEWS...</div>
-      </div>
-    );
-  }
-
-  if (cards.length === 0) return null;
+export default function RatingSectionCards({ reviews = [] }) {
+  if (!reviews || reviews.length === 0) return null;
+  const cards = reviews;
 
   return (
     <div

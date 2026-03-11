@@ -2,11 +2,10 @@
 
 import { motion } from "framer-motion";
 
-export default function CaptionBelowNews() {
+export default function CaptionBelowNews({ caption = "Stay up to date with our shenanigans, limited drops, and questionable life choices." }) {
   return (
     <div className="w-full flex justify-center">
       <div className="w-[90vw] md:w-[80vw] flex flex-col items-center pt-[5vw] md:pt-5">
-        {/* Divider line animates in from center */}
         <motion.div
           className="relative flex items-center justify-center my-[4vw] md:my-[0.6vw]"
           style={{
@@ -29,12 +28,10 @@ export default function CaptionBelowNews() {
               pointerEvents: "none",
             }}
           />
-          {/* invisible spacer */}
           <div style={{ width: "100%", height: "2.5px", visibility: "hidden" }} />
         </motion.div>
 
         <div className="flex items-start px-[4vw] md:px-[14vw] w-full mt-[4vw] md:mt-[0.6vw] justify-center">
-          {/* SVG bar */}
           <motion.svg
             viewBox="0 0 14 48"
             fill="none"
@@ -49,7 +46,6 @@ export default function CaptionBelowNews() {
             <rect x="4" y="0" width="4" height="30" rx="1" fill="#fff" />
           </motion.svg>
 
-          {/* Quote text */}
           <motion.span
             className="text-white text-[4vw] sm:text-[3vw] md:text-[2vw] xl:text-[1.3vw] leading-[6vw] md:leading-[3vw] xl:leading-[1.7vw] font-sans font-light text-left tracking-wide inline-block"
             style={{ letterSpacing: ".005em" }}
@@ -58,7 +54,7 @@ export default function CaptionBelowNews() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           >
-            Stay up to date with our shenanigans, limited drops, and questionable life choices.
+            {caption || "Stay up to date with our shenanigans, limited drops, and questionable life choices."}
           </motion.span>
         </div>
       </div>

@@ -79,10 +79,22 @@ function getSlotPos(slot, isLaptop = false) {
   };
 }
 
-export default function BurgerCarouselFinal() {
-  const [burgers, setBurgers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [carousel, setCarousel] = useState({ center: 0, cards: [] });
+export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbarData = [] }) {
+  const [burgers, setBurgers] = useState(initialBurgers);
+  const [navbarData, setNavbarData] = useState(initialNavbarData || []);
+  const [loading, setLoading] = useState(initialBurgers.length === 0);
+  const [carousel, setCarousel] = useState(() => {
+    if (initialBurgers.length > 0) {
+      const initialCards = initialBurgers.map((_, i) => {
+        let diff = i;
+        if (diff > initialBurgers.length / 2) diff -= initialBurgers.length;
+        if (diff < -initialBurgers.length / 2) diff += initialBurgers.length;
+        return { id: i, index: i, slot: diff };
+      });
+      return { center: 0, cards: initialCards };
+    }
+    return { center: 0, cards: [] };
+  });
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [glowVisible, setGlowVisible] = useState(true);
@@ -90,6 +102,7 @@ export default function BurgerCarouselFinal() {
   const TOTAL = burgers.length;
 
   useEffect(() => {
+    if (initialBurgers.length > 0) return;
     const fetchBurgers = async () => {
       try {
         const data = await client.fetch(`*[_type == "menuPage"][0].burgerCarousel[] {
@@ -199,27 +212,44 @@ export default function BurgerCarouselFinal() {
               className="flex font-['Share_Tech'] gap-[6vw] md:gap-6 lg:gap-8 xl:gap-[3.4vw] justify-start md:justify-center items-center overflow-x-auto no-scrollbar px-[5vw] sm:px-[5vw] md:px-0 pt-[4vw] sm:pt-[4vw] md:pt-4 lg:pt-6 xl:pt-[1.5vw]"
               style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
-              <a
-                href="#"
-                className="whitespace-nowrap font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500 pb-1 md:pb-1 tracking-wider"
-              >
-                BURGERS
-              </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
-                WRAPS
-              </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
-                RICE BOWLS
-              </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
-                WINGS AND TENDERS
-              </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
-                GRIILLED
-              </a>
-              <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
-                MEAL BOX
-              </a>
+              {navbarData && navbarData.length > 0 ? (
+                navbarData.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={item.link || "#"}
+                    className={`whitespace-nowrap pb-1 md:pb-1 tracking-wider ${item.isActive
+                      ? "font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500"
+                      : "text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] tracking-wide opacity-70 hover:opacity-100 transition-opacity"
+                      }`}
+                  >
+                    {item.title}
+                  </a>
+                ))
+              ) : (
+                <>
+                  <a
+                    href="#"
+                    className="whitespace-nowrap font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500 pb-1 md:pb-1 tracking-wider"
+                  >
+                    BURGERS
+                  </a>
+                  <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+                    WRAPS
+                  </a>
+                  <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+                    RICE BOWLS
+                  </a>
+                  <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+                    WINGS AND TENDERS
+                  </a>
+                  <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+                    GRIILLED
+                  </a>
+                  <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+                    MEAL BOX
+                  </a>
+                </>
+              )}
             </div>
           </nav>
         </div>
@@ -427,20 +457,26 @@ export default function BurgerCarouselFinal() {
                   userSelect: "none",
                 }}
               >
-                <img
-                  src={burger.image}
-                  alt={burger.name}
-                  draggable={false}
+                <div
+                  className="relative"
                   style={{
                     width: "clamp(220px, 45vw, 520px)",
-                    display: "block",
-                    filter: isCenter
-                      ? "drop-shadow(0 5px 15px rgba(0,0,0,0.3))"
-                      : "none",
-                    transition: "filter .4s ease",
-                    userSelect: "none",
+                    height: "auto",
+                    aspectRatio: "1/1",
+                    filter: isCenter ? "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" : "none",
+                    transition: "filter .4s ease"
                   }}
-                />
+                >
+                  <Image
+                    src={burger.image}
+                    alt={burger.name}
+                    fill
+                    priority={isCenter}
+                    className="object-contain"
+                    draggable={false}
+                    sizes="clamp(220px, 45vw, 520px)"
+                  />
+                </div>
               </div>
             );
           })}

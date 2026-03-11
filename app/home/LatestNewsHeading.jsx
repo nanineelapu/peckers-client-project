@@ -9,18 +9,17 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, ease: "easeOut", delay },
 });
 
-export default function LatestNewsHeading() {
-  const title = "THE PECKERS JOURNAL";
-  const words = title.split(" ");
+export default function LatestNewsHeading({ heading = "THE PECKERS JOURNAL", subtitle = "Latest stories from the heart of Peckers." }) {
+  const words = (heading || "THE PECKERS JOURNAL").split(" ");
 
   return (
     <div
-      className="w-full px-[5vw] md:px-[1.4vw] py-[10vw] md:py-0 pt-[15vw] md:pt-0 pb-[10vw] md:pb-[2vw] xl:pb-[0vw] grid h-auto md:h-auto xl:h-auto"
+      className="w-full px-[5vw] md:px-[1.4vw] py-[10vw] md:py-0 pt-[15vw] md:pt-0 pb-[10vw] md:pb-[2vw] xl:pb-0 grid h-auto md:h-auto xl:h-auto"
       style={{ lineHeight: "1.2" }}
     >
       {/* Title */}
       <span
-        className="text-[10vw] sm:text-[8vw] md:text-[4.8vw] font-bold text-white tracking-[.2vw]"
+        className="text-[10vw] sm:text-[8vw] md:text-[4.8vw] font-bold text-white tracking-[.2vw] uppercase"
         style={{ fontFamily: "var(--font-peakers)" }}
       >
         {words.map((word, i) => (
@@ -38,7 +37,7 @@ export default function LatestNewsHeading() {
       <span
         className="font-sans mt-[3vw] md:mt-.9 font-extralight text-[4vw] sm:text-[3vw] md:text-[1.3vw] text-white"
       >
-        Latest stories from the heart of Peckers.
+        {subtitle}
       </span>
     </div>
   );
