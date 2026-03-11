@@ -114,10 +114,10 @@ export default function OurStorySection({ initialData = null }) {
               }
             }}
             transition={{
-              x: { type: "spring", stiffness: 180, damping: 28 },
-              opacity: { duration: 0.5 },
-              scale: { duration: 0.5 },
-              filter: { duration: 0.5 },
+              x: { type: "spring", stiffness: 450, damping: 40 },
+              opacity: { duration: 0.2 },
+              scale: { duration: 0.2 },
+              filter: { duration: 0.2 },
             }}
             className="w-full h-full flex flex-row items-center justify-center cursor-grab active:cursor-grabbing"
           >
@@ -130,7 +130,7 @@ export default function OurStorySection({ initialData = null }) {
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.1 }}
               >
                 <div className="w-6 lg:w-10 h-px bg-white/40"></div>
-                <span className="ml-2 lg:ml-4 text-gray-400 font-mono tracking-widest text-[2.5vw] lg:text-[1.2vw]">STORY {currentSlide + 1}</span>
+                <span className="ml-2 lg:ml-4 text-gray-400 font-anton tracking-[0.11em] text-[2.5vw] lg:text-[1.2vw] uppercase">STORY {currentSlide + 1}</span>
               </motion.div>
 
               <motion.h2
@@ -161,7 +161,7 @@ export default function OurStorySection({ initialData = null }) {
 
               <div className="flex items-center justify-start gap-1 lg:gap-2 mt-2 lg:mt-auto pb-4">
                 {slides.map((_, i) => (
-                  <div key={i} className={`h-0.5 lg:h-1 w-4 lg:w-12 transition-all duration-500 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/10"}`}></div>
+                  <div key={i} className={`h-0.5 lg:h-1 w-4 lg:w-12 transition-all duration-300 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/10"}`}></div>
                 ))}
               </div>
             </div>
@@ -210,6 +210,8 @@ export default function OurStorySection({ initialData = null }) {
             </div>
           </motion.div>
         </AnimatePresence>
+
+
 
         <button
           onClick={prevSlide}

@@ -9,7 +9,6 @@ export default function Preloader({ onComplete = () => { } }) {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const pathname = usePathname();
-  const [shouldRender, setShouldRender] = useState(false);
 
   // Only allow preloader to show if we're on the home page ("/" or "/home")
   const isHomePage =
@@ -17,26 +16,27 @@ export default function Preloader({ onComplete = () => { } }) {
     pathname === "/home" ||
     pathname === "/home/";
 
+  const [shouldRender, setShouldRender] = useState(isHomePage);
+
   useEffect(() => {
     // Only run on the client side
     if (typeof window !== "undefined") {
-      const hasShown = sessionStorage.getItem("preloaderShown");
+      const hasShown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem("preloaderShown");
 
       if (!isHomePage || hasShown) {
         // If not homepage, or already shown this session, skip entirely
+        setShouldRender(false);
         onComplete();
         return;
       }
-
-      // If we are on homepage and haven't shown it yet, render the preloader
-      setTimeout(() => {
-        setShouldRender(true);
-      }, 0);
     }
   }, [isHomePage, onComplete]);
 
   useEffect(() => {
-    if (!shouldRender || !isHomePage) return; // Do nothing if we shouldn't render
+    // Double check if we should actually be animating
+    // This prevents a race condition where opacity is set to 0 but never animated back to 1 because shouldRender becomes false
+    const hasShown = typeof sessionStorage !== 'undefined' && sessionStorage.getItem("preloaderShown");
+    if (!shouldRender || !isHomePage || hasShown) return;
 
     const tl = gsap.timeline({
       defaults: { ease: "power3.out" },
@@ -53,8 +53,9 @@ export default function Preloader({ onComplete = () => { } }) {
       const targets = [main, navbar].filter(Boolean);
       // Set initial state for zoom out
       gsap.set(targets, {
-        scale: 1.8,
+        scale: 2.3,
         y: -100,
+        opacity: 0,
         transformOrigin: "50% 60vh",
       });
     }
@@ -62,27 +63,27 @@ export default function Preloader({ onComplete = () => { } }) {
     // Set initial text styles BEFORE displaying to avoid flash
     gsap.set(textRef.current, {
       letterSpacing: "0.4em",
-      opacity: 1 // ensure opacity starts visible but styled
+      opacity: 1
     });
 
     tl.to(
       textRef.current,
       {
         letterSpacing: "0.02em",
-        duration: 1.0, // Slowed down from 0.5
+        duration: 1,
       }
     );
 
     tl.to(textRef.current, {
       scale: 1.06,
-      duration: 1.0, // Slowed down from 0.6
+      duration: 1,
       ease: "power2.inOut",
     });
 
     // Slide preloader down
     tl.to(containerRef.current, {
       yPercent: 100,
-      duration: 1.2, // Slowed down from 0.3
+      duration: 1.3,
       ease: "power4.inOut",
     });
 
@@ -94,7 +95,8 @@ export default function Preloader({ onComplete = () => { } }) {
         {
           scale: 1,
           y: 0,
-          duration: 1.2, // Slowed down from 0.6
+          opacity: 1,
+          duration: 0.8,
           ease: "power3.out",
         },
         "<"
@@ -108,12 +110,12 @@ export default function Preloader({ onComplete = () => { } }) {
 
   const word = "PECKERS";
 
-  if (!shouldRender || !isHomePage) return null; // Don't render preloader if we shouldn't or on other pages
+  if (!shouldRender || !isHomePage) return null;
 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-9999 flex items-center justify-center bg-white"
+      className="fixed inset-0 z-10000 flex items-center justify-center bg-white"
     >
       <h1
         ref={textRef}
@@ -132,3 +134,4 @@ export default function Preloader({ onComplete = () => { } }) {
     </div>
   );
 }
+

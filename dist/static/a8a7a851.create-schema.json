@@ -42,6 +42,31 @@
         "title": "Hero Poster Image (Recommended)"
       },
       {
+        "name": "locationsHeading",
+        "type": "string",
+        "title": "Locations Section Heading"
+      },
+      {
+        "name": "locationsSubtitle",
+        "type": "text",
+        "title": "Locations Section Subtitle"
+      },
+      {
+        "name": "journalHeading",
+        "type": "string",
+        "title": "Journal Section Heading"
+      },
+      {
+        "name": "journalSubtitle",
+        "type": "text",
+        "title": "Journal Section Subtitle"
+      },
+      {
+        "name": "journalCaption",
+        "type": "text",
+        "title": "Journal Section Caption (Below Cards)"
+      },
+      {
         "fields": [
           {
             "name": "heading",
@@ -99,6 +124,11 @@
         "name": "name",
         "type": "string",
         "title": "Location Name"
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "title": "Location Subtitle"
       },
       {
         "options": {
@@ -636,6 +666,15 @@
   {
     "fields": [
       {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Main logo shown in the navbar.",
+        "name": "logo",
+        "type": "image",
+        "title": "Navigation Logo"
+      },
+      {
         "validation": [
           {
             "rules": [
@@ -686,6 +725,14 @@
         "name": "deliveryUrl",
         "type": "url",
         "title": "Delivery URL"
+      },
+      {
+        "name": "siteTitle",
+        "type": "string"
+      },
+      {
+        "name": "siteDescription",
+        "type": "text"
       }
     ],
     "name": "siteSettings",
@@ -1205,6 +1252,39 @@
       }
     ],
     "name": "locationHistory",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "initialValue": "#",
+                "name": "link",
+                "type": "string",
+                "title": "Target URL/ID (e.g. #burgers)"
+              },
+              {
+                "initialValue": false,
+                "name": "isActive",
+                "type": "boolean",
+                "title": "Is Active?"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "menuItems",
+        "type": "array"
+      }
+    ],
+    "name": "menuNavbar",
     "type": "document"
   }
 ]

@@ -3,8 +3,6 @@ import "./globals.css";
 import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
 import ClientWrapper from "./ClientWrapper";
-import Navbar from "./Navbar";
-import ConditionalFooter from "./ConditionalFooter";
 
 const peakersFont = localFont({
   src: "./fonts/Supernett-Cn-Regular.woff2",

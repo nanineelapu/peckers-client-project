@@ -46,6 +46,16 @@ const OurStoryPage = ({ initialStoryData }) => {
                   transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
                   d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges"
                 />
+
+                {/* Top Dots - Follows path from Left to Right */}
+                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.3 }} cx="210" cy="21" r="5" fill="#EAB308" />
+                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.45, duration: 0.3 }} cx="519" cy="21" r="5" fill="#EAB308" />
+                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 0.3 }} cx="828" cy="21" r="5" fill="#EAB308" />
+
+                {/* Bottom Dots - Follows path from Right to Left */}
+                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.25, duration: 0.3 }} cx="828" cy="433" r="5" fill="#EAB308" />
+                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.5, duration: 0.3 }} cx="519" cy="433" r="5" fill="#EAB308" />
+                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.75, duration: 0.3 }} cx="210" cy="433" r="5" fill="#EAB308" />
               </motion.g>
               <defs>
                 <filter id="filter0_d_297_13" x="0" y="0" width="1038" height="454" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">

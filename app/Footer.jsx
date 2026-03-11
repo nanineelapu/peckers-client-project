@@ -97,7 +97,7 @@ const Footer = () => {
                             className="text-[#E3E3E3] font-mono text-[3.5vw] leading-snug text-left"
                             style={{ letterSpacing: "0.09em", fontWeight: "300" }}
                         >
-                            {data.tagline || <>Seriously good chicken.&nbsp; Est. 2023.</>}
+                            {data.tagline || <>Seriously good chicken.&nbsp; Est. 2024.</>}
                         </p>
                     </div>
 
@@ -116,7 +116,7 @@ const Footer = () => {
                         className="hidden md:block text-[#E3E3E3] px-[1vw] lg:px-[0.5vw] font-mono mb-[4vw] lg:mb-[2vw] xl:mb-[1.3vw] leading-snug md:text-[2.5vw] lg:text-[1.4vw] xl:text-[1vw] text-left w-full whitespace-pre-line"
                         style={{ letterSpacing: "0.09em", fontWeight: "300" }}
                     >
-                        {data.tagline?.includes("\n") ? data.tagline : data.tagline?.replace(/\./g, ".\n") || <>Seriously good <br /> chicken. <br /> Est. 2023.</>}
+                        {data.tagline?.includes("\n") ? data.tagline : data.tagline?.replace(/\./g, ".\n") || <>Seriously good <br /> chicken. <br /> Est. 2024.</>}
                     </p>
 
                     {/* Social buttons (unchanged for both breakpoints) */}
@@ -255,7 +255,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="text-[10px] md:text-[0.8vw] flex flex-row flex-wrap justify-center items-center space-x-2 px-4 hover:text-white transition-colors"
                 >
-                    <span>Designed and Developed By talaganarajesh.in</span>
+                    <span>Designed and Developed by Webcros</span>
                     <svg
                         width="10"
                         height="12"
