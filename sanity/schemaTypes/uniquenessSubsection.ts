@@ -38,6 +38,15 @@ export default defineType({
                             title: "Image",
                             type: "image",
                             options: { hotspot: true }
+                        }),
+
+                        defineField({
+                            name: "video",
+                            title: "Video",
+                            type: "file",
+                            options: {
+                                accept: "video/*"
+                            }
                         })
 
                     ]

@@ -19,7 +19,10 @@ export default async function UniquenessPage() {
     // Fetch all uniqueness related data on the server
     const data = await client.fetch(`{
         "landingData": *[_type == "uniquenessLanding"][0],
-        "sectionsData": *[_type == "uniquenessSubSection"][0].sections
+        "sectionsData": *[_type == "uniquenessSubSection"][0].sections[] {
+            ...,
+            "videoUrl": video.asset->url
+        }
     }`);
 
     return <UniquenessPageClient initialData={data} />;
