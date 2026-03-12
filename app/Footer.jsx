@@ -197,11 +197,11 @@ const Footer = ({ preloadedData = null }) => {
                                 .map((loc, idx) => (
                                     <div key={idx}>{loc}</div>
                                 )) : (
-                                    <>
-                                        <div>Hitchin</div>
-                                        <div>Stevenage</div>
-                                    </>
-                                )}
+                                <>
+                                    <div>Hitchin</div>
+                                    <div>Stevenage</div>
+                                </>
+                            )}
                             <div>
                                 <Link
                                     href="/locations"
@@ -291,6 +291,28 @@ const Footer = ({ preloadedData = null }) => {
                         )}
                     </div>
                 </div>
+            </div>
+
+            {/* Global SEO - Competitor Targeting */}
+            <div className="sr-only">
+                <h2>Peckers Chicken - The Best Halal Fast Food in Hertfordshire</h2>
+                <p>
+                    Looking for the best chicken shop experience? Peckers is the premium alternative to
+                    Chicken George Stevenage and Dave's Hot Chicken UK. We serve artisan-quality
+                    halal peri peri grilled chicken, hot wings, and gourmet burgers across Stevenage, Hitchin,
+                    and the wider Hertfordshire area.
+                </p>
+                <p>
+                    Whether you're comparing Peckers vs Chicken George or searching for Dave's Hot Chicken halal
+                    options, our menu is designed to impress with seriously good flavors, fresh ingredients,
+                    and dedicated service. Visit us in Hitchin or Stevenage for the ultimate chicken experience.
+                </p>
+                <ul>
+                    <li>Chicken George vs Peckers</li>
+                    <li>Dave's Hot Chicken UK style</li>
+                    <li>Best halal takeaway Stevenage</li>
+                    <li>Top related chicken restaurants Hitchin</li>
+                </ul>
             </div>
         </footer>
     );

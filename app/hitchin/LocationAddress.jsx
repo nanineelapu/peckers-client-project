@@ -117,12 +117,12 @@ export default function LocationAddress({ location = "hitchin" }) {
                             <div className="text-[#e3e3e5] text-[4vw] md:text-[1.2vw] font-peakers">{data.phone}</div>
                         </div>
                         <br />
-                        <div className="flex flex-col md:flex-row gap-[4vw] md:gap-4 py-[4vw] md:py-[2vw]">
+                        <div className="flex flex-col md:flex-row gap-[4vw] md:gap-[1.2vw] py-[4vw] md:py-[2vw] flex-nowrap">
                             <a
                                 href={data.clickCollectUrl || "#"}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full md:w-auto text-center text-[#ffff] px-[4vw] md:px-[1.1vw] py-[3vw] md:py-[.8vw] rounded-[2vw] md:rounded-[0.8vw] text-[4vw] md:text-[1.33vw] tracking-wide transition-all duration-300 hover:bg-[#232323]"
+                                className="w-full md:w-auto text-center text-[#ffff] px-[4vw] md:px-[2vw] lg:px-[2.2vw] py-[3vw] md:py-[.8vw] rounded-[2vw] md:rounded-[0.8vw] text-[4vw] md:text-[13px] lg:text-[1.33vw] tracking-wide transition-all duration-300 hover:bg-[#232323] whitespace-nowrap"
                                 style={{
                                     fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'",
                                     border: '2px solid #fff'
@@ -134,7 +134,7 @@ export default function LocationAddress({ location = "hitchin" }) {
                                 href={data.deliveryUrl || "#"}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full md:w-auto text-center text-black px-[4vw] md:px-[2.9vw] font-bold py-[3vw] md:py-[.8vw] rounded-[2vw] md:rounded-[0.8vw] text-[4.2vw] md:text-[1.4vw] tracking-wide transition-all duration-300 hover:bg-[#ffff] bg-[#ffff]"
+                                className="w-full md:w-auto text-center text-black px-[4vw] md:px-[3.2vw] lg:px-[3.5vw] font-bold py-[3vw] md:py-[.8vw] rounded-[2vw] md:rounded-[0.8vw] text-[4.2vw] md:text-[13px] lg:text-[1.4vw] tracking-wide transition-all duration-300 hover:bg-[#ffff] bg-[#ffff] whitespace-nowrap"
                                 style={{
                                     fontFamily: "monospace, 'Share Tech', 'ShareTech', 'Share_Tech', 'ShareTechMono'",
                                     border: '1px solid #333'

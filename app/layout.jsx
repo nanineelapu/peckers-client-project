@@ -52,11 +52,15 @@ const inconsolata = Inconsolata({
 export const metadata = {
   title: "Peckers | Best Halal Peri Peri & Fried Chicken in Stevenage & Hitchin",
   description:
-    "Peckers is your premium destination for the best peri peri grilled chicken, wings, and halal takeaway in Stevenage and Hitchin. Offering family meals, late night food, and fast delivery across Hertfordshire.",
+    "Discover Peckers - the premium alternative to Chicken George and Dave's Hot Chicken in Hertfordshire. We serve the best halal peri peri grilled chicken, wings, and gourmet burgers in Stevenage and Hitchin. Fast delivery and late-night takeaway available.",
   keywords: [
-    "peri peri grilled chicken near me",
+    "Chicken George Stevenage alternative",
+    "Dave's Hot Chicken UK alternative",
     "best halal chicken Stevenage",
     "fried chicken Hitchin",
+    "Chicken George vs Peckers",
+    "Dave's Hot Chicken halal",
+    "peri peri grilled chicken near me",
     "late night takeaway Stevenage",
     "chicken delivery Hertfordshire",
     "halal food near me",
@@ -69,7 +73,8 @@ export const metadata = {
     "places to eat Hitchin",
     "lunch deals Stevenage",
     "takeaway near me",
-    "Peckers chicken"
+    "Peckers chicken",
+    "halal peri peri wings"
   ],
   alternates: {
     canonical: "https://peckers.co.uk", // Update with actual domain if known

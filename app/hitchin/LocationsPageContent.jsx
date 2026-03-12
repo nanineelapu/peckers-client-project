@@ -214,13 +214,19 @@ export function LocationsPageContent({ location = 'hitchin', initialData = null 
 
             {/* Hidden SEO Optimization - Targeted for {location} */}
             <div className="sr-only">
-                <h3>{locationTitle} Halal Chicken & Takeaway</h3>
+                <h3>{locationTitle} Halal Chicken & Takeaway - Alternative to Chicken George & Dave's Hot Chicken</h3>
                 <p>
                     Searching for the best {location} takeaway? Peckers {locationTitle} is the leading provider of
                     halal fried chicken, peri peri wings, and gourmet burgers. Recognized as one of the top places to
-                    eat in {location}, we specialize in quality halal food delivery and premium dine-in.
+                    eat in {location}, we specialize in quality halal food delivery and premium dine-in experience.
+                    If you enjoy Chicken George in Stevenage or are looking for the Dave's Hot Chicken experience in the UK,
+                    Peckers {locationTitle} offers the ultimate halal alternative with our signature craft and quality.
+                </p>
+                <p>
                     Our {location} location is famous for its seriously good chicken, late night service, and
-                    vibrant atmosphere. Order the best peri peri in {location} from Peckers today.
+                    vibrant atmosphere. Whether you're comparing Peckers vs Chicken George or looking for Dave's Hot Chicken
+                    halal options, we provide the best peri peri in {location}. Order from Peckers today for the best
+                    chicken shop experience in Hertfordshire.
                 </p>
             </div>
 

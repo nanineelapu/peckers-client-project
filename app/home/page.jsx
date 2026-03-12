@@ -3,7 +3,18 @@ import HomePageClient from "./page-client";
 
 export const metadata = {
   title: "Peckers | Best Halal Peri Peri & Fried Chicken in Stevenage & Hitchin",
-  description: "Peckers is your premium destination for the best peri peri grilled chicken, wings, and halal takeaway in Stevenage and Hitchin. Offering family meals, late night food, and fast delivery across Hertfordshire.",
+  description: "Experience the ultimate halal peri peri grilled chicken at Peckers - the premium alternative to Chicken George and Dave's Hot Chicken in Stevenage and Hitchin. Family meals, late night takeaways, and fast delivery across Hertfordshire.",
+  keywords: [
+    "Chicken George Stevenage alternative",
+    "Dave's Hot Chicken UK alternative",
+    "best halal chicken Stevenage",
+    "halal food Hitchin",
+    "peri peri grilled chicken",
+    "chicken takeaway Stevenage",
+    "late night food Stevenage",
+    "Peckers chicken",
+    "halal food Hertfordshire"
+  ]
 };
 
 export default async function HomePage() {
