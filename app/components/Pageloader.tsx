@@ -2,39 +2,56 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { AnimatedMask } from "./AnimatedMask";
 
 interface PageLoaderProps {
     loading: boolean;
+    minimal?: boolean;
     onComplete?: () => void;
 }
 
-export default function PageLoader({ loading, onComplete }: PageLoaderProps) {
+export default function PageLoader({ loading, minimal, onComplete }: PageLoaderProps) {
     useEffect(() => {
         if (loading) {
+            const duration = minimal ? 400 : 900;
             const timer = setTimeout(() => {
                 onComplete?.();
-            }, 2500); // Pecker animation duration
+            }, duration);
             return () => clearTimeout(timer);
         }
-    }, [loading, onComplete]);
+    }, [loading, minimal, onComplete]);
 
     return (
         <AnimatePresence>
             {loading && (
                 <motion.div
-                    className="fixed inset-0 z-[10000] flex items-center justify-center bg-black overflow-hidden"
+                    className="fixed inset-0 z-[10000] flex items-center justify-center bg-black"
                     initial={{ opacity: 1 }}
-                    exit={{ 
-                        opacity: 0,
-                        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
-                    }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
                 >
-                    <div className="relative w-[280px] h-[400px] md:w-[400px] md:h-[600px] flex items-center justify-center">
-                        <AnimatedMask className="w-full h-full" />
-                    </div>
+                    {!minimal && (
+                        <motion.div
+                            className="relative w-20 h-20 flex items-center justify-center"
+                            initial={{ opacity: 0, scale: 0.4 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 500,
+                                damping: 18,
+                                mass: 0.8
+                            }}
+                        >
+                            <img
+                                src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/PageloaderImage.webp"
+                                alt="Loading..."
+                                className="w-full h-full object-contain"
+                            />
+                        </motion.div>
+                    )}
                 </motion.div>
             )}
         </AnimatePresence>
     );
-}
+}
+

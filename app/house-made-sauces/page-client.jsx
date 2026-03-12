@@ -8,9 +8,9 @@ const SaucesPage = ({ initialSaucesData }) => {
     const [locationsOpen, setLocationsOpen] = useState(false);
 
     return (
-        <div id="main-content">
+        <>
             <SaucePageOne initialData={initialSaucesData} />
-        </div>
+        </>
     );
 };
 

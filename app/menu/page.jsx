@@ -36,9 +36,9 @@ export default async function MenuPage() {
   }`);
 
   return (
-    <div id="main-content">
+    <>
       <BurgerTitleSection initialBurgers={initialBurgers} initialNavbarData={navbarData} />
       <BurgerPageText initialData={menuData} />
-    </div>
+    </>
   );
 }

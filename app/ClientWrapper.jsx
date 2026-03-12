@@ -2,25 +2,46 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import Preloader from "./components/Preloader";
+import PageLoader from "./components/Pageloader";
 import SmoothScroll from "./SmoothScroll";
 import MobileBottomBar from "./components/MobileBottomBar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./Navbar";
 import ConditionalFooter from "./ConditionalFooter";
 
-export default function ClientWrapper({ children }) {
+export default function ClientWrapper({ children, preloadedSettings, preloadedFooter }) {
   const pathname = usePathname();
   const [loadingDone, setLoadingDone] = useState(false);
+
+  // Initialize loading state based on path to prevent flash on direct landing
+  const [isPageLoading, setIsPageLoading] = useState(() => {
+    const isHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
+    const isStudio = pathname?.startsWith("/studio");
+    return !isHome && !isStudio;
+  });
+
+  const prevPathname = useRef(pathname);
   const lenisRef = useRef(null);
 
-  // Lock body scroll while preloader is visible
+  // Instantly trigger PageLoader on route changes (during render)
+  if (prevPathname.current !== pathname) {
+    if (loadingDone && !isPageLoading) {
+      setIsPageLoading(true);
+    }
+    prevPathname.current = pathname;
+  }
+
+  // Lock body scroll while loaders are visible
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
+    if (isPageLoading || !loadingDone) {
+      document.body.style.overflow = "hidden";
+    } else {
       document.body.style.overflow = "";
-    };
-  }, []);
+    }
+  }, [isPageLoading, loadingDone]);
+
 
   // After Preloader unmounts, force Lenis to recalculate its scroll limit.
   // Lenis caches scrollHeight on init — if the DOM changes (preloader removed)
@@ -54,6 +75,7 @@ export default function ClientWrapper({ children }) {
     setLoadingDone(true);
   }, []);
 
+  const isHome = pathname === "/" || pathname === "/home" || pathname === "/home/";
   const isStudio = pathname?.startsWith("/studio");
 
   if (isStudio) {
@@ -66,22 +88,33 @@ export default function ClientWrapper({ children }) {
         <Preloader onComplete={handlePreloaderComplete} />
       )}
 
-      {/* Wrap children and hide them temporarily while loading to avoid the unstyled flash on slow connections */}
-      <div>
-        <Navbar />
+      <PageLoader 
+        loading={isPageLoading} 
+        minimal={isHome || isStudio} 
+        onComplete={() => setIsPageLoading(false)} 
+      />
+
+      <motion.div
+        initial={false}
+        animate={{ 
+          opacity: isPageLoading ? 0 : 1,
+          visibility: isPageLoading ? "hidden" : "visible"
+        }}
+        transition={{ duration: isPageLoading ? 0 : 0.4 }}
+      >
+        <Navbar preloadedSettings={preloadedSettings} />
         <SmoothScroll lenisRef={lenisRef}>
           <div
             id="main-content"
-            className="w-full overflow-x-clip pb-[18vw] md:pb-0 h-auto overflow-visible"
+            className="w-full min-h-screen overflow-x-clip pb-[18vw] md:pb-0 h-auto overflow-visible"
           >
             {children}
           </div>
         </SmoothScroll>
-      </div>
-      <ConditionalFooter />
+        <ConditionalFooter preloadedData={preloadedFooter} />
+        {pathname !== '/menu' && <MobileBottomBar />}
+      </motion.div>
 
-      {/* Global Fixed Mobile Bottom Bar */}
-      {pathname !== '/menu' && <MobileBottomBar />}
     </>
   );
 }

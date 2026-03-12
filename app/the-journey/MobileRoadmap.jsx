@@ -63,7 +63,7 @@ export default function MobileRoadmap({ initialData = null }) {
     if (!roadmapData) return null;
 
     return (
-        <section className="block lg:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] pt-[10vw] md:pt-[6vw] pb-[20vw] md:pb-[10vw] overflow-hidden">
+        <section className="block lg:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] pt-0 md:pt-[2vw] pb-[20vw] md:pb-[10vw] overflow-hidden">
 
             {/* Heading */}
             <motion.div

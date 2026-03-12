@@ -3,6 +3,7 @@ import "./globals.css";
 import { Share_Tech } from "next/font/google";
 import localFont from "next/font/local";
 import ClientWrapper from "./ClientWrapper";
+import { client } from "../sanity/lib/client";
 
 const peakersFont = localFont({
   src: "./fonts/Supernett-Cn-Regular.woff2",
@@ -82,7 +83,20 @@ export const viewport = {
   userScalable: false,
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Fetch common data once on the server to prevent pulses in Navbar/Footer
+  const siteSettings = await client.fetch(`*[_type == "siteSettings"][0]`);
+  const footerData = await client.fetch(`*[_type == "footer"][0] {
+    logo,
+    tagline,
+    socialLinks,
+    quickLinks,
+    locations,
+    legalLinks,
+    copyright,
+    bottomLogo
+  }`);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -110,7 +124,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${shareTech.variable} ${anton.variable} ${peakersFont.variable} ${spaceMono.variable} ${inconsolata.variable} antialiased`}
       >
-        <ClientWrapper>
+        <ClientWrapper preloadedSettings={siteSettings} preloadedFooter={footerData}>
           {children}
         </ClientWrapper>
       </body>

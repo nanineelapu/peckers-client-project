@@ -6,11 +6,13 @@ import Link from "next/link";
 import { client } from "../sanity/lib/client";
 import { urlFor } from "../sanity/lib/image";
 
-const Footer = () => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
+const Footer = ({ preloadedData = null }) => {
+    const [data, setData] = useState(preloadedData);
+    const [loading, setLoading] = useState(!preloadedData);
 
     useEffect(() => {
+        if (data) return; // Skip if already loaded
+
         const fetchFooter = async () => {
             try {
                 const footerData = await client.fetch(`*[_type == "footer"][0] {
@@ -31,7 +33,7 @@ const Footer = () => {
             }
         };
         fetchFooter();
-    }, []);
+    }, [data]);
 
     if (loading) return <div className="w-full bg-black h-40 animate-pulse" />;
     if (!data) return null;
@@ -108,19 +110,20 @@ const Footer = () => {
                                 src={logoUrl}
                                 alt="Peckers Logo"
                                 fill
-                                className="object-contain md:mr-3"
+                                className="object-contain object-left md:mr-3"
                             />
                         )}
                     </div>
                     <p
-                        className="hidden md:block text-[#E3E3E3] px-[1vw] lg:px-[0.5vw] font-mono mb-[4vw] lg:mb-[2vw] xl:mb-[1.3vw] leading-snug md:text-[2.5vw] lg:text-[1.4vw] xl:text-[1vw] text-left w-full whitespace-pre-line"
+                        className="hidden md:block text-[#E3E3E3] font-mono mb-[4vw] lg:mb-[2vw] xl:mb-[1.3vw] leading-snug md:text-[2.5vw] lg:text-[1.4vw] xl:text-[1vw] text-left w-full whitespace-pre-line"
                         style={{ letterSpacing: "0.09em", fontWeight: "300" }}
                     >
                         {data.tagline?.includes("\n") ? data.tagline : data.tagline?.replace(/\./g, ".\n") || <>Seriously good <br /> chicken. <br /> Est. 2024.</>}
                     </p>
 
                     {/* Social buttons (unchanged for both breakpoints) */}
-                    <div className="flex space-x-[4vw] md:space-x-[3vw] lg:space-x-[1.5vw] xl:space-x-3 w-full justify-start md:justify-start mt-1 px-0 md:px-[1vw] lg:px-[0.5vw]">
+                    <div className="flex space-x-[4vw] md:space-x-[3vw] lg:space-x-[1.5vw] xl:space-x-3 w-full justify-start md:justify-start mt-1 px-0">
+
                         {socialButtons.map((social) => (
                             <a
                                 key={social.label}
@@ -189,14 +192,16 @@ const Footer = () => {
                             className="space-y-[3vw] md:space-y-[2vw] lg:space-y-[1.2vw] xl:space-y-[1vw] text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-[1.3vw] xl:text-[1vw] text-[#a9adb8] leading-snug font-normal w-full"
                             style={{ fontFamily: "Montserrat, Arial, sans-serif" }}
                         >
-                            {data.locations?.length > 0 ? data.locations.map((loc, idx) => (
-                                <div key={idx}>{loc}</div>
-                            )) : (
-                                <>
-                                    <div>Hitchin</div>
-                                    <div>Stevenage</div>
-                                </>
-                            )}
+                            {data.locations?.length > 0 ? data.locations
+                                .filter(loc => !loc.toLowerCase().includes("view all"))
+                                .map((loc, idx) => (
+                                    <div key={idx}>{loc}</div>
+                                )) : (
+                                    <>
+                                        <div>Hitchin</div>
+                                        <div>Stevenage</div>
+                                    </>
+                                )}
                             <div>
                                 <Link
                                     href="/locations"

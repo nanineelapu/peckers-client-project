@@ -177,16 +177,8 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
   const goNext = useCallback(() => moveBy(1), [moveBy]);
   const goPrev = useCallback(() => moveBy(-1), [moveBy]);
 
-  if (loading) {
-    return (
-      <div className="w-full min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white/20 font-['Share_Tech'] animate-pulse tracking-[.5vw] text-2xl"
-          style={{ fontFamily: "var(--font-peakers)" }}>
-          LOADING MENU...
-        </div>
-      </div>
-    );
-  }
+  if (loading) return null;
+
 
   if (TOTAL === 0) return null;
 

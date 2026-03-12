@@ -33,7 +33,7 @@ export function LocationsPageContent({ location = 'hitchin', initialData = null 
                     "posterUrl": heroPoster.asset->url,
                     heroVideoUrl
                 }`;
-                const data = await client.fetch(query, { location }, { useCdn: false });
+                const data = await client.fetch(query, { location });
                 console.log(`[LocationsPage] Data for "${location}":`, data);
                 setPageData(data);
             } catch (error) {

@@ -24,7 +24,7 @@ export default async function LocationPage() {
         "posterUrl": heroPoster.asset->url,
         heroVideoUrl
     }`;
-    const data = await client.fetch(query, { location }, { useCdn: false });
+    const data = await client.fetch(query, { location });
 
     return <LocationsPageContent location={location} initialData={data} />;
 }

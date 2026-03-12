@@ -7,8 +7,8 @@ import Image from "next/image";
 import { client } from "../sanity/lib/client";
 import { urlFor } from "../sanity/lib/image";
 
-export default function Navbar() {
-  const [settings, setSettings] = useState(null);
+export default function Navbar({ preloadedSettings = null }) {
+  const [settings, setSettings] = useState(preloadedSettings);
   const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
@@ -16,6 +16,8 @@ export default function Navbar() {
   const [journeyOpen, setJourneyOpen] = useState(false);
 
   useEffect(() => {
+    if (settings) return; // Skip if already loaded
+
     const fetchSettings = async () => {
       try {
         const data = await client.fetch(`*[_type == "siteSettings"][0]`);
@@ -27,7 +29,7 @@ export default function Navbar() {
       }
     };
     fetchSettings();
-  }, []);
+  }, [settings]);
 
   const logoUrl = settings?.logo ? urlFor(settings.logo).url() : null;
 

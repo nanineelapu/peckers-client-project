@@ -68,7 +68,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full min-h-[70vh] md:min-h-screen pt-[5vw] bg-black px-[1.5vw] py-[5.2vw] text-white flex items-center overflow-hidden">
+    <section className="relative w-full bg-black px-[1.5vw] pt-[4vw] pb-[12vw] text-white flex items-start overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
@@ -91,7 +91,7 @@ export default function OurStorySection({ initialData = null }) {
         </svg>
       </div>
 
-      <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-center">
+      <div className="relative z-10 w-full flex flex-col lg:flex-row items-start lg:items-center justify-center pt-[2vw] md:pt-0">
 
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -119,9 +119,9 @@ export default function OurStorySection({ initialData = null }) {
               scale: { duration: 0.2 },
               filter: { duration: 0.2 },
             }}
-            className="w-full h-full flex flex-row items-center justify-center cursor-grab active:cursor-grabbing"
+            className="w-full flex flex-row items-start justify-center cursor-grab active:cursor-grabbing"
           >
-            <div className="w-1/2 lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-center mt-0 overflow-hidden text-left">
+            <div className="w-1/2 lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-start mt-0 overflow-hidden text-left">
 
               <motion.div
                 className="mb-1 flex items-center justify-start"
@@ -159,15 +159,15 @@ export default function OurStorySection({ initialData = null }) {
                 </p>
               </motion.div>
 
-              <div className="flex items-center justify-start gap-1 lg:gap-2 mt-2 lg:mt-auto pb-4">
+              <div className="flex items-center justify-start gap-1 lg:gap-2 mt-2 pb-4">
                 {slides.map((_, i) => (
                   <div key={i} className={`h-0.5 lg:h-1 w-4 lg:w-12 transition-all duration-300 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/10"}`}></div>
                 ))}
               </div>
             </div>
 
-            <div className="w-1/2 lg:w-1/2 h-[50vw] lg:h-screen px-[2vw] flex flex-col items-center justify-center bg-black">
-              <div className="relative w-full h-[90%] overflow-hidden flex items-center justify-center">
+            <div className="w-1/2 lg:w-1/2 h-auto px-[2vw] flex flex-col items-center justify-center">
+              <div className="relative w-full h-[50vw] lg:h-[40vw] overflow-hidden flex items-center justify-center">
                 {currentData.founderImage && (
                   <motion.div
                     className="relative w-full h-full"
