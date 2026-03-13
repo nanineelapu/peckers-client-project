@@ -167,12 +167,12 @@ export default function OurStorySection({ initialData = null }) {
             </div>
 
             <div className="w-1/2 lg:w-1/2 h-auto px-[2vw] flex flex-col items-center justify-center">
-              <div className="relative w-full h-[70vw] lg:h-[52vw] overflow-hidden flex items-center justify-center">
+              <div className="relative w-full h-[65vw] lg:h-[52vw] overflow-hidden flex items-center justify-center">
                 {currentData.founderImage && (
                   <>
                     {/* Image 1 - Top Right Staggered */}
                     <motion.div
-                      className="absolute top-[-1%] right-[2%] w-[42%] h-[48%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
+                      className="absolute top-[-1%] right-[2%] w-[36%] lg:w-[42%] h-[42%] lg:h-[48%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
                       initial={{ scale: 1.1, opacity: 0, x: 30 }}
                       animate={{ scale: 1, opacity: 1, x: 0 }}
                       transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -188,7 +188,7 @@ export default function OurStorySection({ initialData = null }) {
 
                     {/* Image 2 - Center Left (Main Impact) */}
                     <motion.div
-                      className="absolute top-1/2 left-[5%] -translate-y-1/2 w-[50%] h-[57%] z-20 rounded-[1.2vw] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9)] border border-white/10"
+                      className="absolute top-1/2 left-[5%] -translate-y-1/2 w-[48%] lg:w-[50%] h-[54%] lg:h-[57%] z-20 rounded-[1.2vw] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9)] border border-white/10"
                       initial={{ scale: 1.05, opacity: 0, x: -30 }}
                       animate={{ scale: 1, opacity: 1, x: 0 }}
                       transition={{ duration: 0.9, ease: "easeOut" }}
@@ -204,7 +204,7 @@ export default function OurStorySection({ initialData = null }) {
 
                     {/* Image 3 - Bottom Right Staggered */}
                     <motion.div
-                      className="absolute bottom-[15%] right-[5%] w-[42%] h-[38%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
+                      className="absolute bottom-[15%] right-[5%] w-[36%] lg:w-[42%] h-[33%] lg:h-[38%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
                       initial={{ scale: 1.1, opacity: 0, x: 30 }}
                       animate={{ scale: 1, opacity: 1, x: 0 }}
                       transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}

@@ -311,17 +311,34 @@ export default function JourneyIntroSection({ initialData = null }) {
                     </motion.p>
 
                     {/* Timeline */}
-                    <div className="relative max-w-md mx-auto">
+                    <div className="relative max-w-sm mx-auto">
 
-                        <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-[#FFD700]/10 rounded-full"></div>
-
-                        <motion.div
-                            initial={{ scaleY: 0 }}
-                            whileInView={{ scaleY: 1 }}
-                            viewport={{ once: true, margin: "-10%" }}
-                            transition={{ duration: 1.5, ease: "easeInOut" }}
-                            className="absolute left-4 top-0 bottom-0 w-[4px] bg-[#FFD700] shadow-[0_0_20px_#FFD700] rounded-full z-10 origin-top"
-                        />
+                        {/* Animated SVG Line for Mobile */}
+                        <div className="absolute left-[16.5px] top-0 bottom-0 w-[10px] z-10">
+                            <svg width="100%" height="100%" className="overflow-visible">
+                                <defs>
+                                    <filter id="mobileGlow" x="-50%" y="-5" width="200%" height="calc(100% + 10px)">
+                                        <feGaussianBlur stdDeviation="3" result="blur" />
+                                        <feFlood floodColor="#FFD700" floodOpacity="0.5" result="color" />
+                                        <feComposite in="color" in2="blur" operator="in" result="glow" />
+                                        <feMerge>
+                                            <feMergeNode in="glow" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <rect x="0" y="0" width="2" height="100%" fill="#FFD700" opacity="0.1" />
+                                <motion.rect
+                                    initial={{ scaleY: 0 }}
+                                    whileInView={{ scaleY: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                                    style={{ originY: 0 }}
+                                    x="0" y="0" width="3" height="100%" fill="#FFD700"
+                                    filter="url(#mobileGlow)"
+                                />
+                            </svg>
+                        </div>
 
                         {data.timeline?.map((item, idx) => (
                             <motion.div
@@ -330,29 +347,27 @@ export default function JourneyIntroSection({ initialData = null }) {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.6, delay: 0.2 + (idx * 0.1) }}
-                                className="relative mb-12"
+                                className="relative mb-14"
                             >
-                                <div className="absolute left-4 top-1.5 z-30">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="drop-shadow-[0_0_8px_#FFD700]">
-                                        <motion.path
-                                            initial={{ pathLength: 0, opacity: 0 }}
-                                            whileInView={{ pathLength: 1, opacity: 1 }}
+                                {/* Circle Marker - Mobile */}
+                                <div className="absolute left-[7px] top-2 z-30">
+                                    <svg width="22" height="22" viewBox="0 0 45 45" className="drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]">
+                                        <motion.circle
+                                            initial={{ scale: 0 }}
+                                            whileInView={{ scale: 1 }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.5, delay: 0.5 + (idx * 0.1) }}
-                                            d="M4 12H20M20 12L14 6M20 12L14 18"
-                                            stroke="#FFD700"
-                                            strokeWidth="2.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
+                                            transition={{ duration: 0.5, delay: 0.4 + (idx * 0.1), ease: "backOut" }}
+                                            cx="22.5" cy="22.5" r="21" fill="#FFD700"
                                         />
+                                        <circle cx="22.5" cy="22.5" r="18" stroke="#121212" strokeWidth="4" fill="none" />
                                     </svg>
                                 </div>
 
-                                <div className="ml-12 bg-[#121212] border border-[#333] rounded-xl p-5 hover:border-[#FFD700]/40 transition-colors">
-                                    <div className="text-white text-[4vw] md:text-[2.5vw] xl:text-[1.8vw] font-bold opacity-80 mb-1">
+                                <div className="ml-14 bg-[#121212] border border-[#333] rounded-xl p-5 hover:border-[#FFD700]/40 transition-colors shadow-lg">
+                                    <div className="text-white text-[3.5vw] font-bold opacity-80 mb-1">
                                         {item.year}
                                     </div>
-                                    <div className="text-[#FFD700] text-[9vw] md:text-[6vw] xl:text-[4.5vw] font-bold font-peakers uppercase leading-tight">
+                                    <div className="text-[#FFD700] text-[8vw] font-bold font-peakers uppercase leading-tight">
                                         {item.location}
                                     </div>
                                 </div>
@@ -367,23 +382,20 @@ export default function JourneyIntroSection({ initialData = null }) {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="relative mb-20"
                         >
-                            <div className="absolute left-4 top-1.5 z-30">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="drop-shadow-[0_0_8px_#FFD700] animate-pulse">
-                                    <motion.path
-                                        initial={{ pathLength: 0, opacity: 0 }}
-                                        whileInView={{ pathLength: 1, opacity: 1 }}
+                            <div className="absolute left-[7px] top-2 z-30">
+                                <svg width="22" height="22" viewBox="0 0 45 45" className="drop-shadow-[0_0_12px_rgba(255,215,0,0.8)] animate-pulse">
+                                    <motion.circle
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 1 }}
-                                        d="M4 12H20M20 12L14 6M20 12L14 18"
-                                        stroke="#FFD700"
-                                        strokeWidth="2.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
+                                        transition={{ duration: 0.5, delay: 0.8 }}
+                                        cx="22.5" cy="22.5" r="21" fill="#FFD700"
                                     />
+                                    <circle cx="22.5" cy="22.5" r="18" stroke="#121212" strokeWidth="4" fill="none" />
                                 </svg>
                             </div>
 
-                            <div className="ml-12 bg-[#121212] border border-dashed border-[#FFD700]/60 rounded-xl p-6">
+                            <div className="ml-14 bg-[#121212] border border-dashed border-[#FFD700]/60 rounded-xl p-6 shadow-xl">
 
                                 <h2 className="text-center text-white font-bold tracking-widest text-sm mb-4">
                                     {data.whereNextHeading || "WHERE NEXT?"}
@@ -393,10 +405,10 @@ export default function JourneyIntroSection({ initialData = null }) {
                                     <input
                                         type="text"
                                         placeholder={data.whereNextPlaceholder || "Suggest a city..."}
-                                        className="bg-black border border-[#333] p-3 rounded-lg text-white focus:outline-none focus:border-[#FFD700]"
+                                        className="bg-black border border-[#333] p-3 rounded-lg text-white focus:outline-none focus:border-[#FFD700] text-sm"
                                     />
 
-                                    <button className="bg-black text-white py-3 border border-white/20 rounded-full uppercase text-xs tracking-widest hover:border-white transition-all">
+                                    <button className="bg-black text-white py-3 border border-white/20 rounded-full uppercase text-xs tracking-widest hover:border-white transition-all font-bold">
                                         {data.whereNextButtonText || "Submit"}
                                     </button>
                                 </div>
