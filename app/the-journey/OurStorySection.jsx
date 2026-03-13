@@ -167,44 +167,80 @@ export default function OurStorySection({ initialData = null }) {
             </div>
 
             <div className="w-1/2 lg:w-1/2 h-auto px-[2vw] flex flex-col items-center justify-center">
-              <div className="relative w-full h-[50vw] lg:h-[40vw] overflow-hidden flex items-center justify-center">
+              <div className="relative w-full h-[70vw] lg:h-[52vw] overflow-hidden flex items-center justify-center">
                 {currentData.founderImage && (
-                  <motion.div
-                    className="relative w-full h-full"
-                    initial={{ scale: 1.05, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                  >
-                    <Image
-                      src={urlFor(currentData.founderImage).url()}
-                      alt="Founders of Peckers"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 50vw, 50vw"
-                    />
-                  </motion.div>
+                  <>
+                    {/* Image 1 - Top Right Staggered */}
+                    <motion.div
+                      className="absolute top-[-1%] right-[2%] w-[42%] h-[48%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
+                      initial={{ scale: 1.1, opacity: 0, x: 30 }}
+                      animate={{ scale: 1, opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    >
+                      <Image
+                        src={urlFor(currentData.founderImage).url()}
+                        alt="Founders Story 1"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 25vw, 25vw"
+                      />
+                    </motion.div>
+
+                    {/* Image 2 - Center Left (Main Impact) */}
+                    <motion.div
+                      className="absolute top-1/2 left-[5%] -translate-y-1/2 w-[50%] h-[57%] z-20 rounded-[1.2vw] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9)] border border-white/10"
+                      initial={{ scale: 1.05, opacity: 0, x: -30 }}
+                      animate={{ scale: 1, opacity: 1, x: 0 }}
+                      transition={{ duration: 0.9, ease: "easeOut" }}
+                    >
+                      <Image
+                        src={urlFor(currentData.founderImage).url()}
+                        alt="Founders Story 2"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 35vw, 35vw"
+                      />
+                    </motion.div>
+
+                    {/* Image 3 - Bottom Right Staggered */}
+                    <motion.div
+                      className="absolute bottom-[15%] right-[5%] w-[42%] h-[38%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
+                      initial={{ scale: 1.1, opacity: 0, x: 30 }}
+                      animate={{ scale: 1, opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                    >
+                      <Image
+                        src={urlFor(currentData.founderImage).url()}
+                        alt="Founders Story 3"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 25vw, 25vw"
+                      />
+                    </motion.div>
+                  </>
                 )}
 
+                {/* Reveal Panels - Improved Horizontal Cinematic Unveiling */}
                 <motion.div
-                  initial={{ y: "0%" }}
-                  animate={{ y: "-101%" }}
+                  initial={{ x: "0%" }}
+                  animate={{ x: "101%" }}
                   key={`panel1-${currentSlide}`}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.05 }}
-                  className="absolute top-0 left-0 w-full h-1/3 bg-black z-20"
+                  transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.1 }}
+                  className="absolute top-0 left-0 w-full h-1/3 bg-black z-30"
                 />
                 <motion.div
-                  initial={{ y: "0%" }}
-                  animate={{ y: "-201%" }}
+                  initial={{ x: "0%" }}
+                  animate={{ x: "101%" }}
                   key={`panel2-${currentSlide}`}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.15 }}
-                  className="absolute top-1/3 left-0 w-full h-1/3 bg-black z-20"
+                  transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.25 }}
+                  className="absolute top-1/3 left-0 w-full h-1/3 bg-black z-30"
                 />
                 <motion.div
-                  initial={{ y: "0%" }}
-                  animate={{ y: "-301%" }}
+                  initial={{ x: "0%" }}
+                  animate={{ x: "101%" }}
                   key={`panel3-${currentSlide}`}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.25 }}
-                  className="absolute top-2/3 left-0 w-full h-1/3 bg-black z-20"
+                  transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.4 }}
+                  className="absolute top-2/3 left-0 w-full h-1/3 bg-black z-30"
                 />
               </div>
             </div>

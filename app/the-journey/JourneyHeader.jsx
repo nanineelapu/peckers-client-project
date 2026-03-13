@@ -9,7 +9,7 @@ export default function JourneyIntroSection({ initialData = null }) {
     if (!data) return null;
 
     return (
-        <section className="w-full bg-black pt-[3vw] pb-[10vw] flex flex-col items-center text-center relative overflow-hidden min-h-[50vh]">
+        <section className="w-full bg-black pt-[9vw] pb-[10vw] flex flex-col items-center text-center relative overflow-hidden min-h-[50vh]">
 
             <>
                 {/* ================= DESKTOP ================= */}
@@ -42,34 +42,247 @@ export default function JourneyIntroSection({ initialData = null }) {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: 0.4 }}
-                        className="w-full relative flex flex-col items-end"
+                        className="w-full relative mt-[8vw]"
                     >
+                        <div className="w-full relative h-[32vw]">
+                            {/* SVG Timeline Line */}
+                            <svg
+                                className="w-full h-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]"
+                                viewBox="0 0 1440 463"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g filter="url(#filter0_d_0_1)">
+                                    <motion.rect
+                                        initial={{ scaleX: 0 }}
+                                        whileInView={{ scaleX: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                                        style={{ originX: 0 }}
+                                        y="209.5" width="1440" height="6.75" fill="#FFD700"
+                                    />
+                                </g>
 
-                        {/* Existing Desktop Card */}
-                        <div className="z-10 mx-auto w-[17.5vw] h-[11vw] mt-[24.2vw] mr-[10vw] mb-[-6vw] rounded-[.7vw] border border-dashed border-[#cab53d] px-[3vw] py-[2vw] flex flex-col items-center gap-[.8vw] bg-black/95 absolute">
+                                {/* Connector and Circle 1 - Hitchin (at spot 1) */}
+                                <g filter="url(#filter1_d_0_1)">
+                                    <motion.rect
+                                        initial={{ scaleY: 0 }}
+                                        whileInView={{ scaleY: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
+                                        style={{ originY: 0 }}
+                                        x="308.829" y="228" width="3.34212" height="53.4739" fill="#FFD700"
+                                    />
+                                </g>
+                                <motion.g
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.3, ease: "backOut" }}
+                                    style={{ transformOrigin: "310px 213px" }}
+                                    filter="url(#filter2_dd_0_1)"
+                                >
+                                    <circle cx="310" cy="213" r="22.5" fill="#FFD700" />
+                                    <circle cx="310" cy="213" r="20.25" stroke="#121212" strokeWidth="4.5" fill="none" />
+                                </motion.g>
 
-                            <h2 className="text-[1.5vw] text-white font-peakers tracking-wide">
-                                {data.whereNextHeading || "WHERE NEXT ?"}
-                            </h2>
+                                {/* Connector and Circle 2 - Stevenage (at spot 2) */}
+                                <g filter="url(#filter3_d_0_1)">
+                                    <motion.rect
+                                        initial={{ scaleY: 0 }}
+                                        whileInView={{ scaleY: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+                                        style={{ originY: "218px" }}
+                                        x="733" y="144" width="4" height="74" fill="#FFD700"
+                                    />
+                                </g>
+                                <motion.g
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.8, ease: "backOut" }}
+                                    style={{ transformOrigin: "735px 213px" }}
+                                    filter="url(#filter4_dd_0_1)"
+                                >
+                                    <circle cx="735" cy="213" r="22.5" fill="#FFD700" />
+                                    <circle cx="735" cy="213" r="20.25" stroke="#121212" strokeWidth="4.5" fill="none" />
+                                </motion.g>
 
-                            <input
-                                type="text"
-                                placeholder={data.whereNextPlaceholder || "Suggest a city..."}
-                                className="w-[15vw] py-[.6vw] bg-black border border-[#2a2f3a] font-mono text-[0.7vw] text-white placeholder:text-white/40 px-[0.9vw] focus:outline-none"
-                            />
+                                {/* Connector and Circle 3 - Where Next (at spot 3) */}
+                                <g filter="url(#filter5_d_0_1)">
+                                    <motion.rect
+                                        initial={{ scaleY: 0 }}
+                                        whileInView={{ scaleY: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+                                        style={{ originY: 0 }}
+                                        x="1163" y="228" width="3.34212" height="53.4739" fill="#FFD700"
+                                    />
+                                </g>
+                                <motion.g
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 1.2, ease: "backOut" }}
+                                    style={{ transformOrigin: "1164px 213px" }}
+                                    filter="url(#filter6_dd_0_1)"
+                                >
+                                    <circle cx="1164" cy="213" r="22.5" fill="#FFD700" />
+                                    <circle cx="1164" cy="213" r="20.25" stroke="#121212" strokeWidth="4.5" fill="none" />
+                                </motion.g>
 
-                            <button className="w-[11vw] h-[2vw] border-[0.15vw] font-mono text-white border-white rounded-[.6vw] text-[0.9vw] tracking-[0.1vw] hover:bg-white hover:text-black transition-all duration-300">
-                                {data.whereNextButtonText || "SUBMIT"}
-                            </button>
+                                <defs>
+                                    <filter id="filter0_d_0_1" x="-22.5" y="187" width="1485" height="51.75" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="11.25" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 0.5 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                    <filter id="filter1_d_0_1" x="302.145" y="221.316" width="16.7103" height="66.8423" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="3.34212" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                    <filter id="filter2_dd_0_1" x="270.624" y="173.5" width="78.75" height="78.75" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="2.8125" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="8.4375" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_0_1" result="effect2_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                    <filter id="filter3_d_0_1" x="724" y="135" width="22" height="92" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="4.5" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                    <filter id="filter4_dd_0_1" x="695.787" y="173.5" width="78.75" height="78.75" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="2.8125" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="8.4375" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_0_1" result="effect2_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                    <filter id="filter5_d_0_1" x="1156.32" y="221.316" width="16.7103" height="66.8423" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="3.34212" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                    <filter id="filter6_dd_0_1" x="1124.78" y="173.5" width="78.75" height="78.75" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="2.8125" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                        <feOffset />
+                                        <feGaussianBlur stdDeviation="8.4375" />
+                                        <feComposite in2="hardAlpha" operator="out" />
+                                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.843137 0 0 0 0 0 0 0 0 1 0" />
+                                        <feBlend mode="normal" in2="effect1_dropShadow_0_1" result="effect2_dropShadow_0_1" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_0_1" result="shape" />
+                                    </filter>
+                                </defs>
+                            </svg>
+
+                            {/* Card 1 - Hitchin (2022) */}
+                            {data.timeline?.[0] && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
+                                    className="absolute left-[21.5%] top-[62%] -translate-x-1/2 z-20 w-[18vw] h-[11vw] rounded-[.7vw] border  border-[#FFD700]/60 pl-[0.8vw] pr-[2vw] py-[2vw] flex flex-col items-start gap-[0vw] bg-black/95 text-left"
+                                >
+                                    <span className="text-white font-mono text-[2.8vw] font-bold tracking-tight uppercase leading-none mb-[0.5vw]">
+                                        {data.timeline[0].year || "2022"}
+                                    </span>
+                                    <h3 className="text-[4.2vw] text-[#FFD700] font-bold font-peakers tracking-wider leading-none uppercase">
+                                        {data.timeline[0].location || "HITCHIN"}
+                                    </h3>
+                                </motion.div>
+                            )}
+
+                            {/* Card 2 - Stevenage (2024) */}
+                            {data.timeline?.[1] && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -30, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 1.1, ease: "easeOut" }}
+                                    className="absolute left-[51%] bottom-[65%] -translate-x-1/2 z-20 w-[18vw] h-[11w] rounded-[.7vw] border  border-[#FFD700]/60 pl-[0.8vw] pr-[2vw] py-[2vw] flex flex-col items-start gap-[0vw] bg-black/95 text-left"
+                                >
+                                    <span className="text-white font-mono text-[2.8vw] font-bold tracking-tight uppercase leading-none mb-[0.5vw]">
+                                        {data.timeline[1].year || "2024"}
+                                    </span>
+                                    <h3 className="text-[4vw] text-[#FFD700] font-peakers font-bold tracking-wider leading-none uppercase">
+                                        {data.timeline[1].location || "STEVENAGE"}
+                                    </h3>
+                                </motion.div>
+                            )}
+
+                            {/* Card 3 - Where Next? */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 1.5, ease: "easeOut" }}
+                                className="absolute left-[80.8%] top-[62%] -translate-x-1/2 z-20 w-[17.5vw] rounded-[.7vw] border border-dashed border-[#FFD700]/60 px-[2vw] py-[1.5vw] flex flex-col items-center gap-[.8vw] bg-black/95"
+                            >
+                                <h2 className="text-[1.5vw] text-white font-peakers tracking-wide uppercase">
+                                    {data.whereNextHeading || "WHERE NEXT ?"}
+                                </h2>
+
+                                <input
+                                    type="text"
+                                    placeholder={data.whereNextPlaceholder || "Suggest a city..."}
+                                    className="w-full py-[.6vw] bg-black border border-[#2a2f3a] font-mono text-[0.7vw] text-white placeholder:text-white/40 px-[0.9vw] focus:outline-none"
+                                />
+
+                                <button className="w-full h-[2vw] border-[0.15vw] font-mono text-white border-white rounded-[.6vw] text-[0.8vw] tracking-[0.1vw] hover:bg-white hover:text-black transition-all duration-300">
+                                    {data.whereNextButtonText || "SUBMIT"}
+                                </button>
+                            </motion.div>
                         </div>
-
-                        {data.backgroundImage && (
-                            <img
-                                src={urlFor(data.backgroundImage).url()}
-                                alt="The Peckers Journey"
-                                className="w-full object-cover"
-                            />
-                        )}
                     </motion.div>
                 </div>
 

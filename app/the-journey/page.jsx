@@ -17,28 +17,62 @@ export const metadata = {
 };
 
 export default async function TheJourneyPage() {
-    // Fetch all story related data on the server
-    const storyData = await client.fetch(`{
-        "pageData": *[_type == "ourStoryPage"][0]{
-            heading,
-            content,
-            quote,
-            founderImage {
-                asset->{
-                    _id,
-                    url
-                }
+    let storyData = {
+        pageData: {
+            heading: "THE PECKERS JOURNEY",
+            subtitle: "FROM ONE STORE TO GROWING COMMUNITY BRAND - THE JOURNEY CONTINUES",
+            timeline: []
+        },
+        bottomPageData: {
+            journeySection: {
+                heading: "THE PECKERS JOURNEY",
+                subtitle: "FROM ONE STORE TO GROWING COMMUNITY BRAND - THE JOURNEY CONTINUES",
+                timeline: [
+                    { year: "2021", location: "THE BEGINNING" },
+                    { year: "2022", location: "EXPANDING" }
+                ],
+                whereNextHeading: "WHERE NEXT ?",
+                whereNextPlaceholder: "Suggest a city...",
+                whereNextButtonText: "SUBMIT"
+            }
+        },
+        bottomTimeline: []
+    };
+
+    try {
+        // Fetch all story related data on the server with a timeout protection
+        const fetchedData = await client.fetch(`{
+            "pageData": *[_type == "ourStoryPage"][0]{
+                heading,
+                content,
+                quote,
+                founderImage {
+                    asset->{
+                        _id,
+                        url
+                    }
+                },
+                circleSectionHeading,
+                establishedYear,
+                timeline
             },
-            circleSectionHeading,
-            establishedYear,
-            timeline
-        },
-        "bottomPageData": *[_type == "ourStoryBottomPage"][0]{
-            journeySection,
-            mobileRoadmap
-        },
-        "bottomTimeline": *[_type == "timeline"] | order(order asc)
-    }`);
+            "bottomPageData": *[_type == "ourStoryBottomPage"][0]{
+                journeySection,
+                mobileRoadmap
+            },
+            "bottomTimeline": *[_type == "timeline"] | order(order asc)
+        }`, {}, {
+            next: { revalidate: 60 } 
+        });
+
+        if (fetchedData) {
+            storyData = fetchedData;
+        }
+    } catch (error) {
+        console.error("Sanity fetch failed on Journey page:", error);
+    }
+
 
     return <TheJourneyPageClient initialStoryData={storyData} />;
 }
+
