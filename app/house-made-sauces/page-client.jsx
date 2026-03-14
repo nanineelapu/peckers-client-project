@@ -18,9 +18,7 @@ const SaucesPage = ({ initialSaucesData }) => {
 
     return (
         <main className="w-full bg-black">
-            {sauces.map((sauce, index) => (
-                <SauceSection key={sauce._id || index} sauce={sauce} index={index} />
-            ))}
+            <SauceSection initialData={sauces} />
         </main>
     );
 };

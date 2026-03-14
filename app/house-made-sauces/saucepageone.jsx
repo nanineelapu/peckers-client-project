@@ -34,17 +34,62 @@ export default function SaucePageOne({ initialData = [] }) {
         fetchSauces();
     }, []);
 
+    // Map titles to their approximate angles on the circular text path
+    // We calibrate these to ensure the dot lands exactly "in the word"
+    const getTargetAngle = (title) => {
+        const t = title?.toUpperCase() || "";
+        // Buffalo is at roughly -275 to center it under the dot
+        if (t.includes("BUFFALO")) return -275;
+        // Honey Glaze is at -360 (same as 0) to ensure shortest path from Buffalo is clockwise
+        if (t.includes("HONEY GLAZE") || t.includes("BBQ")) return -360;
+
+        if (t.includes("HOT HONEY")) return -45;
+        if (t.includes("KATSU")) return -90;
+        if (t.includes("KOREAN") || t.includes("GOCHUJANG")) return -135;
+        if (t.includes("PEANUT")) return -180;
+        if (t.includes("SUPER CHARGE")) return -225;
+        if (t.includes("GARLIC") || t.includes("MAYO")) return -315;
+        return 0;
+    };
+
+    const updateRotationShortestPath = (nextIdx) => {
+        const sauce = saucesData[nextIdx];
+        if (!sauce) return;
+
+        const target = getTargetAngle(sauce.title);
+
+        setRotation((prev) => {
+            // Find current normalized rotation
+            const currentNorm = prev % 360;
+            // Calculate relative difference to target
+            let diff = (target - currentNorm) % 360;
+
+            // Shortest path logic
+            if (diff > 180) diff -= 360;
+            if (diff < -180) diff += 360;
+
+            return prev + diff;
+        });
+    };
+
     const nextSlide = () => {
-        setRotation((prev) => prev + 180); // spin forward 50%
-        setCurrentIndex((prev) => (prev + 1) % saucesData.length);
+        const nextIdx = (currentIndex + 1) % saucesData.length;
+        setCurrentIndex(nextIdx);
+        updateRotationShortestPath(nextIdx);
     };
 
     const prevSlide = () => {
-        setRotation((prev) => prev - 180); // spin backward 50%
-        setCurrentIndex((prev) =>
-            prev === 0 ? saucesData.length - 1 : prev - 1
-        );
+        const nextIdx = currentIndex === 0 ? saucesData.length - 1 : currentIndex - 1;
+        setCurrentIndex(nextIdx);
+        updateRotationShortestPath(nextIdx);
     };
+
+    // Initialize rotation on first load based on first sauce
+    useEffect(() => {
+        if (saucesData.length > 0 && rotation === 0) {
+            setRotation(getTargetAngle(saucesData[0].title));
+        }
+    }, [saucesData]);
 
     if (loading) {
         return (

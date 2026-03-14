@@ -227,10 +227,11 @@ export default function JourneyIntroSection({ initialData = null }) {
                             {/* Card 1 - Hitchin (2022) */}
                             {data.timeline?.[0] && (
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    initial={{ opacity: 0, scale: 0, y: -30 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.8, delay: 1.2, type: "spring", stiffness: 100 }}
+                                    style={{ transformOrigin: "top center" }}
                                     className="absolute left-[21.5%] top-[62%] -translate-x-1/2 z-20 w-[18vw] h-[11vw] rounded-[.7vw] border  border-[#FFD700]/60 pl-[0.8vw] pr-[2vw] py-[2vw] flex flex-col items-start gap-[0vw] bg-black/95 text-left"
                                 >
                                     <span className="text-white font-mono text-[2.8vw] font-bold tracking-tight uppercase leading-none mb-[0.5vw]">
@@ -245,10 +246,11 @@ export default function JourneyIntroSection({ initialData = null }) {
                             {/* Card 2 - Stevenage (2024) */}
                             {data.timeline?.[1] && (
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    initial={{ opacity: 0, scale: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.8, delay: 2.0, type: "spring", stiffness: 100 }}
+                                    style={{ transformOrigin: "bottom center" }}
                                     className="absolute left-[51%] bottom-[65%] -translate-x-1/2 z-20 w-[18vw] h-[11w] rounded-[.7vw] border  border-[#FFD700]/60 pl-[0.8vw] pr-[2vw] py-[2vw] flex flex-col items-start gap-[0vw] bg-black/95 text-left"
                                 >
                                     <span className="text-white font-mono text-[2.8vw] font-bold tracking-tight uppercase leading-none mb-[0.5vw]">
@@ -262,10 +264,11 @@ export default function JourneyIntroSection({ initialData = null }) {
 
                             {/* Card 3 - Where Next? */}
                             <motion.div
-                                initial={{ opacity: 0, scale: 0 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, scale: 0, y: -30 }}
+                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 2.8, type: "spring", stiffness: 100 }}
+                                style={{ transformOrigin: "top center" }}
                                 className="absolute left-[80.8%] top-[62%] -translate-x-1/2 z-20 w-[17.5vw] rounded-[.7vw] border border-dashed border-[#FFD700]/60 px-[2vw] py-[1.5vw] flex flex-col items-center gap-[.8vw] bg-black/95"
                             >
                                 <h2 className="text-[1.5vw] text-white font-peakers tracking-wide uppercase">
@@ -343,10 +346,11 @@ export default function JourneyIntroSection({ initialData = null }) {
                         {data.timeline?.map((item, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, scale: 0 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, scale: 0, x: -30 }}
+                                whileInView={{ opacity: 1, scale: 1, x: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.8, delay: 0.6 + (idx * 0.8), type: "spring", stiffness: 100 }}
+                                style={{ transformOrigin: "left center" }}
                                 className="relative mb-14"
                             >
                                 {/* Circle Marker - Mobile */}
@@ -376,10 +380,11 @@ export default function JourneyIntroSection({ initialData = null }) {
 
                         {/* WHERE NEXT */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, scale: 0, x: -30 }}
+                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 2.5, type: "spring", stiffness: 100 }}
+                            style={{ transformOrigin: "left center" }}
                             className="relative mb-20"
                         >
                             <div className="absolute left-[7px] top-2 z-30">

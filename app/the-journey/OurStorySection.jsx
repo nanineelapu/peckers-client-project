@@ -237,7 +237,7 @@ export default function OurStorySection({ initialData = null }) {
                       animate="center"
                       exit="exit"
                       transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className={`absolute top-0 lg:top-[-10vw] left-0 lg:left-[4vw] right-0 lg:right-[2vw] bottom-0 lg:bottom-[10vw] w-full h-full rounded-[1.2vw] overflow-hidden`}
+                      className={`absolute top-0 lg:top-0 left-0 lg:left-[4vw] right-0 lg:right-[2vw] bottom-0 lg:bottom-0 w-full h-full rounded-[1.2vw] overflow-hidden`}
                     >
                       <Image
                         src={urlFor(displayImages[currentSubSlide % displayImages.length]).url()}
