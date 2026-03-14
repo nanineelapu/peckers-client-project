@@ -8,6 +8,7 @@ import { urlFor } from "../../sanity/lib/image";
 export default function OurStorySection({ initialData = null }) {
   const [data, setData] = useState(initialData);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSubSlide, setCurrentSubSlide] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -18,14 +19,22 @@ export default function OurStorySection({ initialData = null }) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Reset sub-slide when main slide changes
+  useEffect(() => {
+    setCurrentSubSlide(0);
+  }, [currentSlide]);
+
+
   if (!data) return null;
 
-  // Mocking multiple slides by duplicating data for now (per original code)
-  const slides = [
-    { ...data, id: 1 },
-    { ...data, id: 2, heading: "A COMMITMENT TO QUALITY", quote: "Our commitment to quality is unwavering, from farm to table." },
-    { ...data, id: 3, heading: "SERVED WITH PRIDE SINCE 1978", quote: "Generations of trust, built on every meal." },
-  ];
+  // Use slides from Sanity if available, otherwise fallback to default mocked slides
+  const slides = (data.slides && data.slides.length > 0)
+    ? data.slides.map((s, idx) => ({ ...s, id: idx + 1 }))
+    : [
+      { ...data, id: 1 },
+      { ...data, id: 2, heading: "A COMMITMENT TO QUALITY", quote: "Our commitment to quality is unwavering, from farm to table." },
+      { ...data, id: 3, heading: "SERVED WITH PRIDE SINCE 1978", quote: "Generations of trust, built on every meal." },
+    ];
 
   const nextSlide = () => {
     setDirection(1);
@@ -60,7 +69,37 @@ export default function OurStorySection({ initialData = null }) {
     }),
   };
 
+  const subSlideVariants = {
+    enter: {
+      opacity: 0,
+      x: 50,
+    },
+    center: {
+      opacity: 1,
+      x: 0,
+    },
+    exit: {
+      opacity: 0,
+      x: -50,
+    },
+  };
+
   const currentData = slides[currentSlide];
+
+  // Get images for the current slide (sub-carousel)
+  const displayImages = (currentData.storyImages && currentData.storyImages.length > 0)
+    ? currentData.storyImages
+    : [currentData.founderImage || data.founderImage].filter(Boolean);
+
+  // Auto-slide internal images
+  useEffect(() => {
+    if (displayImages.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentSubSlide((prev) => (prev + 1) % displayImages.length);
+    }, 3000); // 3 seconds per internal image
+    return () => clearInterval(timer);
+  }, [currentSlide, displayImages.length]);
+
 
   const swipeConfidenceThreshold = 10000;
   const swipePower = (offset, velocity) => {
@@ -122,7 +161,6 @@ export default function OurStorySection({ initialData = null }) {
             className="w-full flex flex-row items-start justify-center cursor-grab active:cursor-grabbing"
           >
             <div className="w-1/2 lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-start mt-0 overflow-hidden text-left">
-
               <motion.div
                 className="mb-1 flex items-center justify-start"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -165,62 +203,32 @@ export default function OurStorySection({ initialData = null }) {
                 ))}
               </div>
             </div>
-
             <div className="w-1/2 lg:w-1/2 h-auto px-[2vw] flex flex-col items-center justify-center">
-              <div className="relative w-full h-[65vw] lg:h-[52vw] overflow-hidden flex items-center justify-center">
-                {currentData.founderImage && (
-                  <>
-                    {/* Image 1 - Top Right Staggered */}
+              <div className="relative w-full h-[45vw] lg:h-[50vw] overflow-hidden flex items-center justify-center px-4">
+                <AnimatePresence mode="wait">
+                  {displayImages.length > 0 && (
                     <motion.div
-                      className="absolute top-[-1%] right-[2%] w-[36%] lg:w-[42%] h-[42%] lg:h-[48%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
-                      initial={{ scale: 1.1, opacity: 0, x: 30 }}
-                      animate={{ scale: 1, opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                      key={`${currentSlide}-${currentSubSlide}`}
+                      variants={subSlideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                      className={`absolute top-[-10vw] left-[4vw] right-[2vw] bottom-[10vw] w-full h-full rounded-[1.2vw] overflow-hidden`}
                     >
                       <Image
-                        src={urlFor(currentData.founderImage).url()}
-                        alt="Founders Story 1"
+                        src={urlFor(displayImages[currentSubSlide % displayImages.length]).url()}
+                        alt={`Story Image ${currentSubSlide + 1}`}
                         fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 25vw, 25vw"
+                        className="object-contain rounded-[1.2vw]"
+                        sizes="(max-width: 1024px) 50vw, 50vw"
+                        priority={currentSubSlide === 0}
                       />
                     </motion.div>
+                  )}
+                </AnimatePresence>
 
-                    {/* Image 2 - Center Left (Main Impact) */}
-                    <motion.div
-                      className="absolute top-1/2 left-[5%] -translate-y-1/2 w-[48%] lg:w-[50%] h-[54%] lg:h-[57%] z-20 rounded-[1.2vw] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9)] border border-white/10"
-                      initial={{ scale: 1.05, opacity: 0, x: -30 }}
-                      animate={{ scale: 1, opacity: 1, x: 0 }}
-                      transition={{ duration: 0.9, ease: "easeOut" }}
-                    >
-                      <Image
-                        src={urlFor(currentData.founderImage).url()}
-                        alt="Founders Story 2"
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 35vw, 35vw"
-                      />
-                    </motion.div>
-
-                    {/* Image 3 - Bottom Right Staggered */}
-                    <motion.div
-                      className="absolute bottom-[15%] right-[5%] w-[36%] lg:w-[42%] h-[33%] lg:h-[38%] z-10 rounded-[1vw] overflow-hidden shadow-2xl border border-white/5"
-                      initial={{ scale: 1.1, opacity: 0, x: 30 }}
-                      animate={{ scale: 1, opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-                    >
-                      <Image
-                        src={urlFor(currentData.founderImage).url()}
-                        alt="Founders Story 3"
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 25vw, 25vw"
-                      />
-                    </motion.div>
-                  </>
-                )}
-
-                {/* Reveal Panels - Improved Horizontal Cinematic Unveiling */}
+                {/* Reveal Panels - improved horizontal cinematic unveiling when switching main stories */}
                 <motion.div
                   initial={{ x: "0%" }}
                   animate={{ x: "101%" }}

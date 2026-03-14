@@ -52,6 +52,23 @@ export default async function TheJourneyPage() {
                         url
                     }
                 },
+                storyImages[] {
+                    asset->{
+                        _id,
+                        url
+                    }
+                },
+                slides[] {
+                    heading,
+                    content,
+                    quote,
+                    storyImages[] {
+                        asset->{
+                            _id,
+                            url
+                        }
+                    }
+                },
                 circleSectionHeading,
                 establishedYear,
                 timeline

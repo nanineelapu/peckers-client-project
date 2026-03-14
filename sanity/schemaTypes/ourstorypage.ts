@@ -31,11 +31,61 @@ export default defineType({
             options: { hotspot: true },
         }),
         defineField({
+            name: "storyImages",
+            title: "Story Images (Optional, for auto-slide)",
+            type: "array",
+            of: [
+                {
+                    type: "image",
+                    options: { hotspot: true },
+                }
+            ],
+        }),
+        defineField({
+            name: "slides",
+            title: "Story Slides",
+            type: "array",
+            of: [
+                {
+                    type: "object",
+                    name: "slide",
+                    fields: [
+                        defineField({
+                            name: "heading",
+                            title: "Heading",
+                            type: "string",
+                        }),
+                        defineField({
+                            name: "content",
+                            title: "Content Paragraphs",
+                            type: "array",
+                            of: [{ type: "text" }],
+                        }),
+                        defineField({
+                            name: "quote",
+                            title: "Quote",
+                            type: "string",
+                        }),
+                        defineField({
+                            name: "storyImages",
+                            title: "Story Images",
+                            type: "array",
+                            of: [
+                                {
+                                    type: "image",
+                                    options: { hotspot: true },
+                                }
+                            ],
+                        }),
+                    ],
+                }
+            ],
+        }),
+        defineField({
             name: "circleSectionHeading",
             title: "Circle Section Heading",
             type: "string",
         }),
-
         defineField({
             name: "establishedYear",
             title: "Established Year",

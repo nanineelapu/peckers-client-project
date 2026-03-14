@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import OurStorySection from "./OurStorySection";
 import StoryCircle from "./StoryCircle";
 import ActualCircle from "./ActualCircle";
@@ -10,6 +10,21 @@ import JourneyIntroSection from "./JourneyHeader";
 
 const OurStoryPage = ({ initialStoryData }) => {
   const { pageData, bottomPageData, bottomTimeline } = initialStoryData || {};
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 0.8", "end 0.2"]
+  });
+
+  const springPath = useSpring(scrollYProgress, {
+    stiffness: 50,
+    damping: 20,
+    restDelta: 0.001
+  });
+
+  // Opacity for the SVG based on scroll
+  const svgOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
     <div id="main-content">
@@ -19,60 +34,86 @@ const OurStoryPage = ({ initialStoryData }) => {
       <MobileRoadmap initialData={bottomPageData?.mobileRoadmap} />
 
       <div className="hidden lg:block">
-        <StoryCircle initialData={pageData} />
+        {/* Tall container to provide scroll distance for pinning */}
+        <div ref={containerRef} className="relative h-[300vh]">
+          {/* Sticky wrapper to keep content in view during animation */}
+          <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-black">
+            
+            <StoryCircle initialData={pageData} />
 
-        <ActualCircle initialData={pageData} />
+            <div className="w-full relative">
+              <ActualCircle initialData={pageData} scrollProgress={scrollYProgress} />
 
-        <br />
-        <div className="w-full relative flex justify-center mt-0 md:mt-0 pt-0 min-h-[50vw] md:min-h-[16vw]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]"
-            >
-              <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="Peckers Logo" className="w-full h-auto drop-shadow-2xl" />
-            </motion.div>
-            <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-[60vw] h-auto">
-              {/* SVG paths remain the same as previous version */}
-              <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 0.6 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.8 }} filter="url(#filter0_d_297_13)">
-                <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="transparent" shapeRendering="crispEdges" />
-                <motion.path
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 2, ease: "easeInOut", delay: 0.2 }}
-                  d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z" stroke="white" strokeWidth="2" shapeRendering="crispEdges"
-                />
+              <div className="w-full relative flex justify-center mt-[-2vw] md:mt-[-2vw] pt-0 min-h-[50vw] md:min-h-[16vw]">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-10%" }}
+                    transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]"
+                  >
+                    <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="Peckers Logo" className="w-full h-auto drop-shadow-2xl" />
+                  </motion.div>
+                  <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-[60vw] h-auto overflow-visible">
+                    <motion.g
+                      style={{ opacity: svgOpacity }}
+                      filter="url(#filter0_d_297_13)"
+                    >
+                      <path d="M20 227C20 112.677 112.677 20 227 20H811C925.323 20 1018 112.677 1018 227C1018 341.323 925.323 434 811 434H227C112.677 434 20 341.323 20 227Z" fill="transparent" />
 
-                {/* Top Dots - Follows path from Left to Right */}
-                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.3 }} cx="210" cy="21" r="5" fill="#EAB308" />
-                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.45, duration: 0.3 }} cx="519" cy="21" r="5" fill="#EAB308" />
-                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.7, duration: 0.3 }} cx="828" cy="21" r="5" fill="#EAB308" />
+                      <motion.path
+                        style={{ pathLength: springPath, opacity: 1 }}
+                        d="M227 21H811C924.771 21 1017 113.229 1017 227C1017 340.771 924.771 433 811 433H227C113.229 433 21 340.771 21 227C21 113.674 112.51 21.7204 225.668 21.0039L227 21Z"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
 
-                {/* Bottom Dots - Follows path from Right to Left */}
-                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.25, duration: 0.3 }} cx="828" cy="433" r="5" fill="#EAB308" />
-                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.5, duration: 0.3 }} cx="519" cy="433" r="5" fill="#EAB308" />
-                <motion.circle initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.75, duration: 0.3 }} cx="210" cy="433" r="5" fill="#EAB308" />
-              </motion.g>
-              <defs>
-                <filter id="filter0_d_297_13" x="0" y="0" width="1038" height="454" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                  <feOffset />
-                  <feGaussianBlur stdDeviation="10" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
-                </filter>
-              </defs>
-            </svg>
+                      {/* Top Dots - Animated by transform */}
+                      {[210, 519, 828].map((cx, i) => (
+                        <motion.circle
+                          key={`top-${i}`}
+                          style={{
+                            opacity: useTransform(scrollYProgress, [0.05 + i * 0.1, 0.1 + i * 0.1], [0, 1]),
+                            scale: useTransform(scrollYProgress, [0.05 + i * 0.1, 0.1 + i * 0.1], [0, 1])
+                          }}
+                          cx={cx} cy="21" r="5" fill="#EAB308"
+                        />
+                      ))}
+
+                      {/* Bottom Dots - Animated by transform */}
+                      {[828, 519, 210].map((cx, i) => (
+                        <motion.circle
+                          key={`bottom-${i}`}
+                          style={{
+                            opacity: useTransform(scrollYProgress, [0.5 + i * 0.1, 0.6 + i * 0.1], [0, 1]),
+                            scale: useTransform(scrollYProgress, [0.5 + i * 0.1, 0.6 + i * 0.1], [0, 1])
+                          }}
+                          cx={cx} cy="433" r="5" fill="#EAB308"
+                        />
+                      ))}
+                    </motion.g>
+                    <defs>
+                      <filter id="filter0_d_297_13" x="0" y="0" width="1038" height="454" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                        <feOffset />
+                        <feGaussianBlur stdDeviation="10" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_297_13" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_297_13" result="shape" />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+              <div className="mt-[-2vw]">
+                <ActualCircle2 initialData={bottomTimeline} scrollProgress={scrollYProgress} />
+              </div>
+            </div>
           </div>
         </div>
-        <ActualCircle2 initialData={bottomTimeline} />
       </div>
 
       <JourneyIntroSection initialData={bottomPageData?.journeySection} />

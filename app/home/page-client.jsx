@@ -56,23 +56,12 @@ const HomePageClient = ({ initialHomepageData, initialSliderCards, initialLocati
         )}
         <div className="relative z-10 w-full px-[5vw] md:px-[7vw]">
           <div className="flex flex-col gap-2 md:gap-4">
-            {data?.heroImage ? (
-              <div className="relative w-[85vw] h-[40vw] md:w-[60vw] md:h-[22vw] lg:w-[70vw] lg:h-[33vw]">
-                <Image
-                  src={urlFor(data.heroImage).url()}
-                  alt="Hero Logo"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                />
-              </div>
-            ) : data?.heroTitle ? (
-              <h1 className="text-white font-peakers text-[12vw] md:text-[10vw] leading-none font-bold uppercase tracking-tighter" style={{ textShadow: "0px 4px 20px rgba(0,0,0,0.8)" }}>
-                {data.heroTitle}
-              </h1>
-            ) : (
-              <div className="animate-pulse text-white font-peakers text-[8vw]">PECKERS</div>
-            )}
+            <h1
+              className="text-white font-peakers text-[13vw] md:text-[11vw] lg:text-[11.5vw] leading-[.9] font-bold tracking-normal mb-10"
+              style={{ textShadow: "0px 4px 30px rgba(0,0,0,0.9)" }}
+            >
+              Seriously <br /> Good <br /> Chicken
+            </h1>
 
             {data.heroSubtitle && (
               <p className="text-white/90 text-[4vw] md:text-[2vw] lg:text-[1.5vw] font-sans max-w-[80vw] md:max-w-[40vw] leading-tight">

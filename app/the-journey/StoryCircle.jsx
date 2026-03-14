@@ -23,7 +23,7 @@ export default function StoryCircle({ initialData = null }) {
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="hidden md:block flex-1 h-[1px] bg-[#1F2937]"
+                    className="hidden md:block flex-1 h-px bg-[#1F2937]"
                 ></motion.div>
 
                 <span className="text-white/60 tracking-widest font-sans md:mr-[1.5vw] text-[4vw] md:text-sm whitespace-nowrap">
