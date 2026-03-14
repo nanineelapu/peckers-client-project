@@ -107,7 +107,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full bg-black px-[1.5vw] pt-[4vw] pb-[12vw] text-white flex items-start overflow-hidden">
+    <section className="relative w-full min-h-screen bg-black px-[1.5vw] pt-[7vw] pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
@@ -177,24 +177,47 @@ export default function OurStorySection({ initialData = null }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.2 }}
               >
-                {currentData.heading || "A FAMILY LEGACY, REIMAGINED"}
+                {(() => {
+                  const heading = currentData.heading || "A FAMILY LEGACY, REIMAGINED";
+                  if (heading.includes(",")) {
+                    const parts = heading.split(",");
+                    return (
+                      <>
+                        {parts[0]}
+                        <br />
+                        {parts.slice(1).join(",")}
+                      </>
+                    );
+                  }
+                  return heading;
+                })()}
               </motion.h2>
 
               <motion.div
-                className="text-[#D1D5DB] font-peakers text-[2.8vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-2 lg:space-y-3"
+                className="text-[#D1D5DB] font-peakers text-[2.8vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-4 lg:space-y-6"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.3 }}
               >
-                {currentData.content ? (
-                  currentData.content.map((para, i) => <p key={i}>{para}</p>)
-                ) : (
-                  <p>Content reveal in progress...</p>
-                )}
+                {(() => {
+                  if (!currentData.content) return <p>Content reveal in progress...</p>;
 
-                <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[1.1vw] lg:text-inherit">
-                  {currentData.quote || "This wasn’t built in a boardroom."}
-                </p>
+                  const contentArray = Array.isArray(currentData.content)
+                    ? currentData.content
+                    : typeof currentData.content === 'string'
+                      ? currentData.content.split('\n').filter(p => p.trim() !== '')
+                      : [currentData.content];
+
+                  return contentArray.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ));
+                })()}
+
+                <div className="pt-4 lg:pt-6">
+                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[1.1vw] lg:text-inherit">
+                    {currentData.quote || "This wasn’t built in a boardroom."}
+                  </p>
+                </div>
               </motion.div>
 
               <div className="flex items-center justify-start gap-1 lg:gap-2 mt-2 pb-4">

@@ -43,10 +43,10 @@ export default function PeckersTimeline({ initialData = null, scrollProgress }) 
     };
 
     return (
-        <div className="bg-black z-10 text-white flex justify-center py-[1vw] md:py-[1vw] font-peakers">
-            <div className="w-full max-w-[90vw] relative">
+        <div className="bg-black z-10 text-white flex justify-center py-[1vw] md:py-[.1vw] font-peakers">
+            <div className="w-full max-w-[90vw] relative mt-[7vw]">
                 <div
-                    className="flex flex-col md:flex-row bg-black justify-between gap-[6vw] md:gap-[4vw] h-auto md:h-[4vw] items-center mb-[5vw]"
+                    className="flex flex-col md:flex-row bg-black justify-between gap-[6vw] md:gap-[20vw] h-auto md:h-[4vw] items-center mb-[5vw]"
                 >
                     {timelineData.slice(0, 3).map((item, index) => {
                         const alignment =
@@ -55,7 +55,7 @@ export default function PeckersTimeline({ initialData = null, scrollProgress }) 
                                 : index === 1
                                     ? "items-center text-center"
                                     : "items-center text-center md:items-start md:text-left";
-                        const offset = index === 1 ? "mt-0 md:-mt-[2vw]" : "";
+                        const offset = (index === 0 || index === 2) ? "md:mt-[5vw]" : "md:mt-0";
 
                         const isHighlighted = item.highlight || (!isDesktop && item.year?.toString() === "1978");
 
@@ -90,11 +90,11 @@ export default function PeckersTimeline({ initialData = null, scrollProgress }) 
                                     {item.year}
                                 </span>
 
-                                <h3 className="text-[5vw] md:text-[1.2vw] font-peakers mb-[2vw] md:mb-[0.5vw] leading-none text-white">
+                                <h3 className="text-[5vw] md:text-[1.2vw] font-peakers mb-[2vw] md:mb-[0.5vw] leading-tight text-white">
                                     {item.title}
                                 </h3>
 
-                                <p className={`text-zinc-500 font-peakers leading-none font-medium ${index === 1 ? "text-[2.8vw] md:text-[0.6vw]" : "text-[3vw] md:text-[0.7vw]"}`}
+                                <p className={`text-zinc-500 font-peakers leading-tight font-medium ${index === 1 ? "text-[2.8vw] md:text-[0.6vw]" : "text-[3vw] md:text-[0.7vw]"}`}
                                     style={index === 1 ? { fontFamily: "Space Mono" } : {}}>
 
                                     {item.description}

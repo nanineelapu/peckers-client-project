@@ -9,7 +9,7 @@ export default function JourneyIntroSection({ initialData = null }) {
     if (!data) return null;
 
     return (
-        <section className="w-full bg-black pt-[9vw] pb-[10vw] flex flex-col items-center text-center relative overflow-hidden min-h-[50vh]">
+        <section className="w-full bg-black pt-[10vw] pb-[10vw] flex flex-col items-center text-center relative overflow-hidden min-h-[50vh]">
 
             <>
                 {/* ================= DESKTOP ================= */}

@@ -14,14 +14,14 @@ export default function PeckersTimeline2({ initialData = [], scrollProgress }) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Individual card reveal transforms for the bottom section
-    const card1Opacity = useTransform(scrollProgress || { get: () => 1 }, [0.65, 0.75], [0, 1]);
-    const card2Opacity = useTransform(scrollProgress || { get: () => 1 }, [0.75, 0.85], [0, 1]);
-    const card3Opacity = useTransform(scrollProgress || { get: () => 1 }, [0.85, 0.95], [0, 1]);
+    // Individual card reveal transforms for the bottom section (Clockwise: Right to Left)
+    const card3Opacity = useTransform(scrollProgress || { get: () => 1 }, [0.55, 0.62], [0, 1]);
+    const card2Opacity = useTransform(scrollProgress || { get: () => 1 }, [0.62, 0.69], [0, 1]);
+    const card1Opacity = useTransform(scrollProgress || { get: () => 1 }, [0.69, 0.76], [0, 1]);
 
-    const card1Y = useTransform(scrollProgress || { get: () => 0 }, [0.65, 0.75], [-50, 0]);
-    const card2Y = useTransform(scrollProgress || { get: () => 0 }, [0.75, 0.85], [-50, 0]);
-    const card3Y = useTransform(scrollProgress || { get: () => 0 }, [0.85, 0.95], [-50, 0]);
+    const card3Y = useTransform(scrollProgress || { get: () => 0 }, [0.55, 0.62], [-50, 0]);
+    const card2Y = useTransform(scrollProgress || { get: () => 0 }, [0.62, 0.69], [-50, 0]);
+    const card1Y = useTransform(scrollProgress || { get: () => 0 }, [0.69, 0.76], [-50, 0]);
 
     const cardsReveal = [
         { opacity: card1Opacity, y: card1Y },
@@ -43,10 +43,10 @@ export default function PeckersTimeline2({ initialData = [], scrollProgress }) {
     if (timelineData.length === 0) return null;
 
     return (
-        <div className="bg-black text-white flex justify-center mt-[6vw] md:mt-[6vw] py-[5vw] md:py-[1vw] font-peakers">
+        <div className="bg-black text-white flex justify-center mt-[1vw] md:mt-[1vw] py-[5vw] md:py-[2.5vw] font-peakers">
             <div className="w-full max-w-[90vw] relative">
                 <div
-                    className="flex flex-col md:flex-row justify-between gap-[6vw] md:gap-[4vw] h-auto md:h-[4vw] items-center leading-7 mb-[4vw]"
+                    className="flex flex-col md:flex-row justify-between gap-[6vw] md:gap-[8vw] h-auto md:h-[4vw] items-center leading-7 mb-[4vw]"
                 >
                     {timelineData.slice(0, 3).map((item, index) => {
 

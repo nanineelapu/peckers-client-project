@@ -14,16 +14,17 @@ const OurStoryPage = ({ initialStoryData }) => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.8", "end 0.2"]
-  });
-
-  const springPath = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 20,
-    restDelta: 0.001
+    offset: ["start start", "end end"]
   });
 
   // Opacity for the SVG based on scroll
+  const mappedProgress = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+  const springPath = useSpring(mappedProgress, {
+    stiffness: 80,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   const svgOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
@@ -34,28 +35,29 @@ const OurStoryPage = ({ initialStoryData }) => {
       <MobileRoadmap initialData={bottomPageData?.mobileRoadmap} />
 
       <div className="hidden lg:block">
+        <div className="bg-black">
+          <StoryCircle initialData={pageData} />
+        </div>
         {/* Tall container to provide scroll distance for pinning */}
-        <div ref={containerRef} className="relative h-[300vh]">
+        <div ref={containerRef} className="relative h-[550vh]">
           {/* Sticky wrapper to keep content in view during animation */}
-          <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-black">
-            
-            <StoryCircle initialData={pageData} />
+          <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-black z-20">
 
-            <div className="w-full relative">
+            <div className="w-full relative flex flex-col items-center">
               <ActualCircle initialData={pageData} scrollProgress={scrollYProgress} />
 
-              <div className="w-full relative flex justify-center mt-[-2vw] md:mt-[-2vw] pt-0 min-h-[50vw] md:min-h-[16vw]">
+              <div className="w-full relative flex justify-center mt-[-1vw] md:mt-[1vw] pt-0 min-h-[50vw] md:min-h-[22vw]">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-10%" }}
                     transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[15vw]"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[30vw] md:w-[12vw]"
                   >
                     <img src="https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Logo%20image%20peckers.png" alt="Peckers Logo" className="w-full h-auto drop-shadow-2xl" />
                   </motion.div>
-                  <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-[60vw] h-auto overflow-visible">
+                  <svg width="1038" height="454" viewBox="0 0 1038 454" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[90vw] md:w-[45vw] h-auto overflow-visible">
                     <motion.g
                       style={{ opacity: svgOpacity }}
                       filter="url(#filter0_d_297_13)"
@@ -86,8 +88,8 @@ const OurStoryPage = ({ initialStoryData }) => {
                         <motion.circle
                           key={`bottom-${i}`}
                           style={{
-                            opacity: useTransform(scrollYProgress, [0.5 + i * 0.1, 0.6 + i * 0.1], [0, 1]),
-                            scale: useTransform(scrollYProgress, [0.5 + i * 0.1, 0.6 + i * 0.1], [0, 1])
+                            opacity: useTransform(scrollYProgress, [0.45 + i * 0.1, 0.55 + i * 0.1], [0, 1]),
+                            scale: useTransform(scrollYProgress, [0.45 + i * 0.1, 0.55 + i * 0.1], [0, 1])
                           }}
                           cx={cx} cy="433" r="5" fill="#EAB308"
                         />
@@ -108,7 +110,7 @@ const OurStoryPage = ({ initialStoryData }) => {
                   </svg>
                 </div>
               </div>
-              <div className="mt-[-2vw]">
+              <div className="mt-[0vw] w-full">
                 <ActualCircle2 initialData={bottomTimeline} scrollProgress={scrollYProgress} />
               </div>
             </div>
