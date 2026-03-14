@@ -214,7 +214,7 @@ export default function OurStorySection({ initialData = null }) {
                 })()}
 
                 <div className="pt-4 lg:pt-6">
-                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[2.8vw] lg:text-inherit">
+                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[1.3vw] lg:text-inherit">
                     {currentData.quote || "This wasn’t built in a boardroom."}
                   </p>
                 </div>
