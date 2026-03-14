@@ -14,7 +14,7 @@ export default function UniquenessLandingPage({ initialData = null }) {
     "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Uniqueness/Gradient%20%281%29.webp";
 
   return (
-    <div className="w-full relative h-[150vw] md:h-[61vw]">
+    <div className="w-full relative h-[80vh]">
       {/* Background Image */}
       <motion.div
         initial={{ scale: 1.05, opacity: 0 }}
@@ -45,7 +45,7 @@ export default function UniquenessLandingPage({ initialData = null }) {
       </div>
       {/* Centered Overlay Content */}
       <div
-        className="absolute inset-0 w-full flex flex-col items-center justify-center pointer-events-none z-2"
+        className="absolute inset-0 w-full flex flex-col items-center justify-center pb-[10vh] pointer-events-none z-2"
       >
         <motion.h1
           className="text-center font-peakers font-bold text-white text-[2.9vw] md:text-[3.1vw] leading-none drop-shadow-lg pointer-events-auto"
