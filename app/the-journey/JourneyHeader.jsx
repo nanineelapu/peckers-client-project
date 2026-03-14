@@ -57,7 +57,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                         initial={{ scaleX: 0 }}
                                         whileInView={{ scaleX: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                                        transition={{ duration: 2.5, ease: "easeInOut" }}
                                         style={{ originX: 0 }}
                                         y="209.5" width="1440" height="6.75" fill="#FFD700"
                                     />
@@ -69,7 +69,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                         initial={{ scaleY: 0 }}
                                         whileInView={{ scaleY: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
+                                        transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
                                         style={{ originY: 0 }}
                                         x="308.829" y="228" width="3.34212" height="53.4739" fill="#FFD700"
                                     />
@@ -78,7 +78,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                     initial={{ scale: 0, opacity: 0 }}
                                     whileInView={{ scale: 1, opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.3, ease: "backOut" }}
+                                    transition={{ duration: 0.8, delay: 0.6, ease: "backOut" }}
                                     style={{ transformOrigin: "310px 213px" }}
                                     filter="url(#filter2_dd_0_1)"
                                 >
@@ -92,7 +92,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                         initial={{ scaleY: 0 }}
                                         whileInView={{ scaleY: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+                                        transition={{ duration: 0.8, delay: 1.8, ease: "easeOut" }}
                                         style={{ originY: "218px" }}
                                         x="733" y="144" width="4" height="74" fill="#FFD700"
                                     />
@@ -101,7 +101,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                     initial={{ scale: 0, opacity: 0 }}
                                     whileInView={{ scale: 1, opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.8, ease: "backOut" }}
+                                    transition={{ duration: 0.8, delay: 1.4, ease: "backOut" }}
                                     style={{ transformOrigin: "735px 213px" }}
                                     filter="url(#filter4_dd_0_1)"
                                 >
@@ -115,7 +115,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                         initial={{ scaleY: 0 }}
                                         whileInView={{ scaleY: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+                                        transition={{ duration: 0.8, delay: 2.6, ease: "easeOut" }}
                                         style={{ originY: 0 }}
                                         x="1163" y="228" width="3.34212" height="53.4739" fill="#FFD700"
                                     />
@@ -124,7 +124,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                     initial={{ scale: 0, opacity: 0 }}
                                     whileInView={{ scale: 1, opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 1.2, ease: "backOut" }}
+                                    transition={{ duration: 0.8, delay: 2.2, ease: "backOut" }}
                                     style={{ transformOrigin: "1164px 213px" }}
                                     filter="url(#filter6_dd_0_1)"
                                 >
@@ -227,10 +227,10 @@ export default function JourneyIntroSection({ initialData = null }) {
                             {/* Card 1 - Hitchin (2022) */}
                             {data.timeline?.[0] && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
+                                    transition={{ duration: 0.8, delay: 1.2, type: "spring", stiffness: 100 }}
                                     className="absolute left-[21.5%] top-[62%] -translate-x-1/2 z-20 w-[18vw] h-[11vw] rounded-[.7vw] border  border-[#FFD700]/60 pl-[0.8vw] pr-[2vw] py-[2vw] flex flex-col items-start gap-[0vw] bg-black/95 text-left"
                                 >
                                     <span className="text-white font-mono text-[2.8vw] font-bold tracking-tight uppercase leading-none mb-[0.5vw]">
@@ -245,10 +245,10 @@ export default function JourneyIntroSection({ initialData = null }) {
                             {/* Card 2 - Stevenage (2024) */}
                             {data.timeline?.[1] && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -30, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: 1.1, ease: "easeOut" }}
+                                    transition={{ duration: 0.8, delay: 2.0, type: "spring", stiffness: 100 }}
                                     className="absolute left-[51%] bottom-[65%] -translate-x-1/2 z-20 w-[18vw] h-[11w] rounded-[.7vw] border  border-[#FFD700]/60 pl-[0.8vw] pr-[2vw] py-[2vw] flex flex-col items-start gap-[0vw] bg-black/95 text-left"
                                 >
                                     <span className="text-white font-mono text-[2.8vw] font-bold tracking-tight uppercase leading-none mb-[0.5vw]">
@@ -262,10 +262,10 @@ export default function JourneyIntroSection({ initialData = null }) {
 
                             {/* Card 3 - Where Next? */}
                             <motion.div
-                                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                initial={{ opacity: 0, scale: 0 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 1.5, ease: "easeOut" }}
+                                transition={{ duration: 0.8, delay: 2.8, type: "spring", stiffness: 100 }}
                                 className="absolute left-[80.8%] top-[62%] -translate-x-1/2 z-20 w-[17.5vw] rounded-[.7vw] border border-dashed border-[#FFD700]/60 px-[2vw] py-[1.5vw] flex flex-col items-center gap-[.8vw] bg-black/95"
                             >
                                 <h2 className="text-[1.5vw] text-white font-peakers tracking-wide uppercase">
@@ -332,7 +332,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                     initial={{ scaleY: 0 }}
                                     whileInView={{ scaleY: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                                    transition={{ duration: 2.5, ease: "easeInOut" }}
                                     style={{ originY: 0 }}
                                     x="0" y="0" width="3" height="100%" fill="#FFD700"
                                     filter="url(#mobileGlow)"
@@ -343,10 +343,10 @@ export default function JourneyIntroSection({ initialData = null }) {
                         {data.timeline?.map((item, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, scale: 0 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.6, delay: 0.2 + (idx * 0.1) }}
+                                transition={{ duration: 0.8, delay: 0.6 + (idx * 0.8), type: "spring", stiffness: 100 }}
                                 className="relative mb-14"
                             >
                                 {/* Circle Marker - Mobile */}
@@ -356,7 +356,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                             initial={{ scale: 0 }}
                                             whileInView={{ scale: 1 }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.5, delay: 0.4 + (idx * 0.1), ease: "backOut" }}
+                                            transition={{ duration: 0.5, delay: 0.8 + (idx * 0.8), ease: "backOut" }}
                                             cx="22.5" cy="22.5" r="21" fill="#FFD700"
                                         />
                                         <circle cx="22.5" cy="22.5" r="18" stroke="#121212" strokeWidth="4" fill="none" />
@@ -376,10 +376,10 @@ export default function JourneyIntroSection({ initialData = null }) {
 
                         {/* WHERE NEXT */}
                         <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
+                            transition={{ duration: 0.8, delay: 2.5, type: "spring", stiffness: 100 }}
                             className="relative mb-20"
                         >
                             <div className="absolute left-[7px] top-2 z-30">
@@ -388,7 +388,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                         initial={{ scale: 0 }}
                                         whileInView={{ scale: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 0.8 }}
+                                        transition={{ duration: 0.5, delay: 2.8 }}
                                         cx="22.5" cy="22.5" r="21" fill="#FFD700"
                                     />
                                     <circle cx="22.5" cy="22.5" r="18" stroke="#121212" strokeWidth="4" fill="none" />

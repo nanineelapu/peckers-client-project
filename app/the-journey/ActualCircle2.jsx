@@ -43,7 +43,7 @@ export default function PeckersTimeline2({ initialData = [], scrollProgress }) {
     if (timelineData.length === 0) return null;
 
     return (
-        <div className="bg-black text-white flex justify-center mt-[1vw] md:mt-[1vw] py-[5vw] md:py-[2.5vw] font-peakers">
+        <div className="bg-black text-white flex justify-center mt-[1vw] md:mt-[1vw] py-[1vw] md:py-[2.5vw] font-peakers">
             <div className="w-full max-w-[90vw] relative">
                 <div
                     className="flex flex-col md:flex-row justify-between gap-[6vw] md:gap-[8vw] h-auto md:h-[4vw] items-center leading-7 mb-[4vw]"

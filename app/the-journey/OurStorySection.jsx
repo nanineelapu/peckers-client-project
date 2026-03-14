@@ -107,7 +107,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-black px-[1.5vw] pt-[7vw] pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
+    <section className="relative w-full min-h-[70vh] bg-black px-[1.5vw] pt-[8vw] pb-[0vw] text-white flex flex-col justify-center items-center overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"

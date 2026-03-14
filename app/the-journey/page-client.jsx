@@ -39,7 +39,7 @@ const OurStoryPage = ({ initialStoryData }) => {
           <StoryCircle initialData={pageData} />
         </div>
         {/* Tall container to provide scroll distance for pinning */}
-        <div ref={containerRef} className="relative h-[550vh]">
+        <div ref={containerRef} className="relative h-[500vh]">
           {/* Sticky wrapper to keep content in view during animation */}
           <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-black z-20">
 

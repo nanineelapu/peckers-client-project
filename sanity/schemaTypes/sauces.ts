@@ -42,6 +42,13 @@ export default defineType({
             title: 'Sauce Image',
             type: 'image',
             options: { hotspot: true }
+        }),
+
+        defineField({
+            name: 'rotatingText',
+            title: 'Rotating Circular Text',
+            type: 'string',
+            description: 'The text that rotates around the sauce bottle (e.g., "BUFFALO SAUCE • GARLIC MAYO •")'
         })
     ]
 })
