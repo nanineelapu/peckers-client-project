@@ -107,7 +107,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full min-h-[70vh] bg-black px-[1.5vw] pt-[8vw] pb-[0vw] text-white flex flex-col justify-center items-center overflow-hidden">
+    <section className="relative w-full lg:min-h-screen bg-black px-[1.5vw] pt-[12vw] lg:pt-[8vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
@@ -158,9 +158,9 @@ export default function OurStorySection({ initialData = null }) {
               scale: { duration: 0.2 },
               filter: { duration: 0.2 },
             }}
-            className="w-full flex flex-row items-start justify-center cursor-grab active:cursor-grabbing"
+            className="w-full flex flex-row items-start justify-start lg:justify-center cursor-grab active:cursor-grabbing"
           >
-            <div className="w-1/2 lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-start mt-0 overflow-hidden text-left">
+            <div className="w-[52%] lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-start mt-0 overflow-hidden text-left">
               <motion.div
                 className="mb-1 flex items-center justify-start"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -172,7 +172,7 @@ export default function OurStorySection({ initialData = null }) {
               </motion.div>
 
               <motion.h2
-                className="font-bold font-peakers text-[5vw] lg:text-[68px] leading-[1.1] lg:leading-[1.3] uppercase mt-2 bg-linear-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
+                className="font-bold font-peakers text-[5.5vw] lg:text-[68px] leading-[1.1] lg:leading-[1.3] uppercase mt-2 bg-linear-to-r from-gray-100 to-gray-600 bg-clip-text text-transparent"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -194,7 +194,7 @@ export default function OurStorySection({ initialData = null }) {
               </motion.h2>
 
               <motion.div
-                className="text-[#D1D5DB] font-peakers text-[2.8vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-4 lg:space-y-6"
+                className="text-[#D1D5DB] font-peakers text-[3.2vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-4 lg:space-y-6"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.3 }}
@@ -214,7 +214,7 @@ export default function OurStorySection({ initialData = null }) {
                 })()}
 
                 <div className="pt-4 lg:pt-6">
-                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[1.1vw] lg:text-inherit">
+                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[2.8vw] lg:text-inherit">
                     {currentData.quote || "This wasn’t built in a boardroom."}
                   </p>
                 </div>
@@ -226,8 +226,8 @@ export default function OurStorySection({ initialData = null }) {
                 ))}
               </div>
             </div>
-            <div className="w-1/2 lg:w-1/2 h-auto px-[2vw] flex flex-col items-center justify-center">
-              <div className="relative w-full h-[45vw] lg:h-[50vw] overflow-hidden flex items-center justify-center px-4">
+            <div className="w-[48%] lg:w-1/2 h-auto px-[2vw] flex flex-col items-start justify-center mt-[5vw] lg:mt-0">
+              <div className="relative w-full h-[65vw] lg:h-[50vw] overflow-hidden flex items-center justify-start lg:justify-center px-0 lg:px-4">
                 <AnimatePresence mode="wait">
                   {displayImages.length > 0 && (
                     <motion.div
@@ -237,7 +237,7 @@ export default function OurStorySection({ initialData = null }) {
                       animate="center"
                       exit="exit"
                       transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className={`absolute top-[-10vw] left-[4vw] right-[2vw] bottom-[10vw] w-full h-full rounded-[1.2vw] overflow-hidden`}
+                      className={`absolute top-0 lg:top-[-10vw] left-0 lg:left-[4vw] right-0 lg:right-[2vw] bottom-0 lg:bottom-[10vw] w-full h-full rounded-[1.2vw] overflow-hidden`}
                     >
                       <Image
                         src={urlFor(displayImages[currentSubSlide % displayImages.length]).url()}
