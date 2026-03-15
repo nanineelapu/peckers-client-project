@@ -88,9 +88,9 @@ export default function SaucePageOne({ initialData = [] }) {
             case 0: // Mayonnaise
                 return `${base} mt-[1vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.8]`;
             case 1: // Garlic Aioli
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.8]`;
             case 2: // Butter me up
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[2vw] md:mt-[-4vw] scale-[1.1] md:scale-[1.65]`;
             case 3: // Honey glaze BBQ
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[.94]`;
             case 4: // Hot honey
