@@ -32,8 +32,8 @@ export default function OurStorySection({ initialData = null }) {
     ? data.slides.map((s, idx) => ({ ...s, id: idx + 1 }))
     : [
       { ...data, id: 1 },
-      { ...data, id: 2, heading: "A COMMITMENT TO QUALITY", quote: "Our commitment to quality is unwavering, from farm to table." },
-      { ...data, id: 3, heading: "SERVED WITH PRIDE SINCE 1978", quote: "Generations of trust, built on every meal." },
+      { ...data, id: 2, heading: data.heading || "A FAMILY LEGACY, REIMAGINED", quote: data.quote || "This wasn’t built in a boardroom.", content: data.content },
+      { ...data, id: 3, heading: data.heading || "A FAMILY LEGACY, REIMAGINED", quote: data.quote || "This wasn’t built in a boardroom.", content: data.content },
     ];
 
   const nextSlide = () => {
@@ -107,7 +107,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full lg:min-h-screen bg-black px-[1.5vw] pt-[2vw] lg:pt-[2vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
+    <section className="relative w-full lg:min-h-[120vh] bg-black px-[1.5vw] pt-[2vw] lg:pt-[2vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
@@ -237,7 +237,7 @@ export default function OurStorySection({ initialData = null }) {
                       animate={{
                         opacity: 1,
                         x: 0,
-                        scale: (currentSlide === 0 && (currentSubSlide % displayImages.length) === 0) ? 0.9 : 1
+                        scale: (isMobile || currentSlide === 0) && (currentSubSlide % displayImages.length) === 0 ? 0.9 : 1
                       }}
                       exit="exit"
                       transition={{ duration: 0.6, ease: "easeInOut" }}
