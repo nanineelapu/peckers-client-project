@@ -3,6 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/lib/image";
 
@@ -73,14 +75,31 @@ function getSlotPos(slot, isLaptop = false) {
   return { x: 0, y: -120, scale: 0, opacity: 0, z: -1 };
 }
 
-export default function MenuTitleSection({ 
-    initialItems = [], 
-    initialNavbarData = [], 
-    onItemChange = null,
-    categoryName = "MENU"
+export default function MenuTitleSection({
+  initialItems = [],
+  initialNavbarData = [],
+  onItemChange = null,
+  categoryName = "MENU"
 }) {
-  const [items, setItems] = useState(initialItems);
-  const [navbarData, setNavbarData] = useState(initialNavbarData || []);
+  const [items] = useState(initialItems);
+  const pathname = usePathname();
+
+  const DEFAULT_NAVBAR = [
+    { title: "BURGERS", link: "/menu" },
+    { title: "WRAPS", link: "/menu/wraps" },
+    { title: "RICE BOWLS", link: "/menu/rice-bowls" },
+    { title: "SALAD BOWLS", link: "/menu/salad-bowls" },
+    { title: "WINGS & TENDERS", link: "/menu/wings-and-tenders" },
+    { title: "PERI-PERI GRILL", link: "/menu/peri-peri-grilled-chicken" },
+    { title: "WHAT'S NEW", link: "/menu/whats-new" },
+    { title: "SHAKES", link: "/menu/shakes" },
+    { title: "VEG", link: "/menu/veg" },
+    { title: "SIDES & FRIES", link: "/menu/sides-and-fries" },
+    { title: "MEAL BOX", link: "/menu/meal-box" },
+  ];
+
+  const [navbarData] = useState(initialNavbarData && initialNavbarData.length > 0 ? initialNavbarData : DEFAULT_NAVBAR);
+
   const [carousel, setCarousel] = useState(() => {
     if (initialItems.length > 0) {
       const initialCards = initialItems.map((_, i) => {
@@ -93,6 +112,7 @@ export default function MenuTitleSection({
     }
     return { center: 0, cards: [] };
   });
+
   const animatingRef = useRef(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [glowVisible, setGlowVisible] = useState(true);
@@ -140,7 +160,7 @@ export default function MenuTitleSection({
   return (
     <>
       <div
-        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[0vh] md:pt-[1vh] min-h-0 pb-[4vh] md:pb-0"
+        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-0 md:pt-[1vh] min-h-0 pb-[4vh] md:pb-0"
         style={{
           background: "radial-gradient(ellipse 50% 52% at 50% 38%, #1c1c1c 0%, #0d0d0d 26%, #070707 58%, #000 100%)",
         }}
@@ -154,18 +174,40 @@ export default function MenuTitleSection({
               style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {navbarData.map((item, idx) => {
-                const isActive = item.link === window.location.pathname || (item.link === "/menu" && window.location.pathname === "/menu");
+                // Route mapping logic
+                const title = item.title?.toUpperCase() || "";
+                let href = item.link || "#";
+
+                // Explicitly force route for Burgers and Wraps
+                if (title === "BURGERS") href = "/menu";
+                else if (title === "WRAPS") href = "/menu/wraps";
+                else if (href === "#" || !href || href.startsWith("#")) {
+                  if (title === "RICE BOWLS") href = "/menu/rice-bowls";
+                  else if (title === "SALAD BOWLS") href = "/menu/salad-bowls";
+                  else if (title === "WINGS & TENDERS") href = "/menu/wings-and-tenders";
+                  else if (title === "PERI-PERI GRILL" || title === "GRILLED") href = "/menu/peri-peri-grilled-chicken";
+                  else if (title === "WHAT'S NEW") href = "/menu/whats-new";
+                  else if (title === "SHAKES") href = "/menu/shakes";
+                  else if (title === "VEG") href = "/menu/veg";
+                  else if (title === "SIDES & FRIES") href = "/menu/sides-and-fries";
+                  else if (title === "MEAL BOX") href = "/menu/meal-box";
+                }
+
+                const normalizedItemLink = href.replace(/\/$/, "");
+                const normalizedCurrentPath = pathname.replace(/\/$/, "");
+                const isActive = normalizedItemLink === normalizedCurrentPath || (normalizedItemLink === "/menu" && normalizedCurrentPath === "/menu");
+
                 return (
-                  <a
+                  <Link
                     key={idx}
-                    href={item.link || "#"}
-                    className={`whitespace-nowrap pb-1 md:pb-1 tracking-wider ${item.isActive || isActive
+                    href={href}
+                    className={`whitespace-nowrap pb-1 md:pb-1 tracking-wider ${isActive
                       ? "font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500"
                       : "text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] tracking-wide opacity-70 hover:opacity-100 transition-opacity"
                       }`}
                   >
                     {item.title}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
@@ -213,30 +255,139 @@ export default function MenuTitleSection({
             <DropShadowSVG />
           </div>
 
-          {/* Items Rendering (Responsive) */}
+          {/* Mobile-only: simple carousel */}
           {carousel.cards.map((card) => {
             const item = items[card.index];
             const isCenter = card.slot === 0;
-            const cfg = getSlotPos(card.slot, true); // Use laptop cfg as base for all if hidden/shown logic is handled by classes
 
             return (
               <div
-                key={card.id}
-                className={`${Math.abs(card.slot) <= 1 ? "block" : "hidden"} md:block`}
-                onClick={() => !isCenter && !isAnimating && Math.abs(card.slot) <= 3 && handleCardClick(card.slot)}
+                key={`mob-${card.id}`}
+                className="block md:hidden border-none"
+                onClick={() =>
+                  !isCenter && !isAnimating && Math.abs(card.slot) <= 1 && handleCardClick(card.slot)
+                }
                 style={{
                   position: "absolute",
                   left: "50%",
                   top: "50%",
-                  transform: `translate(calc(-50% + ${card.slot * 25}vw), calc(-50% + ${cfg.y}px)) scale(${(isCenter ? 1 : 0.45) * (item.boost || 1)})`,
-                  opacity: isCenter ? 1 : 0.6,
+                  transform: `
+                    translate(calc(-50% + ${card.slot * 110}vw), -50%)
+                    scale(${item.boost || 1})
+                  `,
+                  opacity: Math.abs(card.slot) <= 1 ? 1 : 0,
                   zIndex: isCenter ? 10 : 5,
-                  transition: "transform .5s ease, opacity .5s ease",
+                  transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease",
                   pointerEvents: isCenter ? "none" : isAnimating ? "none" : "auto",
-                  cursor: isCenter ? "default" : "pointer",
+                  userSelect: "none",
                 }}
               >
-                 <div className="relative" style={{ width: "clamp(220px, 45vw, 520px)", height: "auto", aspectRatio: "1/1" }}>
+                <div className="relative" style={{ width: "clamp(200px, 75vw, 340px)", height: "auto", aspectRatio: "1/1" }}>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    priority={isCenter}
+                    className="object-contain"
+                    draggable={false}
+                    sizes="clamp(200px, 75vw, 340px)"
+                  />
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Tablet-only: full multi-card stacked carousel */}
+          {carousel.cards.map((card) => {
+            const cfg = getSlotPos(card.slot, false);
+            const item = items[card.index];
+            const isCenter = card.slot === 0;
+
+            return (
+              <div
+                key={`tab-${card.id}`}
+                className="hidden md:block lg:hidden"
+                onClick={() =>
+                  !isCenter && !isAnimating && Math.abs(card.slot) <= 2 && handleCardClick(card.slot)
+                }
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: `
+                    translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
+                    scale(${cfg.scale * (item.boost || 1)})
+                  `,
+                  opacity: cfg.opacity,
+                  zIndex: cfg.z,
+                  transition: "transform .5s ease, opacity .5s ease",
+                  pointerEvents: isCenter
+                    ? "none"
+                    : isAnimating
+                      ? "none"
+                      : "auto",
+                  cursor: isCenter ? "default" : isAnimating ? "wait" : "pointer",
+                  userSelect: "none",
+                }}
+              >
+                <div className="relative" style={{ width: "clamp(220px, 45vw, 520px)", height: "auto", aspectRatio: "1/1" }}>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    priority={isCenter}
+                    className={`object-contain ${isCenter ? 'drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]' : ''}`}
+                    draggable={false}
+                    sizes="clamp(220px, 45vw, 520px)"
+                  />
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Laptop-only: full multi-card stacked carousel (7 items) */}
+          {carousel.cards.map((card) => {
+            const cfg = getSlotPos(card.slot, true);
+            const item = items[card.index];
+            const isCenter = card.slot === 0;
+
+            return (
+              <div
+                key={`lap-${card.id}`}
+                className="hidden lg:block"
+                onClick={() =>
+                  !isCenter && !isAnimating && Math.abs(card.slot) <= 3 && handleCardClick(card.slot)
+                }
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: `
+                    translate(calc(-50% + ${cfg.x}vw), calc(-50% + ${cfg.y}px))
+                    scale(${cfg.scale * (item.boost || 1)})
+                  `,
+                  opacity: cfg.opacity,
+                  zIndex: cfg.z,
+                  transition: "transform .5s ease, opacity .5s ease",
+                  pointerEvents: isCenter
+                    ? "none"
+                    : isAnimating
+                      ? "none"
+                      : "auto",
+                  cursor: isCenter ? "default" : isAnimating ? "wait" : "pointer",
+                  userSelect: "none",
+                }}
+              >
+                <div
+                  className="relative"
+                  style={{
+                    width: "clamp(220px, 45vw, 520px)",
+                    height: "auto",
+                    aspectRatio: "1/1",
+                    filter: isCenter ? "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" : "none",
+                    transition: "filter .4s ease"
+                  }}
+                >
                   <Image
                     src={item.image}
                     alt={item.name}

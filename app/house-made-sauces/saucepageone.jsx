@@ -84,31 +84,31 @@ export default function SaucePageOne({ initialData = [] }) {
 
         switch (idx) {
             case 0: // Mayonnaise
-                return `${base} mt-[1vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.8]`;
+                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.5] md:scale-[1.8]`;
             case 1: // Garlic Aioli
-                return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.8]`;
+                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.5] md:scale-[1.8]`;
             case 2: // Butter me up
-                return `${base} mt-[2vw] md:mt-[-4vw] scale-[1.1] md:scale-[1.65]`;
+                return `${base} mt-[-8vw] md:mt-[-4vw] scale-[1.4] md:scale-[1.65]`;
             case 3: // Honey glaze BBQ
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[.94]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[0.85] md:scale-[.94]`;
             case 4: // Hot honey
-                return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.32]`;
+                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.2] md:scale-[1.32]`;
             case 5: // Korean gochujang
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.05]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[0.95] md:scale-[1.05]`;
             case 6: // Peanut sweet chilli
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
             case 7: // Super charge OG
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[-15vw] md:mt-[-10vw] scale-[1.65] md:scale-[1.85]`;
             case 8: // Buffalo
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
             case 9: // Cheese Sauce
-                return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.3]`;
+                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.2] md:scale-[1.3]`;
             case 10: // OG Chilli
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
             case 11: // Korean Glaze
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
             default:
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
         }
     };
 

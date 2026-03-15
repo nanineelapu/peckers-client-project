@@ -30,6 +30,7 @@ import whatsnewpage from './whatsnewpage'
 import shakespage from './shakespage'
 import vegpage from './vegpage'
 import sidesandfriespage from './sidesandfriespage'
+import mealboxpage from './mealboxpage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -39,7 +40,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     saucepage, uniquenessLanding, uniquenessSubsection, locationHistory, 
     menuNavbar, crewpage, wrapspage, ricebowlspage, saladbowlspage, 
     wingsandtenderspage, periperigrillpage, whatsnewpage, shakespage, 
-    vegpage, sidesandfriespage
+    vegpage, sidesandfriespage, mealboxpage
   ],
 }
 

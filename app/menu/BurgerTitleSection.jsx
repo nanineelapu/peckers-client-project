@@ -107,7 +107,6 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
       onBurgerChange(carousel.center);
     }
   }, [carousel.center, onBurgerChange]);
-
   useEffect(() => {
     if (initialBurgers.length > 0) return;
     const fetchBurgers = async () => {
