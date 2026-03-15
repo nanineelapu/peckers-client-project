@@ -11,10 +11,13 @@ export const metadata = {
 };
 
 export default async function CareersPage() {
-    let crewData = null;
+    let careersData = null;
 
     try {
-        crewData = await client.fetch(`*[_type == "crewPage"][0]{
+        careersData = await client.fetch(`*[_type == "crewPage"][0]{
+            tagline,
+            landingHeading1,
+            landingHeading2,
             heading,
             description,
             crewMembers[] {
@@ -25,7 +28,14 @@ export default async function CareersPage() {
                         url
                     }
                 }
-            }
+            },
+            rolesTitle,
+            perks[] {
+                title,
+                description
+            },
+            applyTitle,
+            applySubtitle
         }`, {}, {
             next: { revalidate: 60 }
         });
@@ -35,10 +45,10 @@ export default async function CareersPage() {
 
     return (
         <div id="main-content">
-            <CareersLandingPage />
-            <CrewPage initialData={crewData} />
-            <RolesWithPeckers />
-            <ApplyDetailsPage />
+            <CareersLandingPage initialData={careersData} />
+            <CrewPage initialData={careersData} />
+            <RolesWithPeckers initialData={careersData} />
+            <ApplyDetailsPage initialData={careersData} />
         </div>
     );
 }

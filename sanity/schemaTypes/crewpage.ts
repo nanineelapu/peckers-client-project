@@ -1,16 +1,33 @@
 export default {
     name: 'crewPage',
-    title: 'Crew Page',
+    title: 'Careers Page',
     type: 'document',
     fields: [
+        // Landing Section
+        {
+            name: 'tagline',
+            title: 'Landing Tagline',
+            type: 'string',
+        },
+        {
+            name: 'landingHeading1',
+            title: 'Landing Heading Line 1',
+            type: 'string',
+        },
+        {
+            name: 'landingHeading2',
+            title: 'Landing Heading Line 2',
+            type: 'string',
+        },
+        // Crew Section
         {
             name: 'heading',
-            title: 'Heading',
+            title: 'Crew Section Heading',
             type: 'string',
         },
         {
             name: 'description',
-            title: 'Description',
+            title: 'Crew Section Description',
             type: 'text',
         },
         {
@@ -37,6 +54,45 @@ export default {
                     ],
                 },
             ],
+        },
+        // Roles Section
+        {
+            name: 'rolesTitle',
+            title: 'Roles Section Title',
+            type: 'string',
+        },
+        {
+            name: 'perks',
+            title: 'Roles Perks',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        {
+                            name: 'title',
+                            title: 'Perk Title',
+                            type: 'string',
+                        },
+                        {
+                            name: 'description',
+                            title: 'Perk Description',
+                            type: 'text',
+                        },
+                    ],
+                },
+            ],
+        },
+        // Apply Section
+        {
+            name: 'applyTitle',
+            title: 'Apply Section Title',
+            type: 'string',
+        },
+        {
+            name: 'applySubtitle',
+            title: 'Apply Section Subtitle',
+            type: 'string',
         },
     ],
 }

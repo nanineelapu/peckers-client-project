@@ -107,7 +107,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full lg:min-h-[120vh] bg-black px-[1.5vw] pt-[2vw] lg:pt-[2vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
+    <section className="relative w-full lg:min-h-[105vh] bg-black px-[1.5vw] pt-[2vw] lg:pt-[2vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
@@ -130,7 +130,7 @@ export default function OurStorySection({ initialData = null }) {
         </svg>
       </div>
 
-      <div className="relative z-10 w-full flex flex-col lg:flex-row items-start lg:items-center justify-center pt-[2vw] md:pt-0">
+      <div className="relative z-10 w-full flex flex-col lg:flex-row items-start lg:items-center justify-center lg:mt-[-10vh] pt-[0vw] md:pt-0">
 
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -194,7 +194,7 @@ export default function OurStorySection({ initialData = null }) {
               </motion.h2>
 
               <motion.div
-                className="text-[#D1D5DB] font-peakers text-[3.2vw] lg:text-[1.42vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-4 lg:space-y-6"
+                className="text-[#D1D5DB] font-peakers text-[2vw] lg:text-[1.15vw] leading-[1.6] max-w-full lg:max-w-[40vw] py-[2vw] space-y-4 lg:space-y-6"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut", delay: 0.3 }}
