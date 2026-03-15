@@ -84,31 +84,31 @@ export default function SaucePageOne({ initialData = [] }) {
 
         switch (idx) {
             case 0: // Mayonnaise
-                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.5] md:scale-[1.8]`;
+                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.8] md:scale-[1.8]`;
             case 1: // Garlic Aioli
-                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.5] md:scale-[1.8]`;
+                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.8] md:scale-[1.8]`;
             case 2: // Butter me up
-                return `${base} mt-[-8vw] md:mt-[-4vw] scale-[1.4] md:scale-[1.65]`;
+                return `${base} mt-[-8vw] md:mt-[-4vw] scale-[1.7] md:scale-[1.65]`;
             case 3: // Honey glaze BBQ
-                return `${base} mt-[0vw] md:mt-0 scale-[0.85] md:scale-[.94]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[.94]`;
             case 4: // Hot honey
-                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.2] md:scale-[1.32]`;
+                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.4] md:scale-[1.32]`;
             case 5: // Korean gochujang
-                return `${base} mt-[0vw] md:mt-0 scale-[0.95] md:scale-[1.05]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.2] md:scale-[1.05]`;
             case 6: // Peanut sweet chilli
-                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
             case 7: // Super charge OG
-                return `${base} mt-[-15vw] md:mt-[-10vw] scale-[1.65] md:scale-[1.85]`;
+                return `${base} mt-[-15vw] md:mt-[-10vw] scale-[2.0] md:scale-[1.85]`;
             case 8: // Buffalo
-                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
             case 9: // Cheese Sauce
-                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.2] md:scale-[1.3]`;
+                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.4] md:scale-[1.3]`;
             case 10: // OG Chilli
-                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
             case 11: // Korean Glaze
-                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
             default:
-                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
         }
     };
 
@@ -153,7 +153,7 @@ export default function SaucePageOne({ initialData = [] }) {
 
                                 {/* TEXT SECTION WITH PREMIUM SCALING */}
                                 <div
-                                    className={`absolute mt-[1vw] sm:mt-6 md:mt-0 top-[9%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20 transition-transform duration-700 ease-out`}
+                                    className={`absolute mt-[8vw] sm:mt-6 md:mt-0 top-[9%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20 transition-transform duration-700 ease-out`}
                                 >
                                     <h1
                                         className="text-5xl sm:text-5xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-1 sm:mb-2 md:mb-4 xl:mb-[-.5vw]"
@@ -202,7 +202,7 @@ export default function SaucePageOne({ initialData = [] }) {
                                 </div>
 
                                 <div
-                                    className="absolute left-1/2 -translate-x-1/2 bottom-0 sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[105vw] h-[105vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none"
+                                    className="absolute left-1/2 -translate-x-1/2 mt-[15vw] md:mt-0 bottom-[-65vw] sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[135vw] h-[135vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none"
                                 >
 
                                     {/* ROTATING TEXT (WITH INDEPENDENT SCALING) */}
