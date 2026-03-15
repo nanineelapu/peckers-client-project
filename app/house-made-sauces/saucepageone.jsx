@@ -56,55 +56,67 @@ export default function SaucePageOne({ initialData = [] }) {
         fetchSauces();
     }, [initialData]);
 
-    const getTargetAngle = (index) => {
-        if (!saucesData.length) return 0;
-        // The path starts at 9 o'clock. The pointer is at 12 o'clock.
-        // We need to rotate -90 degrees to bring the start to the top.
-        // Then we rotate by the index.
-        const segment = 360 / saucesData.length;
-        const offset = -90; // Align path start to pointer
-        // We subtract (segment/2) to center the first word under the dot
-        return offset - (index * segment);
-    };
-
-    const updateRotationShortestPath = (nextIdx) => {
-        const sauce = saucesData[nextIdx];
-        if (!sauce) return;
-
-        const target = getTargetAngle(nextIdx);
-
-        setRotation((prev) => {
-            // Find current normalized rotation
-            const currentNorm = prev % 360;
-            // Calculate relative difference to target
-            let diff = (target - currentNorm) % 360;
-
-            // Shortest path logic
-            if (diff > 180) diff -= 360;
-            if (diff < -180) diff += 360;
-
-            return prev + diff;
-        });
-    };
+    const segment = saucesData.length ? (360 / saucesData.length) : 0;
 
     const nextSlide = () => {
         const nextIdx = (currentIndex + 1) % saucesData.length;
         setCurrentIndex(nextIdx);
-        updateRotationShortestPath(nextIdx);
+        setRotation(prev => prev + segment); // Clockwise
     };
 
     const prevSlide = () => {
-        const nextIdx = currentIndex === 0 ? saucesData.length - 1 : currentIndex - 1;
+        const nextIdx = (currentIndex - 1 + saucesData.length) % saucesData.length;
         setCurrentIndex(nextIdx);
-        updateRotationShortestPath(nextIdx);
+        setRotation(prev => prev - segment); // Counter-clockwise
     };
 
     // Initialize rotation on first load based on first sauce
     useEffect(() => {
         if (saucesData.length > 0 && rotation === 0) {
-            setRotation(getTargetAngle(0));
+            // Path starts at 9 o'clock. Pointer is at 12 o'clock.
+            // 9 -> 12 is a 90-degree clockwise rotation.
+            // Subtract (segment / 2) to center the first sauce title under the pointer.
+            setRotation(90 - (segment / 2));
         }
-    }, [saucesData]);
+    }, [saucesData, segment]);
+
+    // Manual layout overrides per sauce image (index-based)
+    const getSauceImageStyle = (idx) => {
+        const base = "absolute w-[85%] h-[85%] z-10 transition-all duration-700 top-1/2 -translate-y-1/2";
+
+        switch (idx) {
+            case 0: // Mayonnaise
+                return `${base} mt-[1vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.8]`;
+            case 1: // Garlic Aioli
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 2: // Butter me up
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 3: // Honey glaze BBQ
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[.94]`;
+            case 4: // Hot honey
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 5: // Katsu Curry
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 6: // Korean gochujang
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 7: // Peanut sweet chilli
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 8: // Super charge OG
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 9: // Buffalo
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 10: // Ranch
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 11: // Cheese Sauce
+                return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.3]`;
+            case 12: // OG Chilli
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            case 13: // Korean Glaze
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+            default:
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
+        }
+    };
 
     if (loading) {
         return (
@@ -220,7 +232,9 @@ export default function SaucePageOne({ initialData = [] }) {
                                                     textLength="2810"
                                                     lengthAdjust="spacingAndGlyphs"
                                                 >
-                                                    {saucesData.map(s => `${s.title.toUpperCase()} SAUCE`).join(' • ')} •{' '}
+                                                    {/* Layout items counter-clockwise: [S0, Sn-1, Sn-2... S1] 
+                                                        so that clockwise rotation R+ advances the array correctly */}
+                                                    {[saucesData[0], ...[...saucesData.slice(1)].reverse()].map(s => `${s.title.toUpperCase()} SAUCE`).join(' • ')} •{' '}
                                                 </textPath>
                                             </text>
                                         </svg>
@@ -232,9 +246,8 @@ export default function SaucePageOne({ initialData = [] }) {
                                         <circle cx="500" cy="90" r="8" fill="white" />
                                     </svg>
 
-                                    {/* PRODUCT IMAGE (DYNAMIC FLOW) */}
                                     {isActive && sauce.sauceImage && (
-                                        <div className={`absolute w-[80%] h-[80%] z-10 transition-all duration-700 ${idx === 0 ? "scale-[1.2] md:scale-[1.3] mt-[15vw] sm:mt-[14vw] lg:mt-[11vw] xl:mt-[13vw]" : idx === 1 ? "top-[30%] -translate-y-1/2 mt-[21.5vw] md:mt-0 mb-[5vw] md:mb-0 md:top-1/2 md:-translate-y-1/2" : "top-1/2 -translate-y-1/2 mt-[10vw] md:mt-0"}`}>
+                                        <div className={getSauceImageStyle(idx)}>
                                             <Image
                                                 src={urlFor(sauce.sauceImage).url()}
                                                 alt={sauce.title}

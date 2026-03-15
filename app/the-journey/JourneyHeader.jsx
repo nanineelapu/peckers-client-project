@@ -9,7 +9,7 @@ export default function JourneyIntroSection({ initialData = null }) {
     if (!data) return null;
 
     return (
-        <section className="w-full bg-black pt-[10vw] pb-[10vw] flex flex-col items-center text-center relative overflow-hidden min-h-[50vh]">
+        <section className="w-full bg-black pt-[2vw] md:pt-[10vw] pb-0 md:pb-[10vw] flex flex-col items-center text-center relative overflow-hidden min-h-[50vh]">
 
             <>
                 {/* ================= DESKTOP ================= */}
@@ -308,7 +308,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-[3vw] md:text-[2vw] xl:text-[1.5vw] text-[#FFD700] font-peakers tracking-[0.3em] leading-[1.4] mb-10 text-center"
+                        className="text-[2.4vw] md:text-[2vw] xl:text-[1.3vw] text-[#FFD700] font-mono tracking-[0.3em] leading-[1.4] mb-10 text-center"
                     >
                         {data.subtitle || "FROM ONE STORE TO GROWING COMMUNITY BRAND THE JOURNEY CONTINUES"}
                     </motion.p>
@@ -346,10 +346,10 @@ export default function JourneyIntroSection({ initialData = null }) {
                         {data.timeline?.map((item, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, scale: 0, x: -30 }}
-                                whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.8, delay: 0.6 + (idx * 0.8), type: "spring", stiffness: 100 }}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-20px" }}
+                                transition={{ duration: 0.6, delay: idx * 0.2, ease: "easeOut" }}
                                 style={{ transformOrigin: "left center" }}
                                 className="relative mb-14"
                             >
@@ -360,7 +360,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                             initial={{ scale: 0 }}
                                             whileInView={{ scale: 1 }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.5, delay: 0.8 + (idx * 0.8), ease: "backOut" }}
+                                            transition={{ duration: 0.4, delay: (idx * 0.2) + 0.2, ease: "backOut" }}
                                             cx="22.5" cy="22.5" r="21" fill="#FFD700"
                                         />
                                         <circle cx="22.5" cy="22.5" r="18" stroke="#121212" strokeWidth="4" fill="none" />
@@ -380,10 +380,10 @@ export default function JourneyIntroSection({ initialData = null }) {
 
                         {/* WHERE NEXT */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0, x: -30 }}
-                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 2.5, type: "spring", stiffness: 100 }}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-20px" }}
+                            transition={{ duration: 0.6, delay: (data.timeline?.length || 0) * 0.2, ease: "easeOut" }}
                             style={{ transformOrigin: "left center" }}
                             className="relative mb-20"
                         >
@@ -393,7 +393,7 @@ export default function JourneyIntroSection({ initialData = null }) {
                                         initial={{ scale: 0 }}
                                         whileInView={{ scale: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: 2.8 }}
+                                        transition={{ duration: 0.4, delay: ((data.timeline?.length || 0) * 0.2) + 0.2 }}
                                         cx="22.5" cy="22.5" r="21" fill="#FFD700"
                                     />
                                     <circle cx="22.5" cy="22.5" r="18" stroke="#121212" strokeWidth="4" fill="none" />

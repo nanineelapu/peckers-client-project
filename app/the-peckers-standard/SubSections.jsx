@@ -41,7 +41,7 @@ const SectionItem = memo(({ section, index, num }) => {
       }}
     >
       {/* MEDIA SECTION */}
-      <div className="w-full md:w-[65%] h-[90vw] sm:h-[70vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black">
+      <div className="w-full md:w-[60%] h-[90vw] sm:h-[70vw] md:h-full relative overflow-hidden flex items-center justify-center bg-black">
         {isInView ? (
           <>
             {([0, 2, 4, 5, 6].includes(index)) ? (
@@ -53,7 +53,7 @@ const SectionItem = memo(({ section, index, num }) => {
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover brightness-[0.9]"
                 />
               )
             ) : (
@@ -63,7 +63,7 @@ const SectionItem = memo(({ section, index, num }) => {
                   src={urlFor(section.image).width(1200).format("webp").url()}
                   alt={section.title || `Section ${num}`}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center brightness-[0.7]"
                   priority={index === 0}
                   loading={index === 0 ? "eager" : "lazy"}
                   sizes="(max-width: 768px) 100vw, 65vw"
@@ -79,7 +79,7 @@ const SectionItem = memo(({ section, index, num }) => {
 
       {/* CONTENT SECTION */}
       <div
-        className={`w-full md:w-[35%] h-max md:h-full text-white flex flex-col`}
+        className={`w-full md:w-[40%] h-max md:h-full text-white flex flex-col`}
         style={{
           backgroundColor: index % 2 === 0 ? "#111111" : "#000000",
         }}

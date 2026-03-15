@@ -107,7 +107,7 @@ export default function OurStorySection({ initialData = null }) {
   };
 
   return (
-    <section className="relative w-full lg:min-h-screen bg-black px-[1.5vw] pt-[12vw] lg:pt-[8vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
+    <section className="relative w-full lg:min-h-screen bg-black px-[1.5vw] pt-[2vw] lg:pt-[2vw] pb-[5vw] lg:pb-0 text-white flex flex-col justify-center items-center overflow-hidden">
       <div className="absolute -top-[15vw] right-0 w-[52%] md:w-1/2 h-[70vw] md:h-auto md:bottom-0 pointer-events-none z-0 overflow-hidden">
         <svg
           width="100%"
@@ -158,7 +158,7 @@ export default function OurStorySection({ initialData = null }) {
               scale: { duration: 0.2 },
               filter: { duration: 0.2 },
             }}
-            className="w-full flex flex-row items-start justify-start lg:justify-center cursor-grab active:cursor-grabbing"
+            className="w-full flex flex-row items-start lg:items-center justify-start lg:justify-center cursor-grab active:cursor-grabbing"
           >
             <div className="w-[52%] lg:w-1/2 px-[3vw] lg:px-[6vw] flex flex-col justify-start mt-0 overflow-hidden text-left">
               <motion.div
@@ -214,7 +214,7 @@ export default function OurStorySection({ initialData = null }) {
                 })()}
 
                 <div className="pt-4 lg:pt-6">
-                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[1.3vw] lg:text-inherit">
+                  <p className="border-l-2 font-sans font-extralight border-white/30 pl-3 lg:pl-6 text-[#9CA3AF] text-left text-[2vw] md:text-[1.3vw] lg:text-inherit">
                     {currentData.quote || "This wasn’t built in a boardroom."}
                   </p>
                 </div>
@@ -226,7 +226,7 @@ export default function OurStorySection({ initialData = null }) {
                 ))}
               </div>
             </div>
-            <div className="w-[48%] lg:w-1/2 h-auto px-[2vw] flex flex-col items-start justify-center mt-[5vw] lg:mt-0">
+            <div className="w-[48%] lg:w-1/2 h-auto px-[2vw] flex flex-col items-start justify-center mt-[5vw] lg:mt-[-3vw]">
               <div className="relative w-full h-[65vw] lg:h-[50vw] overflow-hidden flex items-center justify-start lg:justify-center px-0 lg:px-4">
                 <AnimatePresence mode="wait">
                   {displayImages.length > 0 && (
@@ -234,7 +234,11 @@ export default function OurStorySection({ initialData = null }) {
                       key={`${currentSlide}-${currentSubSlide}`}
                       variants={subSlideVariants}
                       initial="enter"
-                      animate="center"
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                        scale: (currentSlide === 0 && (currentSubSlide % displayImages.length) === 0) ? 0.9 : 1
+                      }}
                       exit="exit"
                       transition={{ duration: 0.6, ease: "easeInOut" }}
                       className={`absolute top-0 lg:top-0 left-0 lg:left-[4vw] right-0 lg:right-[2vw] bottom-0 lg:bottom-0 w-full h-full rounded-[1.2vw] overflow-hidden`}

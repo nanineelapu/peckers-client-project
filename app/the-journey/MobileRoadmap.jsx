@@ -63,7 +63,7 @@ export default function MobileRoadmap({ initialData = null }) {
     if (!roadmapData) return null;
 
     return (
-        <section className="block lg:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] pt-0 md:pt-[2vw] pb-[20vw] md:pb-[10vw] overflow-hidden">
+        <section className="block lg:hidden w-full bg-black text-white px-[4vw] md:px-[6vw] pt-0 md:pt-[2vw] pb-[10vw] md:pb-[10vw] overflow-hidden">
 
             {/* Heading */}
             <motion.div
@@ -133,7 +133,7 @@ export default function MobileRoadmap({ initialData = null }) {
             </div>
 
             {/* Bottom Divider */}
-            <div className="w-full flex justify-center mt-[10vw]">
+            <div className="w-full flex justify-center mt-[4vw]">
                 <div className="w-full h-px bg-[#1F2937]"></div>
             </div>
 
