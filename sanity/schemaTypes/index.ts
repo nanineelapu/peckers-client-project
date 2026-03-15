@@ -21,8 +21,9 @@ import timeline from './timeline'
 import locationHistory from './locationHistory'
 import menuNavbar from './menuNavbar'
 import crewpage from './crewpage'
+import wrapspage from './wrapspage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [category, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, timeline, ourstorybottompage, siteSettings, locationPage, mapSection, reviewsHomepage, enquireSection, sauces, saucepage, uniquenessLanding, uniquenessSubsection, locationHistory, menuNavbar, crewpage],
+  types: [category, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, timeline, ourstorybottompage, siteSettings, locationPage, mapSection, reviewsHomepage, enquireSection, sauces, saucepage, uniquenessLanding, uniquenessSubsection, locationHistory, menuNavbar, crewpage, wrapspage],
 }
 

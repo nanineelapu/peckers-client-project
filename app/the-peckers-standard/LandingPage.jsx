@@ -14,7 +14,7 @@ export default function UniquenessLandingPage({ initialData = null }) {
     "https://ehtazgziwtjqm5ww.public.blob.vercel-storage.com/Uniqueness/Gradient%20%281%29.webp";
 
   return (
-    <div className="w-full relative h-[80vh]">
+    <div className="w-full relative h-[90vh]">
       {/* Background Image */}
       <motion.div
         initial={{ scale: 1.05, opacity: 0 }}
@@ -45,7 +45,7 @@ export default function UniquenessLandingPage({ initialData = null }) {
       </div>
       {/* Centered Overlay Content */}
       <div
-        className="absolute inset-0 w-full flex flex-col items-center justify-center pb-[10vh] pointer-events-none z-2"
+        className="absolute inset-0 w-full flex flex-col items-center justify-center pb-[2vh] pointer-events-none z-2"
       >
         <motion.h1
           className="text-center font-peakers font-bold text-white text-[2.9vw] md:text-[3.1vw] leading-none drop-shadow-lg pointer-events-auto"
@@ -55,15 +55,15 @@ export default function UniquenessLandingPage({ initialData = null }) {
         >
           {data?.heading ? (
             data.heading.split("\n").map((line, idx) => (
-              <span key={idx} className={`block font-peakers text-[14vw] md:text-[7.7vw] ${idx === 2 ? 'text-[#f7e229] mt-[1.5vw] md:mt-[0.2vw] mb-[1.5vw] md:mb-[0.2vw]' : ''}`}>
+              <span key={idx} className={`block font-peakers text-[18vw] md:text-[7.7vw] ${idx === 2 ? 'text-[#f7e229] mt-[1.5vw] md:mt-[0.2vw] mb-[1.5vw] md:mb-[0.2vw]' : ''}`}>
                 {line}
               </span>
             ))
           ) : (
             <>
-              <span className="block font-peakers text-[14vw] md:text-[7.7vw]">THE</span>
-              <span className="block font-peakers text-[14vw] md:text-[7.7vw]">PECKERS</span>
-              <span className="block text-[#f7e229] font-peakers text-[15vw] md:text-[7.7vw] font-bold mt-[1.5vw] md:mt-[0.2vw] mb-[1.5vw] md:mb-[0.2vw]">STANDARD</span>
+              <span className="block font-peakers text-[18vw] md:text-[7.7vw]">THE</span>
+              <span className="block font-peakers text-[18vw] md:text-[7.7vw]">PECKERS</span>
+              <span className="block text-[#f7e229] font-peakers text-[20vw] md:text-[7.7vw] font-bold mt-[1.5vw] md:mt-[0.2vw] mb-[1.5vw] md:mb-[0.2vw]">STANDARD</span>
             </>
           )}
         </motion.h1>
@@ -74,7 +74,7 @@ export default function UniquenessLandingPage({ initialData = null }) {
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         >
           <span
-            className="uppercase tracking-[0.15em] font-semibold text-[3vw] md:text-[1vw] text-[#d3d3d3] font-peakers md:mt-[1.7vw] text-center pointer-events-auto leading-[1.7] max-w-[90vw] md:max-w-[55vw] block"
+            className="uppercase tracking-[0.15em] font-semibold text-[2.5vw] md:text-[1vw] text-[#d3d3d3] font-inconsolata md:mt-[1.7vw] text-center pointer-events-auto leading-[1.7] max-w-[90vw] md:max-w-[55vw] block"
           >
             {data?.subtext || "IT'S NOT ONE THING. From our custom-milled breading to our hand-picked Covent Garden produce, we believe in seriously good chicken, sourced locally, prepared daily, and served with pride."}
           </span>

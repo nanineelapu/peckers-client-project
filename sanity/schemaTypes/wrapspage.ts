@@ -1,13 +1,13 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-    name: "menuPage",
-    title: "Menu Page",
+    name: "wrapsPage",
+    title: "Wraps Page",
     type: "document",
     fields: [
         defineField({
-            name: "burgerCarousel",
-            title: "Burger Carousel",
+            name: "wrapsCarousel",
+            title: "Wraps Carousel",
             type: "array",
             of: [
                 {
@@ -15,12 +15,12 @@ export default defineType({
                     fields: [
                         defineField({
                             name: "name",
-                            title: "Burger Name",
+                            title: "Wrap Name",
                             type: "string",
                         }),
                         defineField({
                             name: "image",
-                            title: "Burger Image",
+                            title: "Wrap Image",
                             type: "image",
                             options: { hotspot: true },
                         }),
@@ -30,8 +30,8 @@ export default defineType({
                             type: "number",
                         }),
                         defineField({
-                            name: "ingredients",
-                            title: "Ingredients",
+                            name: "subtitle",
+                            title: "Ingredients Subtitle",
                             type: "string",
                         }),
                         defineField({
@@ -61,7 +61,7 @@ export default defineType({
                         defineField({
                             name: "spiceLevel",
                             title: "Spice Level (1-4)",
-                            type: "string", // Changed to string to handle '1/4' or 'Depends'
+                            type: "string",
                         }),
                         defineField({
                             name: "availabilityText",

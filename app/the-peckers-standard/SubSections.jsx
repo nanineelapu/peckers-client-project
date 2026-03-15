@@ -147,9 +147,23 @@ const SectionItem = memo(({ section, index, num }) => {
 
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="text-[#FFD700] font-mono mt-[3vw] md:mt-[1.5vw] text-[3vw] md:text-[0.85vw] tracking-wider text-left underline pb-[4vw] md:pb-[1vw] hover:text-white transition-colors duration-300"
+                className="group mt-[4vw] md:mt-[1.5vw] flex items-center justify-center w-[9vw] h-[9vw] md:w-[2.2vw] md:h-[2.2vw] rounded-full border border-gray-700 hover:border-[#FFD700] transition-all duration-300 pointer-events-auto"
+                aria-label={isExpanded ? "Show Less" : "Show More"}
               >
-                {isExpanded ? "↑ Read Less" : "Read More ↓"}
+                <motion.svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#FFD700"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  className="w-[4.5vw] h-[4.5vw] md:w-[1vw] md:h-[1vw]"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </motion.svg>
               </button>
             </div>
           </div>

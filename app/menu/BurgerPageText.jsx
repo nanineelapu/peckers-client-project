@@ -7,36 +7,24 @@ import { client } from "../../sanity/lib/client";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BurgerPageText({ initialData = null }) {
+export default function BurgerPageText({ burgerData = null }) {
   const containerRef = useRef(null);
-  const [data, setData] = useState(initialData);
-  const [loading, setLoading] = useState(!initialData);
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSettings = async () => {
       try {
-        const [menuDetails, siteSettings] = await Promise.all([
-          !initialData ? client.fetch(`*[_type == "menuPage"][0] {
-            subtitle, protein, carbs, fats, calories, energy, allergens, spiceLevel, availabilityText
-          }`) : Promise.resolve(initialData),
-          client.fetch(`*[_type == "siteSettings"][0] { clickCollectUrl, deliveryUrl }`)
-        ]);
-
-        if (menuDetails) setData(menuDetails);
+        const siteSettings = await client.fetch(`*[_type == "siteSettings"][0] { clickCollectUrl, deliveryUrl }`);
         if (siteSettings) setSettings(siteSettings);
-        setLoading(false);
       } catch (error) {
-        console.error("Error fetching menu details:", error);
-        setLoading(false);
+        console.error("Error fetching site settings:", error);
       }
     };
-
-    fetchData();
-  }, [initialData]);
+    fetchSettings();
+  }, []);
 
   useLayoutEffect(() => {
-    if (loading || !data) return;
+    if (!burgerData) return;
 
     const ctx = gsap.context(() => {
       const texts = gsap.utils.toArray([
@@ -65,21 +53,23 @@ export default function BurgerPageText({ initialData = null }) {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [loading, data]);
+  }, [burgerData]);
 
-  if (loading) {
-    return (
-      <div className="w-full h-[15vw] flex items-center justify-center bg-black">
-        <div className="text-white/10 font-mono animate-pulse tracking-[.3vw]">LOADING NUTRITION...</div>
-      </div>
-    );
-  }
-
-  if (!data) return null;
+  if (!burgerData) return null;
 
   const renderSpiceLevel = () => {
     const bars = [];
-    const level = data.spiceLevel || 0;
+    const levelStr = burgerData.spiceLevel || "0/4";
+    let level = 0;
+    
+    if (typeof levelStr === "string" && levelStr.includes("/")) {
+      level = parseInt(levelStr.split("/")[0]);
+    } else if (typeof levelStr === "number") {
+      level = levelStr;
+    } else if (levelStr === "Depends") {
+      level = 1;
+    }
+
     for (let i = 0; i < 4; i++) {
       bars.push(
         <svg
@@ -106,7 +96,7 @@ export default function BurgerPageText({ initialData = null }) {
   return (
     <div
       ref={containerRef}
-      className="w-full flex flex-col items-center justify-center mt-0 mb-8 relative"
+      className="w-full flex flex-col items-center justify-center mt-0 mb-8 relative bg-black pt-10"
     >
       {/* Subtitle/Ingredients */}
       <div className="flex items-center mt-1 gap-[2vw] md:gap-[0.85vw] pt-0.5 burger-subtitle">
@@ -128,7 +118,7 @@ export default function BurgerPageText({ initialData = null }) {
             display: "inline-block",
           }}
         >
-          {data.subtitle || "HOT SAUCE BLAZE / BLUE CHEESE / CELERY SLAW"}
+          {burgerData.ingredients || "HOT SAUCE BLAZE / BLUE CHEESE / CELERY SLAW"}
         </span>
       </div>
       <div className="flex gap-[3vw] md:gap-3 mt-[4vw] md:mt-5.5">
@@ -185,12 +175,12 @@ export default function BurgerPageText({ initialData = null }) {
         {/* Basic Info (Protein, Carbs, Fats) */}
         <div className="min-w-[150px] border-l-2 border-[#616132] pl-[3vw] md:pl-4 pt-0">
           <div className="text-[#c4b40a] text-[2.5vw] md:text-[11px] lg:text-[12px] xl:text-[.7vw] font-mono uppercase mb-1 tracking-wide font-bold pt-0.5">
-            Per 100g
+            Nutrition (Per Portion)
           </div>
           <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0 leading-snug">
-            {data.protein || "18g Protein"}<br />
-            {data.carbs || "22g Carbs (3g sugars)"}<br />
-            {data.fats || "12g Fats (4g sat)"}
+            {burgerData.protein || "18g Protein"}<br />
+            {burgerData.carbs || "22g Carbs"}<br />
+            {burgerData.fats || "12g Fats"}
           </div>
         </div>
 
@@ -200,8 +190,8 @@ export default function BurgerPageText({ initialData = null }) {
             Energy & Calories
           </div>
           <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0 leading-snug">
-            {data.calories || "760 Kcal"}<br />
-            {data.energy || "3180 KJ"}
+            {burgerData.calories || "760 Kcal"}<br />
+            {burgerData.energy || "-"}
           </div>
         </div>
 
@@ -211,7 +201,7 @@ export default function BurgerPageText({ initialData = null }) {
             Allergens
           </div>
           <div className="font-sans font-semibold text-[3.8vw] md:text-[0.95rem] tracking-tight pt-0">
-            {data.allergens || "GLUTEN, DAIRY"}
+            {burgerData.allergens || "GLUTEN, DAIRY"}
           </div>
         </div>
         {/* Spice Level */}
@@ -227,7 +217,7 @@ export default function BurgerPageText({ initialData = null }) {
 
       <div className="w-full flex justify-center pt-[8vw] md:pt-5 pb-[15vw] md:pb-[5vw] burger-available text-center px-[5vw]">
         <span className="text-white font-peakers text-[4vw] md:text-[20px] lg:text-[24px] xl:text-[2.2vw] tracking-3 font-normal">
-          {data.availabilityText || "Also available as a wrap, rice bowl, or salad bowl."}
+          {burgerData.availabilityText || "Also available as a wrap, rice bowl, or salad bowl."}
         </span>
       </div>
 

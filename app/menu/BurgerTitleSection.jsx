@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
@@ -79,7 +80,7 @@ function getSlotPos(slot, isLaptop = false) {
   };
 }
 
-export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbarData = [] }) {
+export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbarData = [], onBurgerChange = null }) {
   const [burgers, setBurgers] = useState(initialBurgers);
   const [navbarData, setNavbarData] = useState(initialNavbarData || []);
   const [loading, setLoading] = useState(initialBurgers.length === 0);
@@ -100,6 +101,12 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
   const [glowVisible, setGlowVisible] = useState(true);
 
   const TOTAL = burgers.length;
+
+  useEffect(() => {
+    if (onBurgerChange) {
+      onBurgerChange(carousel.center);
+    }
+  }, [carousel.center, onBurgerChange]);
 
   useEffect(() => {
     if (initialBurgers.length > 0) return;
@@ -185,7 +192,7 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
   return (
     <>
       <div
-        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[0vh] md:pt-[1vh] min-h-0 md:min-h-screen pb-[4vh] md:pb-0"
+        className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-[0vh] md:pt-[1vh] min-h-0 pb-[4vh] md:pb-0"
         style={{
           background:
             "radial-gradient(ellipse 50% 52% at 50% 38%, #1c1c1c 0%, #0d0d0d 26%, #070707 58%, #000 100%)",
@@ -205,27 +212,33 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
               style={{ fontFamily: "var(--font-peakers)", scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {navbarData && navbarData.length > 0 ? (
-                navbarData.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.link || "#"}
-                    className={`whitespace-nowrap pb-1 md:pb-1 tracking-wider ${item.isActive
-                      ? "font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500"
-                      : "text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] tracking-wide opacity-70 hover:opacity-100 transition-opacity"
-                      }`}
-                  >
-                    {item.title}
-                  </a>
-                ))
+                navbarData.map((item, idx) => {
+                  let href = item.link || "#";
+                  if (item.title === "BURGERS") href = "/menu";
+                  if (item.title === "WRAPS") href = "/menu/wraps";
+
+                  return (
+                    <a
+                      key={idx}
+                      href={href}
+                      className={`whitespace-nowrap pb-1 md:pb-1 tracking-wider ${item.isActive
+                        ? "font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500"
+                        : "text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] tracking-wide opacity-70 hover:opacity-100 transition-opacity"
+                        }`}
+                    >
+                      {item.title}
+                    </a>
+                  );
+                })
               ) : (
                 <>
                   <a
-                    href="#"
+                    href="/menu"
                     className="whitespace-nowrap font-sharetech text-[18px] sm:text-[22px] md:text-[16px] lg:text-[18px] xl:text-[1.3vw] border-b-2 border-red-500 pb-1 md:pb-1 tracking-wider"
                   >
                     BURGERS
                   </a>
-                  <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+                  <a href="/menu/wraps" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
                     WRAPS
                   </a>
                   <a href="#" className="whitespace-nowrap text-[16px] sm:text-[20px] md:text-[16px] lg:text-[18px] xl:text-[1.4vw] pb-2 md:pb-2 tracking-wide opacity-70 hover:opacity-100 transition-opacity">
@@ -353,7 +366,7 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
                   userSelect: "none",
                 }}
               >
-                <div className="relative" style={{ width: "clamp(240px, 85vw, 400px)", height: "auto", aspectRatio: "1/1" }}>
+                <div className="relative" style={{ width: "clamp(200px, 75vw, 340px)", height: "auto", aspectRatio: "1/1" }}>
                   <Image
                     src={burger.image}
                     alt={burger.name}
@@ -361,7 +374,7 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
                     priority={isCenter}
                     className="object-contain"
                     draggable={false}
-                    sizes="clamp(240px, 85vw, 400px)"
+                    sizes="clamp(200px, 75vw, 340px)"
                   />
                 </div>
               </div>
@@ -476,20 +489,27 @@ export default function BurgerCarouselFinal({ initialBurgers = [], initialNavbar
 
 
         {/* TITLE */}
-        <div className="w-full flex items-center justify-center relative pb-2 md:pb-4 pt-2 md:pt-2 z-20">
-          <h1
-            className="uppercase text-white text-center font-black"
-            style={{
-              fontFamily: "var(--font-peakers)",
-              fontSize: "clamp(2.5rem, 11vw, 6rem)",
-              fontWeight: 900,
-              letterSpacing: "0.05em",
-              lineHeight: "1.1",
-              textShadow: "0px 2px 6px rgba(0,0,0,0.4)",
-            }}
-          >
-            {burgers[carousel.center]?.name}
-          </h1>
+        <div className="w-full flex items-center justify-center relative pb-2 md:pb-4 pt-2 md:pt-2 z-20 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={carousel.center}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.1, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="uppercase text-white text-center font-black"
+              style={{
+                fontFamily: "var(--font-peakers)",
+                fontSize: "clamp(2.5rem, 11vw, 6rem)",
+                fontWeight: 900,
+                letterSpacing: "0.05em",
+                lineHeight: "1.1",
+                textShadow: "0px 2px 6px rgba(0,0,0,0.4)",
+              }}
+            >
+              {burgers[carousel.center]?.name}
+            </motion.h1>
+          </AnimatePresence>
         </div>
       </div>
     </>
