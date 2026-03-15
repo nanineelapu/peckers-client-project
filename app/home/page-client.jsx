@@ -23,10 +23,10 @@ const HomePageClient = ({ initialHomepageData, initialSliderCards, initialLocati
         <div className="w-full min-h-[8vh] md:h-[10vh] md:min-h-0 flex items-center justify-center bg-white border-y-2 md:border-y-[3px] border-black overflow-hidden px-4 py-3 md:px-0 md:py-0">
           <div className="text-center md:text-left text-black uppercase font-bold md:italic w-full" style={{ fontFamily: "var(--font-peakers)" }}>
             <div className="md:hidden flex flex-col items-center justify-center gap-1.5 w-full">
-              <span className="text-[12px] xs:text-[13px] sm:text-[15px] tracking-widest text-gray-800 leading-tight">
+              <span className="text-[16px] xs:text-[17px] sm:text-[18px] tracking-wide text-gray-800 leading-tight">
                 UNLOCK THE PERKS OF THE PECKERS INNER CIRCLE!
               </span>
-              <span className="text-[14px] xs:text-[15px] sm:text-[17px] tracking-wider leading-tight">
+              <span className="text-[16px] xs:text-[17px] sm:text-[18px] tracking-wider leading-tight">
                 <span className="text-red-600 font-black underline decoration-2 underline-offset-2">SIGN UP</span> FOR EXCLUSIVE REWARDS.
               </span>
             </div>
@@ -41,7 +41,7 @@ const HomePageClient = ({ initialHomepageData, initialSliderCards, initialLocati
         </div>
       </section>
 
-      <section className="hero w-full h-[50vh] md:h-[60vh] lg:h-[95vh] min-h-[350px] lg:min-h-[480px] bg-black flex items-center justify-center lg:justify-start overflow-hidden relative">
+      <section className="hero w-full h-[75vh] md:h-[60vh] lg:h-[95vh] min-h-[500px] md:min-h-[400px] lg:min-h-[480px] bg-black flex items-center justify-center lg:justify-start overflow-hidden relative">
         {data?.videoUrl && (
           <video
             src={data.videoUrl}
@@ -57,14 +57,14 @@ const HomePageClient = ({ initialHomepageData, initialSliderCards, initialLocati
         <div className="relative z-10 w-full px-[5vw] md:px-[7vw]">
           <div className="flex flex-col gap-2 md:gap-4">
             <h1
-              className="text-white font-peakers text-[13vw] md:text-[11vw] lg:text-[11.5vw] leading-[.9] font-bold tracking-normal mb-10"
+              className="text-white font-peakers text-[20vw] md:text-[11vw] lg:text-[10.5vw] leading-[1.1] font-bold tracking-normal mb-8 md:mb-10"
               style={{ textShadow: "0px 4px 30px rgba(0,0,0,0.9)" }}
             >
               Seriously <br /> Good <br /> Chicken
             </h1>
 
             {data.heroSubtitle && (
-              <p className="text-white/90 text-[4vw] md:text-[2vw] lg:text-[1.5vw] font-sans max-w-[80vw] md:max-w-[40vw] leading-tight">
+              <p className="text-white/90 text-[4.5vw] md:text-[2vw] lg:text-[1.5vw] font-sans max-w-[85vw] md:max-w-[40vw] leading-tight">
                 {data.heroSubtitle}
               </p>
             )}
@@ -72,7 +72,7 @@ const HomePageClient = ({ initialHomepageData, initialSliderCards, initialLocati
         </div>
       </section>
 
-      <div className="w-full flex justify-center items-center bg-black" style={{ minHeight: "50px" }}>
+      <div className="w-full flex mt-[10vw] sm:mt-[2vw] justify-center items-center bg-black" style={{ minHeight: "50px" }}>
         <svg width="80" height="50" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-bounce">
           <path d="M12 16.5c-.28 0-.53-.11-.71-.29l-5.5-5.5a1 1 0 0 1 1.42-1.42L12 14.09l4.79-4.8a1 1 0 1 1 1.42 1.42l-5.5 5.5c-.18.18-.43.29-.71.29z" fill="#fff" />
         </svg>

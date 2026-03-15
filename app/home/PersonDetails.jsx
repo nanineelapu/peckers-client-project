@@ -42,7 +42,7 @@ export default function PersonDetails({ data = null }) {
         transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
       >
         <h2
-          className="grid text-white font-bold text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[4.5vw] xl:text-[4.9vw] tracking-[.4vw] xl:tracking-[.2vw] leading-tight mb-[4vw] md:mb-[4vw] lg:mb-[1.5vw] xl:mb-[1vw] text-center lg:text-left"
+          className="block text-white font-bold text-[9vw] sm:text-[9vw] md:text-[6vw] lg:text-[4.5vw] xl:text-[4.9vw] tracking-tight sm:tracking-[.1vw] xl:tracking-[.2vw] leading-tight mb-[6vw] md:mb-[4vw] lg:mb-[1.5vw] xl:mb-[1vw] text-center lg:text-left whitespace-nowrap"
           style={{ letterSpacing: "0.01em", fontFamily: "var(--font-peakers)" }}
         >
           {resHeading} <span className="text-white">{lastWord}</span>
@@ -50,7 +50,7 @@ export default function PersonDetails({ data = null }) {
 
         <div className="relative flex flex-col items-center lg:items-start w-full">
           <div
-            className="whitespace-pre-wrap text-white text-center lg:text-start font-light text-[4.5vw] sm:text-[3.5vw] md:text-[2.5vw] lg:text-[1.4vw] xl:text-[1.3vw] tracking-[1.2] font-sans mb-[4vw] md:mb-[4vw] lg:mb-[1.5vw] xl:mb-[1vw] leading-[6vw] md:leading-[4vw] lg:leading-[2.2vw] xl:leading-[2vw] w-full"
+            className="whitespace-pre-wrap text-white text-center lg:text-start font-light text-[4vw] sm:text-[3.5vw] md:text-[2.5vw] lg:text-[1.4vw] xl:text-[1.3vw] tracking-[1.2] font-sans mb-[4vw] md:mb-[4vw] lg:mb-[1.5vw] xl:mb-[1vw] leading-[6vw] md:leading-[4vw] lg:leading-[2.2vw] xl:leading-[2vw] w-full"
           >
             {data.description}
           </div>
