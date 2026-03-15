@@ -22,8 +22,24 @@ import locationHistory from './locationHistory'
 import menuNavbar from './menuNavbar'
 import crewpage from './crewpage'
 import wrapspage from './wrapspage'
+import ricebowlspage from './ricebowlspage'
+import saladbowlspage from './saladbowlspage'
+import wingsandtenderspage from './wingsandtenderspage'
+import periperigrillpage from './periperigrillpage'
+import whatsnewpage from './whatsnewpage'
+import shakespage from './shakespage'
+import vegpage from './vegpage'
+import sidesandfriespage from './sidesandfriespage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [category, homepage, location, sliderCard, homepagePersonDetails, footer, menupage, ourstorypage, timeline, ourstorybottompage, siteSettings, locationPage, mapSection, reviewsHomepage, enquireSection, sauces, saucepage, uniquenessLanding, uniquenessSubsection, locationHistory, menuNavbar, crewpage, wrapspage],
+  types: [
+    category, homepage, location, sliderCard, homepagePersonDetails, footer, 
+    menupage, ourstorypage, timeline, ourstorybottompage, siteSettings, 
+    locationPage, mapSection, reviewsHomepage, enquireSection, sauces, 
+    saucepage, uniquenessLanding, uniquenessSubsection, locationHistory, 
+    menuNavbar, crewpage, wrapspage, ricebowlspage, saladbowlspage, 
+    wingsandtenderspage, periperigrillpage, whatsnewpage, shakespage, 
+    vegpage, sidesandfriespage
+  ],
 }
 

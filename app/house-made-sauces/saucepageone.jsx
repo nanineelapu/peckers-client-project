@@ -12,12 +12,10 @@ const SAUCES_FALLBACK = [
     { _id: '3', title: "Butter me up", descLine1: "Rich, creamy, and full of bold flavours, this family recipe brings", descLine2: "a touch of heritage to every dish.", cal: "531.3", protein: "4.7", carbs: "16.6", fat: "48.9" },
     { _id: '4', title: "Honey glaze BBQ", descLine1: "A bold fusion of savoury Hoisin and sun-ripened tomatoes,", descLine2: "finished with a kick of Cayenne.", cal: "364.1", protein: "1.5", carbs: "64.2", fat: "12.0" },
     { _id: '5', title: "Hot honey", descLine1: "A powerhouse blend of farm-fresh honey, fiery sriracha,", descLine2: "and our signature secret spice mix.", cal: "301.7", protein: "1.1", carbs: "54.1", fat: "9.5" },
-    { _id: '6', title: "Katsu Curry", descLine1: "Slow-cooked with coconut milk, fresh aromatics, and a custom", descLine2: "spice blend for a deep, authentic flavour.", cal: "125.9", protein: "1.5", carbs: "13.9", fat: "6.9" },
     { _id: '7', title: "Korean gochujang", descLine1: "A rich blend of fermented chillies and aged soy, finished", descLine2: "with the nuttiness of toasted sesame.", cal: "272.2", protein: "2.4", carbs: "32.9", fat: "15.1" },
     { _id: '8', title: "Peanut sweet chilli", descLine1: "Roasted peanuts and sun-ripened chillies, balanced with fresh herbs", descLine2: "and a signature spice blend.", cal: "222.7", protein: "9.4", carbs: "20.4", fat: "13.6" },
     { _id: '9', title: "Super charge OG", descLine1: "Hand-whisked whole eggs and bold Sriracha, balanced with", descLine2: "a zesty citrus kick and smoked paprika.", cal: "99.7", protein: "4.4", carbs: "12.0", fat: "3.7" },
     { _id: '10', title: "Buffalo", descLine1: "A creamy, spicy blend with the perfect balance of heat and tang,", descLine2: "enhanced with bold seasonings for a zesty punch.", cal: "313.8", protein: "1.9", carbs: "2.1", fat: "33.0" },
-    { _id: '11', title: "Ranch (dip)", descLine1: "Creamy sour cream and tangy buttermilk, finished with fresh", descLine2: "chives and cracked black pepper.", cal: "425.9", protein: "2.5", carbs: "3.7", fat: "45.9" },
     { _id: '12', title: "Cheese Sauce", descLine1: "Creamy, indulgent sauce combining smooth cheddar", descLine2: "and a hint of smoked paprika.", cal: "-", protein: "-", carbs: "-", fat: "-" },
     { _id: '13', title: "OG chilli", descLine1: "Freshly made in-house every day, our signature Peckers sauces", descLine2: "with zero preservatives, unlike the big boys.", cal: "52.0", protein: "1.2", carbs: "11.0", fat: "0.2" },
     { _id: '14', title: "Korean glaze", descLine1: "Freshly made in-house every day, our signature Peckers sauces", descLine2: "with zero preservatives, unlike the big boys.", cal: "130.2", protein: "1.2", carbs: "30.5", fat: "0.8" }
@@ -94,24 +92,20 @@ export default function SaucePageOne({ initialData = [] }) {
             case 3: // Honey glaze BBQ
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[.94]`;
             case 4: // Hot honey
+                return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.32]`;
+            case 5: // Korean gochujang
+                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.05]`;
+            case 6: // Peanut sweet chilli
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 5: // Katsu Curry
+            case 7: // Super charge OG
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 6: // Korean gochujang
+            case 8: // Buffalo
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 7: // Peanut sweet chilli
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 8: // Super charge OG
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 9: // Buffalo
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 10: // Ranch
-                return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 11: // Cheese Sauce
+            case 9: // Cheese Sauce
                 return `${base} mt-[2vw] md:mt-[-2vw] scale-[1.1] md:scale-[1.3]`;
-            case 12: // OG Chilli
+            case 10: // OG Chilli
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
-            case 13: // Korean Glaze
+            case 11: // Korean Glaze
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;
             default:
                 return `${base} mt-[2vw] md:mt-0 scale-[1.1] md:scale-[1.2]`;

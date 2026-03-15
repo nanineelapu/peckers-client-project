@@ -1,12 +1,11 @@
 "use client";
-import React, { useState, useRef, useEffect, memo } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { urlFor } from "../../sanity/lib/image";
 
 // Optimized individual section component to prevent parent re-renders
 const SectionItem = memo(({ section, index, num }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
 
@@ -116,55 +115,20 @@ const SectionItem = memo(({ section, index, num }) => {
           </div>
 
           {/* SCROLLABLE TEXT CONTENT */}
-          <div className="w-full flex-1 overflow-hidden">
+          <div
+            className="w-full flex-1 overflow-y-auto custom-scrollbar pr-[2vw] max-h-[45vw] md:max-h-full"
+            data-lenis-prevent
+          >
             <div className="max-w-[90vw] md:max-w-full pb-[2vw]">
-              <p
-                className={`text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] ${!isExpanded ? "line-clamp-3" : ""
-                  }`}
-              >
+              <p className="text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw] mb-[2vw] md:mb-[1vw]">
                 {section.previewText}
               </p>
 
-              <AnimatePresence initial={false}>
-                {isExpanded && (
-                  <motion.div
-                    key={`expanded-${index}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{
-                      duration: 0.4,
-                      ease: "circOut",
-                    }}
-                    className="overflow-hidden mt-[3vw] md:mt-[1.2vw] pb-[2vw] md:pb-[1vw]"
-                  >
-                    <p className="text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw]">
-                      {section.expandedText}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="group mt-[4vw] md:mt-[1.5vw] flex items-center justify-center w-[9vw] h-[9vw] md:w-[2.2vw] md:h-[2.2vw] rounded-full border border-gray-700 hover:border-[#FFD700] transition-all duration-300 pointer-events-auto"
-                aria-label={isExpanded ? "Show Less" : "Show More"}
-              >
-                <motion.svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#FFD700"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  className="w-[4.5vw] h-[4.5vw] md:w-[1vw] md:h-[1vw]"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </motion.svg>
-              </button>
+              {section.expandedText && (
+                <p className="text-[#9CA3AF] font-normal w-full text-[4.2vw] leading-[6vw] md:text-[1.1vw] md:leading-[1.95vw]">
+                  {section.expandedText}
+                </p>
+              )}
             </div>
           </div>
 
