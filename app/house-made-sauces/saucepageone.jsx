@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
 
@@ -17,7 +18,6 @@ const SAUCES_FALLBACK = [
     { _id: '9', title: "Super charge OG", descLine1: "Hand-whisked whole eggs and bold Sriracha, balanced with", descLine2: "a zesty citrus kick and smoked paprika.", cal: "99.7", protein: "4.4", carbs: "12.0", fat: "3.7" },
     { _id: '10', title: "Buffalo", descLine1: "A creamy, spicy blend with the perfect balance of heat and tang,", descLine2: "enhanced with bold seasonings for a zesty punch.", cal: "313.8", protein: "1.9", carbs: "2.1", fat: "33.0" },
     { _id: '12', title: "Cheese Sauce", descLine1: "Creamy, indulgent sauce combining smooth cheddar", descLine2: "and a hint of smoked paprika.", cal: "-", protein: "-", carbs: "-", fat: "-" },
-    { _id: '13', title: "OG chilli", descLine1: "Freshly made in-house every day, our signature Peckers sauces", descLine2: "with zero preservatives, unlike the big boys.", cal: "52.0", protein: "1.2", carbs: "11.0", fat: "0.2" },
     { _id: '14', title: "Korean glaze", descLine1: "Freshly made in-house every day, our signature Peckers sauces", descLine2: "with zero preservatives, unlike the big boys.", cal: "130.2", protein: "1.2", carbs: "30.5", fat: "0.8" }
 ];
 
@@ -38,12 +38,19 @@ export default function SaucePageOne({ initialData = [] }) {
         const fetchSauces = async () => {
             try {
                 const data = await client.fetch(`*[_type == "saucePage"] | order(_createdAt asc)`);
-                // Merge initial/sanity data into fallback data system
-                const mergedData = SAUCES_FALLBACK.map((fallback, i) => {
-                    const sanityMatch = data.find(s => s.title?.toUpperCase().includes(fallback.title.toUpperCase()));
-                    return sanityMatch ? { ...fallback, ...sanityMatch } : fallback;
-                });
-                setSaucesData(mergedData);
+
+                // If we have Sanity data, prefer it, but use Fallback for missing fields or extra items
+                if (data && data.length > 0) {
+                    const finalData = data.map(sanityItem => {
+                        const fallbackMatch = SAUCES_FALLBACK.find(f =>
+                            sanityItem.title?.toUpperCase().includes(f.title.toUpperCase())
+                        );
+                        return { ...fallbackMatch, ...sanityItem };
+                    });
+                    setSaucesData(finalData);
+                } else {
+                    setSaucesData(SAUCES_FALLBACK);
+                }
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching sauces:", error);
@@ -78,38 +85,59 @@ export default function SaucePageOne({ initialData = [] }) {
         }
     }, [saucesData, segment]);
 
-    // Manual layout overrides per sauce image (index-based)
-    const getSauceImageStyle = (idx) => {
-        const base = "absolute w-[85%] h-[85%] z-10 transition-all duration-700 top-1/2 -translate-y-1/2";
+    // Manual layout overrides per sauce image (index-based or Sanity boosted)
+    const getSauceImageStyle = (sauce, idx) => {
+        const base = "absolute w-[85%] h-[85%] z-10 transition-all duration-700 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex items-center justify-center";
 
+        // Sanity Boost Overrides
+        if (sauce.imageScaleBoost || (sauce.imageYOffset !== undefined && sauce.imageYOffset !== null)) {
+            const scale = sauce.imageScaleBoost || 1.3;
+            const yOffset = sauce.imageYOffset || 0;
+            return {
+                className: base,
+                style: {
+                    transform: `translate(-50%, -50%) scale(${scale})`,
+                    marginTop: `${yOffset}vw`
+                }
+            };
+        }
+
+        // Hardcoded Fallbacks
+        let styles = { transform: 'translate(-50%, -50%)', marginTop: '0vw' };
         switch (idx) {
             case 0: // Mayonnaise
-                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.8] md:scale-[1.8]`;
+                styles = { scale: "0.8", marginTop: "1vw" }; break;
             case 1: // Garlic Aioli
-                return `${base} mt-[-5vw] md:mt-[-2vw] scale-[1.8] md:scale-[1.8]`;
+                styles = { scale: "0.8", marginTop: "1vw" }; break;
             case 2: // Butter me up
-                return `${base} mt-[-8vw] md:mt-[-4vw] scale-[1.7] md:scale-[1.65]`;
+                styles = { scale: "0.8", marginTop: "-1vw" }; break;
             case 3: // Honey glaze BBQ
-                return `${base} mt-[0vw] md:mt-0 scale-[1.1] md:scale-[.94]`;
+                styles = { scale: "0.65", marginTop: "1vw" }; break;
             case 4: // Hot honey
-                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.4] md:scale-[1.32]`;
+                styles = { scale: "0.75", marginTop: "0vw" }; break;
             case 5: // Korean gochujang
-                return `${base} mt-[0vw] md:mt-0 scale-[1.2] md:scale-[1.05]`;
+                styles = { scale: "0.75", marginTop: "0vw" }; break;
             case 6: // Peanut sweet chilli
-                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
+                styles = { scale: "0.85", marginTop: "0vw" }; break;
             case 7: // Super charge OG
-                return `${base} mt-[-15vw] md:mt-[-10vw] scale-[2.0] md:scale-[1.85]`;
-            case 8: // Buffalo
-                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
+                styles = { scale: "0.95", marginTop: "-3vw" }; break;
+            case 8: // Buffalo / Spicy Buffalo
+                styles = { scale: "0.75", marginTop: "1vw" }; break;
             case 9: // Cheese Sauce
-                return `${base} mt-[-4vw] md:mt-[-2vw] scale-[1.4] md:scale-[1.3]`;
-            case 10: // OG Chilli
-                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
-            case 11: // Korean Glaze
-                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
+                styles = { scale: "0.85", marginTop: "-1vw" }; break;
+            case 10: // Korean Glaze
+                styles = { scale: "0.75", marginTop: "0vw" }; break;
             default:
-                return `${base} mt-[0vw] md:mt-0 scale-[1.3] md:scale-[1.2]`;
+                styles = { scale: "0.8", marginTop: "-1vw" }; break;
         }
+
+        return {
+            className: base,
+            style: {
+                transform: `translate(-50%, -50%) scale(${styles.scale || 1.3})`,
+                marginTop: styles.marginTop
+            }
+        };
     };
 
     if (loading) {
@@ -124,9 +152,9 @@ export default function SaucePageOne({ initialData = [] }) {
 
 
     return (
-        <div className="relative w-full overflow-hidden bg-black flex flex-col items-center">
+        <div className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center">
 
-            <div className="relative w-full min-h-[175vw] sm:min-h-[120vw] md:min-h-[60vw] lg:min-h-[55vw] xl:min-h-[50vw]">
+            <div className="relative w-full h-screen">
 
                 {saucesData.map((sauce, idx) => {
                     const isActive = idx === currentIndex;
@@ -137,7 +165,7 @@ export default function SaucePageOne({ initialData = [] }) {
                             className={`absolute top-0 left-0 w-full transition-opacity duration-1200 ease-in-out ${isActive ? "opacity-100 z-20" : "opacity-0 z-10"
                                 }`}
                         >
-                            <div className="relative w-full flex flex-col items-center pb-[25vw] min-h-[175vw] sm:min-h-[120vw] md:min-h-[60vw] lg:min-h-[55vw] xl:min-h-[50vw] sm:pb-[100vw] md:pb-[20vw] lg:pb-[26vw] xl:pb-[26vw] bg-black">
+                            <div className="relative w-full h-screen flex flex-col items-center bg-black">
 
                                 {sauce.bgImage && (
                                     <Image
@@ -146,17 +174,17 @@ export default function SaucePageOne({ initialData = [] }) {
                                         width={1920}
                                         height={1080}
                                         className="w-full h-auto block"
-                                        priority={idx === 0}
+                                        priority={isActive}
                                     />
                                 )}
 
 
                                 {/* TEXT SECTION WITH PREMIUM SCALING */}
                                 <div
-                                    className={`absolute mt-[8vw] sm:mt-6 md:mt-0 top-[9%] sm:top-[10%] md:top-[4%] lg:top-[6%] xl:top-[2%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20 transition-transform duration-700 ease-out`}
+                                    className={`absolute mt-[8vw] sm:mt-6 md:mt-0 top-[2%] sm:top-[4%] md:top-[2%] lg:top-[3%] xl:top-[3%] left-1/2 -translate-x-1/2 text-center md:text-center text-white w-[95%] sm:w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] z-20 transition-transform duration-700 ease-out`}
                                 >
                                     <h1
-                                        className="text-5xl sm:text-5xl md:text-[50px] lg:text-[60px] xl:text-[5vw] font-bold tracking-wide mb-1 sm:mb-2 md:mb-4 xl:mb-[-.5vw]"
+                                        className="text-5xl sm:text-5xl md:text-[50px] lg:text-[4.5vw] xl:text-[5vw] font-bold tracking-wide mb-1 sm:mb-2 md:mb-4 xl:mb-[-.5vw]"
                                         style={{ fontFamily: 'var(--font-peakers)' }}
                                     >
                                         {sauce.title}
@@ -202,7 +230,7 @@ export default function SaucePageOne({ initialData = [] }) {
                                 </div>
 
                                 <div
-                                    className="absolute left-1/2 -translate-x-1/2 mt-[15vw] md:mt-0 bottom-[-65vw] sm:bottom-[-15vw] md:bottom-[2vw] lg:bottom-[-2vw] xl:bottom-[-5vw] w-[135vw] h-[135vw] sm:w-[75vw] sm:h-[75vw] md:w-[70vw] md:h-[70vw] lg:w-[60vw] lg:h-[60vw] xl:w-[72vw] xl:h-[72vw] flex items-center justify-center z-10 pointer-events-none"
+                                    className="absolute left-1/2 -translate-x-1/2 bottom-[-110vw] sm:bottom-[-25vw] md:bottom-[-20vw] lg:bottom-[-25vw] xl:bottom-[-35vw] w-[130vw] h-[130vw] sm:w-[85vw] sm:h-[85vw] md:w-[70vw] md:h-[70vw] lg:w-[50vw] lg:h-[50vw] xl:w-[55vw] xl:h-[55vw] flex items-center justify-center z-10 pointer-events-none"
                                 >
 
                                     {/* ROTATING TEXT (WITH INDEPENDENT SCALING) */}
@@ -228,7 +256,10 @@ export default function SaucePageOne({ initialData = [] }) {
                                                 >
                                                     {/* Layout items counter-clockwise: [S0, Sn-1, Sn-2... S1] 
                                                         so that clockwise rotation R+ advances the array correctly */}
-                                                    {[saucesData[0], ...[...saucesData.slice(1)].reverse()].map(s => `${s.title.toUpperCase()} SAUCE`).join(' • ')} •{' '}
+                                                    {[saucesData[0], ...[...saucesData.slice(1)].reverse()].map(s => {
+                                                        const title = s.title.trim().toUpperCase();
+                                                        return title.endsWith(' SAUCE') ? title : `${title} SAUCE`;
+                                                    }).join(' • ')} •{' '}
                                                 </textPath>
                                             </text>
                                         </svg>
@@ -240,19 +271,53 @@ export default function SaucePageOne({ initialData = [] }) {
                                         <circle cx="500" cy="90" r="8" fill="white" />
                                     </svg>
 
-                                    {isActive && sauce.sauceImage && (
-                                        <div className={getSauceImageStyle(idx)}>
-                                            <Image
-                                                src={urlFor(sauce.sauceImage).url()}
-                                                alt={sauce.title}
-                                                fill
-                                                className="object-cover object-center rounded-full select-none pointer-events-auto"
-                                                style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
-                                                priority={idx === 0}
-                                                sizes="(max-width: 768px) 80vw, 40vw"
-                                            />
-                                        </div>
-                                    )}
+                                    <AnimatePresence mode="wait">
+                                        {isActive && sauce.sauceImage && (
+                                            <div
+                                                className={getSauceImageStyle(sauce, idx).className}
+                                                style={getSauceImageStyle(sauce, idx).style}
+                                            >
+                                                <motion.div
+                                                    key={currentIndex}
+                                                    initial={{
+                                                        scale: 0.45,
+                                                        opacity: 0,
+                                                        y: 80,
+                                                        filter: "blur(8px)"
+                                                    }}
+                                                    animate={{
+                                                        scale: 1,
+                                                        opacity: 1,
+                                                        y: 0,
+                                                        filter: "blur(0px)"
+                                                    }}
+                                                    exit={{
+                                                        scale: 0.7,
+                                                        opacity: 0,
+                                                        y: -40,
+                                                        filter: "blur(4px)"
+                                                    }}
+                                                    transition={{
+                                                        type: "spring",
+                                                        stiffness: 80,
+                                                        damping: 18,
+                                                        mass: 0.9
+                                                    }}
+                                                    className="w-full h-full"
+                                                >
+                                                    <Image
+                                                        src={urlFor(sauce.sauceImage).url()}
+                                                        alt={sauce.title}
+                                                        fill
+                                                        className="object-cover object-center rounded-full select-none pointer-events-auto"
+                                                        style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.95))" }}
+                                                        priority={isActive}
+                                                        sizes="(max-width: 768px) 80vw, 40vw"
+                                                    />
+                                                </motion.div>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
 
                                 </div>
 

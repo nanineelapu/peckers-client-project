@@ -17,7 +17,7 @@ const SaucesPage = ({ initialSaucesData }) => {
     }
 
     return (
-        <main className="w-full bg-black">
+        <main className="w-full min-h-screen bg-black overflow-hidden relative">
             <SauceSection initialData={sauces} />
         </main>
     );

@@ -52,6 +52,18 @@ export default defineType({
             title: 'Sauce Image',
             type: 'image',
             options: { hotspot: true }
+        }),
+        defineField({
+            name: 'imageScaleBoost',
+            title: 'Image Scale Boost',
+            type: 'number',
+            description: 'Override the default scale for the bottle/bowl image. (e.g., 1.5, 1.8)',
+        }),
+        defineField({
+            name: 'imageYOffset',
+            title: 'Image Y Offset (vw)',
+            type: 'number',
+            description: 'Vertical offset in vw to nudge the image up/down. Negative moves it up. (e.g., -2, 5)',
         })
     ]
 })
